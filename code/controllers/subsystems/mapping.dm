@@ -24,7 +24,7 @@ SUBSYSTEM_DEF(mapping)
 	maploader = new()
 	load_map_templates()
 
-	if(config.generate_map)
+	if(CONFIG_GET(flag/generate_map)) // CHOMPEdit
 		// Map-gen is still very specific to the map, however putting it here should ensure it loads in the correct order.
 		using_map.perform_map_generation()
 
@@ -60,8 +60,8 @@ SUBSYSTEM_DEF(mapping)
 
 	// Choose an engine type
 	var/datum/map_template/engine/chosen_type = null
-	if (LAZYLEN(config.engine_map))
-		var/chosen_name = pick(config.engine_map)
+	if (LAZYLEN(CONFIG_GET(str_list/engine_map))) // CHOMPEdit
+		var/chosen_name = pick(CONFIG_GET(str_list/engine_map)) // CHOMPEdit
 		chosen_type = map_templates[chosen_name]
 		if(!istype(chosen_type))
 			/* Bastion of Endeavor Translation

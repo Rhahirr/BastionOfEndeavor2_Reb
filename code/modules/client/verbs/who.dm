@@ -185,21 +185,21 @@
 	msg = "<b>Администраторы в сети ([num_admins_online]):</b>\n" + msg
 	// End of Bastion of Endeavor Translation
 
-	if(config.show_mods)
+	if(CONFIG_GET(flag/show_mods)) // CHOMPEdit
 		/* Bastion of Endeavor Translation
 		msg += "\n<b> Current Moderators ([num_mods_online]):</b>\n" + modmsg	//YW EDIT
 		*/
 		msg += "\n<b> Модераторы ([num_mods_online]):</b>\n" + modmsg	//YW EDIT
 		// End of Bastion of Endeavor Translation
 
-	if(config.show_devs)
+	if(CONFIG_GET(flag/show_devs)) // CHOMPEdit
 		/* Bastion of Endeavor Translation
 		msg += "\n<b> Current Developers ([num_devs_online]):</b>\n" + devmsg
 		*/
 		msg += "\n<b> Разработчики ([num_devs_online]):</b>\n" + devmsg
 		// End of Bastion of Endeavor Translation
 
-	if(config.show_event_managers)
+	if(CONFIG_GET(flag/show_event_managers)) // CHOMPEdit
 		/* Bastion of Endeavor Translation
 		msg += "\n<b> Current Miscellaneous ([num_event_managers_online]):</b>\n" + eventMmsg
 		*/
@@ -242,7 +242,7 @@
 				// End of Bastion of Endeavor Translation
 		mmsg += "\n"
 
-	if(config.show_mentors)
+	if(CONFIG_GET(flag/show_mentors)) // CHOMPEdit
 		/* Bastion of Endeavor Translation
 		msg += "\n<b> Current Mentors ([num_mentors_online]):</b>\n" + mmsg
 		*/

@@ -965,3 +965,10 @@ GLOBAL_LIST_EMPTY(text_tag_cache)
 	paper_text = strip_html_properly(paper_text)
 	// End of Bastion of Endeavor Unicode Edit
 	return paper_text
+
+//json decode that will return null on parse error instead of runtiming.
+/proc/safe_json_decode(data)
+	try
+		return json_decode(data)
+	catch
+		return null

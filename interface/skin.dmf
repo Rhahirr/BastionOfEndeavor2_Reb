@@ -1114,7 +1114,7 @@ menu "menu"
 		saved-params = "is-checked"
 	elem
 		name = "&Правила сервера"
-		command = "Вики-сервера"
+		command = "Правила-сервера"
 		category = "&Помощь"
 		saved-params = "is-checked"
 	elem
@@ -1124,7 +1124,7 @@ menu "menu"
 		saved-params = "is-checked"
 	elem
 		name = "&Показать управление"
-		command = "hotkeys-help"
+		command = "Показать-управление"
 		category = "&Помощь"
 		saved-params = "is-checked"
 // End of Bastion of Endeavor Addition

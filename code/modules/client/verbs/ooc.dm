@@ -39,51 +39,51 @@
 
 	if(!holder)
 		/* Bastion of Endeavor Translation
-		if(!config.ooc_allowed)
+		if(!CONFIG_GET(flag/ooc_allowed)) // CHOMPEdit
 			to_chat(src, "<span class='danger'>OOC is globally muted.</span>")
 			return
-		if(!config.dooc_allowed && (mob.stat == DEAD))
+		if(!CONFIG_GET(flag/dooc_allowed) && (mob.stat == DEAD)) // CHOMPEdit
 			to_chat(usr, "<span class='danger'>OOC for dead mobs has been turned off.</span>")
 			return
 		if(prefs.muted & MUTE_OOC)
 			to_chat(src, "<span class='danger'>You cannot use OOC (muted).</span>")
 			return
-		if(findtext(msg, "byond://") && !config.allow_byond_links)
+		if(findtext(msg, "byond://") && !CONFIG_GET(flag/allow_byond_links)) // CHOMPEdit
 			to_chat(src, "<B>Advertising other servers is not allowed.</B>")
 			log_admin("[key_name(src)] has attempted to advertise in OOC: [msg]")
 			message_admins("[key_name_admin(src)] has attempted to advertise in OOC: [msg]")
 			return
-		if(findtext(msg, "discord.gg") && !config.allow_discord_links)
+		if(findtext(msg, "discord.gg") && !CONFIG_GET(flag/allow_discord_links)) // CHOMPEdit
 			to_chat(src, "<B>Advertising discords is not allowed.</B>")
 			log_admin("[key_name(src)] has attempted to advertise a discord server in OOC: [msg]")
 			message_admins("[key_name_admin(src)] has attempted to advertise a discord server in OOC: [msg]")
 			return
-		if((findtext(msg, "http://") || findtext(msg, "https://")) && !config.allow_url_links)
+		if((findtext(msg, "http://") || findtext(msg, "https://")) && !CONFIG_GET(flag/allow_url_links)) // CHOMPEdit
 			to_chat(src, "<B>Posting external links is not allowed.</B>")
 			log_admin("[key_name(src)] has attempted to post a link in OOC: [msg]")
 			message_admins("[key_name_admin(src)] has attempted to post a link in OOC: [msg]")
 			return
 		*/
-		if(!config.ooc_allowed)
+		if(!CONFIG_GET(flag/ooc_allowed)) // CHOMPEdit
 			to_chat(src, "<span class='danger'>Чат OOC отключён администраторами.</span>")
 			return
-		if(!config.dooc_allowed && (mob.stat == DEAD))
+		if(!CONFIG_GET(flag/dooc_allowed) && (mob.stat == DEAD)) // CHOMPEdit
 			to_chat(usr, "<span class='danger'>Чат OOC отключён для мёртвых существ.</span>")
 			return
 		if(prefs.muted & MUTE_OOC)
 			to_chat(src, "<span class='danger'>Вам запрещено использовать чат OOC.</span>")
 			return
-		if(findtext_char(msg, "byond://") && !config.allow_byond_links)
+		if(findtext_char(msg, "byond://") && !CONFIG_GET(flag/allow_byond_links)) // CHOMPEdit
 			to_chat(src, "<B>Рекламировать другие сервера запрещено.</B>")
 			log_admin("[key_name(src)] попытался прорекламировать в OOC: [msg]")
 			message_admins("[key_name_admin(src)] попытался прорекламировать в OOC: [msg]")
 			return
-		if(findtext_char(msg, "discord.gg") && !config.allow_discord_links)
+		if(findtext_char(msg, "discord.gg") && !CONFIG_GET(flag/allow_discord_links)) // CHOMPEdit
 			to_chat(src, "<B>Рекламировать сервера Discord запрещено.</B>")
 			log_admin("[key_name(src)] попытался прорекламировать в OOC: [msg]")
 			message_admins("[key_name_admin(src)] попытался прорекламировать в OOC: [msg]")
 			return
-		if((findtext_char(msg, "http://") || findtext_char(msg, "https://")) && !config.allow_url_links)
+		if((findtext_char(msg, "http://") || findtext(msg, "https://")) && !CONFIG_GET(flag/allow_url_links)) // CHOMPEdit
 			to_chat(src, "<B>Отправлять внешние ссылки запрещено.</B>")
 			log_admin("[key_name(src)] попытался отправить ссылку в OOC: [msg]")
 			message_admins("[key_name_admin(src)] попытался отправить ссылку в OOC: [msg]")
@@ -121,7 +121,7 @@
 						display_name = "[holder.fakekey]/([src.key])"
 					else
 						display_name = holder.fakekey
-			if(holder && !holder.fakekey && (holder.rights & R_ADMIN|R_FUN|R_EVENT) && config.allow_admin_ooccolor && (src.prefs.ooccolor != initial(src.prefs.ooccolor))) // keeping this for the badmins
+			if(holder && !holder.fakekey && (holder.rights & R_ADMIN|R_FUN|R_EVENT) && CONFIG_GET(flag/allow_admin_ooccolor) && (src.prefs.ooccolor != initial(src.prefs.ooccolor))) // keeping this for the badmins // CHOMPEdit
 				/* Bastion of Endeavor Translation
 				to_chat(target, "<span class='ooc'><font color='[src.prefs.ooccolor]'>" + create_text_tag("ooc", "OOC:", target) + " <EM>[display_name]:</EM> <span class='message'>[msg]</span></font></span>")
 				*/
@@ -178,51 +178,51 @@
 
 	if(!holder)
 		/* Bastion of Endeavor Translation
-		if(!config.looc_allowed)
+		if(!CONFIG_GET(flag/looc_allowed)) // CHOMPEdit
 			to_chat(src, "<span class='danger'>LOOC is globally muted.</span>")
 			return
-		if(!config.dooc_allowed && (mob.stat == DEAD))
+		if(!CONFIG_GET(flag/dooc_allowed) && (mob.stat == DEAD)) // CHOMPEdit
 			to_chat(usr, "<span class='danger'>OOC for dead mobs has been turned off.</span>")
 			return
 		if(prefs.muted & MUTE_OOC)
 			to_chat(src, "<span class='danger'>You cannot use OOC (muted).</span>")
 			return
-		if(findtext(msg, "byond://") && !config.allow_byond_links)
+		if(findtext(msg, "byond://") && !CONFIG_GET(flag/allow_byond_links)) // CHOMPEdit
 			to_chat(src, "<B>Advertising other servers is not allowed.</B>")
 			log_admin("[key_name(src)] has attempted to advertise in OOC: [msg]")
 			message_admins("[key_name_admin(src)] has attempted to advertise in OOC: [msg]")
 			return
-		if(findtext(msg, "discord.gg") && !config.allow_discord_links)
+		if(findtext(msg, "discord.gg") && !CONFIG_GET(flag/allow_discord_links)) // CHOMPEdit
 			to_chat(src, "<B>Advertising discords is not allowed.</B>")
 			log_admin("[key_name(src)] has attempted to advertise a discord server in OOC: [msg]")
 			message_admins("[key_name_admin(src)] has attempted to advertise a discord server in OOC: [msg]")
 			return
-		if((findtext(msg, "http://") || findtext(msg, "https://")) && !config.allow_url_links)
+		if((findtext(msg, "http://") || findtext(msg, "https://")) && !CONFIG_GET(flag/allow_url_links)) // CHOMPEdit
 			to_chat(src, "<B>Posting external links is not allowed.</B>")
 			log_admin("[key_name(src)] has attempted to post a link in OOC: [msg]")
 			message_admins("[key_name_admin(src)] has attempted to post a link in OOC: [msg]")
 			return
 		*/
-		if(!config.looc_allowed)
+		if(!CONFIG_GET(flag/looc_allowed)) // CHOMPEdit
 			to_chat(src, "<span class='danger'>Чат LOOC отключён администраторами.</span>")
 			return
-		if(!config.dooc_allowed && (mob.stat == DEAD))
+		if(!CONFIG_GET(flag/dooc_allowed) && (mob.stat == DEAD)) // CHOMPEdit
 			to_chat(usr, "<span class='danger'>Чат LOOC отключён для мёртвых существ.</span>")
 			return
 		if(prefs.muted & MUTE_OOC)
 			to_chat(src, "<span class='danger'>Вам запрещено использовать чаты OOC.</span>")
 			return
-		if(findtext_char(msg, "byond://") && !config.allow_byond_links)
+		if(findtext_char(msg, "byond://") && !CONFIG_GET(flag/allow_byond_links)) // CHOMPEdit
 			to_chat(src, "<B>Рекламировать другие сервера запрещено.</B>")
 			log_admin("[key_name(src)] попытался прорекламировать в OOC: [msg]")
 			message_admins("[key_name_admin(src)] попытался прорекламировать в OOC: [msg]")
 			return
-		if(findtext_char(msg, "discord.gg") && !config.allow_discord_links)
+		if(findtext_char(msg, "discord.gg") && !CONFIG_GET(flag/allow_discord_links)) // CHOMPEdit
 			to_chat(src, "<B>Рекламировать сервера Discord запрещено.</B>")
 			log_admin("[key_name(src)] попытался прорекламировать в OOC: [msg]")
 			message_admins("[key_name_admin(src)] попытался прорекламировать в OOC: [msg]")
 			return
-		if((findtext_char(msg, "http://") || findtext_char(msg, "https://")) && !config.allow_url_links)
+		if((findtext_char(msg, "http://") || findtext(msg, "https://")) && !CONFIG_GET(flag/allow_url_links)) // CHOMPEdit
 			to_chat(src, "<B>Отправлять внешние ссылки запрещено.</B>")
 			log_admin("[key_name(src)] попытался отправить ссылку в OOC: [msg]")
 			message_admins("[key_name_admin(src)] попытался отправить ссылку в OOC: [msg]")

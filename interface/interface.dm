@@ -8,10 +8,14 @@
 	set desc = "Ввести интересующую тему, чтобы открыть результаты поиска на вики в браузере."
 	// End of Bastion of Endeavor Translation
 	set category = "OOC"
-	if(config.wikiurl)
+	if(CONFIG_GET(string/wikiurl)) // CHOMPEdit
 		if(query)
-			if(config.wikisearchurl)
-				var/output = replacetext(config.wikisearchurl, "%s", url_encode(query))
+			if(CONFIG_GET(string/wikisearchurl)) // CHOMPEdit
+				/* Bastion of Endeavor Unicode Edit
+				var/output = replacetext(CONFIG_GET(string/wikisearchurl), "%s", url_encode(query)) // CHOMPEdit
+				*/
+				var/output = replacetext_char(CONFIG_GET(string/wikisearchurl), "%s", url_encode(query)) // CHOMPEdit
+				// End of Bastion of Endeavor Unicode Edit
 				src << link(output)
 			else
 				/* Bastion of Endeavor Translation
@@ -20,86 +24,168 @@
 				to_chat(src, "<span class='warning'>URL вики не задан в конфигурации сервера.</span>")
 				// End of Bastion of Endeavor Translation
 		else
-			src << link(config.wikiurl)
+			src << link(CONFIG_GET(string/wikiurl)) // CHOMPEdit
 	else
+		/* Bastion of Endeavor Translation
 		to_chat(src, "<span class='warning'>The wiki URL is not set in the server configuration.</span>")
+		*/
+		to_chat(src, "<span class='warning'>URL вики не задан в конфигурации сервера.</span>")
+		// End of Bastion of Endeavor Translation
 		return
 
 /client/verb/forum()
+	/* Bastion of Endeavor Translation
 	set name = "forum"
 	set desc = "Visit the forum."
+	*/
+	set name = "Форум сервера"
+	set desc = "Посетить форум сервера."
+	// End of Bastion of Endeavor Translation
 	set hidden = 1
-	if( config.forumurl )
+	if(CONFIG_GET(string/forumurl)) // CHOMPEdit
+		/* Bastion of Endeavor Translation
 		if(tgui_alert(usr, "This will open the forum in your browser. Are you sure?","Visit Website",list("Yes","No"))=="No")
+		*/
+		if(tgui_alert(usr, "Вы собираетесь открыть форум сервера в браузере. Продолжить?","Форум сервера",list("Да","Нет"))=="Нет")
+		// End of Bastion of Endeavor Translation
 			return
-		src << link(config.forumurl)
+		src << link(CONFIG_GET(string/forumurl)) // CHOMPEdit
 	else
+		/* Bastion of Endeavor Translation
 		to_chat(src, "<span class='warning'>The forum URL is not set in the server configuration.</span>")
+		*/
+		to_chat(src, "<span class='warning'>URL форума не задан в конфигурации сервера.</span>")
+		// End of Bastion of Endeavor Translation
 		return
 
 /client/verb/rules()
+	/* Bastion of Endeavor Translation
 	set name = "Rules"
 	set desc = "Show Server Rules."
+	*/
+	set name = "Правила сервера"
+	set desc = "Показать правила сервера."
+	// End of Bastion of Endeavor Translation
 	set hidden = 1
 
-	if(config.rulesurl)
+	if(CONFIG_GET(string/rulesurl)) // CHOMPEdit
+		/* Bastion of Endeavor Translation
 		if(tgui_alert(usr, "This will open the rules in your browser. Are you sure?","Visit Website",list("Yes","No"))=="No")
+		*/
+		if(tgui_alert(usr, "Вы собираетесь открыть правила сервера в браузере. Продолжить?","Правила сервера",list("Да","Нет"))=="Нет")
+		// End of Bastion of Endeavor Translation
 			return
-		src << link(config.rulesurl)
+		src << link(CONFIG_GET(string/rulesurl)) // CHOMPEdit
 	else
+		/* Bastion of Endeavor Translation
 		to_chat(src, "<span class='danger'>The rules URL is not set in the server configuration.</span>")
+		*/
+		to_chat(src, "<span class='warning'>URL правил сервера не задан в конфигурации сервера.</span>")
+		// End of Bastion of Endeavor Translation
 	return
 
 /client/verb/map()
+	/* Bastion of Endeavor Translation
 	set name = "Map"
 	set desc = "See the map."
+	*/
+	set name = "Карта станции"
+	set desc = "Показать карту станции."
+	// End of Bastion of Endeavor Translation
 	set hidden = 1
 
-	if(config.mapurl)
+	if(CONFIG_GET(string/mapurl)) // CHOMPEdit
+		/* Bastion of Endeavor Translation
 		if(tgui_alert(usr, "This will open the map in your browser. Are you sure?","Visit Website",list("Yes","No"))=="No")
+		*/
+		if(tgui_alert(usr, "Вы собираетесь открыть карту станции в браузере. Продолжить?","Карта станции",list("Да","Нет"))=="Нет")
+		// End of Bastion of Endeavor Translation
 			return
-		src << link(config.mapurl)
+		src << link(CONFIG_GET(string/mapurl)) // CHOMPEdit
 	else
+		/* Bastion of Endeavor Translation
 		to_chat(src, "<span class='danger'>The map URL is not set in the server configuration.</span>")
+		*/
+		to_chat(src, "<span class='warning'>URL карты станции не задан в конфигурации сервера.</span>")
+		// End of Bastion of Endeavor Translation
 	return
 
 /client/verb/github()
+	/* Bastion of Endeavor Translation
 	set name = "GitHub"
 	set desc = "Visit the GitHub"
+	*/
+	set name = "GitHub сервера"
+	set desc = "Посетить GitHub сервера."
+	// End of Bastion of Endeavor Translation
 	set hidden = 1
 
-	if(config.githuburl)
+	if(CONFIG_GET(string/githuburl)) // CHOMPEdit
+		/* Bastion of Endeavor Translation
 		if(tgui_alert(usr, "This will open the GitHub in your browser. Are you sure?","Visit Website",list("Yes","No"))=="No")
+		*/
+		if(tgui_alert(usr, "Вы собираетесь открыть GitHub сервера в браузере. Продолжить?","GitHub сервера",list("Да","Нет"))=="Нет")
+		// End of Bastion of Endeavor Translation
 			return
-		src << link(config.githuburl)
+		src << link(CONFIG_GET(string/githuburl)) // CHOMPEdit
 	else
+		/* Bastion of Endeavor Translation
 		to_chat(src, "<span class='danger'>The GitHub URL is not set in the server configuration.</span>")
+		*/
+		to_chat(src, "<span class='warning'>GitHub сервера не задан в конфигурации сервера.</span>")
+		// End of Bastion of Endeavor Translation
 	return
 
 /client/verb/discord()
+	/* Bastion of Endeavor Translation
 	set name = "Discord"
 	set desc = "Visit the discord"
+	*/
+	set name = "Discord сервера"
+	set desc = "Посетить Discord сервера."
+	// End of Bastion of Endeavor Translation
 	set hidden = 1
 
-	if(config.discordurl)
+	if(CONFIG_GET(string/discordurl)) // CHOMPEdit
+		/* Bastion of Endeavor Translation
 		if(tgui_alert(usr, "This will open the Discord in your browser. Are you sure?","Visit Website",list("Yes","No"))=="No")
+		*/
+		if(tgui_alert(usr, "Вы собираетесь открыть Discord сервера в браузере. Продолжить?","Discord сервера",list("Да","Нет"))=="Нет")
+		// End of Bastion of Endeavor Translation
 			return
-		src << link(config.discordurl)
+		src << link(CONFIG_GET(string/discordurl)) // CHOMPEdit
 	else
+		/* Bastion of Endeavor Translation
 		to_chat(src, "<span class='danger'>The Discord URL is not set in the server configuration.</span>")
+		*/
+		to_chat(src, "<span class='warning'>Discord сервера не задан в конфигурации сервера.</span>")
+		// End of Bastion of Endeavor Translation
 	return
 
 /client/verb/patreon()
+	/* Bastion of Endeavor Translation
 	set name = "Patreon"
 	set desc = "Visit the patreon"
+	*/
+	set name = "Patreon сервера"
+	set desc = "Посетить Patreon сервера."
+	// End of Bastion of Endeavor Translation
 	set hidden = 1
 
-	if(config.patreonurl)
+	if(CONFIG_GET(string/patreonurl)) // CHOMPEdit
+		/* Bastion of Endeavor Translation
 		if(tgui_alert(usr, "This will open the Patreon in your browser. Are you sure?","Visit Website",list("Yes","No"))=="No")
+		*/
+		if(tgui_alert(usr, "Вы собираетесь открыть Patreon сервера в браузере. Продолжить?","Patreon сервера",list("Да","Нет"))=="Нет")
+		// End of Bastion of Endeavor Translation
 			return
-		src << link(config.patreonurl)
+		src << link(CONFIG_GET(string/patreonurl)) // CHOMPEdit
 	else
+		/* Bastion of Endeavor Translation
 		to_chat(src, "<span class='danger'>The Patreon URL is not set in the server configuration.</span>")
+		*/
+		to_chat(src, "<span class='warning'>Patreon сервера не задан в конфигурации сервера.</span>")
+		// End of Bastion of Endeavor Translation
 	return
 
 /client/verb/hotkeys_help()

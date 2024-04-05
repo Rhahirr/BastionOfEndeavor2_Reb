@@ -413,10 +413,10 @@ Proc for attack log creation, because really why not
 
 /proc/not_has_ooc_text(mob/user)
 	/* Bastion of Endeavor Translation
-	if (config.allow_Metadata && (!user.client?.prefs?.metadata || length(user.client.prefs.metadata) < 15))
+	if (CONFIG_GET(flag/allow_metadata) && (!user.client?.prefs?.metadata || length(user.client.prefs.metadata) < 15)) // CHOMPEdit
 		to_chat(user, "<span class='warning'>Please set informative OOC notes related to RP/ERP preferences. Set them using the 'OOC Notes' button on the 'General' tab in character setup.</span>")
 	*/
-	if (config.allow_Metadata && (!user.client?.prefs?.metadata || length_char(user.client.prefs.metadata) < 15))
+	if (CONFIG_GET(flag/allow_metadata) && (!user.client?.prefs?.metadata || length_char(user.client.prefs.metadata) < 15)) // CHOMPEdit
 		to_chat(user, "<span class='warning'>Пожалуйста, добавьте для своего персонажа информативные Примечания OOC, относящиеся к пожеланиям в ролевом отыгрыше. Это можно сделать на вкладке Общее в Редакторе персонажа.</span>")
 	// End of Bastion of Endeavor Translation
 		return TRUE

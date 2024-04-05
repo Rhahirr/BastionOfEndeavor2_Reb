@@ -94,7 +94,7 @@
 
 // Moved from /datum/preferences/proc/copy_to()
 /datum/category_item/player_setup_item/general/basic/copy_to_mob(var/mob/living/carbon/human/character)
-	if(config.humans_need_surnames)
+	if(CONFIG_GET(flag/humans_need_surnames)) // CHOMPEdit
 		/* Bastion of Endeavor Unicode Edit
 		var/firstspace = findtext(pref.real_name, " ")
 		var/name_length = length(pref.real_name)
@@ -139,7 +139,7 @@
 	. += "<b>Pronouns:</b> <a href='?src=\ref[src];id_gender=1'><b>[gender2text(pref.identifying_gender)]</b></a><br>"
 	. += "<b>Age:</b> <a href='?src=\ref[src];age=1'>[pref.age]</a> <b>Birthday:</b> <a href='?src=\ref[src];bday_month=1'>[pref.bday_month]</a><b>/</b><a href='?src=\ref[src];bday_day=1'>[pref.bday_day]</a> - <b>Announce?:</b> <a href='?src=\ref[src];bday_announce=1'>[pref.bday_announce ? "Yes" : "Disabled"]</a><br>" //ChompEDIT - DISABLE the announcement
 	. += "<b>Spawn Point</b>: <a href='?src=\ref[src];spawnpoint=1'>[pref.spawnpoint]</a><br>"
-	if(config.allow_Metadata)
+	if(CONFIG_GET(flag/allow_metadata)) // CHOMPEdit
 		//CHOMPEdit Start
 		. += "<b>OOC Notes: <a href='?src=\ref[src];edit_ooc_notes=1'>Edit</a><a href='?src=\ref[src];edit_ooc_note_favs=1'>Favs</a><a href='?src=\ref[src];edit_ooc_note_likes=1'>Likes</a><a href='?src=\ref[src];edit_ooc_note_maybes=1'>Maybes</a><a href='?src=\ref[src];edit_ooc_note_dislikes=1'>Dislikes</a></b><br>"
 		. += "Detailed field or short list system? <a href='?src=\ref[src];edit_ooc_note_style=1'>[pref.matadata_ooc_style ? "Lists" : "Fields"]</a><br><br>"
@@ -158,7 +158,7 @@
 	. += "<b>Местоимения:</b> <a href='?src=\ref[src];id_gender=1'>[get_key_by_value(all_id_genders_define_list_ru, pref.identifying_gender)]</a><br>"
 	. += "<b>Возраст:</b> <a href='?src=\ref[src];age=1'>[pref.age]</a><b>, дата рождения:</b> <a href='?src=\ref[src];bday_day=1'>[pref.bday_day]</a><b>.</b><a href='?src=\ref[src];bday_month=1'>[pref.bday_month]</a><br>"
 	. += "<b>Точка прибытия</b>: <a href='?src=\ref[src];spawnpoint=1'>[pref.spawnpoint]</a><br>"
-	if(config.allow_Metadata)
+	if(CONFIG_GET(flag/allow_metadata)) // CHOMPEdit
 		//CHOMPEdit Start
 		. += "<b>Примечания OOC: <a href='?src=\ref[src];edit_ooc_notes=1'>Изменить</a><a href='?src=\ref[src];edit_ooc_note_favs=1'>Любимое</a><a href='?src=\ref[src];edit_ooc_note_likes=1'>Нравится</a><a href='?src=\ref[src];edit_ooc_note_maybes=1'>Неоднозначно</a><a href='?src=\ref[src];edit_ooc_note_dislikes=1'>Не нравится</a></b><br>"
 		. += "Примечания в формате <a href='?src=\ref[src];edit_ooc_note_style=1'>[pref.matadata_ooc_style ? "столбцов" : "вертикальных граф"]</a>.<br><br>"

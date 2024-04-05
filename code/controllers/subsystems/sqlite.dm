@@ -14,7 +14,7 @@ SUBSYSTEM_DEF(sqlite)
 	return SS_INIT_SUCCESS // CHOMPEdit
 
 /datum/controller/subsystem/sqlite/proc/connect()
-	if(!config.sqlite_enabled)
+	if(!CONFIG_GET(flag/sqlite_enabled)) // CHOMPEdit
 		return
 
 	if(!sqlite_db)
@@ -129,17 +129,17 @@ SUBSYSTEM_DEF(sqlite)
 	// End of Bastion of Endeavor Translation
 
 /datum/controller/subsystem/sqlite/proc/can_submit_feedback(client/C)
-	if(!config.sqlite_enabled)
+	if(!CONFIG_GET(flag/sqlite_enabled)) // CHOMPEdit
 		return FALSE
-	if(config.sqlite_feedback_min_age && !is_old_enough(C))
+	if(CONFIG_GET(number/sqlite_feedback_min_age) && !is_old_enough(C)) // CHOMPEdit
 		return FALSE
-	if(config.sqlite_feedback_cooldown > 0 && get_feedback_cooldown(C.key, config.sqlite_feedback_cooldown, sqlite_db) > 0)
+	if(CONFIG_GET(number/sqlite_feedback_cooldown) > 0 && get_feedback_cooldown(C.key, CONFIG_GET(number/sqlite_feedback_cooldown), sqlite_db) > 0) // CHOMPEdit
 		return FALSE
 	return TRUE
 
 // Returns TRUE if the player is 'old' enough, according to the config.
 /datum/controller/subsystem/sqlite/proc/is_old_enough(client/C)
-	if(get_player_age(C.key) < config.sqlite_feedback_min_age)
+	if(get_player_age(C.key) < CONFIG_GET(number/sqlite_feedback_min_age)) // CHOMPEdit
 		return FALSE
 	return TRUE
 

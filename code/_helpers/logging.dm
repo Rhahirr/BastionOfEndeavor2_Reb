@@ -39,7 +39,7 @@
 
 //print a testing-mode debug message to world.log
 /proc/testing(msg)
-	if (config.log_debug) //CHOMPEdit
+	if (CONFIG_GET(flag/log_debug)) //CHOMPEdit
 		/* Bastion of Endeavor Translation
 		to_world_log("## TESTING: [msg]")
 		*/
@@ -48,7 +48,7 @@
 
 /proc/log_admin(text)
 	admin_log.Add(text)
-	if (config.log_admin)
+	if (CONFIG_GET(flag/log_admin)) // CHOMPEdit
 		/* Bastion of Endeavor Translation
 		WRITE_LOG(diary, "ADMIN: [text]")
 		*/
@@ -57,7 +57,7 @@
 
 /proc/log_adminpm(text, client/source, client/dest)
 	admin_log.Add(text)
-	if (config.log_admin)
+	if (CONFIG_GET(flag/log_admin)) // CHOMPEdit
 		/* Bastion of Endeavor Translation
 		WRITE_LOG(diary, "ADMINPM: [key_name(source)]->[key_name(dest)]: [html_decode(text)]")
 		*/
@@ -66,7 +66,7 @@
 
 /proc/log_pray(text, client/source)
 	admin_log.Add(text)
-	if (config.log_admin)
+	if (CONFIG_GET(flag/log_admin)) // CHOMPEdit
 		/* Bastion of Endeavor Translation
 		WRITE_LOG(diary, "PRAY: [key_name(source)]: [text]")
 		*/
@@ -74,12 +74,13 @@
 		// End of Bastion of Endeavor Translation
 
 /proc/log_debug(text)
-	if (config.log_debug)
-		/* Bastion of Endeavor Translation
-		WRITE_LOG(debug_log, "DEBUG: [sanitize(text)]")
-		*/
-		WRITE_LOG(debug_log, "ОТЛАДКА: [sanitize(text)]")
-		// End of Bastion of Endeavor Translation
+	//if (CONFIG_GET(flag/log_debug)) // CHOMPEdit
+	//	WRITE_LOG(debug_log, "DEBUG: [sanitize(text)]")
+	/* Bastion of Endeavor Translation
+	WRITE_LOG(debug_log, "DEBUG: [sanitize(text)]")
+	*/
+	WRITE_LOG(debug_log, "ОТЛАДКА: [sanitize(text)]")
+	// End of Bastion of Endeavor Translation
 
 	for(var/client/C in GLOB.admins)
 		if(C.is_preference_enabled(/datum/client_preference/debug/show_debug_logs))
@@ -92,7 +93,7 @@
 					// End of Bastion of Endeavor Translation
 
 /proc/log_game(text)
-	if (config.log_game)
+	if (CONFIG_GET(flag/log_game)) // CHOMPEdit
 		/* Bastion of Endeavor Translation
 		WRITE_LOG(diary, "GAME: [text]")
 		*/
@@ -100,7 +101,7 @@
 		// End of Bastion of Endeavor Translation
 
 /proc/log_vote(text)
-	if (config.log_vote)
+	if (CONFIG_GET(flag/log_vote)) // CHOMPEdit
 		/* Bastion of Endeavor Translation
 		WRITE_LOG(diary, "VOTE: [text]")
 		*/
@@ -108,7 +109,7 @@
 		// End of Bastion of Endeavor Translation
 
 /proc/log_access_in(client/new_client)
-	if (config.log_access)
+	if (CONFIG_GET(flag/log_access)) // CHOMPEdit
 		var/message = "[key_name(new_client)] - IP:[new_client.address] - CID:[new_client.computer_id] - BYOND v[new_client.byond_version]"
 		/* Bastion of Endeavor Translation
 		WRITE_LOG(diary, "ACCESS IN: [message]") //VOREStation Edit
@@ -117,7 +118,7 @@
 		// End of Bastion of Endeavor Translation
 
 /proc/log_access_out(mob/last_mob)
-	if (config.log_access)
+	if (CONFIG_GET(flag/log_access)) // CHOMPEdit
 		/* Bastion of Endeavor Translation
 		var/message = "[key_name(last_mob)] - IP:[last_mob.lastKnownIP] - CID:Logged Out - BYOND Logged Out"
 		WRITE_LOG(diary, "ACCESS OUT: [message]")
@@ -127,7 +128,7 @@
 		// End of Bastion of Endeavor Translation
 
 /proc/log_say(text, mob/speaker)
-	if (config.log_say)
+	if (CONFIG_GET(flag/log_say)) // CHOMPEdit
 		/* Bastion of Endeavor Translation
 		WRITE_LOG(diary, "SAY: [speaker.simple_info_line()]: [html_decode(text)]")
 		*/
@@ -156,7 +157,7 @@
 		//CHOMPEdit End
 
 /proc/log_ooc(text, client/user)
-	if (config.log_ooc)
+	if (CONFIG_GET(flag/log_ooc)) // CHOMPEdit
 		WRITE_LOG(diary, "OOC: [user.simple_info_line()]: [html_decode(text)]")
 	if(!SSdbcore.IsConnected())
 		establish_db_connection()
@@ -176,7 +177,7 @@
 	//GLOB.round_text_log += "<b>([time_stamp()])</b> (<b>[user]</b>) <u>OOC:</u> - <span style=\"color:blue\"><b>[text]</b></span>"
 
 /proc/log_aooc(text, client/user)
-	if (config.log_ooc)
+	if (CONFIG_GET(flag/log_ooc)) // CHOMPEdit
 		WRITE_LOG(diary, "AOOC: [user.simple_info_line()]: [html_decode(text)]")
 	if(!SSdbcore.IsConnected())
 		establish_db_connection()
@@ -196,7 +197,7 @@
 	//GLOB.round_text_log += "<b>([time_stamp()])</b> (<b>[user]</b>) <u>AOOC:</u> - <span style=\"color:red\"><b>[text]</b></span>"
 
 /proc/log_looc(text, client/user)
-	if (config.log_ooc)
+	if (CONFIG_GET(flag/log_ooc)) // CHOMPEdit
 		WRITE_LOG(diary, "LOOC: [user.simple_info_line()]: [html_decode(text)]")
 	if(!SSdbcore.IsConnected())
 		establish_db_connection()
@@ -216,7 +217,7 @@
 	//GLOB.round_text_log += "<b>([time_stamp()])</b> (<b>[user]</b>) <u>LOOC:</u> - <span style=\"color:orange\"><b>[text]</b></span>"
 
 /proc/log_whisper(text, mob/speaker)
-	if (config.log_whisper)
+	if (CONFIG_GET(flag/log_whisper)) // CHOMPEdit
 		/* Bastion of Endeavor Translation
 		WRITE_LOG(diary, "WHISPER: [speaker.simple_info_line()]: [html_decode(text)]")
 		*/
@@ -243,7 +244,7 @@
 		qdel(query_insert)
 
 /proc/log_emote(text, mob/speaker)
-	if (config.log_emote)
+	if (CONFIG_GET(flag/log_emote)) // CHOMPEdit
 		/* Bastion of Endeavor Translation
 		WRITE_LOG(diary, "EMOTE: [speaker.simple_info_line()]: [html_decode(text)]")
 		*/
@@ -271,7 +272,7 @@
 	//CHOMPEdit End
 
 /proc/log_attack(attacker, defender, message)
-	if (config.log_attack)
+	if (CONFIG_GET(flag/log_attack)) // CHOMPEdit
 		/* Bastion of Endeavor Translation
 		WRITE_LOG(diary, "ATTACK: [attacker] against [defender]: [message]")
 		*/
@@ -279,7 +280,7 @@
 		// End of Bastion of Endeavor Translation
 
 /proc/log_adminsay(text, mob/speaker)
-	if (config.log_adminchat)
+	if (CONFIG_GET(flag/log_adminchat)) // CHOMPEdit
 		/* Bastion of Endeavor Translation
 		WRITE_LOG(diary, "ADMINSAY: [speaker.simple_info_line()]: [html_decode(text)]")
 		*/
@@ -287,7 +288,7 @@
 		// End of Bastion of Endeavor Translation
 
 /proc/log_modsay(text, mob/speaker)
-	if (config.log_adminchat)
+	if (CONFIG_GET(flag/log_adminchat)) // CHOMPEdit
 		/* Bastion of Endeavor Translation
 		WRITE_LOG(diary, "MODSAY: [speaker.simple_info_line()]: [html_decode(text)]")
 		*/
@@ -295,7 +296,7 @@
 		// End of Bastion of Endeavor Translation
 
 /proc/log_eventsay(text, mob/speaker)
-	if (config.log_adminchat)
+	if (CONFIG_GET(flag/log_adminchat)) // CHOMPEdit
 		/* Bastion of Endeavor Translation
 		WRITE_LOG(diary, "EVENTSAY: [speaker.simple_info_line()]: [html_decode(text)]")
 		*/
@@ -303,7 +304,7 @@
 		// End of Bastion of Endeavor Translation
 
 /proc/log_ghostsay(text, mob/speaker)
-	if (config.log_say)
+	if (CONFIG_GET(flag/log_say)) // CHOMPEdit
 		/* Bastion of Endeavor Translation
 		WRITE_LOG(diary, "DEADCHAT: [speaker.simple_info_line()]: [html_decode(text)]")
 		*/
@@ -332,7 +333,7 @@
 	//CHOMPEdit End
 
 /proc/log_ghostemote(text, mob/speaker)
-	if (config.log_emote)
+	if (CONFIG_GET(flag/log_emote)) // CHMOPEdit
 		/* Bastion of Endeavor Translation
 		WRITE_LOG(diary, "DEADEMOTE: [speaker.simple_info_line()]: [html_decode(text)]")
 		*/
@@ -358,7 +359,7 @@
 	//CHOMPEdit End
 
 /proc/log_adminwarn(text)
-	if (config.log_adminwarn)
+	if (CONFIG_GET(flag/log_adminwarn)) // CHOMPEdit
 		/* Bastion of Endeavor Translation
 		WRITE_LOG(diary, "ADMINWARN: [html_decode(text)]")
 		*/
@@ -366,7 +367,7 @@
 		// End of Bastion of Endeavor Translation
 
 /proc/log_pda(text, mob/speaker)
-	if (config.log_pda)
+	if (CONFIG_GET(flag/log_pda)) // CHOMPEdit
 		/* Bastion of Endeavor Translation
 		WRITE_LOG(diary, "PDA: [speaker.simple_info_line()]: [html_decode(text)]")
 		*/
@@ -396,12 +397,9 @@
 
 /proc/log_to_dd(text)
 	to_world_log(text) //this comes before the config check because it can't possibly runtime
-	if(config.log_world_output)
-		/* Bastion of Endeavor Translation
-		WRITE_LOG(diary, "DD_OUTPUT: [text]")
-		*/
-		WRITE_LOG(diary, "[text]") // the label is already included with the message
-		// End of Bastion of Endeavor Translation
+	//if(CONFIG_GET(flag/log_world_output)) // CHOMPEdit
+	//	WRITE_LOG(diary, "DD_OUTPUT: [text]")
+	WRITE_LOG(diary, "DD_OUTPUT: [text]")
 
 /proc/log_error(text)
 	to_world_log(text)

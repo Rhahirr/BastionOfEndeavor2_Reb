@@ -75,7 +75,7 @@
 	blood color
 	*/
 	if (copy_name)
-		if(config.humans_need_surnames)
+		if(CONFIG_GET(flag/humans_need_surnames)) // CHOMPEdit
 			/* Bastion of Endeavor Unicode Edit
 			var/firstspace = findtext(real_name, " ")
 			var/name_length = length(real_name)

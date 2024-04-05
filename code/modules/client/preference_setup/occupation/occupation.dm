@@ -158,7 +158,7 @@
 		lastJob = job
 		. += "<a href='?src=\ref[src];job_info=[rank]'>"
 		if(jobban_isbanned(user, rank))
-			if(config.usewhitelist && !check_whitelist(user)) // CHOMPedit start
+			if(CONFIG_GET(flag/usewhitelist) && !check_whitelist(user)) // CHOMPedit start
 				/* Bastion of Endeavor Translation
 				. += "<del>[rank]</del></td><td><b> \[WHITELISTED]</b></td></tr>"
 				*/
@@ -375,7 +375,7 @@
 		dat += "You answer to <b>[job.supervisors]</b> normally."
 
 		dat += "<hr style='clear:left;'>"
-		if(config.wikiurl)
+		if(CONFIG_GET(string/wikiurl)) // CHOMPEdit
 			dat += "<a href='?src=\ref[src];job_wiki=[rank]'>Open wiki page in browser</a>"
 
 		var/alt_title = pref.GetPlayerAltTitle(job)
@@ -399,7 +399,7 @@
 				dat += "<br><b>Под вашим руководством:</b>[LAZYLEN(job.departments_managed) > 1 ? "<br>" : " "][capitalize(lowertext(english_list(job.departments_managed)))]."
 		dat += "<b>[job.supervisors]</b>"
 		dat += "<hr style='clear:left;'>"
-		if(config.wikiurl)
+		if(CONFIG_GET(string/wikiurl)) // CHOMPEdit
 			dat += "<br><a href='?src=\ref[src];job_wiki=[rank]'>\[Открыть страницу на вики\]</a>"
 		var/alt_title = pref.GetPlayerAltTitle(job)
 		var/list/description = job.get_description_blurb(alt_title)
@@ -422,7 +422,7 @@
 
 	else if(href_list["job_wiki"])
 		var/rank = href_list["job_wiki"]
-		open_link(user,"[config.wikiurl][rank]")
+		open_link(user,"[CONFIG_GET(string/wikiurl)][rank]") // CHOMPEdit
 
 	return ..()
 

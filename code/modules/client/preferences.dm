@@ -406,8 +406,8 @@ var/list/preferences_datums = list()
 	if(!istype(user, /mob/new_player))	return
 
 	if(href_list["preference"] == "open_whitelist_forum")
-		if(config.forumurl)
-			user << link(config.forumurl)
+		if(CONFIG_GET(string/forumurl)) // CHOMPEdit
+			user << link(CONFIG_GET(string/forumurl)) // CHOMPEdit
 		else
 			/* Bastion of Endeavor Translation
 			to_chat(user, "<span class='danger'>The forum URL is not set in the server configuration.</span>")
@@ -457,7 +457,7 @@ var/list/preferences_datums = list()
 		return 1
 	// Bastion of Endeavor Addition: The wiki button
 	else if(href_list["open_wiki"])
-		usr << link("[config.wikiurl]Редактор_персонажа")
+		usr << link("[CONFIG_GET(string/wikiurl)]Редактор_персонажа")
 	// End of Bastion of Endeavor Addition
 	else
 		return 0
@@ -513,7 +513,7 @@ var/list/preferences_datums = list()
 	var/nickname //vorestation edit - This set appends nicknames to the save slot
 	var/list/charlist = list()
 	var/default //VOREStation edit
-	for(var/i=1, i<= config.character_slots, i++)
+	for(var/i = 1, i <= CONFIG_GET(number/character_slots), i++) // CHOMPEdit
 		S.cd = "/character[i]"
 		S["real_name"] >> name
 		S["nickname"] >> nickname //vorestation edit
@@ -575,7 +575,7 @@ var/list/preferences_datums = list()
 	var/name
 	var/nickname //vorestation edit - This set appends nicknames to the save slot
 	var/list/charlist = list()
-	for(var/i=1, i<= config.character_slots, i++)
+	for(var/i = 1, i <= CONFIG_GET(number/character_slots), i++) // CHOMPEdit
 		S.cd = "/character[i]"
 		S["real_name"] >> name
 		S["nickname"] >> nickname //vorestation edit

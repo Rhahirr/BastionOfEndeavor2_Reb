@@ -64,16 +64,22 @@
 		// End of Bastion of Endeavor Translation
 
 	TgsNew(new /datum/tgs_event_handler/impl, TGS_SECURITY_TRUSTED) // CHOMPEdit - tgs event handler
-	VgsNew() // VOREStation Edit - VGS
+	// VgsNew() // VOREStation Edit - VGS // CHOMPEdit - Has to be initialized after config was loaded
 
-	config.post_load()
+	config.Load(params[OVERRIDE_CONFIG_DIRECTORY_PARAMETER]) // CHOMPEdit
 
-	if(config && config.server_name != null && config.server_suffix && world.port > 0)
+	ConfigLoaded() // CHOMPEdit
+	makeDatumRefLists() // CHOMPEdit
+	VgsNew() // CHOMPEdit
+
+	var/servername = CONFIG_GET(string/servername) // CHOMPEdit
+	if(config && servername != null && CONFIG_GET(flag/server_suffix) && world.port > 0) // CHOMPEdit
 		// dumb and hardcoded but I don't care~
-		config.server_name += " #[(world.port % 1000) / 100]"
+		servername += " #[(world.port % 1000) / 100]" // CHOMPEdit
+		CONFIG_SET(string/servername, servername) // CHOMPEdit
 
 	// TODO - Figure out what this is. Can you assign to world.log?
-	// if(config && config.log_runtime)
+	// if(config && CONFIG_GET(flag/log_runtime)) // CHOMPEdit
 	// 	log = file("data/logs/runtime/[time2text(world.realtime,"YYYY-MM-DD-(hh-mm-ss)")]-runtime.log")
 
 	GLOB.timezoneOffset = world.timezone * 36000
@@ -127,12 +133,30 @@
 #endif
 
 	spawn(3000)		//so we aren't adding to the round-start lag
-		if(config.ToRban)
+		if(CONFIG_GET(flag/ToRban)) // CHOMPEdit
 			ToRban_autoupdate()
 
 #undef RECOMMENDED_VERSION
 
 	return
+
+// CHOMPEdit Start
+/// Runs after config is loaded but before Master is initialized
+/world/proc/ConfigLoaded()
+	// Everything in here is prioritized in a very specific way.
+	// If you need to add to it, ask yourself hard if what your adding is in the right spot
+	// (i.e. basically nothing should be added before load_admins() in here)
+
+	// Try to set round ID
+	SSdbcore.InitializeRound()
+
+	//apply a default value to config.python_path, if needed
+	if (!CONFIG_GET(string/python_path)) // CHOMPEdit
+		if(world.system_type == UNIX)
+			CONFIG_SET(string/python_path, "/usr/bin/env python2") // CHOMPEdit
+		else //probably windows, if not this should work anyway
+			CONFIG_SET(string/python_path, "python") // CHOMPEdit
+// CHOMPEdit End
 
 var/world_topic_spam_protect_ip = "0.0.0.0"
 var/world_topic_spam_protect_time = world.timeofday
@@ -161,11 +185,11 @@ var/world_topic_spam_protect_time = world.timeofday
 		var/list/s = list()
 		s["version"] = game_version
 		s["mode"] = master_mode
-		s["respawn"] = config.abandon_allowed
-		s["persistance"] = config.persistence_disabled
-		s["enter"] = config.enter_allowed
-		s["vote"] = config.allow_vote_mode
-		s["ai"] = config.allow_ai
+		s["respawn"] = CONFIG_GET(flag/abandon_allowed) // CHOMPEdit
+		s["persistance"] = CONFIG_GET(flag/persistence_disabled) // CHOMPEdit
+		s["enter"] = CONFIG_GET(flag/enter_allowed) // CHOMPEdit
+		s["vote"] = CONFIG_GET(flag/allow_vote_mode) // CHOMPEdit
+		s["ai"] = CONFIG_GET(flag/allow_ai) // CHOMPEdit
 		s["host"] = host ? host : null
 
 		// This is dumb, but spacestation13.com's banners break if player count isn't the 8th field of the reply, so... this has to go here.
@@ -298,7 +322,7 @@ var/world_topic_spam_protect_time = world.timeofday
 
 	else if(copytext(T,1,5) == "info")
 		var/input[] = params2list(T)
-		if(input["key"] != config.comms_password)
+		if(input["key"] != CONFIG_GET(string/comms_password)) // CHOMPEdit
 			if(world_topic_spam_protect_ip == addr && abs(world_topic_spam_protect_time - world.time) < 50)
 
 				spawn(50)
@@ -385,7 +409,7 @@ var/world_topic_spam_protect_time = world.timeofday
 
 
 		var/input[] = params2list(T)
-		if(input["key"] != config.comms_password)
+		if(input["key"] != CONFIG_GET(string/comms_password)) // CHOMPEdit
 			if(world_topic_spam_protect_ip == addr && abs(world_topic_spam_protect_time - world.time) < 50)
 
 				spawn(50)
@@ -435,7 +459,7 @@ var/world_topic_spam_protect_time = world.timeofday
 				2. validationkey = the key the bot has, it should match the gameservers commspassword in it's configuration.
 		*/
 		var/input[] = params2list(T)
-		if(input["key"] != config.comms_password)
+		if(input["key"] != CONFIG_GET(string/comms_password)) // CHOMPEdit
 			if(world_topic_spam_protect_ip == addr && abs(world_topic_spam_protect_time - world.time) < 50)
 
 				spawn(50)
@@ -450,7 +474,7 @@ var/world_topic_spam_protect_time = world.timeofday
 
 	else if(copytext(T,1,4) == "age")
 		var/input[] = params2list(T)
-		if(input["key"] != config.comms_password)
+		if(input["key"] != CONFIG_GET(string/comms_password)) // CHOMPEdit
 			if(world_topic_spam_protect_ip == addr && abs(world_topic_spam_protect_time - world.time) < 50)
 				spawn(50)
 					world_topic_spam_protect_time = world.time
@@ -496,8 +520,8 @@ var/world_topic_spam_protect_time = world.timeofday
 	else
 		Master.Shutdown()	//run SS shutdowns
 		for(var/client/C in GLOB.clients)
-			if(config.server)	//if you set a server location in config.txt, it sends you there instead of trying to reconnect to the same world address. -- NeoFite
-				C << link("byond://[config.server]")
+			if(CONFIG_GET(string/server))	//if you set a server location in config.txt, it sends you there instead of trying to reconnect to the same world address. -- NeoFite // CHOMPEdit
+				C << link("byond://[CONFIG_GET(string/server)]") // CHOMPEdit
 
 	TgsReboot()
 	/* Bastion of Endeavor Translation
@@ -539,13 +563,14 @@ var/world_topic_spam_protect_time = world.timeofday
 /world/proc/load_motd()
 	join_motd = file2text("config/motd.txt")
 
-
+/* CHOMPEdit Start
 /proc/load_configuration()
 	config = new /datum/configuration()
 	config.load("config/config.txt")
 	config.load("config/game_options.txt","game_options")
 	config.loadsql("config/dbconfig.txt")
 	config.loadforumsql("config/forumdbconfig.txt")
+*/ // CHOMPEdit End
 
 /hook/startup/proc/loadMods()
 	world.load_mods()
@@ -553,7 +578,7 @@ var/world_topic_spam_protect_time = world.timeofday
 	return 1
 
 /world/proc/load_mods()
-	if(config.admin_legacy_system)
+	if(CONFIG_GET(flag/admin_legacy_system)) // CHOMPEdit
 		var/text = file2text("config/moderators.txt")
 		if (!text)
 			/* Bastion of Endeavor Translation
@@ -582,7 +607,7 @@ var/world_topic_spam_protect_time = world.timeofday
 				D.associate(GLOB.directory[ckey])
 
 /world/proc/load_mentors()
-	if(config.admin_legacy_system)
+	if(CONFIG_GET(flag/admin_legacy_system)) // CHOMPEdit
 		var/text = file2text("config/mentors.txt")
 		if (!text)
 			/* Bastion of Endeavor Translation
@@ -628,8 +653,8 @@ var/world_topic_spam_protect_time = world.timeofday
 /world/proc/update_status()
 	var/s = ""
 
-	if (config && config.server_name)
-		s += "<b>[config.server_name]</b> &#8212; "
+	if (config && CONFIG_GET(string/servername)) // CHOMPEdit
+		s += "<b>[CONFIG_GET(string/servername)]</b> &#8212; " // CHOMPEdit
 
 	s += "<b>[station_name()]</b>";
 	s += " ("
@@ -655,7 +680,7 @@ var/world_topic_spam_protect_time = world.timeofday
 		features += "<b>НАЧИНАЕТСЯ</b>"
 		// End of Bastion of Endeavor Translation
 
-	if (!config.enter_allowed)
+	if (!CONFIG_GET(flag/enter_allowed))
 		/* Bastion of Endeavor Translation
 		features += "closed"
 		*/
@@ -663,25 +688,25 @@ var/world_topic_spam_protect_time = world.timeofday
 		// End of Bastion of Endeavor Translation
 
 	/* Bastion of Endeavor Translation
-	features += config.abandon_allowed ? "respawn" : "no respawn"
+	features += CONFIG_GET(flag/abandon_allowed) ? "respawn" : "no respawn" // CHOMPEdit
 
-	features += config.persistence_disabled ? "persistence disabled" : "persistence enabled"
+	features += CONFIG_GET(flag/persistence_disabled) ? "persistence disabled" : "persistence enabled" // CHOMPEdit
 
-	features += config.persistence_ignore_mapload ? "persistence mapload disabled" : "persistence mapload enabled"
+	features += CONFIG_GET(flag/persistence_ignore_mapload) ? "persistence mapload disabled" : "persistence mapload enabled" // CHOMPEdit
 	*/
-	features += config.abandon_allowed ? "респаун" : "без респауна"
-	features += config.persistence_disabled ? "сохранение отключено" : "сохранение включено"
-	features += config.persistence_ignore_mapload ? "сохранение карты отключено" : "сохранение карты включено"
+	features += CONFIG_GET(flag/abandon_allowed) ? "респаун" : "без респауна"
+	features += CONFIG_GET(flag/persistence_disabled) ? "сохранение включено" : "сохранение отключено" // CHOMPEdit
+	features += CONFIG_GET(flag/persistence_ignore_mapload) ? "сохранение карты включено" : "сохранение карты отключено" // CHOMPEdit
 	// End of Bastion of Endeavor Translation
 
-	if (config && config.allow_vote_mode)
+	if (config && CONFIG_GET(flag/allow_vote_mode)) // CHOMPEdit
 		/* Bastion of Endeavor Translation
 		features += "vote"
 		*/
 		features += "по голосованиям"
 		// End of Bastion of Endeavor Translation
 
-	if (config && config.allow_ai)
+	if (config && CONFIG_GET(flag/allow_ai)) // CHOMPEdit
 		/* Bastion of Endeavor Translation
 		features += "AI allowed"
 		*/
@@ -703,11 +728,11 @@ var/world_topic_spam_protect_time = world.timeofday
 	// End of Bastion of Endeavor Translation
 
 
-	if (config && config.hostedby)
+	if (config && CONFIG_GET(string/hostedby)) // CHOMPEdit
 		/* Bastion of Endeavor Translation
-		features += "hosted by <b>[config.hostedby]</b>"
+		features += "hosted by <b>[CONFIG_GET(string/hostedby)]</b>" // CHOMPEdit
 		*/
-		features += "Хост: <b>[config.hostedby]</b>"
+		features += "Хост: <b>[CONFIG_GET(string/hostedby)]</b>"
 		// End of Bastion of Endeavor Translation
 
 	if (features)
@@ -722,7 +747,7 @@ var/failed_db_connections = 0
 var/failed_old_db_connections = 0
 
 /hook/startup/proc/connectDB()
-	if(!config.sql_enabled)
+	if(!CONFIG_GET(flag/sql_enabled)) //CHOMPEdit
 		/* Bastion of Endeavor Translation
 		to_world_log("SQL connection disabled in config.")
 		*/
@@ -805,7 +830,7 @@ var/failed_old_db_connections = 0
 
 
 /hook/startup/proc/connectOldDB()
-	if(!config.sql_enabled)
+	if(!CONFIG_GET(flag/sql_enabled)) // CHOMPEdit
 		/* Bastion of Endeavor Translation
 		to_world_log("SQL connection disabled in config.")
 		*/
@@ -923,10 +948,10 @@ var/failed_old_db_connections = 0
 
 /proc/get_world_url()
 	. = "byond://"
-	if(config.serverurl)
-		. += config.serverurl
-	else if(config.server)
-		. += config.server
+	if(CONFIG_GET(string/serverurl)) // CHOMPEdit
+		. += CONFIG_GET(string/serverurl) // CHOMPEdit
+	else if(CONFIG_GET(string/server)) // CHOMPEdit
+		. += CONFIG_GET(string/server) // CHOMPEdit
 	else
 		. += "[world.address]:[world.port]"
 

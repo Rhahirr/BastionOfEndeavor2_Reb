@@ -1,4 +1,4 @@
-GLOBAL_DATUM(revdata, /datum/getrev)
+//GLOBAL_DATUM(revdata, /datum/getrev) // CHOMPEdit
 
 /datum/getrev
 	var/branch
@@ -20,7 +20,7 @@ GLOBAL_DATUM(revdata, /datum/getrev)
 			branch = "-Используется TGS-" // TGS doesn't provide branch info yet
 			date = "-Используется TGS-" // Or date
 			// End of Bastion of Endeavor Translation
-	
+
 	if(!revision) // File parse method
 		var/list/head_branch = file2list(".git/HEAD", "\n")
 		if(head_branch.len)
@@ -70,7 +70,7 @@ GLOBAL_DATUM(revdata, /datum/getrev)
 		// End of Bastion of Endeavor Translation
 		if(details && findtext(details, "\[s\]") && (!usr || !usr.client.holder))
 			continue
-		. += "<a href=\"[config.githuburl]/pull/[tm.number]\">#[tm.number][details]</a>"
+		. += "<a href=\"[CONFIG_GET(string/githuburl)]/pull/[tm.number]\">#[tm.number][details]</a>" // CHOMPEdit
 
 /client/verb/showrevinfo()
 	/* Bastion of Endeavor Translation
@@ -90,27 +90,23 @@ GLOBAL_DATUM(revdata, /datum/getrev)
 		to_chat(src, "<span class='warning'>Пожалуйста, сперва дождитесь окончания инициализации.</span>")
 		// End of Bastion of Endeavor Translation
 		return
-	
+
 	var/list/msg = list()
-	
+
 	if(GLOB.revdata.revision)
 		/* Bastion of Endeavor Translation
 		msg += "<b>Server revision:</b> B:[GLOB.revdata.branch] D:[GLOB.revdata.date]"
-		*/
-		msg += "<b>Ревизия сервера:</b> Ветвь: [GLOB.revdata.branch]; Дата: [GLOB.revdata.date]"
-		// End of Bastion of Endeavor Translation
-		if(config.githuburl)
-			/* Bastion of Endeavor Translation
-			msg += "<b>Commit:</b> <a href='[config.githuburl]/commit/[GLOB.revdata.revision]'>[GLOB.revdata.revision]</a>"
-			*/
-			msg += "<b>Коммит:</b> <a href='[config.githuburl]/commit/[GLOB.revdata.revision]'>[GLOB.revdata.revision]</a>"
-			// End of Bastion of Endeavor Translation
+		if(CONFIG_GET(string/githuburl)) // CHOMPEdit
+			msg += "<b>Commit:</b> <a href='[CONFIG_GET(string/githuburl)]/commit/[GLOB.revdata.revision]'>[GLOB.revdata.revision]</a>" // CHOMPEdit
 		else
-			/* Bastion of Endeavor Translation
-			msg += "<b>Commit:</b> GLOB.revdata.revision"
-			*/
-			msg += "<b>Коммит:</b> [GLOB.revdata.revision]"
-			// End of Bastion of Endeavor Translation
+			msg += "<b>Commit:</b> [GLOB.revdata.revision]" // CHOMPEdit - Actually SHOW the revision
+		*/
+		msg += "<b>Ревизия сервера:</b> Ветвь:[GLOB.revdata.branch] Дата:[GLOB.revdata.date]"
+		if(CONFIG_GET(string/githuburl)) // CHOMPEdit
+			msg += "<b>Коммит:</b> <a href='[CONFIG_GET(string/githuburl)]/commit/[GLOB.revdata.revision]'>[GLOB.revdata.revision]</a>" // CHOMPEdit
+		else
+			msg += "<b>Коммит:</b> [GLOB.revdata.revision]" // CHOMPEdit - Actually SHOW the revision
+		// End of Bastion of Endeavor Translation
 	else
 		/* Bastion of Endeavor Translation
 		msg += "<b>Server revision:</b> Unknown"
