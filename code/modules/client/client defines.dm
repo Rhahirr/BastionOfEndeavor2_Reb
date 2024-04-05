@@ -86,11 +86,19 @@
 		////////////////////////////////////
 		//things that require the database//
 		////////////////////////////////////
+	/* Bastion of Endeavor Translation
 	var/player_age = "(Requires database)"	//So admins know why it isn't working - Used to determine how old the account is - in days.
 	var/related_accounts_ip = "(Requires database)"	//So admins know why it isn't working - Used to determine what other accounts previously logged in from this ip
 	var/related_accounts_cid = "(Requires database)"	//So admins know why it isn't working - Used to determine what other accounts previously logged in from this computer id
 	var/account_join_date = "(Requires database)"
 	var/account_age = "(Requires database)"
+	*/
+	var/player_age = "(Необходима база данных)"
+	var/related_accounts_ip = "(Необходима база данных)"
+	var/related_accounts_cid = "(Необходима база данных)"
+	var/account_join_date = "(Необходима база данных)"
+	var/account_age = "(Необходима база данных)"
+	// End of Bastion of Endeavor Translation
 	var/list/department_hours = list()	// VOREStation Edit - Track hours of leave accured for each department.
 	var/list/play_hours	= list() // VOREStation Edit - Tracks total playtime hours for each departments.
 

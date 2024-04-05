@@ -82,7 +82,11 @@
 
 	var/atom/movable/movable_parent = parent
 	if(movable_parent.light_system != MOVABLE_LIGHT && movable_parent.light_system != MOVABLE_LIGHT_DIRECTIONAL)
+		/* Bastion of Endeavor Translation
 		stack_trace("[type] added to [parent], with [movable_parent.light_system] value for the light_system var. Use [MOVABLE_LIGHT] or [MOVABLE_LIGHT_DIRECTIONAL] instead.")
+		*/
+		stack_trace("Тип [type] добавлен к [dcase_ru(parent)] со значением light_system = [movable_parent.light_system]. Используйте вместо него [MOVABLE_LIGHT] или [MOVABLE_LIGHT_DIRECTIONAL].")
+		// End of Bastion of Endeavor Translation
 		return COMPONENT_INCOMPATIBLE
 
 	. = ..()

@@ -3,6 +3,10 @@
 #define SERVER_TOOLS_READ_GLOBAL(Name) GLOB.##Name
 #define SERVER_TOOLS_WRITE_GLOBAL(Name, Value) GLOB.##Name = ##Value
 #define SERVER_TOOLS_WORLD_ANNOUNCE(message) to_chat(world, "<span class='boldannounce'>[html_encode(##message)]</span>")
+/* Bastion of Endeavor Translation: Wack but ok
 #define SERVER_TOOLS_LOG(message) log_world("SERVICE: [##message]")
+*/
+#define SERVER_TOOLS_LOG(message) log_world("ОБСЛУЖИВАНИЕ: [##message]")
+// End of Bastion of Endeavor Translation
 #define SERVER_TOOLS_NOTIFY_ADMINS(event) message_admins(##event)
 #define SERVER_TOOLS_CLIENT_COUNT player_list.len

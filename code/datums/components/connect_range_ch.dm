@@ -34,7 +34,11 @@
 /datum/component/connect_range/InheritComponent(datum/component/component, original, atom/tracked, list/connections, range, works_in_containers)
 	// Not equivalent. Checks if they are not the same list via shallow comparison.
 	if(!compare_list(src.connections, connections))
+		/* Bastion of Endeavor Translation
 		stack_trace("connect_range component attached to [parent] tried to inherit another connect_range component with different connections")
+		*/
+		stack_trace("Компонент connect_range при [parent] попытался унаследовать ещё один компонент connect_range c другими связями.")
+		// End of Bastion of Endeavor Translation
 		return
 	if(src.tracked != tracked)
 		set_tracked(tracked)

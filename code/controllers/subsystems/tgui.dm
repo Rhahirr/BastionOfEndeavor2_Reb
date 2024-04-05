@@ -30,13 +30,21 @@ SUBSYSTEM_DEF(tgui)
 	var/polyfill = file2text('tgui/public/tgui-polyfill.min.js')
 	polyfill = "<script>\n[polyfill]\n</script>"
 	basehtml = replacetextEx(basehtml, "<!-- tgui:inline-polyfill -->", polyfill)
+	/* Bastion of Endeavor Translation
 	basehtml = replacetextEx(basehtml, "<!-- tgui:nt-copyright -->", "Nanotrasen (c) 2284-[CURRENT_STATION_YEAR]")
+	*/
+	basehtml = replacetextEx(basehtml, "<!-- tgui:nt-copyright -->", "НаноТрейзен (c) 2284-[CURRENT_STATION_YEAR]")
+	// End of Bastion of Endeavor Translation
 
 /datum/controller/subsystem/tgui/Shutdown()
 	close_all_uis()
 //CHOMPEdit Begin
 /datum/controller/subsystem/tgui/stat_entry(msg)
+	/* Bastion of Endeavor Translation
 	msg = "P:[all_uis.len]"
+	*/
+	msg = "| Окон: [all_uis.len]"
+	// End of Bastion of Endeavor Translation
 	return ..()
 //CHOMPEdit End
 /datum/controller/subsystem/tgui/fire(resumed = FALSE)
@@ -88,7 +96,11 @@ SUBSYSTEM_DEF(tgui)
 			window_found = TRUE
 			break
 	if(!window_found)
+		/* Bastion of Endeavor Translation
 		log_tgui(user, "Error: Pool exhausted",
+		*/
+		log_tgui(user, "Ошибка: пул опустошен.",
+		// End of Bastion of Endeavor Translation
 			context = "SStgui/request_pooled_window")
 		return null
 	return window

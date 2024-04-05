@@ -15,7 +15,11 @@
 
 // Not a sane use of the function and (for now) indicative of an error elsewhere
 /area/Adjacent(var/atom/neighbor)
+	/* Bastion of Endeavor Translation
 	CRASH("Call to /area/Adjacent(), unimplemented proc")
+	*/
+	CRASH("Вызов /area/Adjacent(), неиспользуемого прока.")
+	// End of Bastion of Endeavor Translation
 
 
 /*

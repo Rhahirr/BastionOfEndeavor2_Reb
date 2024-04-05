@@ -103,42 +103,74 @@
 	icon = 'icons/mob/screen_rigmech.dmi'
 
 /obj/screen/rig/deco1
+	/* Bastion of Endeavor Translation
 	name = "RIG Status"
+	*/
+	name = "Состояние ИКС"
+	// End of Bastion of Endeavor Translation
 	icon_state = "frame1_1"
 	screen_loc = ui_rig_deco1
 
 /obj/screen/rig/deco2
+	/* Bastion of Endeavor Translation
 	name = "RIG Status"
+	*/
+	name = "Состояние ИКС"
+	// End of Bastion of Endeavor Translation
 	icon_state = "frame1_2"
 	screen_loc = ui_rig_deco2
 
 /obj/screen/rig/deco1_f
+	/* Bastion of Endeavor Translation
 	name = "RIG Status"
+	*/
+	name = "Состояние ИКС"
+	// End of Bastion of Endeavor Translation
 	icon_state = "frame1_1_far"
 	screen_loc = ui_rig_deco1_f
 
 /obj/screen/rig/deco2_f
+	/* Bastion of Endeavor Translation
 	name = "RIG Status"
+	*/
+	name = "Состояние ИКС"
+	// End of Bastion of Endeavor Translation
 	icon_state = "frame1_2_far"
 	screen_loc = ui_rig_deco2_f
 
 /obj/screen/rig/power
+	/* Bastion of Endeavor Translation
 	name = "Charge Level"
+	*/
+	name = "Уровень заряда"
+	// End of Bastion of Endeavor Translation
 	icon_state = "pwr5"
 	screen_loc = ui_rig_pwr
 
 /obj/screen/rig/health
+	/* Bastion of Endeavor Translation
 	name = "Integrity Level"
+	*/
+	name = "Целостность"
+	// End of Bastion of Endeavor Translation
 	icon_state = "health5"
 	screen_loc = ui_rig_health
 
 /obj/screen/rig/air
+	/* Bastion of Endeavor Translation
 	name = "Air Storage"
+	*/
+	name = "Резервуар воздуха"
+	// End of Bastion of Endeavor Translation
 	icon_state = "air5"
 	screen_loc = ui_rig_air
 
 /obj/screen/rig/airtoggle
+	/* Bastion of Endeavor Translation
 	name = "Toggle Air"
+	*/
+	name = "Подача воздуха"
+	// End of Bastion of Endeavor Translation
 	icon_state = "airoff"
 	screen_loc = ui_rig_airtoggle
 
@@ -155,42 +187,74 @@
 	icon = 'icons/mob/screen_rigmech.dmi'
 
 /obj/screen/mech/deco1
+	/* Bastion of Endeavor Translation
 	name = "Mech Status"
+	*/
+	name = "Состояние меха"
+	// End of Bastion of Endeavor Translation
 	icon_state = "frame1_1"
 	screen_loc = ui_mech_deco1
 
 /obj/screen/mech/deco2
+	/* Bastion of Endeavor Translation
 	name = "Mech Status"
+	*/
+	name = "Состояние меха"
+	// End of Bastion of Endeavor Translation
 	icon_state = "frame1_2"
 	screen_loc = ui_mech_deco2
 
 /obj/screen/mech/deco1_f
+	/* Bastion of Endeavor Translation
 	name = "Mech Status"
+	*/
+	name = "Состояние меха"
+	// End of Bastion of Endeavor Translation
 	icon_state = "frame1_1_far"
 	screen_loc = ui_mech_deco1_f
 
 /obj/screen/mech/deco2_f
+	/* Bastion of Endeavor Translation
 	name = "Mech Status"
+	*/
+	name = "Состояние меха"
+	// End of Bastion of Endeavor Translation
 	icon_state = "frame1_2_far"
 	screen_loc = ui_mech_deco2_f
 
 /obj/screen/mech/power
+	/* Bastion of Endeavor Translation
 	name = "Charge Level"
+	*/
+	name = "Уровень заряда"
+	// End of Bastion of Endeavor Translation
 	icon_state = "pwr5"
 	screen_loc = ui_mech_pwr
 
 /obj/screen/mech/health
+	/* Bastion of Endeavor Translation
 	name = "Integrity Level"
+	*/
+	name = "Целостность"
+	// End of Bastion of Endeavor Translation
 	icon_state = "health5"
 	screen_loc = ui_mech_health
 
 /obj/screen/mech/air
+	/* Bastion of Endeavor Translation
 	name = "Air Storage"
+	*/
+	name = "Резервуар воздуха"
+	// End of Bastion of Endeavor Translation
 	icon_state = "air5"
 	screen_loc = ui_mech_air
 
 /obj/screen/mech/airtoggle
+	/* Bastion of Endeavor Translation
 	name = "Toggle Air"
+	*/
+	name = "Подача воздуха"
+	// End of Bastion of Endeavor Translation
 	icon_state = "airoff"
 	screen_loc = ui_mech_airtoggle
 

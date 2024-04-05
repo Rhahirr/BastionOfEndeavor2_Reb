@@ -8,7 +8,11 @@
   */
 /proc/add_verb(client/target, verb_or_list_to_add)
 	if(!target)
+		/* Bastion of Endeavor Translation
 		CRASH("add_verb called without a target")
+		*/
+		CRASH("Прок add_verb вызван без цели.")
+		// End of Bastion of Endeavor Translation
 	if(IsAdminAdvancedProcCall())
 		return
 	var/mob/mob_target = null
@@ -17,7 +21,11 @@
 		mob_target = target
 		target = mob_target.client
 	else if(!istype(target, /client))
+		/* Bastion of Endeavor Translation
 		CRASH("add_verb called on a non-mob and non-client")
+		*/
+		CRASH("Прок add_verb вызван не на существе или клиенте.")
+		// End of Bastion of Endeavor Translation
 	var/list/verbs_list = list()
 	if(!islist(verb_or_list_to_add))
 		verbs_list += verb_or_list_to_add
@@ -63,7 +71,11 @@
 		mob_target = target
 		target = mob_target.client
 	else if(!istype(target, /client))
+		/* Bastion of Endeavor Translation
 		CRASH("remove_verb called on a non-mob and non-client")
+		*/
+		CRASH("Прок remove_verb вызван не на существе или клиенте.")
+		// End of Bastion of Endeavor Translation
 
 	var/list/verbs_list = list()
 	if(!islist(verb_or_list_to_remove))

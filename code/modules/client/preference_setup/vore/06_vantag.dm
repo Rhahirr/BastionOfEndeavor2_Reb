@@ -26,9 +26,14 @@
 		BITSET(character.hud_updateflag, VANTAG_HUD)
 
 /datum/category_item/player_setup_item/vore/vantag/content(var/mob/user)
+	/* Bastion of Endeavor Translation
 	. += "<br>"
 	. += "<b>Event Volunteer:</b> <a [pref.vantag_volunteer ? "class='linkOn'" : ""] href='?src=\ref[src];toggle_vantag_volunteer=1'><b>[pref.vantag_volunteer ? "Yes" : "No"]</b></a><br>"
 	. += "<b>Event Pref:</b> <a href='?src=\ref[src];change_vantag=1'><b>[vantag_choices_list[pref.vantag_preference]]</b></a><br>"
+	*/
+	. += "<b>Волонтёрство в событиях:</b> <a [pref.vantag_volunteer ? "class='linkOn'" : ""] href='?src=\ref[src];toggle_vantag_volunteer=1'><b>[pref.vantag_volunteer ? "Да" : "Нет"]</b></a><br>"
+	. += "<b>Роль в событиях:</b> <a href='?src=\ref[src];change_vantag=1'><b>[vantag_choices_list[pref.vantag_preference]]</b></a><br>"
+	// End of Bastion of Endeavor Translation
 
 /datum/category_item/player_setup_item/vore/vantag/OnTopic(var/href, var/list/href_list, var/mob/user)
 	if(href_list["toggle_vantag_volunteer"])
@@ -40,7 +45,11 @@
 		for(var/C in vantag_choices_list)
 			names_list[vantag_choices_list[C]] = C
 
+		/* Bastion of Endeavor Translation: Unsure what the heck the if statement below is meant to be but it doesn't seem to bother us
 		var/selection = tgui_input_list(user, "How do you want to be involved with VS Event Characters, ERP-wise? They will see this choice on you in a HUD. Event characters are admin-selected and spawned players, possibly with assigned objectives, who are obligated to respect ERP prefs and RP their actions like any other player, though it may be a slightly shorter RP if they are pressed for time or being caught.", "Event Preference", names_list)
+		*/
+		var/selection = tgui_input_list(user, "Как бы вы хотели взаимодействовать с персонажами особых событий в плане ERP? Персонажи особых событий назначаются администраторами и учитывают RP- и ERP-предпочтения, но отыгрыш с ними может оказаться коротким в зависимости от ситуации.", "Роль в событиях", names_list)
+		// End of Bastion of Endeavor Translation
 		if(selection && selection != "Normal")
 			pref.vantag_preference = names_list[selection]
 

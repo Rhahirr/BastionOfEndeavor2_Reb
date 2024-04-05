@@ -1,5 +1,9 @@
 SUBSYSTEM_DEF(vis_overlays)
+	/* Bastion of Endeavor Translation
 	name = "Vis contents overlays"
+	*/
+	name = "Виз-оверлеи"
+	// End of Bastion of Endeavor Translation
 	wait = 1 MINUTES
 	priority = FIRE_PRIORITY_VIS
 	init_order = INIT_ORDER_VIS

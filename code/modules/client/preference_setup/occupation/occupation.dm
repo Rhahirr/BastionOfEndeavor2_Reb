@@ -1,5 +1,9 @@
 /datum/category_item/player_setup_item/occupation
+	/* Bastion of Endeavor Translation
 	name = "Occupation"
+	*/
+	name = "Профессия"
+	// End of Bastion of Endeavor Translation
 	sort_order = 1
 
 /datum/category_item/player_setup_item/occupation/load_character(var/savefile/S)
@@ -85,7 +89,13 @@
 
 	. = list()
 	. += "<tt><center>"
+	/* Bastion of Endeavor Translation: Bastion of Endeavor TODO: Will need to put more info here once HRP job whitelist is implemented
 	. += "<b>Choose occupation chances</b><br>Unavailable occupations are crossed out.<br>"
+	*/
+	. += "<b>Укажите приоритеты выбора профессии для этого персонажа.</b><br>"
+	. += "Данные приоритеты отражают шанс получения этой роли в самом начале раунда.<br>Если раунд уже начался, вам будет предложена любая роль из доступных.<br>Недоступные профессии перечёркнуты.<br>"
+	. += "Нажмите на название профессии, чтобы получить информацию о ней или выбрать альтернативное название."
+	// End of Bastion of Endeavor Translation
 	. += "<script type='text/javascript'>function setJobPrefRedirect(level, rank) { window.location.href='?src=\ref[src];level=' + level + ';set_job=' + encodeURIComponent(rank); return false; }</script>"
 	. += "<table width='100%' cellpadding='1' cellspacing='0'><tr><td width='20%' valign='top'>" // Table within a table for alignment, also allows you to easily add more columns.
 	. += "<table width='100%' cellpadding='1' cellspacing='0'>"
@@ -149,61 +159,113 @@
 		. += "<a href='?src=\ref[src];job_info=[rank]'>"
 		if(jobban_isbanned(user, rank))
 			if(config.usewhitelist && !check_whitelist(user)) // CHOMPedit start
+				/* Bastion of Endeavor Translation
 				. += "<del>[rank]</del></td><td><b> \[WHITELISTED]</b></td></tr>"
+				*/
+				. += "<del>[rank]</del></td><td><b> \[ВАЙТЛИСТ]</b></td></tr>"
+				// End of Bastion of Endeavor Translation
 				continue
 			else
+				/* Bastion of Endeavor Translation
 				. += "<del>[rank]</del></td><td><b> \[BANNED]</b></td></tr>"
+				*/
+				. += "<del>[rank]</del></td><td><b> \[ЗАБЛОКИРОВАНО]</b></td></tr>"
+				// End of Bastion of Endeavor Translation
 				continue // CHOMPedit end
 		if(!job.player_old_enough(user.client))
 			var/available_in_days = job.available_in_days(user.client)
+			/* Bastion of Endeavor Translation
 			. += "<del>[rank]</del></td></a><td> \[IN [(available_in_days)] DAYS]</td></tr>"
+			*/
+			. += "<del>[rank]</del></td></a><td> \[ЧЕРЕЗ [count_ru(available_in_days, ";день;дня;дней")]]</td></tr>"
+			// End of Bastion of Endeavor Translation
 			continue
 		//VOREStation Add
 		if(!job.player_has_enough_playtime(user.client))
 			var/available_in_hours = job.available_in_playhours(user.client)
+			/* Bastion of Endeavor Translation
 			. += "<del>[rank]</del></td></a><td> \[IN [round(available_in_hours, 0.1)] DEPTHOURS]</td></tr>"
+			*/
+			. += "<del>[rank]</del></td></a><td> \[ЧЕРЕЗ [count_ru(round(available_in_hours, 0.1), "час;;а;ов")]]</td></tr>"
+			// End of Bastion of Endeavor Translation
 			continue
 		if(!is_job_whitelisted(user,rank))
+			/* Bastion of Endeavor Translation: The translation doesn't match but matches the context with our whitelist in mind, might change later but I like how this sounds
 			. += "<del>[rank]</del></td></a><td><b> \[WHITELIST ONLY]</b></td></tr>"
+			*/
+			. += "<del>[rank]</del></td></a><td><b> \[НЕДОСТУПНА]</b></td></tr>"
+			// End of Bastion of Endeavor Translation
 			continue
 		//VOREStation Add End
 		if(job.is_species_banned(user.client.prefs.species, user.client.prefs.organ_data["brain"]) == TRUE)
+			/* Bastion of Endeavor Translation
 			. += "<del>[rank]</del></td></a><td> \[THIS RACE/BRAIN TYPE CANNOT TAKE THIS ROLE.\]</td></tr>"
+			*/
+			. += "<del>[rank]</del></td></a><td> \[НЕДОСТУПНА ДЛЯ ВАШЕЙ РАСЫ\]</td></tr>"
+			// End of Bastion of Endeavor Translation
 			continue
 		if((job.minimum_character_age || job.min_age_by_species) && user.client && (user.client.prefs.age < job.get_min_age(user.client.prefs.species, user.client.prefs.organ_data["brain"])))
+			/* Bastion of Endeavor Translation
 			. += "<del>[rank]</del></td></a><td> \[MINIMUM CHARACTER AGE FOR SELECTED RACE/BRAIN TYPE: [job.get_min_age(user.client.prefs.species, user.client.prefs.organ_data["brain"])]\]</td></tr>"
+			*/
+			. += "<del>[rank]</del></td></a><td> \[МИНИМАЛЬНЫЙ ВОЗРАСТ ДЛЯ РАСЫ: [job.get_min_age(user.client.prefs.species, user.client.prefs.organ_data["brain"])]\]</td></tr>"
+			// End of Bastion of Endeavor Translation
 			continue
 		if((pref.job_civilian_low & ASSISTANT) && job.type != /datum/job/assistant)
 			. += "<font color=grey>[rank]</font></a></td><td></td></tr>"
 			continue
+		/* Bastion of Endeavor Translation
 		if((rank in SSjob.get_job_titles_in_department(DEPARTMENT_COMMAND) ) || (rank == "AI"))//Bold head jobs
+		*/
+		if((rank in SSjob.get_job_titles_in_department(DEPARTMENT_COMMAND) ) || (rank == "ИИ"))//Bold head jobs
+		// End of Bastion of Endeavor Translation
 			. += "<b>[rank]</b></a>"
 		else
 			. += "[rank]</a>"
 
 		. += "</td><td width='40%'>"
 
+		/* Bastion of Endeavor Translation
 		var/prefLevelLabel = "ERROR"
+		*/
+		var/prefLevelLabel = "ОШИБКА"
+		// End of Bastion of Endeavor Translation
 		var/prefLevelColor = "pink"
 		var/prefUpperLevel = -1 // level to assign on left click
 		var/prefLowerLevel = -1 // level to assign on right click
 		if(pref.GetJobDepartment(job, 1) & job.flag)
+			/* Bastion of Endeavor Translation
 			prefLevelLabel = "High"
+			*/
+			prefLevelLabel = "Высокий"
+			// End of Bastion of Endeavor Translation
 			prefLevelColor = "55cc55"
 			prefUpperLevel = 4
 			prefLowerLevel = 2
 		else if(pref.GetJobDepartment(job, 2) & job.flag)
+			/* Bastion of Endeavor Translation
 			prefLevelLabel = "Medium"
+			*/
+			prefLevelLabel = "Средний"
+			// End of Bastion of Endeavor Translation
 			prefLevelColor = "eecc22"
 			prefUpperLevel = 1
 			prefLowerLevel = 3
 		else if(pref.GetJobDepartment(job, 3) & job.flag)
+			/* Bastion of Endeavor Translation
 			prefLevelLabel = "Low"
+			*/
+			prefLevelLabel = "Низкий"
+			// End of Bastion of Endeavor Translation
 			prefLevelColor = "cc5555"
 			prefUpperLevel = 2
 			prefLowerLevel = 4
 		else
+			/* Bastion of Endeavor Translation
 			prefLevelLabel = "NEVER"
+			*/
+			prefLevelLabel = "Нет"
+			// End of Bastion of Endeavor Translation
 			prefLevelColor = "black"
 			prefUpperLevel = 3
 			prefLowerLevel = 1
@@ -212,9 +274,17 @@
 
 		if(job.type == /datum/job/assistant)//Assistant is special
 			if(pref.job_civilian_low & ASSISTANT)
+				/* Bastion of Endeavor Translation
 				. += " <font color=55cc55>\[Yes]</font>"
+				*/
+				. += " <font color=55cc55>\[Да]</font>"
+				// End of Bastion of Endeavor Translation
 			else
+				/* Bastion of Endeavor Translation
 				. += " <font color=black>\[No]</font>"
+				*/
+				. += " <font color=black>\[Нет]</font>"
+				// End of Bastion of Endeavor Translation
 			if(LAZYLEN(job.alt_titles)) //Blatantly cloned from a few lines down.
 				. += "</a></td></tr><tr bgcolor='[lastJob.selection_color]'><td width='60%' align='center'>&nbsp</td><td><a href='?src=\ref[src];select_alt_title=\ref[job]'>\[[pref.GetPlayerAltTitle(job)]\]</a></td></tr>"
 			. += "</a></td></tr>"
@@ -226,16 +296,34 @@
 		. += "</a></td></tr>"
 	. += "</td'></tr></table>"
 	. += "</center></table><center>"
+	// Bastion of Endeavor Addition: Making things a little easier to follow
+	. += "<center><b>Если выбранные профессии недоступны в начале раунда, </b>" // yeah there's an extra tag, ci will complain if i remove this
 
 	switch(pref.alternate_option)
 		if(GET_RANDOM_JOB)
+			/* Bastion of Endeavor Translation
 			. += "<u><a href='?src=\ref[src];job_alternative=1'>Get random job if preferences unavailable</a></u>"
+			*/
+			. += "<u><a href='?src=\ref[src];job_alternative=1'>получить случайную.</a></u>"
+			// End of Bastion of Endeavor Translation
 		if(BE_ASSISTANT)
+			/* Bastion of Endeavor Translation
 			. += "<u><a href='?src=\ref[src];job_alternative=1'>Be assistant if preference unavailable</a></u>"
+			*/
+			. += "<u><a href='?src=\ref[src];job_alternative=1'>стать ассистентом.</a></u>"
+			// End of Bastion of Endeavor Translation
 		if(RETURN_TO_LOBBY)
+			/* Bastion of Endeavor Translation
 			. += "<u><a href='?src=\ref[src];job_alternative=1'>Return to lobby if preference unavailable</a></u>"
+			*/
+			. += "<u><a href='?src=\ref[src];job_alternative=1'>вернуться обратно в лобби.</a></u>"
+			// End of Bastion of Endeavor Translation
 
+	/* Bastion of Endeavor Translation
 	. += "<a href='?src=\ref[src];reset_jobs=1'>\[Reset\]</a></center>"
+	*/
+	. += "<a href='?src=\ref[src];reset_jobs=1'>\[Сбросить\]</a></center>"
+	// End of Bastion of Endeavor Translation
 	. += "</tt>"
 	. = jointext(.,null)
 
@@ -255,7 +343,11 @@
 		var/datum/job/job = locate(href_list["select_alt_title"])
 		if (job)
 			var/choices = list(job.title) + job.alt_titles
+			/* Bastion of Endeavor Translation
 			var/choice = tgui_input_list(usr, "Choose a title for [job.title].", "Choose Title", choices, pref.GetPlayerAltTitle(job))
+			*/
+			var/choice = tgui_input_list(usr, "Выберите желаемое название для своей профессии (вместо \"[job.title]\"):", "Выбор названия", choices, pref.GetPlayerAltTitle(job))
+			// End of Bastion of Endeavor Translation
 			if(choice && CanUseTopic(user))
 				SetPlayerAltTitle(job, choice)
 				return (pref.equip_preview_mob ? TOPIC_REFRESH_UPDATE_PREVIEW : TOPIC_REFRESH)
@@ -269,6 +361,7 @@
 		var/datum/job/job = job_master.GetJob(rank)
 		var/dat = list()
 
+		/* Bastion of Endeavor Edit: This thing could honestly be made to look prettier because longer lines of text mean broken formatting
 		dat += "<p style='background-color: [job.selection_color]'><br><br><p>"
 		if(job.alt_titles)
 			dat += "<i><b>Alternate titles:</b> [english_list(job.alt_titles)].</i>"
@@ -293,8 +386,37 @@
 				if(!isnull(description[2]))
 					dat += "<br>"
 					dat += html_encode(description[2])
+		*/
+		dat += "<center>"
+		dat += "<p style='background-color: [job.selection_color]'><br></p>"
+		if(job.alt_titles)
+			dat += "<i><b>[job.alt_titles.len > 1 ? "Альтернативные названия" : "Альтернативное название"]:</b><br>[capitalize(lowertext(english_list(job.alt_titles)))].</i>"
+		send_rsc(user, job.get_job_icon(), "job[ckey(rank)].png")
+		dat += "<img src=job[ckey(rank)].png width=96 height=96 style='text-align:center'><br>"
+		if(job.departments)
+			dat += "[job.departments.len > 1 ? "<b>Ваши отделы:</b><br>" : "<b>Ваш отдел</b>:"] [capitalize(lowertext(english_list(job.departments)))]."
+			if(LAZYLEN(job.departments_managed))
+				dat += "<br><b>Под вашим руководством:</b>[LAZYLEN(job.departments_managed) > 1 ? "<br>" : " "][capitalize(lowertext(english_list(job.departments_managed)))]."
+		dat += "<b>[job.supervisors]</b>"
+		dat += "<hr style='clear:left;'>"
+		if(config.wikiurl)
+			dat += "<br><a href='?src=\ref[src];job_wiki=[rank]'>\[Открыть страницу на вики\]</a>"
+		var/alt_title = pref.GetPlayerAltTitle(job)
+		var/list/description = job.get_description_blurb(alt_title)
+		if(LAZYLEN(description))
+			dat += html_encode(description[1])
+			if(description.len > 1)
+				if(!isnull(description[2]))
+					dat += "<br>"
+					dat += html_encode(description[2])
+		dat += "</center>"
+		// End of Bastion of Endeavor Edit
 
+		/* Bastion of Endeavor Translation
 		var/datum/browser/popup = new(user, "Job Info", "[capitalize(rank)]", 430, 520, src)
+		*/
+		var/datum/browser/popup = new(user, "О работе", "[capitalize(rank)]", 400, 600, src)
+		// End of Bastion of Endeavor Translation
 		popup.set_content(jointext(dat,"<br>"))
 		popup.open()
 

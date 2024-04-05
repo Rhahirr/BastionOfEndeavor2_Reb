@@ -46,10 +46,18 @@ export const ChatPageSettings = (props) => {
         </Stack.Item>
         <Stack.Item>
           <Button.Checkbox
+            /* Bastion of Endeavor Translation
             content="Mute"
+            */
+            content="Заглушить"
+            /* End of Bastion of Endeavor Translation */
             checked={page.hideUnreadCount}
             icon={page.hideUnreadCount ? 'bell-slash' : 'bell'}
+            /* Bastion of Endeavor Translation
             tooltip="Disables unread counter"
+            */
+            tooltip="Скрыть индикатор непрочитанных сообщений"
+            /* End of Bastion of Endeavor Translation */
             onClick={() =>
               dispatch(
                 updateChatPage({
@@ -73,7 +81,11 @@ export const ChatPageSettings = (props) => {
                 )
               }
             >
+              {/* Bastion of Endeavor Translation
               Remove
+              */}
+              Удалить
+              {/* End of Bastion of Endeavor Translation */}
             </Button>
           </Stack.Item>
         ) : (
@@ -84,7 +96,11 @@ export const ChatPageSettings = (props) => {
       <Stack align="center">
         {!page.isMain ? (
           <Stack.Item>
+            {/* Bastion of Endeavor Translation
             Reorder Chat:&emsp;
+            */}
+            Переместить вкладку:&emsp;
+            {/* End of Bastion of Endeavor Translation */}
             <Button
               color="blue"
               onClick={() =>
@@ -115,7 +131,11 @@ export const ChatPageSettings = (props) => {
         )}
       </Stack>
       <Divider />
+      {/* Bastion of Endeavor Translation
       <Section title="Messages to display" level={2}>
+      */}
+      <Section title="Отображаемые сообщения" level={2}>
+        {/* End of Bastion of Endeavor Translation */}
         {MESSAGE_TYPES.filter(
           (typeDef) => !typeDef.important && !typeDef.admin,
         ).map((typeDef) => (
@@ -134,7 +154,11 @@ export const ChatPageSettings = (props) => {
             {typeDef.name}
           </Button.Checkbox>
         ))}
+        {/* Bastion of Endeavor Translation
         <Collapsible mt={1} color="transparent" title="Admin stuff">
+        */}
+        <Collapsible mt={1} color="transparent" title="Администрация">
+          {/* End of Bastion of Endeavor Translation */}
           {MESSAGE_TYPES.filter(
             (typeDef) => !typeDef.important && typeDef.admin,
           ).map((typeDef) => (

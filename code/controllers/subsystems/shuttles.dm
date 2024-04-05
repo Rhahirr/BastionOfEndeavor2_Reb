@@ -5,7 +5,11 @@
 //
 
 SUBSYSTEM_DEF(shuttles)
+	/* Bastion of Endeavor Translation
 	name = "Shuttles"
+	*/
+	name = "Шаттлы"
+	// End of Bastion of Endeavor Translation
 	wait = 2 SECONDS
 	priority = FIRE_PRIORITY_SHUTTLES
 	init_order = INIT_ORDER_SHUTTLES
@@ -54,7 +58,11 @@ SUBSYSTEM_DEF(shuttles)
 		var/datum/shuttle/S = working_shuttles[working_shuttles.len]
 		working_shuttles.len--
 		if(!istype(S) || QDELETED(S))
+			/* Bastion of Endeavor Translation
 			error("Bad entry in SSshuttles.process_shuttles - [log_info_line(S)] ")
+			*/
+			error("Недопустимая запись в SSshuttles.process_shuttles - [log_info_line(S)].")
+			// End of Bastion of Endeavor Translation
 			process_shuttles -= S
 			continue
 		// NOTE - In old system, /datum/shuttle/ferry was processed only if (F.process_state || F.always_process)
@@ -88,7 +96,11 @@ SUBSYSTEM_DEF(shuttles)
 
 /datum/controller/subsystem/shuttles/proc/register_landmark(shuttle_landmark_tag, obj/effect/shuttle_landmark/shuttle_landmark)
 	if (registered_shuttle_landmarks[shuttle_landmark_tag])
+		/* Bastion of Endeavor Translation
 		CRASH("Attempted to register shuttle landmark with tag [shuttle_landmark_tag], but it is already registered!")
+		*/
+		CRASH("Попытка зарегистрировать метку расположения шаттла с тегом [shuttle_landmark_tag], но он уже зарегистрирован!")
+		// End of Bastion of Endeavor Translation
 	if (istype(shuttle_landmark))
 		registered_shuttle_landmarks[shuttle_landmark_tag] = shuttle_landmark
 		last_landmark_registration_time = world.time
@@ -143,7 +155,11 @@ SUBSYSTEM_DEF(shuttles)
 	if(initial(shuttle.category) != shuttle_type) // Skip if its an "abstract class" datum
 		shuttle = new shuttle()
 		shuttle_areas |= shuttle.shuttle_area
+		/* Bastion of Endeavor Translation
 		log_debug("Initialized shuttle [shuttle] ([shuttle.type])")
+		*/
+		log_debug("Инициализирован шаттл '[shuttle]' ([shuttle.type]).")
+		// End of Bastion of Endeavor Translation
 		return shuttle
 		// Historical note:  No need to call shuttle.init_docking_controllers(), controllers register themselves
 		// and shuttles fetch refs in New().  Shuttles also dock() themselves in new if they want.
@@ -157,7 +173,11 @@ SUBSYSTEM_DEF(shuttles)
 				S.motherdock = S.current_location.landmark_tag
 				mothership.shuttle_area |= S.shuttle_area
 			else
+				/* Bastion of Endeavor Translation
 				error("Shuttle [S] was unable to find mothership [mothership]!")
+				*/
+				error("Шаттл '[S]' не смог найти родной корабль [mothership]!")
+				// End of Bastion of Endeavor Translation
 
 // Let shuttles scan their owned areas for objects they want to configure (Called after mothership hookup)
 /datum/controller/subsystem/shuttles/proc/hook_up_shuttle_objects(shuttles_list)
@@ -173,6 +193,10 @@ SUBSYSTEM_DEF(shuttles)
 		overmap_halted ? ship_effect.halt() : ship_effect.unhalt()
 //CHOMPEdit Begin
 /datum/controller/subsystem/shuttles/stat_entry(msg)
+	/* Bastion of Endeavor Translation
 	msg = "Shuttles:[process_shuttles.len]/[shuttles.len], Ships:[ships.len], L:[registered_shuttle_landmarks.len][overmap_halted ? ", HALT" : ""]"
+	*/
+	msg = "| Шаттлы: [process_shuttles.len]/[shuttles.len] | Корабли:[ships.len] | Точки: [registered_shuttle_landmarks.len][overmap_halted ? "| СТОП" : ""]"
+	// End of Bastion of Endeavor Translation
 	return ..()
 //CHOMPEdit End

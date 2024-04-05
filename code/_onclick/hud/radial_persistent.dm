@@ -3,7 +3,11 @@
 */
 
 /obj/screen/radial/persistent/center
+	/* Bastion of Endeavor Translation
 	name = "Close Menu"
+	*/
+	name = "Закрыть меню"
+	// End of Bastion of Endeavor Translation
 	icon_state = "radial_center"
 
 /obj/screen/radial/persistent/center/Click(location, control, params)

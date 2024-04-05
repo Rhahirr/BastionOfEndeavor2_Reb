@@ -16,9 +16,15 @@ export const NowPlayingWidget = (props) => {
     settings = useSettings(),
     title = audio.meta?.title,
     URL = audio.meta?.link,
+    /* Bastion of Endeavor Translation
     Artist = audio.meta?.artist || 'Unknown Artist',
     upload_date = audio.meta?.upload_date || 'Unknown Date',
     album = audio.meta?.album || 'Unknown Album',
+    */
+    Artist = audio.meta?.artist || 'Неизвестный исполнитель',
+    upload_date = audio.meta?.upload_date || 'Неизвестная дата',
+    album = audio.meta?.album || 'Неизвестный альбом',
+    /* End of Bastion of Endeavor Translation */
     duration = audio.meta?.duration,
     date = !isNaN(upload_date)
       ? upload_date?.substring(0, 4) +
@@ -41,31 +47,73 @@ export const NowPlayingWidget = (props) => {
           }}
         >
           {
+            /* Bastion of Endeavor Translation
             <Collapsible title={title || 'Unknown Track'} color={'blue'}>
+            */
+            <Collapsible title={title || 'Неизвестный трек'} color={'blue'}>
+              {/* End of Bastion of Endeavor Translation */}
               <Section>
+                {/* Bastion of Endeavor Translation
                 {URL !== 'Song Link Hidden' && (
+                */}
+                {URL !== 'Ссылка на трек скрыта' && (
+                  /* End of Bastion of Endeavor Translation */
                   <Flex.Item grow={1} color="label">
+                    {/* Bastion of Endeavor Translation
                     URL: {URL}
+                    */}
+                    Ссылка: {URL}
+                    {/* End of Bastion of Endeavor Translation */}
                   </Flex.Item>
                 )}
                 <Flex.Item grow={1} color="label">
+                  {/* Bastion of Endeavor Translation
                   Duration: {duration}
+                  */}
+                  Длительность: {duration}
+                  {/* End of Bastion of Endeavor Translation */}
                 </Flex.Item>
+                {/* Bastion of Endeavor Translation
                 {Artist !== 'Song Artist Hidden' &&
                   Artist !== 'Unknown Artist' && (
+                */}
+                {Artist !== 'Исполнитель скрыт' &&
+                  Artist !== 'Неизвестный исполнитель' && (
+                    /* End of Bastion of Endeavor Translation */
                     <Flex.Item grow={1} color="label">
+                      {/* Bastion of Endeavor Translation
                       Artist: {Artist}
+                      */}
+                      Исполнитель: {Artist}
+                      {/* End of Bastion of Endeavor Translation */}
                     </Flex.Item>
                   )}
+                {/* Bastion of Endeavor Translation
                 {album !== 'Song Album Hidden' && album !== 'Unknown Album' && (
+                */}
+                {album !== 'Альбом скрыт' && album !== 'Неизвестный альбом' && (
+                  /* End of Bastion of Endeavor Translation */
                   <Flex.Item grow={1} color="label">
+                    {/* Bastion of Endeavor Translation
                     Album: {album}
+                    */}
+                    Альбом: {album}
+                    {/* End of Bastion of Endeavor Translation */}
                   </Flex.Item>
                 )}
+                {/* Bastion of Endeavor Translation
                 {upload_date !== 'Song Upload Date Hidden' &&
                   upload_date !== 'Unknown Date' && (
+                */}
+                {upload_date !== 'Дата загрузки трека скрыта' &&
+                  upload_date !== 'Неизвестная дата' && (
+                    /* End of Bastion of Endeavor Translation */
                     <Flex.Item grow={1} color="label">
+                      {/* Bastion of Endeavor Translation
                       Uploaded: {date}
+                      */}
+                      Загружен: {date}
+                      {/* End of Bastion of Endeavor Translation */}
                     </Flex.Item>
                   )}
               </Section>
@@ -74,13 +122,21 @@ export const NowPlayingWidget = (props) => {
         </Flex.Item>
       )) || (
         <Flex.Item grow={1} color="label">
+          {/* Bastion of Endeavor Translation
           Nothing to play.
+          */}
+          Ничего не воспроизводится.
+          {/* End of Bastion of Endeavor Translation */}
         </Flex.Item>
       )}
       {audio.playing && (
         <Flex.Item mx={0.5} fontSize="0.9em">
           <Button
+            /* Bastion of Endeavor Translation
             tooltip="Stop"
+            */
+            tooltip="Стоп"
+            /* End of Bastion of Endeavor Translation */
             icon="stop"
             onClick={() =>
               dispatch({

@@ -44,7 +44,11 @@ export const Panel = (props) => {
                   color="grey"
                   selected={audio.visible}
                   icon="music"
+                  /* Bastion of Endeavor Translation
                   tooltip="Music player"
+                  */
+                  tooltip="Музыкальный проигрыватель"
+                  /* End of Bastion of Endeavor Translation */
                   tooltipPosition="bottom-start"
                   onClick={() => audio.toggle()}
                 />
@@ -54,7 +58,11 @@ export const Panel = (props) => {
                   icon={settings.visible ? 'times' : 'cog'}
                   selected={settings.visible}
                   tooltip={
+                    /* Bastion of Endeavor Translation
                     settings.visible ? 'Close settings' : 'Open settings'
+                    */
+                    settings.visible ? 'Закрыть настройки' : 'Открыть настройки'
+                    /* End of Bastion of Endeavor Translation */
                   }
                   tooltipPosition="bottom-start"
                   onClick={() => settings.toggle()}
@@ -85,14 +93,24 @@ export const Panel = (props) => {
                 game.connectionLostAt &&
                 !game.dismissedConnectionWarning && (
                   <Notifications.Item rightSlot={<ReconnectButton />}>
+                    {/* Bastion of Endeavor Translation
                     You are either AFK, experiencing lag or the connection has
                     closed.
+                    */}
+                    Вы неактивны, либо соединение испытывает задержки или
+                    утеряно.
+                    {/* End of Bastion of Endeavor Translation */}
                   </Notifications.Item>
                 )}
               {settings.showReconnectWarning && game.roundRestartedAt && (
                 <Notifications.Item>
+                  {/* Bastion of Endeavor Translation
                   The connection has been closed because the server is
                   restarting. Please wait while you automatically reconnect.
+                  */}
+                  The connection has been closed because the server is
+                  restarting. Please wait while you automatically reconnect.
+                  {/* End of Bastion of Endeavor Translation */}
                 </Notifications.Item>
               )}
             </Notifications>

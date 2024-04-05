@@ -32,7 +32,11 @@
 //CHOMPEdit End
 
 //Returns a list in plain english as a string
+/* Bastion of Endeavor Translation: Don't see the harm in doing it this way really. Might need further adjustments down the line though
 /proc/english_list(var/list/input, nothing_text = "nothing", and_text = " and ", comma_text = ", ", final_comma_text = ",")
+*/
+/proc/english_list(var/list/input, nothing_text = "ничего", and_text = " и ", comma_text = ", ", final_comma_text = "")
+// End of Bastion of Endeavor Translation
 	// this proc cannot be merged with counting_english_list to maintain compatibility
 	// with shoddy use of this proc for code logic and for cases that require original order
 	switch(input.len)
@@ -42,7 +46,11 @@
 		else  return "[jointext(input, comma_text, 1, -1)][final_comma_text][and_text][input[input.len]]"
 
 //Returns a newline-separated list that counts equal-ish items, outputting count and item names, optionally with icons and specific determiners
+/* Bastion of Endeavor Translation
 /proc/counting_english_list(var/list/input, var/mob/user, output_icons = TRUE, determiners = DET_NONE, nothing_text = "nothing", line_prefix = "\t", first_item_prefix = "\n", last_item_suffix = "\n", and_text = "\n", comma_text = "\n", final_comma_text = ",") //CHOMPEdit
+*/
+/proc/counting_english_list(var/list/input, var/mob/user, output_icons = TRUE, determiners = DET_NONE, nothing_text = "ничего", line_prefix = "\t", first_item_prefix = "\n", last_item_suffix = "\n", and_text = "\n", comma_text = "\n", final_comma_text = ", а также") //CHOMPEdit
+// End of Bastion of Endeavor Translation
 	var/list/counts = list() // counted input items
 	var/list/items = list() // actual objects for later reference (for icons and formatting)
 
@@ -62,8 +70,11 @@
 		var/name = "[item]"
 		var/count = counts[name]
 		var/item_str = line_prefix
+		/* Bastion of Endeavor Removal: Moved down. The order matters.
 		if(count > 1)
 			item_str += "[count]x&nbsp;"
+		*/
+		// End of Bastion of Endeavor Removal
 
 		if(isatom(item))
 			// atoms/items/objects can be pretty and whatnot
@@ -79,6 +90,10 @@
 			// non-atoms use plain string conversion
 			item_str += name
 
+		// Bastion of Endeavor Addition: Makes things prettier. It's here because it needs to be at the end of the sentence.
+		if(count > 1)
+			item_str += " ([count] шт.)"
+		// End of Bastion of Endeavor Addition.
 		if(i == 0)
 			item_str = first_item_prefix + item_str
 		if(i == items.len - 1)
@@ -876,14 +891,22 @@ Checks if a list has the same entries and values as an element of big.
 
 var/global/list/json_cache = list()
 /proc/cached_json_decode(var/json_to_decode)
+	/* Bastion of Endeavor Unicode Edit: Not entirely sure about this... but you never know.
 	if(!json_to_decode || !length(json_to_decode))
+	*/
+	if(!json_to_decode || !length_char(json_to_decode))
+	// End of Bastion of Endeavor Unicode Edit
 		return list()
 	try
 		if(isnull(global.json_cache[json_to_decode]))
 			global.json_cache[json_to_decode] = json_decode(json_to_decode)
 		. = global.json_cache[json_to_decode]
 	catch(var/exception/e)
+		/* Bastion of Endeavor Translation
 		log_error("Exception during JSON decoding ([json_to_decode]): [e]")
+		*/
+		log_error("Исключение во время декодировки JSON ([json_to_decode]): [e].")
+		// End of Bastion of Endeavor Translation
 		return list()
 
 //takes an input_key, as text, and the list of keys already used, outputting a replacement key in the format of "[input_key] ([number_of_duplicates])" if it finds a duplicate

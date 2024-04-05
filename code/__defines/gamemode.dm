@@ -47,6 +47,7 @@
 //VOREStation Add End
 
 var/list/be_special_flags = list(
+	/* Bastion of Endeavor Translation
 	"Traitor"          = BE_TRAITOR,
 	"Operative"        = BE_OPERATIVE,
 	"Changeling"       = BE_CHANGELING,
@@ -71,6 +72,30 @@ var/list/be_special_flags = list(
 	"Cursed Sword"     = BE_CURSEDSWORD,
 	"Ship Survivor"	   = BE_SURVIVOR
 	//VOREStation Add End
+	*/
+	"Предатель"      			    = BE_TRAITOR,
+	"Оперативник"    			    = BE_OPERATIVE,
+	"Генокрад"       				= BE_CHANGELING,
+	"Волшебник"      			    = BE_WIZARD,
+	"Неисправный ИИ" 		        = BE_MALF,
+	"Революционер"    				= BE_REV,
+	"Ксеноморф"        				= BE_ALIEN, // reverting chomp's rebrand as we don't have a better name for them
+	"Позитронный разум" 			= BE_AI,
+	"Культист"          			= BE_CULTIST,
+	"Отступник"         			= BE_RENEGADE,
+	"Ниндзя"            			= BE_NINJA,
+	"Налётчик"						= BE_RAIDER,
+	"Дионея"						= BE_PLANT,
+	"Мятежник"						= BE_MUTINEER,
+	"Лоялист"						= BE_LOYALIST,
+	"Персональный ИИ"             	= BE_PAI,
+	"Потерявшийся дрон"       		= BE_LOSTDRONE,
+	"Техтоннельный хищник"      	= BE_MAINTPRED,
+	"Метаморф"						= BE_MORPH,
+	"Корги"							= BE_CORGI,
+	"Проклятый меч"     			= BE_CURSEDSWORD,
+	"Потерпевший крушение"			= BE_SURVIVOR
+	// End of Bastion of Endeavor Translation
 )
 
 

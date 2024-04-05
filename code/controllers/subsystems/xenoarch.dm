@@ -8,7 +8,11 @@
 // Xenoarch subsystem handles initialization of Xenoarcheaology artifacts and digsites.
 //
 SUBSYSTEM_DEF(xenoarch)
+	/* Bastion of Endeavor Translation
 	name = "Xenoarch"
+	*/
+	name = "Ксеноархеология"
+	// End of Bastion of Endeavor Translation
 	init_order = INIT_ORDER_XENOARCH
 	flags = SS_NO_FIRE
 	var/list/artifact_spawning_turfs = list()

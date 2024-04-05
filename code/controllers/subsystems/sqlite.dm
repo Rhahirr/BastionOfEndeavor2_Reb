@@ -22,10 +22,19 @@ SUBSYSTEM_DEF(sqlite)
 
 
 	if(!sqlite_db)
+		/* Bastion of Endeavor Translation
 		to_world_log("Failed to load or create a SQLite database.")
 		log_debug("ERROR: SQLite database is active in config but failed to load.")
+		*/
+		to_world_log("Не удалось загрузить или создать базу данных SQLite.")
+		log_debug("ОШИБКА: База данных SQLite активна в конфигурации, но не смогла загрузиться.")
+		// End of Bastion of Endeavor Translation
 	else
+		/* Bastion of Endeavor Translation
 		to_world_log("Sqlite database connected.")
+		*/
+		to_world_log("База данных SQLite подключена.")
+		// End of Bastion of Endeavor Translation
 
 // Makes the tables, if they do not already exist in the sqlite file.
 /datum/controller/subsystem/sqlite/proc/init_schema(database/sqlite_object)
@@ -55,7 +64,11 @@ SUBSYSTEM_DEF(sqlite)
 		"}
 	)
 	init_schema.Execute(sqlite_object)
+	/* Bastion of Endeavor Translation
 	sqlite_check_for_errors(init_schema, "Feedback table creation")
+	*/
+	sqlite_check_for_errors(init_schema, "Создание таблицы обратной связи")
+	// End of Bastion of Endeavor Translation
 
 	// Add more schemas below this if the SQLite DB gets expanded for things like persistant news, polls, bans, deaths, etc.
 
@@ -64,7 +77,11 @@ SUBSYSTEM_DEF(sqlite)
 // The desc parameter should be unique for each call, to make it easier to track down where the error occured.
 /datum/controller/subsystem/sqlite/proc/sqlite_check_for_errors(var/database/query/query_used, var/desc)
 	if(query_used && query_used.ErrorMsg())
+		/* Bastion of Endeavor Translation
 		log_debug("SQLite Error: [desc] : [query_used.ErrorMsg()]")
+		*/
+		log_debug("Ошибка SQLite: [desc] : [query_used.ErrorMsg()]")
+		// End of Bastion of Endeavor Translation
 		return TRUE
 	return FALSE
 
@@ -77,7 +94,11 @@ SUBSYSTEM_DEF(sqlite)
 // Returns TRUE if no issues happened, FALSE otherwise.
 /datum/controller/subsystem/sqlite/proc/insert_feedback(author, topic, content, database/sqlite_object)
 	if(!author || !topic || !content)
+		/* Bastion of Endeavor Translation
 		CRASH("One or more parameters was invalid.")
+		*/
+		CRASH("Обнаружены недопустимые параметры.")
+		// End of Bastion of Endeavor Translation
 
 	// Sanitize everything to avoid sneaky stuff.
 	var/sqlite_author = sql_sanitize_text(ckey(lowertext(author)))
@@ -101,7 +122,11 @@ SUBSYSTEM_DEF(sqlite)
 		sqlite_content
 		)
 	query.Execute(sqlite_object)
+	/* Bastion of Endeavor Translation
 	return !sqlite_check_for_errors(query, "Insert Feedback")
+	*/
+	return !sqlite_check_for_errors(query, "Вставка обратной связи")
+	// End of Bastion of Endeavor Translation
 
 /datum/controller/subsystem/sqlite/proc/can_submit_feedback(client/C)
 	if(!config.sqlite_enabled)
@@ -136,7 +161,11 @@ SUBSYSTEM_DEF(sqlite)
 		potential_hashed_ckey
 	)
 	query.Execute(sqlite_object)
+	/* Bastion of Endeavor Translation
 	sqlite_check_for_errors(query, "Rate Limited Check 1")
+	*/
+	sqlite_check_for_errors(query, "Проверка ограничения скорости 1")
+	// End of Bastion of Endeavor Translation
 
 	// It is possible this is their first time, so there won't be a next row.
 	if(query.NextRow()) // If this is true, the user has submitted feedback at least once.
@@ -152,7 +181,11 @@ SUBSYSTEM_DEF(sqlite)
 			last_submission_datetime
 			)
 		query.Execute(sqlite_object)
+		/* Bastion of Endeavor Translation
 		sqlite_check_for_errors(query, "Rate Limited Check 2")
+		*/
+		sqlite_check_for_errors(query, "Проверка ограничения скорости 2")
+		// End of Bastion of Endeavor Translation
 
 		query.NextRow()
 		row_data = query.GetRowData()
@@ -176,7 +209,11 @@ SUBSYSTEM_DEF(sqlite)
 			continue
 		if(length(line) == 0)
 			continue
+		/* Bastion of Endeavor Unicode Edit: No idea if we'll ever need this but oh well.
 		else if(copytext(line, 1, 2) == "#")
+		*/
+		else if(copytext_char(line, 1, 2) == "#")
+		// End of Bastion of Endeavor Unicode Edit
 			continue
 		else
 			pepper = line

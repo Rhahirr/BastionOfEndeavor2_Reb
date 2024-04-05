@@ -1,7 +1,12 @@
 //Please use mob or src (not usr) in these procs. This way they can be called in the same fashion as procs.
 /client/verb/wiki(query as text)
+	/* Bastion of Endeavor Translation
 	set name = "wiki"
 	set desc = "Type what you want to know about.  This will open the wiki on your web browser."
+	*/
+	set name = "Вики сервера"
+	set desc = "Ввести интересующую тему, чтобы открыть результаты поиска на вики в браузере."
+	// End of Bastion of Endeavor Translation
 	set category = "OOC"
 	if(config.wikiurl)
 		if(query)
@@ -9,7 +14,11 @@
 				var/output = replacetext(config.wikisearchurl, "%s", url_encode(query))
 				src << link(output)
 			else
+				/* Bastion of Endeavor Translation
 				to_chat(src, "<span class='warning'> The wiki search URL is not set in the server configuration.</span>")
+				*/
+				to_chat(src, "<span class='warning'>URL вики не задан в конфигурации сервера.</span>")
+				// End of Bastion of Endeavor Translation
 		else
 			src << link(config.wikiurl)
 	else
@@ -94,9 +103,14 @@
 	return
 
 /client/verb/hotkeys_help()
+	/* Bastion of Endeavor Translation
 	set name = "hotkeys-help"
+	*/
+	set name = "Показать управление"
+	// End of Bastion of Endeavor Translation
 	set category = "OOC"
 
+	/* Bastion of Endeavor Translation
 	var/admin = {"<font color='AD5AAD'>
 Admin:
 \tF5 = Aghost (admin-ghost)
@@ -104,7 +118,17 @@ Admin:
 \tF7 = admin-pm
 \tF8 = Invisimin
 </font>"}
+	*/
+	var/admin = {"<font color='AD5AAD'>
+Администрация:
+\tF5 = Режим админ-призрака
+\tF6 = Панель игрока
+\tF7 = Личное сообщение игроку
+\tF8 = Режим невидимого призрака
+</font>"}
+	// End of Bastion of Endeavor Translation
 
+	/* Bastion of Endeavor Translation
 	var/hotkey_mode = {"<font color='AD5AAD'>
 Hotkey-Mode: (hotkey-mode must be on)
 \tTAB = toggle hotkey-mode
@@ -131,7 +155,39 @@ Hotkey-Mode: (hotkey-mode must be on)
 \tCtrl+Click = pull
 \tShift+Click = examine
 </font>"}
+	*/
+	var/hotkey_mode = {"<font color='AD5AAD'>
+Режим горячих клавиш (при включённых горячих клавишах):
+\tTAB = Включение режима хоткеев (при запуске на английской раскладке)
+\tA = Влево
+\tS = Вниз
+\tD = Вправо
+\tW = Вверх
+\tQ = Отпустить предмет
+\tE = Надеть на себя
+\tR = Метнуть предмет
+\tT = Сказать
+\tY = Шептать
+\t5 = Действие
+\t6 = Скрытое действие
+\tX = Сменить руку
+\tZ = Использовать предмет в руке (или Y)
+\tU = Лечь / Встать
+\tB = Сопротивляться
+\tJ = Переключить режим прицеливания
+\tF = Листать намерения влево
+\tG = Листать намерения вправо
+\t1 = Намерение 'Помочь'
+\t2 = Намерение 'Обезвредить'
+\t3 = Намерение 'Схватить'
+\t4 = Намерение 'Навредить'
+\tCtrl+ЛКМ = Потянуть
+\tShift+ЛКМ = Осмотреть
+\tCtrl+Shift+Стрелки = Сдвинуть персонажа на пиксель
+</font>"}
+	// End of Bastion of Endeavor Translation
 
+	/* Bastion of Endeavor Translation
 	var/other = {"<font color='AD5AAD'>
 Any-Mode: (hotkey doesn't need to be on)
 \tCtrl+a = left
@@ -162,7 +218,40 @@ Any-Mode: (hotkey doesn't need to be on)
 \tPGDN = activate held object
 \tEND = throw
 </font>"}
+	*/
+	var/other = {"<font color='AD5AAD'>
+Любой режим (горячие клавиши не обязательны):
+\tCtrl+A = Влево
+\tCtrl+S = Вниз
+\tCtrl+D = Вправо
+\tCtrl+W = Вверх
+\tCtrl+Q = Отпустить предмет
+\tCtrl+E = Надеть на себя
+\tCtrl+R = Метнуть предмет
+\tCtrl+U = Лечь / Встать
+\tCtrl+B = Сопротивляться
+\tCtrl+X = Поменять руку
+\tCtrl+Z = Использовать предмет в руке (или Ctrl+Y)
+\tCtrl+F = Листать намерения влево
+\tCtrl+G = Листать намерения вправо
+\tCtrl+1 = Намерение 'Помочь'
+\tCtrl+2 = Намерение 'Обезвредить'
+\tCtrl+3 = Намерение 'Схватить'
+\tCtrl+4 = Намерение 'Навредить'
+\tF1 = Помощь Администатора
+\tF2 = Чат ООС
+\tF3 = Сказать
+\tF4 = Действие
+\tDELETE = Перестать тянуть
+\tINSERT = Листать намерения вправо
+\tHOME = Бросить
+\tPAGE UP = Поменять руку
+\tPAGE DOWNN = Использовать предмет в руке
+\tEND = Кинуть
+</font>"}
+	// End of Bastion of Endeavor Translation
 
+	/* Bastion of Endeavor Translation
 	var/robot_hotkey_mode = {"<font color='AD5AAD'>
 Hotkey-Mode: (hotkey-mode must be on)
 \tTAB = toggle hotkey-mode
@@ -184,7 +273,33 @@ Hotkey-Mode: (hotkey-mode must be on)
 \tCtrl+Click = pull
 \tShift+Click = examine
 </font>"}
+	*/
+	var/robot_hotkey_mode = {"<font color='AD5AAD'>
+Режим горячих клавиш (при включённых горячих клавишах):
+\tTAB = Включение режима горячих клавиш (при запуске на английской раскладке)
+\tA = Влево
+\tS = Вниз
+\tD = Вправо
+\tW = Вверх
+\tQ = Убрать активный модуль
+\tT = Сказать
+\tY = Шептать
+\tX = Сменить активный модуль
+\tZ = Использовать предмет в руке (или Y)
+\tF = Листать намерения влево
+\tG = Листать намерения вправо
+\t1 = Включить модуль 1
+\t2 = Включить модуль 2
+\t3 = Включить модуль 3
+\t4 = Сменить намерение
+\t5 = Действие
+\t6 = Скрытое действие
+\tCtrl+ЛКМ = Потянуть
+\tShift+ЛКМ = Осмотреть
+</font>"}
+	// End of Bastion of Endeavor Translation
 
+	/* Bastion of Endeavor Translation
 	var/robot_other = {"<font color='AD5AAD'>
 Any-Mode: (hotkey doesn't need to be on)
 \tCtrl+a = left
@@ -209,7 +324,34 @@ Any-Mode: (hotkey doesn't need to be on)
 \tPGUP = cycle active modules
 \tPGDN = activate held object
 </font>"}
+	*/
+	var/robot_other = {"<font color='AD5AAD'>
+Любой режим (горячие клавиши не обязательны):
+\tCtrl+A = Влево
+\tCtrl+S = Вниз
+\tCtrl+D = Вправо
+\tCtrl+W = Вверх
+\tCtrl+Q = Убрать активный модуль
+\tCtrl+X = Сменить активный модуль
+\tCtrl+Z = Использовать предмет в руке (или Ctrl+Y)
+\tCtrl+F = Листать намерения влево
+\tCtrl+G = Листать намерения вправо
+\tCtrl+1 = Включить модуль 1
+\tCtrl+2 = Включить модуль 2
+\tCtrl+3 = Включить модуль 3
+\tCtrl+4 = Сменить намерение
+\tF1 = Помощь Админа
+\tF2 = Чат ООС
+\tF3 = Сказать
+\tF4 = Эмоут
+\tDELETE = Перестать тянуть
+\tINSERT = Сменить намерение
+\tPAGE UP = Сменить активный модуль
+\tPAGE DOWN = Использовать предмет в руке
+</font>"}
+	// End of Bastion of Endeavor Translation
 
+	/* Bastion of Endeavor Edit: Filters
 	if(isrobot(src.mob))
 		to_chat(src,robot_hotkey_mode)
 		to_chat(src,robot_other)
@@ -218,6 +360,17 @@ Any-Mode: (hotkey doesn't need to be on)
 		to_chat(src,other)
 	if(holder)
 		to_chat(src,admin)
+	*/
+	if(isrobot(src.mob))
+	
+		to_chat(src,"<span class='chatexport'>[robot_hotkey_mode]</span>")
+		to_chat(src,"<span class='chatexport'>[robot_other]</span>")
+	else
+		to_chat(src,"<span class='chatexport'>[hotkey_mode]</span>")
+		to_chat(src,"<span class='chatexport'>[other]</span>")
+	if(holder)
+		to_chat(src,"<span class='chatexport'>[admin]</span>")
+	// End of Bastion of Endeavor Edit
 
 // Set the DreamSeeker input macro to the type appropriate for its mob
 /client/proc/set_hotkeys_macro(macro_name = "macro", hotkey_macro_name = "hotkeymode", hotkeys_enabled = null)

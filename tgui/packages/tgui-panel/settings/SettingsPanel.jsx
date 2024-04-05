@@ -103,7 +103,11 @@ export const SettingsGeneral = (props) => {
   return (
     <Section>
       <LabeledList>
+        {/* Bastion of Endeavor Translation
         <LabeledList.Item label="Theme">
+        */}
+        <LabeledList.Item label="Тема">
+          {/* End of Bastion of Endeavor Translation */}
           <Dropdown
             width="175px"
             selected={theme}
@@ -117,7 +121,11 @@ export const SettingsGeneral = (props) => {
             }
           />
         </LabeledList.Item>
+        {/* Bastion of Endeavor Translation
         <LabeledList.Item label="Font style">
+        */}
+        <LabeledList.Item label="Шрифт">
+          {/* End of Bastion of Endeavor Translation */}
           <Stack inline align="baseline">
             <Stack.Item>
               {(!freeFont && (
@@ -148,7 +156,11 @@ export const SettingsGeneral = (props) => {
             </Stack.Item>
             <Stack.Item>
               <Button
+                /* Bastion of Endeavor Translation
                 content="Custom font"
+                */
+                content="Особый"
+                /* End of Bastion of Endeavor Translation */
                 icon={freeFont ? 'lock-open' : 'lock'}
                 color={freeFont ? 'good' : 'bad'}
                 ml={1}
@@ -159,7 +171,11 @@ export const SettingsGeneral = (props) => {
             </Stack.Item>
           </Stack>
         </LabeledList.Item>
+        {/* Bastion of Endeavor Translation
         <LabeledList.Item label="Font size">
+        */}
+        <LabeledList.Item label="Размер шрифта">
+          {/* End of Bastion of Endeavor Translation */}
           <NumberInput
             width="4em"
             step={1}
@@ -167,7 +183,11 @@ export const SettingsGeneral = (props) => {
             minValue={8}
             maxValue={32}
             value={fontSize}
+            /* Bastion of Endeavor Translation
             unit="px"
+            */
+            unit="пт"
+            /* End of Bastion of Endeavor Translation */
             format={(value) => toFixed(value)}
             onChange={(e, value) =>
               dispatch(
@@ -178,7 +198,11 @@ export const SettingsGeneral = (props) => {
             }
           />
         </LabeledList.Item>
+        {/* Bastion of Endeavor Translation
         <LabeledList.Item label="Line height">
+        */}
+        <LabeledList.Item label="Высота строки">
+          {/* End of Bastion of Endeavor Translation */}
           <NumberInput
             width="4em"
             step={0.01}
@@ -196,11 +220,19 @@ export const SettingsGeneral = (props) => {
             }
           />
         </LabeledList.Item>
+        {/* Bastion of Endeavor Translation
         <LabeledList.Item label="Enable disconnection/afk warning">
+        */}
+        <LabeledList.Item label="Отображать уведомление о неактивности/отключении">
+          {/* End of Bastion of Endeavor Translation */}
           <Button.Checkbox
             checked={showReconnectWarning}
             content=""
+            /* Bastion of Endeavor Translation
             tooltip="Unchecking this will disable the red afk/reconnection warning bar at the bottom of the chat."
+            */
+            tooltip="При снятии галочки вы больше не будете получать уведомление об отсоединении от сервера."
+            /* End of Bastion of Endeavor Translation */
             mr="5px"
             onClick={() =>
               dispatch(
@@ -211,11 +243,19 @@ export const SettingsGeneral = (props) => {
             }
           />
         </LabeledList.Item>
+        {/* Bastion of Endeavor Translation
         <LabeledList.Item label="Interleave messages">
+        */}
+        <LabeledList.Item label="Чередовать фон сообщений">
+          {/* End of Bastion of Endeavor Translation */}
           <Button.Checkbox
             checked={interleave}
             content=""
+            /* Bastion of Endeavor Translation
             tooltip="Enabling this will interleave messages."
+           */
+            tooltip="При включенной настройке фон сообщений будет чередовать цвет."
+            /* End of Bastion of Endeavor Translation */
             mr="5px"
             onClick={() =>
               dispatch(
@@ -242,11 +282,19 @@ export const SettingsGeneral = (props) => {
             />
           </Box>
         </LabeledList.Item>
+        {/* Bastion of Endeavor Translation
         <LabeledList.Item label="Enable chat timestamps">
+       */}
+        <LabeledList.Item label="Отметки времени">
+          {/* End of Bastion of Endeavor Translation */}
           <Button.Checkbox
             checked={prependTimestamps}
             content=""
+            /* Bastion of Endeavor Translation
             tooltip="Enabling this will prepend timestamps to all messages."
+           */
+            tooltip="При включенной настройке перед сообщениями будет отображаться отметка времени отправки."
+            /* End of Bastion of Endeavor Translation */
             mr="5px"
             onClick={() =>
               dispatch(
@@ -258,10 +306,18 @@ export const SettingsGeneral = (props) => {
           />
           <Box inline>
             <Button icon="check" onClick={() => dispatch(rebuildChat())}>
+              {/* Bastion of Endeavor Translation
               Apply now
+              */}
+              Применить
+              {/* End of Bastion of Endeavor Translation */}
             </Button>
             <Box inline fontSize="0.9em" ml={1} color="label">
+              {/* Bastion of Endeavor Translation
               Can freeze the chat for a while.
+              */}
+              Может вызвать подвисание.
+              {/* End of Bastion of Endeavor Translation */}
             </Box>
           </Box>
         </LabeledList.Item>
@@ -282,7 +338,11 @@ export const MessageLimits = (props) => {
   return (
     <Section>
       <LabeledList>
+        {/* Bastion of Endeavor Translation
         <LabeledList.Item label="Amount of lines to display 500-10000 (Default: 2500)">
+        */}
+        <LabeledList.Item label="Количество отображаемых строк от 500 до 10000 (по умочлчанию: 2500)">
+          {/* End of Bastion of Endeavor Translation */}
           <NumberInput
             width="5em"
             step={100}
@@ -302,13 +362,21 @@ export const MessageLimits = (props) => {
           &nbsp;
           {visibleMessageLimit >= 5000 ? (
             <Box inline fontSize="0.9em" color="red">
+              {/* Bastion of Endeavor Translation
               Impacts performance!
+              */}
+              Влияет на производительность!
+              {/* End of Bastion of Endeavor Translation */}
             </Box>
           ) : (
             ''
           )}
         </LabeledList.Item>
+        {/* Bastion of Endeavor Translation
         <LabeledList.Item label="Amount of visually persistent lines 0-10000 (Default: 1000)">
+        */}
+        <LabeledList.Item label="Количество сохраняемых визуально строчек от 0 до 10000 (по умолчанию: 1000)">
+          {/* End of Bastion of Endeavor Translation */}
           <NumberInput
             width="5em"
             step={100}
@@ -328,13 +396,21 @@ export const MessageLimits = (props) => {
           &nbsp;
           {persistentMessageLimit >= 2500 ? (
             <Box inline fontSize="0.9em" color="red">
+              {/* Bastion of Endeavor Translation
               Delays initialization!
+              */}
+              Замедляет инициализацию!
+              {/* End of Bastion of Endeavor Translation */}
             </Box>
           ) : (
             ''
           )}
         </LabeledList.Item>
+        {/* Bastion of Endeavor Translation
         <LabeledList.Item label="Amount of different lines in-between to combine 0-10 (Default: 5)">
+        */}
+        <LabeledList.Item label="Диапазон для объединения идентичных строк от 0 до 10 (по умолчанию: 5)">
+          {/* End of Bastion of Endeavor Translation */}
           <NumberInput
             width="5em"
             step={1}
@@ -352,7 +428,11 @@ export const MessageLimits = (props) => {
             }
           />
         </LabeledList.Item>
+        {/* Bastion of Endeavor Translation
         <LabeledList.Item label="Time to combine messages 0-10 (Default: 5 Seconds)">
+        */}
+        <LabeledList.Item label="Интервал для объединения идентичных строк от 0 до 10 (по умолчанию: 5 секунд)">
+          {/* End of Bastion of Endeavor Translation */}
           <NumberInput
             width="5em"
             step={1}
@@ -360,7 +440,11 @@ export const MessageLimits = (props) => {
             minValue={0}
             maxValue={10}
             value={combineIntervalLimit}
+            /* Bastion of Endeavor Translation
             unit="s"
+            */
+            unit="сек"
+            /* End of Bastion of Endeavor Translation */
             format={(value) => toFixed(value)}
             onDrag={(e, value) =>
               dispatch(
@@ -371,7 +455,11 @@ export const MessageLimits = (props) => {
             }
           />
         </LabeledList.Item>
+        {/* Bastion of Endeavor Translation
         <LabeledList.Item label="Message store interval 1-10 (Default: 10 Seconds) [Requires restart]">
+       */}
+        <LabeledList.Item label="Интервал сохранения сообщений от 1 до 10 (по умолчанию: 10 секунд) [требует перезапуск]">
+          {/* End of Bastion of Endeavor Translation */}
           <NumberInput
             width="5em"
             step={1}
@@ -379,7 +467,11 @@ export const MessageLimits = (props) => {
             minValue={1}
             maxValue={10}
             value={saveInterval}
+            /* Bastion of Endeavor Translation
             unit="s"
+            */
+            unit="сек"
+            /* End of Bastion of Endeavor Translation */
             format={(value) => toFixed(value)}
             onDrag={(e, value) =>
               dispatch(
@@ -392,7 +484,11 @@ export const MessageLimits = (props) => {
           &nbsp;
           {saveInterval <= 3 ? (
             <Box inline fontSize="0.9em" color="red">
+              {/* Bastion of Endeavor Translation
               Warning, experimental! Might crash!
+              */}
+              Может вызвать вылет!
+              {/* End of Bastion of Endeavor Translation */}
             </Box>
           ) : (
             ''
@@ -436,7 +532,11 @@ export const ExportTab = (props) => {
                 setLogConfirm(false);
               }}
             >
+              {/* Bastion of Endeavor Translation
               Disable?
+              */}
+              Действительно отключить сохранение истории?
+              {/* End of Bastion of Endeavor Translation */}
             </Button>
           ) : (
             <Button
@@ -449,7 +549,11 @@ export const ExportTab = (props) => {
                 }, 5000);
               }}
             >
+              {/* Bastion of Endeavor Translation
               Disable logging
+              */}
+              Отключить сохранение истории
+              {/* End of Bastion of Endeavor Translation */}
             </Button>
           )
         ) : (
@@ -464,19 +568,33 @@ export const ExportTab = (props) => {
               );
             }}
           >
+            {/* Bastion of Endeavor Translation
             Enable logging
+            */}
+            Включить сохранение истории
+            {/* End of Bastion of Endeavor Translation */}
           </Button>
         )}
         <Flex.Item grow={1} />
+        {/* Bastion of Endeavor Translation
         <Flex.Item color="label">Round ID:&nbsp;</Flex.Item>
         <Flex.Item color={game.roundId ? '' : 'red'}>
           {game.roundId ? game.roundId : 'ERROR'}
+        */}
+        <Flex.Item color="label">ID раунда:&nbsp;</Flex.Item>
+        <Flex.Item color={game.roundId ? '' : 'red'}>
+          {game.roundId ? game.roundId : 'Ошибка'}
+          {/* End of Bastion of Endeavor Translation */}
         </Flex.Item>
       </Flex>
       {logEnable ? (
         <>
           <LabeledList>
+            {/* Bastion of Endeavor Translation
             <LabeledList.Item label="Amount of rounds to log (1 to 8)">
+           */}
+            <LabeledList.Item label="Количество сохраняемых раундов (от 1 до 8)">
+              {/* End of Bastion of Endeavor Translation */}
               <NumberInput
                 width="5em"
                 step={1}
@@ -496,13 +614,21 @@ export const ExportTab = (props) => {
               &nbsp;
               {logRetainRounds > 3 ? (
                 <Box inline fontSize="0.9em" color="red">
+                  {/* Bastion of Endeavor Translation
                   Warning, might crash!
+                  */}
+                  Внимание, может привести к вылетам!
+                  {/* End of Bastion of Endeavor Translation */}
                 </Box>
               ) : (
                 ''
               )}
             </LabeledList.Item>
+            {/* Bastion of Endeavor Translation
             <LabeledList.Item label="Hardlimit for the log archive (0 = inf. to 50000)">
+            */}
+            <LabeledList.Item label="Лимит архива логирования (0 = нет лимита, до 50000)">
+              {/* End of Bastion of Endeavor Translation */}
               <NumberInput
                 width="5em"
                 step={500}
@@ -526,9 +652,15 @@ export const ExportTab = (props) => {
                   fontSize="0.9em"
                   color={logLimit > 10000 ? 'red' : 'label'}
                 >
+                  {/* Bastion of Endeavor Translation
                   {logLimit > 15000
                     ? 'Warning, might crash! Takes priority above round retention.'
                     : 'Takes priority above round retention.'}
+                  */}
+                  {logLimit > 15000
+                    ? 'Может привести к вылетам! Приоритет над количеством раундов.'
+                    : 'Приоритет над количеством раундов.'}
+                  {/* End of Bastion of Endeavor Translation */}
                 </Box>
               ) : (
                 ''
@@ -536,7 +668,15 @@ export const ExportTab = (props) => {
             </LabeledList.Item>
           </LabeledList>
           <Section>
+            {/* Bastion of Endeavor Translation
             <Collapsible mt={1} color="transparent" title="Messages to log">
+            */}
+            <Collapsible
+              mt={1}
+              color="transparent"
+              title="Сохраняемые сообщения"
+            >
+              {/* End of Bastion of Endeavor Translation */}
               {MESSAGE_TYPES.map((typeDef) => (
                 <Button.Checkbox
                   key={typeDef.type}
@@ -559,7 +699,11 @@ export const ExportTab = (props) => {
         ''
       )}
       <LabeledList>
+        {/* Bastion of Endeavor Translation
         <LabeledList.Item label="Export round start (0 = curr.) / end (0 = dis.)">
+        */}
+        <LabeledList.Item label="Экспортировать раунды от (0 = текущий) / до (0 = отключить)">
+          {/* End of Bastion of Endeavor Translation */}
           <NumberInput
             width="5em"
             step={1}
@@ -594,11 +738,19 @@ export const ExportTab = (props) => {
           />
           &nbsp;
           <Box inline fontSize="0.9em" color="label">
+            {/* Bastion of Endeavor Translation
             Stored Rounds:&nbsp;
+            */}
+            Сохранено раундов:&nbsp;
+            {/* End of Bastion of Endeavor Translation */}
           </Box>
           <Box inline>{storedRounds}</Box>
         </LabeledList.Item>
+        {/* Bastion of Endeavor Translation
         <LabeledList.Item label="Amount of lines to export (0 = inf.)">
+        */}
+        <LabeledList.Item label="Количество экспортируемых строк (0 = бесконечно)">
+          {/* End of Bastion of Endeavor Translation */}
           <NumberInput
             width="5em"
             step={100}
@@ -616,13 +768,21 @@ export const ExportTab = (props) => {
             }
           />
         </LabeledList.Item>
+        {/* Bastion of Endeavor Translation
         <LabeledList.Item label="Totally stored messages">
+        */}
+        <LabeledList.Item label="Всего сохранено сообщений">
+          {/* End of Bastion of Endeavor Translation */}
           <Box>{totalStoredMessages}</Box>
         </LabeledList.Item>
       </LabeledList>
       <Divider />
       <Button icon="save" onClick={() => dispatch(saveChatToDisk())}>
+        {/* Bastion of Endeavor Translation
         Save chat log
+        */}
+        Экспортировать историю чата
+        {/* End of Bastion of Endeavor Translation */}
       </Button>
       {purgeConfirm > 0 ? (
         <Button
@@ -633,7 +793,11 @@ export const ExportTab = (props) => {
             setPurgeConfirm(2);
           }}
         >
+          {/* Bastion of Endeavor Translation
           {purgeConfirm > 1 ? 'Purged!' : 'Are you sure?'}
+          */}
+          {purgeConfirm > 1 ? 'Архив очищен!' : 'Вы уверены?'}
+          {/* End of Bastion of Endeavor Translation */}
         </Button>
       ) : (
         <Button
@@ -646,7 +810,11 @@ export const ExportTab = (props) => {
             }, 5000);
           }}
         >
+          {/* Bastion of Endeavor Translation
           Purge message archive
+          */}
+          Очистить архив сообщений
+          {/* End of Bastion of Endeavor Translation */}
         </Button>
       )}
     </Section>
@@ -672,7 +840,11 @@ const TextHighlightSettings = (props) => {
               <Button
                 color="transparent"
                 icon="plus"
+                /* Bastion of Endeavor Translation
                 content="Add Highlight Setting"
+                */
+                content="Добавить критерии выделения"
+                /* End of Bastion of Endeavor Translation */
                 onClick={() => {
                   dispatch(addHighlightSetting());
                 }}
@@ -684,10 +856,18 @@ const TextHighlightSettings = (props) => {
       <Divider />
       <Box>
         <Button icon="check" onClick={() => dispatch(rebuildChat())}>
+          {/* Bastion of Endeavor Translation
           Apply now
+          */}
+          Применить
+          {/* End of Bastion of Endeavor Translation */}
         </Button>
         <Box inline fontSize="0.9em" ml={1} color="label">
+          {/* Bastion of Endeavor Translation
           Can freeze the chat for a while.
+          */}
+          Может вызвать подвисание.
+          {/* End of Bastion of Endeavor Translation */}
         </Box>
       </Box>
     </Section>
@@ -712,7 +892,11 @@ const TextHighlightSetting = (props) => {
       <Flex mb={1} color="label" align="baseline">
         <Flex.Item grow>
           <Button
+            /* Bastion of Endeavor Translation
             content="Delete"
+            */
+            content="Удалить"
+            /* End of Bastion of Endeavor Translation */
             color="transparent"
             icon="times"
             onClick={() =>
@@ -727,8 +911,13 @@ const TextHighlightSetting = (props) => {
         <Flex.Item>
           <Button.Checkbox
             checked={highlightBlacklist}
+            /* Bastion of Endeavor Translation
             content="Highlight Blacklist"
             tooltip="If this option is selected, you can blacklist senders not to highlight their messages."
+            */
+            content="Исключения"
+            tooltip="Позволяет указать отправителей, сообщения которых не будут выделяться."
+            /* End of Bastion of Endeavor Translation */
             mr="5px"
             onClick={() =>
               dispatch(
@@ -743,8 +932,13 @@ const TextHighlightSetting = (props) => {
         <Flex.Item>
           <Button.Checkbox
             checked={highlightWholeMessage}
+            /* Bastion of Endeavor Translation
             content="Whole Message"
             tooltip="If this option is selected, the entire message will be highlighted in yellow."
+            */
+            content="Выделять целиком"
+            tooltip="Позволяет выделять всё сообщение целиком."
+            /* End of Bastion of Endeavor Translation */
             mr="5px"
             onClick={() =>
               dispatch(
@@ -758,10 +952,18 @@ const TextHighlightSetting = (props) => {
         </Flex.Item>
         <Flex.Item>
           <Button.Checkbox
+            /* Bastion of Endeavor Translation
             content="Exact"
+            */
+            content="Точное совпадение"
+            /* End of Bastion of Endeavor Translation */
             checked={matchWord}
             tooltipPosition="bottom-start"
+            /* Bastion of Endeavor Translation
             tooltip="If this option is selected, only exact matches (no extra letters before or after) will trigger. Not compatible with punctuation. Overriden if regex is used."
+            */
+            tooltip="Позволяет выделять сообщения только при точном совпадении. Несовместимо с пунктуацией. Не обладает приоритетом над регулярными выражениями."
+            /* End of Bastion of Endeavor Translation */
             onClick={() =>
               dispatch(
                 updateHighlightSetting({
@@ -774,8 +976,13 @@ const TextHighlightSetting = (props) => {
         </Flex.Item>
         <Flex.Item>
           <Button.Checkbox
+            /* Bastion of Endeavor Translation
             content="Case"
             tooltip="If this option is selected, the highlight will be case-sensitive."
+            */
+            content="Регистр"
+            tooltip="Переключает чувствительность к регистру текста."
+            /* End of Bastion of Endeavor Translation */
             checked={matchCase}
             onClick={() =>
               dispatch(
@@ -808,7 +1015,11 @@ const TextHighlightSetting = (props) => {
       <TextArea
         height="3em"
         value={highlightText}
+        /* Bastion of Endeavor Translation
         placeholder="Put words to highlight here. Separate terms with commas, i.e. (term1, term2, term3)"
+        */
+        placeholder="Введите слова, которые должны выделяться в чате. Разделяйте их запятыми (слово1, слово2, слово3)."
+        /* End of Bastion of Endeavor Translation */
         onChange={(e, value) =>
           dispatch(
             updateHighlightSetting({
@@ -822,7 +1033,11 @@ const TextHighlightSetting = (props) => {
         <TextArea
           height="3em"
           value={blacklistText}
+          /* Bastion of Endeavor Translation
           placeholder="Put names of senders you don't want highlighted here. Separate names with commas, i.e. (name1, name2, name3)"
+          */
+          placeholder="Введите имена отправителей, чьи сообщения не должны выделяться. Разделяйте их запятыми (слово1, слово2, слово3)."
+          /* End of Bastion of Endeavor Translation */
           onChange={(e, value) =>
             dispatch(
               updateHighlightSetting({
@@ -845,11 +1060,19 @@ export const AdminSettings = (props) => {
   return (
     <Section>
       <LabeledList>
+        {/* Bastion of Endeavor Translation
         <LabeledList.Item label="Hide Important messages in admin only tabs">
+        */}
+        <LabeledList.Item label="Скрывать важные сообщения во вкладках администрации">
+          {/* End of Bastion of Endeavor Translation */}
           <Button.Checkbox
             checked={hideImportantInAdminTab}
             content=""
+            /* Bastion of Endeavor Translation
             tooltip="Enabling this will hide all important messages in admin filter exclusive tabs."
+            */
+            tooltip="Позволяет скрывать все важные сообщения в вкладках только с фильтрами для администрации."
+            /* End of Bastion of Endeavor Translation */
             mr="5px"
             onClick={() =>
               dispatch(

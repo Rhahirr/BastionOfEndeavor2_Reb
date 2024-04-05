@@ -1,5 +1,9 @@
 SUBSYSTEM_DEF(mail)
+	/* Bastion of Endeavor Translation
 	name = "Mail"
+	*/
+	name = "Почта"
+	// End of Bastion of Endeavor Translation
 	wait = 60 SECONDS
 	priority = FIRE_PRIORITY_SUPPLY
 

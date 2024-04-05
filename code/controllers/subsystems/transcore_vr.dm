@@ -7,7 +7,11 @@
 ////////////////////////////////
 
 SUBSYSTEM_DEF(transcore)
+	/* Bastion of Endeavor Translation
 	name = "Transcore"
+	*/
+	name = "Трансядро"
+	// End of Bastion of Endeavor Translation
 	priority = 20
 	wait = 3 MINUTES
 	flags = SS_BACKGROUND
@@ -33,7 +37,11 @@ SUBSYSTEM_DEF(transcore)
 	for(var/t in subtypesof(/datum/transcore_db))
 		var/datum/transcore_db/db = new t()
 		if(!db.key)
+			/* Bastion of Endeavor Translation
 			warning("Instantiated transcore DB without a key: [t]")
+			*/
+			warning("Инстанциирована БД трансядра без ключа: [t].")
+			// End of Bastion of Endeavor Translation
 			continue
 		databases[db.key] = db
 	return SS_INIT_SUCCESS // CHOMPEdit
@@ -103,7 +111,11 @@ SUBSYSTEM_DEF(transcore)
 
 		//Invalid record
 		if(!curr_MR)
+			/* Bastion of Endeavor Translation
 			log_debug("Tried to process [name] in transcore w/o a record!")
+			*/
+			log_debug("Попытка обработать [name] в трансядре без записи!")
+			// End of Bastion of Endeavor Translation
 			db.backed_up -= curr_MR.mindname
 			continue
 
@@ -129,17 +141,35 @@ SUBSYSTEM_DEF(transcore)
 //CHOMPEdit Begin
 /datum/controller/subsystem/transcore/stat_entry(msg)
 	msg = "$:{"
+	/* Bastion of Endeavor Translation
 	msg += "IM:[round(cost_implants,1)]|"
 	msg += "BK:[round(cost_backups,1)]"
 	msg += "} "
 	msg += "#:{"
 	msg += "DB:[databases.len]|"
+	*/
+	msg += "ИМ:[round(cost_implants,1)]|"
+	msg += "РК:[round(cost_backups,1)]"
+	msg += "} "
+	msg += "#:{"
+	msg += "БД:[databases.len]|"
+	// End of Bastion of Endeavor Translation
 	if(!default_db)
+		/* Bastion of Endeavor Translation
 		msg += "DEFAULT DB MISSING"
+		*/
+		msg += "НЕТ БД ПО УМОЛЧАНИЮ"
+		// End of Bastion of Endeavor Translation
 	else
+		/* Bastion of Endeavor Translation
 		msg += "DFM:[default_db.backed_up.len]|"
 		msg += "DFB:[default_db.body_scans.len]|"
 		msg += "DFI:[default_db.implants.len]"
+		*/
+		msg += "БДУ-РК:[default_db.backed_up.len]|"
+		msg += "БДУ-СТ:[default_db.body_scans.len]|"
+		msg += "БДУ-ИМ:[default_db.implants.len]"
+		// End of Bastion of Endeavor Translation
 	msg += "} "
 	return ..()
 // CHOMPEdit End
@@ -147,7 +177,11 @@ SUBSYSTEM_DEF(transcore)
 /datum/controller/subsystem/transcore/Recover()
 	for(var/key in SStranscore.databases)
 		if(!SStranscore.databases[key])
+			/* Bastion of Endeavor Translation
 			warning("SStranscore recovery found missing database value for key: [key]")
+			*/
+			warning("Прок Recover() SStranscore обнаружил отсутствующее в БД значение с ключом: [key].")
+			// End of Bastion of Endeavor Translation
 			continue
 		if(key == "default")
 			default_db = SStranscore.databases[key]
@@ -156,10 +190,18 @@ SUBSYSTEM_DEF(transcore)
 
 /datum/controller/subsystem/transcore/proc/leave_round(var/mob/M)
 	if(!istype(M))
+		/* Bastion of Endeavor Translation
 		warning("Non-mob asked to be removed from transcore: [M] [M?.type]")
+		*/
+		warning("Тип, не являющийся существом, запрашивает удаление из трансядра: [M] [M?.type].")
+		// End of Bastion of Endeavor Translation
 		return
 	if(!M.mind)
+		/* Bastion of Endeavor Translation
 		warning("No mind mob asked to be removed from transcore: [M] [M?.type]")
+		*/
+		warning("Существо без разума запрашивает удаление из трансядра: [M] [M?.type].")
+		// End of Bastion of Endeavor Translation
 		return
 
 	for(var/key in databases)
@@ -175,7 +217,11 @@ SUBSYSTEM_DEF(transcore)
 	if(isnull(key))
 		return default_db
 	if(!databases[key])
+		/* Bastion of Endeavor Translation
 		warning("Tried to find invalid transcore database: [key]")
+		*/
+		warning("Попытка найти неправильную базу данных трансядра: [key].")
+		// End of Bastion of Endeavor Translation
 		return default_db
 	return databases[key]
 
@@ -262,16 +308,29 @@ SUBSYSTEM_DEF(transcore)
 	var/datum/transcore_db/db = SStranscore.db_by_mind_name(MR.mindname)
 	var/datum/transhuman/body_record/BR = db.body_scans[MR.mindname]
 	if(!BR)
+		/* Bastion of Endeavor Translation: Bastion of Endeavor TODO: Mindname is fucky here, I hate this. Also announcement channel name may be changed in the future.
+		// Bastion of Endeavor TODO: Also we might potentially just give the transcore mob case persistence in the future.
 		global_announcer.autosay("[MR.mindname] is past-due for a mind backup, but lacks a corresponding body record.", "TransCore Oversight", "Medical")
+		*/
+		global_announcer.autosay("Срок действия записи резервного копирования '[MR.mindname]' истёк, однако запись тела отсутствует.", "Мониторинг трансядра", "Медицинский")
+		// End of Bastion of Endeavor Translation
 		return
+	/* Bastion of Endeavor Translation
 	global_announcer.autosay("[MR.mindname] is past-due for a mind backup.", "TransCore Oversight", BR.synthetic ? "Science" : "Medical")
+	*/
+	global_announcer.autosay("Срок действия записи резервного копирования '[MR.mindname]' истёк.", "Мониторинг трансядра", BR.synthetic ? "Научный" : "Медицинский")
+	// End of Bastion of Endeavor Translation
 
 // Called from mind_record to add itself to the transcore.
 /datum/transcore_db/proc/add_backup(var/datum/transhuman/mind_record/MR)
 	ASSERT(MR)
 	backed_up[MR.mindname] = MR
 	backed_up = sortAssoc(backed_up)
+	/* Bastion of Endeavor Translation
 	log_debug("Added [MR.mindname] to transcore DB.")
+	*/
+	log_debug("Запись '[MR.mindname]' добавлена в трансядро.")
+	// End of Bastion of Endeavor Translation
 
 // Remove a mind_record from the backup-checking list.  Keeps track of it in has_left // Why do we do that? ~Leshana
 /datum/transcore_db/proc/stop_backup(var/datum/transhuman/mind_record/MR)
@@ -279,26 +338,43 @@ SUBSYSTEM_DEF(transcore)
 	has_left[MR.mindname] = MR
 	backed_up.Remove("[MR.mindname]")
 	MR.cryo_at = world.time
+	/* Bastion of Endeavor Translation: Why is this even a thing though
 	log_debug("Put [MR.mindname] in transcore suspended DB.")
+	*/
+	log_debug("Остановлено резеpвное копирование разума '[MR.mindname]'.")
+	// End of Bastion of Endeavor Translation
 
 // Called from body_record to add itself to the transcore.
 /datum/transcore_db/proc/add_body(var/datum/transhuman/body_record/BR)
 	ASSERT(BR)
 	body_scans[BR.mydna.name] = BR
 	body_scans = sortAssoc(body_scans)
+	/* Bastion of Endeavor Translation
 	log_debug("Added [BR.mydna.name] to transcore body DB.")
+	*/
+	log_debug("Запись тела '[BR.mydna.name]' добавлена в трансядро.")
+	// End of Bastion of Endeavor Translation
 
 // Remove a body record from the database (Usually done when someone cryos)  // Why? ~Leshana
 /datum/transcore_db/proc/remove_body(var/datum/transhuman/body_record/BR)
 	ASSERT(BR)
 	body_scans.Remove("[BR.mydna.name]")
+	/* Bastion of Endeavor Translation
 	log_debug("Removed [BR.mydna.name] from transcore body DB.")
+	*/
+	log_debug("Запись тела '[BR.mydna.name]' удалена из трансядра.")
+	// End of Bastion of Endeavor Translation
 
 // Moves all mind records from the databaes into the disk and shuts down all backup canary processing.
 /datum/transcore_db/proc/core_dump(var/obj/item/weapon/disk/transcore/disk)
 	ASSERT(disk)
+	/* Bastion of Endeavor Translation
 	global_announcer.autosay("An emergency core dump has been initiated!", "TransCore Oversight", "Command")
 	global_announcer.autosay("An emergency core dump has been initiated!", "TransCore Oversight", "Medical")
+	*/
+	global_announcer.autosay("Инициирован экстренный дамп трансядра!", "Мониторинг трансядра", "Командование")
+	global_announcer.autosay("Инициирован экстренный дамп трансядра!", "Мониторинг трансядра", "Медицинский")
+	// End of Bastion of Endeavor Translation
 
 	disk.stored += backed_up
 	backed_up.Cut()

@@ -44,10 +44,18 @@
  */
 /datum/tgui_panel/proc/analyze_telemetry(payload)
 	if(world.time > telemetry_requested_at + TGUI_TELEMETRY_RESPONSE_WINDOW)
+		/* Bastion of Endeavor Translation
 		message_admins("[key_name(client)] sent telemetry outside of the allocated time window.")
+		*/
+		message_admins("[key_name(client)] отправил пакет телеметрии вне временного интервала.")
+		// End of Bastion of Endeavor Translation
 		return
 	if(telemetry_analyzed_at)
+		/* Bastion of Endeavor Translation
 		message_admins("[key_name(client)] sent telemetry more than once.")
+		*/
+		message_admins("[key_name(client)] отправил пакет телеметрии больше, чем один раз.")
+		// End of Bastion of Endeavor Translation
 		return
 	telemetry_analyzed_at = world.time
 	if(!payload)
@@ -57,7 +65,11 @@
 	if(len == 0)
 		return
 	if(len > TGUI_TELEMETRY_MAX_CONNECTIONS)
+		/* Bastion of Endeavor Translation
 		message_admins("[key_name(client)] was kicked for sending a huge telemetry payload")
+		*/
+		message_admins("[key_name(client)] был кикнут за отправку огромного пакета телеметрии.")
+		// End of Bastion of Endeavor Translation
 		qdel(client)
 		return
 

@@ -1,7 +1,11 @@
 //Supply packs are in /code/datums/supplypacks
 //Computers are in /code/game/machinery/computer/supply.dm
 SUBSYSTEM_DEF(supply)
+	/* Bastion of Endeavor Translation
 	name = "Supply"
+	*/
+	name = "Снабжение"
+	// End of Bastion of Endeavor Translation
 	wait = 20 SECONDS
 	priority = FIRE_PRIORITY_SUPPLY
 	//Initializes at default time
@@ -42,7 +46,11 @@ SUBSYSTEM_DEF(supply)
 	points += points_per_process
 //CHOMPEdit Begin
 /datum/controller/subsystem/supply/stat_entry(msg)
+	/* Bastion of Endeavor Translation
 	msg = "Points: [points]"
+	*/
+	msg = "| Очки: [points]"
+	// End of Bastion of Endeavor Translation
 	return ..()
 //CHOMPEdit End
 //To stop things being sent to CentCom which should not be sent to centcomm. Recursively checks for these types.
@@ -75,6 +83,7 @@ SUBSYSTEM_DEF(supply)
 			if(MA.anchored)
 				continue
 
+			//Bastion of Endeavor TODO: Unsure if the names here need any translating. Will know once it's all tested.
 			var/datum/exported_crate/EC = new /datum/exported_crate()
 			EC.name = "\proper[MA.name]"
 			EC.value = 0
@@ -128,7 +137,11 @@ SUBSYSTEM_DEF(supply)
 			// Make a log of it, but it wasn't shipped properly, and so isn't worth anything
 			else
 				EC.contents = list(
+						/* Bastion of Endeavor Translation
 						"error" = "Error: Product was improperly packaged. Payment rendered null under terms of agreement."
+						*/
+						"error" = "Ошибка: посылка не была упакована как следует. Плата за данную покупку не взымается."
+						// End of Bastion of Endeavor Translation
 					)
 
 			exported_crates += EC
@@ -175,7 +188,11 @@ SUBSYSTEM_DEF(supply)
 
 	var/list/clear_turfs = get_clear_turfs()
 
+	/* Bastion of Endeavor Translation
 	var/shopping_log = "SUPPLY_BUY: "
+	*/
+	var/shopping_log = "ПОКУПКА ГРУЗА:"
+	// End of Bastion of Endeavor Translation
 
 	for(var/datum/supply_order/SO in shoppinglist)
 		if(!clear_turfs.len)
@@ -191,17 +208,30 @@ SUBSYSTEM_DEF(supply)
 
 		var/obj/A = new SP.containertype(pickedloc)
 		A.name = "[SP.containername] [SO.comment ? "([SO.comment])":"" ]"
+		// Bastion of Endeavor Addition: Give the container itself some cases for grammatical polish, those are defined in supply pack datums
+		// Bastion of Endeavor TODO: I can't be bothered to test if this works after one of our 20231234534 case system refactors but come back to this when cargo is localized ig
+		A.cases_ru = deepCopyList(SP.cases_ru["containername"])
+		// End of Bastion of Endeavor Addition	
 
 		//supply manifest generation begin
 		var/obj/item/weapon/paper/manifest/slip
 		if(!SP.contraband)
 			slip = new /obj/item/weapon/paper/manifest(A)
 			slip.is_copy = 0
+			/* Bastion of Endeavor Translation
 			slip.info = "<h3>[command_name()] Shipping Manifest</h3><hr><br>"
 			slip.info +="Order #[SO.ordernum]<br>"
 			slip.info +="Destination: [station_name()]<br>"
 			slip.info +="[orderedamount] PACKAGES IN THIS SHIPMENT<br>"
 			slip.info +="CONTENTS:<br><ul>"
+			*/
+			slip.info = "<meta charset=\"UTF-8\">" 
+			slip.info += "<h3>Договор о поставке с [command_name_ru(GCASE)]</h3><hr><br>"
+			slip.info += "Заказ №[SO.ordernum]<br>"
+			slip.info += "Получатель: [station_name_ru(NCASE)]<br>"
+			slip.info += "В ДАННОЙ ПОСТАВКЕ [count_ru(orderedamount, "ПОСЫЛ;КА;КИ;ОК")]<br>"
+			slip.info += "СОДЕРЖИМОЕ:<br><ul>"
+			// End of Bastion of Endeavor Translation
 
 		//spawn the stuff, finish generating the manifest while you're at it
 		if(SP.access)
@@ -216,7 +246,11 @@ SUBSYSTEM_DEF(supply)
 				A.req_access = L.Copy()
 				LAZYCLEARLIST(A.req_one_access)
 			else
+				/* Bastion of Endeavor Translation
 				log_debug("<span class='danger'>Supply pack with invalid access restriction [SP.access] encountered!</span>")
+				*/
+				log_debug("<span class='danger'>Обнаружен комплект снабжения с неправильным доступом [SP.access]!</span>")
+				// End of Bastion of Endeavor Translation
 
 		var/list/contains
 		if(istype(SP,/datum/supply_pack/randomised))
@@ -241,7 +275,11 @@ SUBSYSTEM_DEF(supply)
 		//manifest finalisation
 		if(slip)
 			slip.info += "</ul><br>"
+			/* Bastion of Endeavor Translation
 			slip.info += "CHECK CONTENTS AND STAMP BELOW THE LINE TO CONFIRM RECEIPT OF GOODS<hr>"
+			*/
+			slip.info += "ПРОВЕРЬТЕ СОДЕРЖИМОЕ И ПОСТАВЬТЕ ПЕЧАТЬ ПОД ЧЕРТОЙ ДЛЯ ПОДТВЕРЖДЕНИЯ ПОЛУЧЕНИЯ.<hr>"
+			// End of Bastion of Endeavor Translation
 
 	log_game(shopping_log)
 	return
@@ -259,7 +297,11 @@ SUBSYSTEM_DEF(supply)
 			adm_order = temp
 			break
 
+	/* Bastion of Endeavor Translation: Bastion of Endeavor TODO: This is minor, but the names this proc gets can be put under a case at some point.
 	var/idname = "*None Provided*"
+	*/
+	var/idname = "*Не предоставлено*"
+	// End of Bastion of Endeavor Translation
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		idname = H.get_authentification_name()
@@ -288,7 +330,11 @@ SUBSYSTEM_DEF(supply)
 			adm_order = temp
 			break
 
+	/* Bastion of Endeavor Translation
 	var/idname = "*None Provided*"
+	*/
+	var/idname = "*Не предоставлено*"
+	// End of Bastion of Endeavor Translation
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		idname = H.get_authentification_name()
@@ -314,9 +360,15 @@ SUBSYSTEM_DEF(supply)
 // Will delete the specified order from the user-side list
 /datum/controller/subsystem/supply/proc/delete_order(var/datum/supply_order/O, var/mob/user)
 	// Making sure they know what they're doing
+	/* Bastion of Endeavor Translation
 	if(tgui_alert(user, "Are you sure you want to delete this record? If it has been approved, cargo points will NOT be refunded!", "Delete Record",list("No","Yes")) == "Yes")
 		if(tgui_alert(user, "Are you really sure? There is no way to recover the order once deleted.", "Delete Record", list("No","Yes")) == "Yes")
 			log_admin("[key_name(user)] has deleted supply order \ref[O] [O] from the user-side order history.")
+	*/
+	if(tgui_alert(user, "Вы действительно хотите удалить эту запись? Если заказ был одобрен, очки снабжения НЕ БУДУТ возвращены!", "Удаление записи",list("Нет","Да")) == "Да")
+		if(tgui_alert(user, "Вы точно уверены? Это действие невозможно отменить.", "Удаление записи", list("Нет","Да")) == "Да")
+			log_admin("[key_name(user)] удалил заказ на поставку \ref[O] [O] из истории заказов на стороне пользователей.")
+	// End of Bastion of Endeavor Translation
 			order_history -= O
 	return
 
@@ -325,7 +377,11 @@ SUBSYSTEM_DEF(supply)
 	var/datum/supply_order/new_order = new()
 	var/datum/supply_order/adm_order = new() // Admin-recorded order must be a separate copy in memory, or user-made edits will corrupt it
 
+	/* Bastion of Endeavor Translation
 	var/idname = "*None Provided*"
+	*/
+	var/idname = "*Не предоставлено*"
+	// End of Bastion of Endeavor Translation
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		idname = H.get_authentification_name()
@@ -358,23 +414,41 @@ SUBSYSTEM_DEF(supply)
 // Will delete the specified export receipt from the user-side list
 /datum/controller/subsystem/supply/proc/delete_export(var/datum/exported_crate/E, var/mob/user)
 	// Making sure they know what they're doing
+	/* Bastion of Endeavor Translation
 	if(tgui_alert(user, "Are you sure you want to delete this record?", "Delete Record",list("No","Yes")) == "Yes")
 		if(tgui_alert(user, "Are you really sure? There is no way to recover the receipt once deleted.", "Delete Record", list("No","Yes")) == "Yes")
 			log_admin("[key_name(user)] has deleted export receipt \ref[E] [E] from the user-side export history.")
+	*/
+	if(tgui_alert(user, "Вы действительно хотите удалить эту запись?", "Удаление записи",list("Нет","Да")) == "Да")
+		if(tgui_alert(user, "Вы точно уверены? Чек невозможно восстановить после удаления.", "Удаление записи", list("Нет","Да")) == "Да")
+			log_admin("[key_name(user)] удалил чек поставки \ref[E] [E] из истории экспорта на стороне пользователей.")
+	// End of Bastion of Endeavor Translation
 			exported_crates -= E
 	return
 
 // Will add an item entry to the specified export receipt on the user-side list
 /datum/controller/subsystem/supply/proc/add_export_item(var/datum/exported_crate/E, var/mob/user)
+	/* Bastion of Endeavor Translation
 	var/new_name = tgui_input_text(user, "Name", "Please enter the name of the item.")
+	*/
+	var/new_name = tgui_input_text(user, "Название", "Введите название товара.")
+	// End of Bastion of Endeavor Translation
 	if(!new_name)
 		return
 
+	/* Bastion of Endeavor Translation
 	var/new_quantity = tgui_input_number(user, "Name", "Please enter the quantity of the item.")
+	*/
+	var/new_quantity = tgui_input_number(user, "Количество", "Введите количество товара.")
+	// End of Bastion of Endeavor Translation
 	if(!new_quantity)
 		return
 
+	/* Bastion of Endeavor Translation
 	var/new_value = tgui_input_number(user, "Name", "Please enter the value of the item.")
+	*/
+	var/new_value = tgui_input_number(user, "Стоимость", "Введите стоимость товара.")
+	// End of Bastion of Endeavor Translation
 	if(!new_value)
 		return
 

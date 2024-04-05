@@ -65,7 +65,11 @@
 		return 0
 
 	setClickCooldown(get_attack_speed())
+	/* Bastion of Endeavor Translation: attack_generic is a huge hassle as of right now. This might need revision, but as it stands, it will be used with the verb_ru proc.
 	A.attack_generic(src,rand(5,6),"bitten")
+	*/
+	A.attack_generic(src,rand(5,6),"укусил")
+	// End of Bastion of Endeavor Translation
 
 /*
 	New Players:

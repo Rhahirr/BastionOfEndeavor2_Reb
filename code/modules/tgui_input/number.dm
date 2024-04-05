@@ -15,7 +15,11 @@
  * * timeout - The timeout of the number input, after which the modal will close and qdel itself. Set to zero for no timeout.
  * * round_value - whether the inputted number is rounded down into an integer.
  */
+/* Bastion of Endeavor Translation
 /proc/tgui_input_number(mob/user, message, title = "Number Input", default = 0, max_value = INFINITY, min_value = 0, timeout = 0, round_value = TRUE, ui_state = GLOB.tgui_always_state)
+*/
+/proc/tgui_input_number(mob/user, message, title = "Ввод числа", default = 0, max_value = INFINITY, min_value = 0, timeout = 0, round_value = TRUE, ui_state = GLOB.tgui_always_state)
+// End of Bastion of Endeavor Translation
 	if (!user)
 		user = usr
 	if (!istype(user))
@@ -90,7 +94,11 @@
 	if(default < min_value)
 		src.default = min_value
 	if(default > max_value)
+		/* Bastion of Endeavor Translation
 		CRASH("Default value is greater than max value.")
+		*/
+		CRASH("Значение по умолчанию превышает максимально.")
+		// End of Bastion of Endeavor Translation
 
 /datum/tgui_input_number/Destroy(force)
 	SStgui.close_uis(src)
@@ -143,12 +151,24 @@
 	switch(action)
 		if("submit")
 			if(!isnum(params["entry"]))
+				/* Bastion of Endeavor Translation
 				CRASH("A non number was input into tgui input number by [usr]")
+				*/
+				CRASH("[usr] ввёл не-число в TGUI.")
+				// End of Bastion of Endeavor Translation
 			var/choice = round_value ? round(params["entry"]) : params["entry"]
 			if(choice > max_value)
+				/* Bastion of Endeavor Translation
 				CRASH("A number greater than the max value was input into tgui input number by [usr]")
+				*/
+				CRASH("[usr] ввёл число выше максимального значения.")
+				// End of Bastion of Endeavor Translation
 			if(choice < min_value)
+				/* Bastion of Endeavor Translation
 				CRASH("A number less than the min value was input into tgui input number by [usr]")
+				*/
+				CRASH("[usr] ввёл число ниже минимального значения.")
+				// End of Bastion of Endeavor Translation
 			set_entry(choice)
 			closed = TRUE
 			SStgui.close_uis(src)

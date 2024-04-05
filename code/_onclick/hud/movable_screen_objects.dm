@@ -105,16 +105,29 @@
 
 //Debug procs
 /client/proc/test_movable_UI()
+	/* Bastion of Endeavor Translation: I don't believe these are used but whatever
 	set category = "Debug"
 	set name = "Spawn Movable UI Object"
+	*/
+	set category = "Отладка"
+	set name = "Заспавнить перемещаемый объект UI"
+	// End of Bastion of Endeavor Translation
 
 	var/obj/screen/movable/M = new()
+	/* Bastion of Endeavor Translation
 	M.name = "Movable UI Object"
+	*/
+	M.name = "Перемещаемый объект"
+	// End of Bastion of Endeavor Translation
 	M.icon_state = "block"
 	M.maptext = "Movable"
 	M.maptext_width = 64
 
+	/* Bastion of Endeavor Translation
 	var/screen_l = tgui_input_text(usr,"Where on the screen? (Formatted as 'X,Y' e.g: '1,1' for bottom left)","Spawn Movable UI Object")
+	*/
+	var/screen_l = tgui_input_text(usr,"Где на экране? (Форматируется как 'X,Y' т.е: '1,1' для нижнего левого угла)","Заспавнить перемещаемый объект UI")
+	// End of Bastion of Endeavor Translation
 	if(!screen_l)
 		return
 
@@ -124,16 +137,29 @@
 
 
 /client/proc/test_snap_UI()
+	/* Bastion of Endeavor Translation
 	set category = "Debug"
 	set name = "Spawn Snap UI Object"
+	*/
+	set category = "Отладка"
+	set name = "Заспавнить фиксируемый объект UI"
+	// End of Bastion of Endeavor Translation
 
 	var/obj/screen/movable/snap/S = new()
+	/* Bastion of Endeavor Translation
 	S.name = "Snap UI Object"
+	*/
+	S.name = "Фиксируемый объект"
+	// End of Bastion of Endeavor Translation
 	S.icon_state = "block"
 	S.maptext = "Snap"
 	S.maptext_width = 64
 
+	/* Bastion of Endeavor Translation
 	var/screen_l = tgui_input_text(usr,"Where on the screen? (Formatted as 'X,Y' e.g: '1,1' for bottom left)","Spawn Snap UI Object")
+	*/
+	var/screen_l = tgui_input_text(usr,"Где на экране? (форматируется как 'X,Y' т.е: '1,1' для нижнего левого угла)","Заспавнить фиксируемый объект UI")
+	// End of Bastion of Endeavor Translation
 	if(!screen_l)
 		return
 

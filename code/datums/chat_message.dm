@@ -12,7 +12,11 @@
 
 #define CHAT_MESSAGE_MOB			1
 #define CHAT_MESSAGE_OBJ			2
+/* Bastion of Endeavor Translation: I really don't know if this is worth it?
 #define WXH_TO_HEIGHT(x)			text2num(copytext((x), findtextEx((x), "x") + 1)) // thanks lummox
+*/
+#define WXH_TO_HEIGHT(x)			text2num(copytext_char((x), findtextEx_char((x), "x") + 1))
+// End of Bastion of Endeavor Translation
 
 #define CHAT_RUNE_EMOTE				0x1
 #define CHAT_RUNE_RADIO				0x2
@@ -65,9 +69,17 @@ var/list/runechat_image_cache = list()
 /datum/chatmessage/New(text, atom/target, mob/owner, list/extra_classes = null, lifespan = CHAT_MESSAGE_LIFESPAN)
 	. = ..()
 	if(!istype(target))
+		/* Bastion of Endeavor Translation
 		CRASH("Invalid target given for chatmessage")
+		*/
+		CRASH("Недопустимая цель для chatmessage.")
+		// End of Bastion of Endeavor Translation
 	if(!istype(owner) || QDELETED(owner) || !owner.client)
+		/* Bastion of Endeavor Translation
 		stack_trace("/datum/chatmessage created with [isnull(owner) ? "null" : "invalid"] mob owner")
+		*/
+		stack_trace("/datum/chatmessage создан с [isnull(owner) ? "нулевым" : "недопустимым"] владельцем существа.")
+		// End of Bastion of Endeavor Translation
 		qdel(src)
 		return
 	generate_image(text, target, owner, extra_classes, lifespan)
@@ -120,7 +132,11 @@ var/list/runechat_image_cache = list()
 
 	// Get rid of any URL schemes that might cause BYOND to automatically wrap something in an anchor tag
 	var/static/regex/url_scheme = new(@"[A-Za-z][A-Za-z0-9+-\.]*:\/\/", "g")
+	/* Bastion of Endeavor Unicode Edit
 	text = replacetext(text, url_scheme, "")
+	*/
+	text = replacetext_char(text, url_scheme, "")
+	// End of Bastion of Endeavor Unicode Edit
 
 	// Reject whitespace
 	var/static/regex/whitespace = new(@"^\s*$")
@@ -134,9 +150,15 @@ var/list/runechat_image_cache = list()
 
 	// If we heard our name, it's important
 	// Differnt from our own system of name emphasis, maybe unify
+	/* Bastion of Endeavor Unicode Edit
 	var/list/names = splittext(owner.name, " ")
 	for (var/word in names)
 		text = replacetext(text, word, "<b>[word]</b>")
+	*/
+	var/list/names = splittext_char(owner.name, " ")
+	for (var/word in names)
+		text = replacetext_char(text, word, "<b>[word]</b>")
+	// End of Bastion of Endeavor Unicode Edit
 
 	var/list/prefixes
 

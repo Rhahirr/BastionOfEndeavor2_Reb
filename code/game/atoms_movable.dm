@@ -268,7 +268,11 @@
 
 /atom/movable/Bump(atom/A)
 	if(!A)
+		/* Bastion of Endeavor Translation
 		CRASH("Bump was called with no argument.")
+		*/
+		CRASH("Прок Bump вызван без аргумента.")
+		// End of Bastion of Endeavor Translation
 	. = ..()
 	if(throwing)
 		throw_impact(A)
@@ -286,7 +290,11 @@
 	if(destination)
 		. = doMove(destination, direction, movetime)
 	else
+		/* Bastion of Endeavor Translation
 		CRASH("No valid destination passed into forceMove")
+		*/
+		CRASH("В forceMove не было передано допустимое направление.")
+		// End of Bastion of Endeavor Translation
 
 /atom/movable/proc/moveToNullspace()
 	return doMove(null)

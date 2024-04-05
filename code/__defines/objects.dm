@@ -4,9 +4,15 @@
 
 // Multitool Mode Defines.
 
+/* Bastion of Endeavor Translation
 #define MULTITOOL_MODE_STANDARD				"Standard"
 #define MULTITOOL_MODE_INTCIRCUITS			"Modular Wiring"
 #define MULTITOOL_MODE_DOORHACK 			"Advanced Jacking"
+*/
+#define MULTITOOL_MODE_STANDARD				"Стандартный"
+#define MULTITOOL_MODE_INTCIRCUITS			"Модульная проводка"
+#define MULTITOOL_MODE_DOORHACK 			"Взлом"
+// End of Bastion of Endeavor Translation
 
 // Identity system defines.
 #define IDENTITY_UNKNOWN	0 // Nothing is known so far.
@@ -27,8 +33,13 @@
 // Consistant messages for certain events.
 // Consistancy is import in order to avoid giving too much information away when using an
 // unidentified object due to a typo or some other unique difference in message output.
+/* Bastion of Endeavor Translation
 #define ROGUELIKE_MESSAGE_NOTHING "Nothing happens."
 #define ROGUELIKE_MESSAGE_UNKNOWN "Something happened, but you're not sure what."
+*/
+#define ROGUELIKE_MESSAGE_NOTHING "Ничего не произошло."
+#define ROGUELIKE_MESSAGE_UNKNOWN "Что-то произошло, но вы не поняли, что именно."
+// End of Bastion of Endeavor Translation
 
 // Cataloguer defines.
 
@@ -44,8 +55,16 @@
 
 // Defines for Exosuit components.
 
+/* Bastion of Endeavor Translation
 #define MECH_HULL		"Hull"
 #define MECH_ACTUATOR	"Actuator"
 #define MECH_ARMOR		"Plating"
 #define MECH_GAS		"Life Support"
 #define MECH_ELECTRIC	"Firmware"
+*/
+#define MECH_HULL		"Корпус"
+#define MECH_ACTUATOR	"Привод"
+#define MECH_ARMOR		"Броня"
+#define MECH_GAS		"Система жизнеобеспечения"
+#define MECH_ELECTRIC	"Программное обеспечение"
+// End of Bastion of Endeavor Translation

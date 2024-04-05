@@ -5,7 +5,11 @@
 	var/vehicle_move_delay = 2 			// Decisecond delay between movements, lower = faster, higher = slower
 	var/keytype = null					// Can give this a type to require the rider to hold the item type inhand to move the ridden atom.
 	var/nonhuman_key_exemption = FALSE	// If true, nonhumans who can't hold keys don't need them, like borgs and simplemobs.
+	/* Bastion of Endeavor Translation
 	var/key_name = "the keys"			// What the 'keys' for the thing being rided on would be called.
+	*/
+	var/key_name = "ключи"
+	// End of Bastion of Endeavor Translation
 	var/atom/movable/ridden = null 		// The thing that the datum is attached to.
 	var/only_one_driver = FALSE			// If true, only the person in 'front' (first on list of riding mobs) can drive.
 	var/rider_size = 1					// VOREStation Edit to figure out offsets for rider.
@@ -93,7 +97,11 @@
 	if(only_one_driver && ridden.buckled_mobs.len)
 		var/mob/living/driver = ridden.buckled_mobs[1]
 		if(driver != user)
+			/* Bastion of Endeavor Translation
 			to_chat(user, "<span class='warning'>\The [ridden] can only be controlled by one person at a time, and is currently being controlled by \the [driver].</span>")
+			*/
+			to_chat(user, "<span class='warning'>[interact_ru(driver, "уже управля;ет;ет;ет;ют", ridden, TRUE)].</span>")
+			// End of Bastion of Endeavor Translation
 			return
 
 	if(world.time < next_vehicle_move)
@@ -109,7 +117,11 @@
 		handle_vehicle_layer()
 		handle_vehicle_offsets()
 	else
+		/* Bastion of Endeavor Translation: Not future-proof but what are the odds?
 		to_chat(user, "<span class='warning'>You'll need [key_name] in one of your hands to move \the [ridden].</span>")
+		*/
+		to_chat(user, "<span class='warning'>Чтобы управлять [icase_ru(ridden)], вам необходимо держать [key_name] в одной из рук.</span>")
+		// End of Bastion of Endeavor Translation
 
 /datum/riding/proc/Unbuckle(atom/movable/M)
 //	addtimer(CALLBACK(ridden, TYPE_PROC_REF(/atom/movable, unbuckle_mob), M), 0, TIMER_UNIQUE)
@@ -134,7 +146,11 @@
 // I'm on a
 /datum/riding/boat
 	keytype = /obj/item/weapon/oar
+	/* Bastion of Endeavor Translation
 	key_name = "an oar"
+	*/
+	key_name = "весло"
+	// End of Bastion of Endeavor Translation
 	nonhuman_key_exemption = TRUE // Borgs can't hold oars.
 	only_one_driver = TRUE // Would be pretty crazy if five people try to move at the same time.
 
@@ -143,12 +159,20 @@
 	var/turf/current = get_turf(ridden)
 
 	if(istype(current, /turf/simulated/floor/water/underwater)) //don't work at the bottom of the ocean!
+		/* Bastion of Endeavor Translation
 		to_chat(user, "<span class='warning'>The boat has sunk!</span>")
+		*/
+		to_chat(user, "<span class='warning'>Лодка утонула!</span>")
+		// End of Bastion of Endeavor Translation
 		return FALSE
 	else if(istype(next, /turf/simulated/floor/water) || istype(current, /turf/simulated/floor/water)) //We can move from land to water, or water to land, but not from land to land
 		..()
 	else
+		/* Bastion of Endeavor Translation
 		to_chat(user, "<span class='warning'>Boats don't go on land!</span>")
+		*/
+		to_chat(user, "<span class='warning'>Лодки не плывут по земле!</span>")
+		// End of Bastion of Endeavor Translation
 		return FALSE
 
 /datum/riding/boat/small // 'Small' boats can hold up to two people.

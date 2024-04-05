@@ -15,7 +15,11 @@
 		return ELEMENT_INCOMPATIBLE
 	if(!length(id))
 		. = ELEMENT_INCOMPATIBLE
+		/* Bastion of Endeavor Translation
 		CRASH("Invalid ID in conflict checking element.")
+		*/
+		CRASH("Недопустимый ID при проверке элемента на конфликты.")
+		// End of Bastion of Endeavor Translation
 	if(isnull(src.id))
 		src.id = id
 	RegisterSignal(target, COMSIG_CONFLICT_ELEMENT_CHECK, PROC_REF(check))

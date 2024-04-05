@@ -10,7 +10,11 @@
 
 // No point in making this a processing substem, it overrides fire() and handles its own processing list!
 SUBSYSTEM_DEF(airflow)
+	/* Bastion of Endeavor Translation
 	name = "Airflow"
+	*/
+	name = "Воздушные потоки"
+	// End of Bastion of Endeavor Translation
 	wait = 2
 	flags = SS_NO_INIT
 	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME
@@ -121,7 +125,11 @@ SUBSYSTEM_DEF(airflow)
 		return FALSE
 
 	if (ismob(src))
+		/* Bastion of Endeavor Translation
 		to_chat(src,"<span class='danger'>You are pushed away by airflow!</span>")
+		*/
+		to_chat(src,"<span class='danger'>Вас уносит потоком воздуха!</span>")
+		// End of Bastion of Endeavor Translation
 
 	last_airflow = world.time
 	var/airflow_falloff = 9 - sqrt((x - airflow_dest.x) ** 2 + (y - airflow_dest.y) ** 2)

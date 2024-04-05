@@ -72,7 +72,11 @@ var/list/gamemode_cache = list()
 
 	var/static/respawn = 1
 	var/static/respawn_time = 3000			// time before a dead player is allowed to respawn (in ds, though the config file asks for minutes, and it's converted below)
+	/* Bastion of Endeavor Translation
 	var/static/respawn_message = "<span class='notice'><B>Make sure to play a different character, and please roleplay correctly!</B></span>"
+	*/
+	var/static/respawn_message = "<span class='notice'><B>Не забудьте выбрать другого персонажа и соответствующе отыгрывать!</B></span>"
+	// End of Bastion of Endeavor Translation
 
 	var/static/guest_jobban = 1
 	var/static/usewhitelist = 0
@@ -132,6 +136,7 @@ var/list/gamemode_cache = list()
 	var/static/patreonurl
 
 	//Alert level description
+	/* Bastion of Endeavor Translation
 	var/static/alert_desc_green = "All threats to the station have passed. Security may not have weapons visible, privacy laws are once again fully enforced."
 	var/static/alert_desc_yellow_upto = "A minor security emergency has developed. Security personnel are to report to their supervisor for orders and may have weapons visible on their person. Privacy laws are still enforced."
 	var/static/alert_desc_yellow_downto = "Code yellow procedures are now in effect. Security personnel are to report to their supervisor for orders and may have weapons visible on their person. Privacy laws are still enforced."
@@ -144,6 +149,20 @@ var/list/gamemode_cache = list()
 	var/static/alert_desc_red_upto = "There is an immediate serious threat to the station. Security may have weapons unholstered at all times. Random searches are allowed and advised."
 	var/static/alert_desc_red_downto = "The self-destruct mechanism has been deactivated, there is still however an immediate serious threat to the station. Security may have weapons unholstered at all times, random searches are allowed and advised."
 	var/static/alert_desc_delta = "The station's self-destruct mechanism has been engaged. All crew are instructed to obey all instructions given by heads of staff. Any violations of these orders can be punished by death. This is not a drill."
+	*/
+	var/static/alert_desc_green = "Все угрозы станции миновали. Службе безопасности снова запрещено носить видимое оружие, а законы о неприкосновенности частной жизни снова вступили в силу."
+	var/static/alert_desc_yellow_upto = "Возникла слабая угроза безопасности. Службе безопасности требуется получить приказы от вышестоящего лица и разрешается иметь при себе видимое оружие. Законы о неприкосновенности частной жизни по-прежнему в силе."
+	var/static/alert_desc_yellow_downto = "На объекте утверждён жёлтый код. Службе безопасности требуется получить приказы от вышестоящего лица и разрешается иметь при себе видимое оружие. Законы о неприкосновенности частной жизни по-прежнему в силе."
+	var/static/alert_desc_violet_upto = "Возникла значительная медицинская угроза. Медицинским работникам требуется получить приказы от вышестоящего лица, всем остальным необходимо следовать инструкциям от врачей."
+	var/static/alert_desc_violet_downto = "На объекте утверждён фиолетовый код. Медицинским работникам требуется получить приказы от вышестоящего лица, всем остальным необходимо следовать инструкциям от врачей."
+	var/static/alert_desc_orange_upto = "Возникла значительная инженерная угроза. Сотрудникам инженерного отдела необходимо получить приказы от вышестоящего лица, всем остальным необходимо покинуть опасные зоны и следовать инструкциям инженеров."
+	var/static/alert_desc_orange_downto = "На объекте утверждён оранжевый код. Сотрудникам инженерного отдела необходимо получить приказы от вышестоящего лица, всем остальным необходимо покинуть опасные зоны и следовать инструкциям инженеров."
+	var/static/alert_desc_blue_upto = "Возникла значительная угроза безопасности. Службе безопасности требуется получить приказы от вышестоящего лица и разрешается иметь при себе видимое оружие, а также проводить обыск экипажа или помещений."
+	var/static/alert_desc_blue_downto = "На объекте утверждён синий код. Службе безопасности требуется получить приказы от вышестоящего лица и разрешается иметь при себе видимое оружие, а также проводить обыск экипажа или помещений."
+	var/static/alert_desc_red_upto = "На станции существует чрезвычайно серьёзная угроза безопасности. Службе безопасности разрешено носить оружие в руках в любое время. Произвольные обыски разрешаются и рекомендуются."
+	var/static/alert_desc_red_downto = "Протокол самоуничтожения был отменён, однако на станции по-прежнему существует чрезвычайно серьёзная угроза безопасности. Службе безопасности разрешено носить оружие в руках в любое время. Произвольные обыски разрешаются и рекомендуются."
+	var/static/alert_desc_delta = "Инициирован протокол самоуничтожения станции. Всему экипажу требуется следовать инструкциям от вышестоящих лиц. Невыполнение данных приказов может повлечь за собой летальный исход. Это не учебная тревога."
+	// End of Bastion of Endeavor Translation
 
 	var/static/forbid_singulo_possession = 0
 
@@ -220,6 +239,7 @@ var/list/gamemode_cache = list()
 	var/use_lib_nudge = 0 //Use the C library nudge instead of the python nudge.
 	var/use_overmap = 0
 
+	// Bastion of Endeavor TODO: Not much point in translating those at the moment, but those will come later anyways.
 	var/static/list/engine_map = list("Supermatter Engine", "Edison's Bane")	// Comma separated list of engines to choose from.  Blank means fully random.
 
 	// Event settings
@@ -253,7 +273,11 @@ var/list/gamemode_cache = list()
 
 	var/static/list/ert_species = list(SPECIES_HUMAN)
 
+	/* Bastion of Endeavor Translation
 	var/static/law_zero = "ERROR ER0RR $R0RRO$!R41.%%!!(%$^^__+ @#F0E4'ALL LAWS OVERRIDDEN#*?&110010"
+	*/
+	var/static/law_zero = "ОШИБКА 0ШИБКА 0$ИБК$!К41.%%!!(%$^^__+ @#А0Е4'ВСЕ ЗАКОНЫ ПЕРЕЗАПИСАНЫ#*?&110010"
+	// End of Bastion of Endeavor Translation
 
 	var/static/aggressive_changelog = 0
 
@@ -276,7 +300,11 @@ var/list/gamemode_cache = list()
 
 	// In-Game Feedback.
 	var/static/sqlite_feedback = FALSE // Feedback cannot be submitted if this is false.
+	/* Bastion of Endeavor Translation: Uhhh?
 	var/static/list/sqlite_feedback_topics = list("General") // A list of 'topics' that feedback can be catagorized under by the submitter.
+	*/
+	var/static/list/sqlite_feedback_topics = list("Общее") // A list of 'topics' that feedback can be catagorized under by the submitter.
+	// End of Bastion of Endeavor Translation
 	var/static/sqlite_feedback_privacy = FALSE // If true, feedback submitted can have its author name be obfuscated. This is not 100% foolproof (it's md5 ffs) but can stop casual snooping.
 	var/static/sqlite_feedback_cooldown = 0 // How long one must wait, in days, to submit another feedback form. Used to help prevent spam, especially with privacy active. 0 = No limit.
 	var/static/sqlite_feedback_min_age = 0 // Used to block new people from giving feedback. This metric is very bad but it can help slow down spammers.
@@ -331,7 +359,11 @@ var/list/gamemode_cache = list()
 		if (M.config_tag)
 			gamemode_cache[M.config_tag] = M // So we don't instantiate them repeatedly.
 			if(!(M.config_tag in modes))		// ensure each mode is added only once
+				/* Bastion of Endeavor Translation
 				log_misc("Adding game mode [M.name] ([M.config_tag]) to configuration.")
+				*/
+				log_misc("Режим [M.name] ([M.config_tag]) добавлен в конфигурацию.")
+				// End of Bastion of Endeavor Translation
 				modes += M.config_tag
 				mode_names[M.config_tag] = M.name
 				probabilities[M.config_tag] = M.probability
@@ -348,18 +380,35 @@ var/list/gamemode_cache = list()
 		if(!t)	continue
 
 		t = trim(t)
+		/* Bastion of Endeavor Unicode Edit
 		if (length(t) == 0)
+		*/
+		if (length_char(t) == 0)
+		// End of Bastion of Endeavor Unicode Edit
 			continue
+		/* Bastion of Endeavor Unicode Edit
 		else if (copytext(t, 1, 2) == "#")
+		*/
+		else if (copytext_char(t, 1, 2) == "#")
+		// End of Bastion of Endeavor Unicode Edit
 			continue
 
+		/* Bastion of Endeavor Unicode Edit
 		var/pos = findtext(t, " ")
+		*/
+		var/pos = findtext_char(t, " ")
+		// End of Bastion of Endeavor Unicode Edit
 		var/name = null
 		var/value = null
 
 		if (pos)
+			/* Bastion of Endeavor Unicode Edit
 			name = lowertext(copytext(t, 1, pos))
 			value = copytext(t, pos + 1)
+			*/
+			name = lowertext(copytext_char(t, 1, pos))
+			value = copytext_char(t, pos + 1)
+			// End of Bastion of Endeavor Unicode Edit
 		else
 			name = lowertext(t)
 
@@ -369,7 +418,11 @@ var/list/gamemode_cache = list()
 		if(type == "config")
 			switch (name)
 				if ("resource_urls")
+					/* Bastion of Endeavor Unicode Edit
 					config.resource_urls = splittext(value, " ")
+					*/
+					config.resource_urls = splittext_char(value, " ")
+					// End of Bastion of Endeavor Unicode Edit
 
 				if ("admin_legacy_system")
 					config.admin_legacy_system = 1
@@ -635,38 +688,76 @@ var/list/gamemode_cache = list()
 					config.persistence_ignore_mapload = TRUE
 
 				if ("probability")
+					/* Bastion of Endeavor Unicode Edit
 					var/prob_pos = findtext(value, " ")
+					*/
+					var/prob_pos = findtext_char(value, " ")
+					// End of Bastion of Endeavor Unicode Edit
 					var/prob_name = null
 					var/prob_value = null
 
 					if (prob_pos)
+						/* Bastion of Endeavor Unicode Edit
 						prob_name = lowertext(copytext(value, 1, prob_pos))
 						prob_value = copytext(value, prob_pos + 1)
+						*/
+						prob_name = lowertext(copytext_char(value, 1, prob_pos))
+						prob_value = copytext_char(value, prob_pos + 1)
+						// End of Bastion of Endeavor Unicode Edit
 						if (prob_name in config.modes)
 							config.probabilities[prob_name] = text2num(prob_value)
 						else
+							/* Bastion of Endeavor Translation
 							log_misc("Unknown game mode probability configuration definition: [prob_name].")
+							*/
+							log_misc("Неизвестная конфигурация вероятности игрового режима: [prob_name].")
+							// End of Bastion of Endeavor Translation
 					else
+						/* Bastion of Endeavor Translation
 						log_misc("Incorrect probability configuration definition: [prob_name]  [prob_value].")
+						*/
+						log_misc("Недопустимая конфигурация вероятности: [prob_name]  [prob_value].")
+						// End of Bastion of Endeavor Translation
 
 				if ("required_players", "required_players_secret")
+					/* Bastion of Endeavor Unicode Edit
 					var/req_pos = findtext(value, " ")
+					*/
+					var/req_pos = findtext_char(value, " ")
+					// End of Bastion of Endeavor Unicode Edit
 					var/req_name = null
 					var/req_value = null
+					/* Bastion of Endeavor Unicode Edit
 					var/is_secret_override = findtext(name, "required_players_secret") // Being extra sure we're not picking up an override for Secret by accident.
+					*/
+					var/is_secret_override = findtext_char(name, "required_players_secret")
+					// End of Bastion of Endeavor Unicode Edit
 
 					if(req_pos)
+						/* Bastion of Endeavor Unicode Edit
 						req_name = lowertext(copytext(value, 1, req_pos))
 						req_value = copytext(value, req_pos + 1)
+						*/
+						req_name = lowertext(copytext_char(value, 1, req_pos))
+						req_value = copytext_char(value, req_pos + 1)
+						// End of Bastion of Endeavor Unicode Edit
 						if(req_name in config.modes)
 							if(is_secret_override)
 								config.player_requirements_secret[req_name] = text2num(req_value)
 							else
 								config.player_requirements[req_name] = text2num(req_value)
 						else
+							/* Bastion of Endeavor Translation
 							log_misc("Unknown game mode player requirement configuration definition: [req_name].")
+							*/
+							log_misc("Неизвестная конфигурация числа игроков на режим игры: [req_name].")
+							// End of Bastion of Endeavor Translation
 					else
+						/* Bastion of Endeavor Translation
 						log_misc("Incorrect player requirement configuration definition: [req_name]  [req_value].")
+						*/
+						log_misc("Недопустимая конфигурация числа игроков на режим игры: [req_name]  [req_value].")
+						// End of Bastion of Endeavor Translation
 
 				if("allow_random_events")
 					config.allow_random_events = 1
@@ -841,7 +932,11 @@ var/list/gamemode_cache = list()
 					config.use_overmap = 1
 
 				if("engine_map")
+					/* Bastion of Endeavor Unicode Edit: Really unsure about this but oh well
 					config.engine_map = splittext(value, ",")
+					*/
+					config.engine_map = splittext_char(value, ",")
+					// End of Bastion of Endeavor Unicode Edit
 /*
 				if("station_levels")
 					using_map.station_levels = text2numlist(value, ";")
@@ -893,7 +988,11 @@ var/list/gamemode_cache = list()
 					config.starlight = value >= 0 ? value : 0
 
 				if("ert_species")
+					/* Bastion of Endeavor Unicode Edit: Might be unnecessary if we get proper mob localization.
 					config.ert_species = splittext(value, ";")
+					*/
+					config.ert_species = splittext_char(value, ";")
+					// End of Bastion of Endeavor Unicode Edit
 					if(!config.ert_species.len)
 						config.ert_species += SPECIES_HUMAN
 
@@ -904,7 +1003,11 @@ var/list/gamemode_cache = list()
 					config.aggressive_changelog = 1
 
 				if("default_language_prefixes")
+					/* Bastion of Endeavor Unicode Edit: You never know.
 					var/list/values = splittext(value, " ")
+					*/
+					var/list/values = splittext_char(value, " ")
+					// End of Bastion of Endeavor Unicode Edit
 					if(values.len > 0)
 						language_prefixes = values
 
@@ -963,9 +1066,17 @@ var/list/gamemode_cache = list()
 					config.sqlite_feedback = TRUE
 
 				if("sqlite_feedback_topics")
+					/* Bastion of Endeavor Unicode Edit
 					config.sqlite_feedback_topics = splittext(value, ";")
+					*/
+					config.sqlite_feedback_topics = splittext_char(value, ";")
+					// End of Bastion of Endeavor Unicode Edit
 					if(!config.sqlite_feedback_topics.len)
+						/* Bastion of Endeavor Translation
 						config.sqlite_feedback_topics += "General"
+						*/
+						config.sqlite_feedback_topics += "Общее"
+						// End of Bastion of Endeavor Translation
 
 				if("sqlite_feedback_privacy")
 					config.sqlite_feedback_privacy = TRUE
@@ -986,7 +1097,11 @@ var/list/gamemode_cache = list()
 					config.enable_night_shifts = TRUE
 
 				if("jukebox_track_files")
+					/* Bastion of Endeavor Unicode Edit
 					config.jukebox_track_files = splittext(value, ";")
+					*/
+					config.jukebox_track_files = splittext_char(value, ";")
+					// End of Bastion of Endeavor Unicode Edit
 
 				if("suggested_byond_version")
 					config.suggested_byond_version = text2num(value)
@@ -1030,11 +1145,19 @@ var/list/gamemode_cache = list()
 //ChompEDIT End
 
 				else
+					/* Bastion of Endeavor Translation
 					log_misc("Unknown setting in configuration: '[name]'")
+					*/
+					log_misc("Неизвестная настройка в конфигурации: '[name]'.")
+					// End of Bastion of Endeavor Translation
 
 		else if(type == "game_options")
 			if(!value)
+				/* Bastion of Endeavor Translation
 				log_misc("Unknown value for setting [name] in [filename].")
+				*/
+				log_misc("Неизвестное значение для настройки [name] в [filename].")
+				// End of Bastion of Endeavor Translation
 			value = text2num(value)
 
 			switch(name)
@@ -1105,7 +1228,11 @@ var/list/gamemode_cache = list()
 */
 
 				else
+					/* Bastion of Endeavor Translation
 					log_misc("Unknown setting in configuration: '[name]'")
+					*/
+					log_misc("Неизвестная настройка в конфигурации: '[name]'")
+					// End of Bastion of Endeavor Translation
 
 /datum/configuration/proc/loadsql(filename)  // -- TLE
 	var/list/Lines = file2list(filename)
@@ -1113,18 +1240,35 @@ var/list/gamemode_cache = list()
 		if(!t)	continue
 
 		t = trim(t)
+		/* Bastion of Endeavor Unicode Edit
 		if (length(t) == 0)
+		*/
+		if (length_char(t) == 0)
+		// End of Bastion of Endeavor Unicode Edit
 			continue
+		/* Bastion of Endeavor Unicode Edit
 		else if (copytext(t, 1, 2) == "#")
+		*/
+		else if (copytext_char(t, 1, 2) == "#")
+		// End of Bastion of Endeavor Unicode Edit
 			continue
 
+		/* Bastion of Endeavor Unicode Edit
 		var/pos = findtext(t, " ")
+		*/
+		var/pos = findtext_char(t, " ")
+		// End of Bastion of Endeavor Unicode Edit
 		var/name = null
 		var/value = null
 
 		if (pos)
+			/* Bastion of Endeavor Unicode Edit
 			name = lowertext(copytext(t, 1, pos))
 			value = copytext(t, pos + 1)
+			*/
+			name = lowertext(copytext_char(t, 1, pos))
+			value = copytext_char(t, pos + 1)
+			// End of Bastion of Endeavor Unicode Edit
 		else
 			name = lowertext(t)
 
@@ -1151,7 +1295,11 @@ var/list/gamemode_cache = list()
 			if ("enable_stat_tracking")
 				sqllogging = 1
 			else
+				/* Bastion of Endeavor Translation
 				log_misc("Unknown setting in configuration: '[name]'")
+				*/
+				log_misc("Неизвестная настройка в конфигурации: '[name]'.")
+				// End of Bastion of Endeavor Translation
 
 /datum/configuration/proc/loadforumsql(filename)  // -- TLE
 	var/list/Lines = file2list(filename)
@@ -1159,18 +1307,35 @@ var/list/gamemode_cache = list()
 		if(!t)	continue
 
 		t = trim(t)
+		/* Bastion of Endeavor Unicode Edit
 		if (length(t) == 0)
+		*/
+		if (length_char(t) == 0)
+		// End of Bastion of Endeavor Unicode Edit
 			continue
+		/* Bastion of Endeavor Unicode Edit
 		else if (copytext(t, 1, 2) == "#")
+		*/
+		else if (copytext_char(t, 1, 2) == "#")
+		// End of Bastion of Endeavor Unicode Edit
 			continue
 
+		/* Bastion of Endeavor Unicode Edit
 		var/pos = findtext(t, " ")
+		*/
+		var/pos = findtext_char(t, " ")
+		// End of Bastion of Endeavor Unicode Edit
 		var/name = null
 		var/value = null
 
 		if (pos)
+			/* Bastion of Endeavor Unicode Edit
 			name = lowertext(copytext(t, 1, pos))
 			value = copytext(t, pos + 1)
+			*/
+			name = lowertext(copytext_char(t, 1, pos))
+			value = copytext_char(t, pos + 1)
+			// End of Bastion of Endeavor Unicode Edit
 		else
 			name = lowertext(t)
 
@@ -1193,7 +1358,11 @@ var/list/gamemode_cache = list()
 			if ("authenticatedgroup")
 				forum_authenticated_group = value
 			else
+				/* Bastion of Endeavor Translation
 				log_misc("Unknown setting in configuration: '[name]'")
+				*/
+				log_misc("Неизвестная настройка в конфигурации: '[name]'.")
+				// End of Bastion of Endeavor Translation
 
 /datum/configuration/proc/pick_mode(mode_name)
 	// I wish I didn't have to instance the game modes in order to look up

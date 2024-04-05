@@ -20,7 +20,11 @@
  * minor hangs over and over again.
  */
 SUBSYSTEM_DEF(verb_manager)
+	/* Bastion of Endeavor Translation
 	name = "Verb Manager"
+	*/
+	name = "Менеджер глаголов"
+	// End of Bastion of Endeavor Translation
 	wait = 1
 	flags = SS_TICKER | SS_NO_INIT
 	priority = FIRE_PRIORITY_DELAYED_VERBS
@@ -59,21 +63,45 @@ SUBSYSTEM_DEF(verb_manager)
 	if(QDELETED(incoming_callback))
 		var/destroyed_string
 		if(!incoming_callback)
+			/* Bastion of Endeavor Translation
 			destroyed_string = "callback is null."
+			*/
+			destroyed_string = "Callback является NULL."
+			// End of Bastion of Endeavor Translation
 		else
+			/* Bastion of Endeavor Translation
 			destroyed_string = "callback was deleted [DS2TICKS(world.time - incoming_callback.gc_destroyed)] ticks ago. callback was created [DS2TICKS(world.time) - incoming_callback.creation_time] ticks ago."
+			*/
+			destroyed_string = "Callback удалён [count_ru(DS2TICKS(world.time - incoming_callback.gc_destroyed), "тик;;а;ов")] назад, а создан [count_ru(DS2TICKS(world.time) - incoming_callback.creation_time, "тик;;а;ов")] назад."
+			// End of Bastion of Endeavor Translation
 
+		/* Bastion of Endeavor Translation
 		stack_trace("_queue_verb() returned false because it was given a deleted callback! [destroyed_string]")
+		*/
+		stack_trace("_queue_verb() возвратил false, поскольку получил удалённый callback! [destroyed_string]")
+		// End of Bastion of Endeavor Translation
 		return FALSE
 
 	if(!istext(incoming_callback.object) && QDELETED(incoming_callback.object)) //just in case the object is GLOBAL_PROC
 		var/destroyed_string
 		if(!incoming_callback.object)
+			/* Bastion of Endeavor Translation
 			destroyed_string = "callback.object is null."
+			*/
+			destroyed_string = "Callback.object является NULL."
+			// End of Bastion of Endeavor Translation
 		else
+			/* Bastion of Endeavor Translation
 			destroyed_string = "callback.object was deleted [DS2TICKS(world.time - incoming_callback.object.gc_destroyed)] ticks ago. callback was created [DS2TICKS(world.time) - incoming_callback.creation_time] ticks ago."
+			*/
+			destroyed_string = "Сallback.object удалён [count_ru(DS2TICKS(world.time - incoming_callback.object.gc_destroyed), "тик;;а;ов")] назад. Callback создан [count_ru(DS2TICKS(world.time) - incoming_callback.creation_time, "тик;;а;ов")] назад."
+			// End of Bastion of Endeavor Translation
 
+		/* Bastion of Endeavor Translation
 		stack_trace("_queue_verb() returned false because it was given a callback acting on a qdeleted object! [destroyed_string]")
+		*/
+		stack_trace("_queue_verb() возвратил false, поскольку получил callback, действующий на удалённом объекте! [destroyed_string]")
+		// End of Bastion of Endeavor Translation
 		return FALSE
 
 	//we want unit tests to be able to directly call verbs that attempt to queue, and since unit tests should test internal behavior, we want the queue
@@ -87,13 +115,21 @@ SUBSYSTEM_DEF(verb_manager)
 #else
 
 	if(QDELETED(usr) || isnull(usr.client))
+		/* Bastion of Endeavor Translation
 		stack_trace("_queue_verb() returned false because it wasnt called from player input!")
+		*/
+		stack_trace("_queue_verb() возвратил false, поскольку вызван не со стороны игрока!")
+		// End of Bastion of Endeavor Translation
 		return FALSE
 
 #endif
 
 	if(!istype(subsystem_to_use))
+		/* Bastion of Endeavor Translation
 		stack_trace("_queue_verb() returned false because it was given an invalid subsystem to queue for!")
+		*/
+		stack_trace("_queue_verb() возвратил false, поскольку получил для очереди недопустимую подсистему!")
+		// End of Bastion of Endeavor Translation
 		return FALSE
 
 	if((TICK_USAGE < tick_check) && !subsystem_to_use.always_queue)
@@ -136,7 +172,11 @@ SUBSYSTEM_DEF(verb_manager)
 /datum/controller/subsystem/verb_manager/proc/queue_verb(datum/callback/verb_callback/incoming_callback)
 	. = FALSE //errored
 	if(message_admins_on_queue)
+		/* Bastion of Endeavor Translation
 		message_admins("[name] verb queuing: tick usage: [TICK_USAGE]%, proc: [incoming_callback.delegate], object: [incoming_callback.object], usr: [usr]")
+		*/
+		message_admins("Очередь глаголов: Использование тика: [TICK_USAGE]%, прок: [incoming_callback.delegate], объект: [incoming_callback.object], usr: [usr]")
+		// End of Bastion of Endeavor Translation
 	verb_queue += incoming_callback
 	return TRUE
 
@@ -151,7 +191,11 @@ SUBSYSTEM_DEF(verb_manager)
 
 	for(var/datum/callback/verb_callback/verb_callback as anything in verb_queue)
 		if(!istype(verb_callback))
+			/* Bastion of Endeavor Translation
 			stack_trace("non /datum/callback/verb_callback inside [name]'s verb_queue!")
+			*/
+			stack_trace("Не тип /datum/callback/verb_callback в verb_queue менеджера глаголов!")
+			// End of Bastion of Endeavor Translation
 			continue
 
 		verb_callback.InvokeAsync()
@@ -164,4 +208,8 @@ SUBSYSTEM_DEF(verb_manager)
 /datum/controller/subsystem/verb_manager/stat_entry(msg)
 	. = ..()
 	if (use_default_stats)
+		/* Bastion of Endeavor Translation
 		. += "V/S: [round(verbs_executed_per_second, 0.01)]"
+		*/
+		. += "Глаголов в секунду: [round(verbs_executed_per_second, 0.01)]"
+		// End of Bastion of Endeavor Translation

@@ -1,11 +1,21 @@
 //Department defines
+/* Bastion of Endeavor Translation
 #define DEPARTMENT_NONCREW      "Non crew"
+*/
+#define DEPARTMENT_NONCREW      "Посторонние лица"
+// End of Bastion of Endeavor Translation
 
 //Job defines
+/* Bastion of Endeavor Translation
 #define JOB_OUTSIDER            "Outsider"
 #define JOB_ANOMALY			"Anomaly"
+*/
+#define JOB_OUTSIDER            "Постороннее лицо"
+#define JOB_ANOMALY				"Аномалия"
+// End of Bastion of Endeavor Translation
 
 //Material defines
+// Bastion of Endeavor TODO: Can't touch these without breaking stuff yet
 #define MAT_CARPET				"red carpet"
 #define MAT_CARPET_TEAL			"teal carpet"
 #define MAT_CARPET_BLACK		"black carpet"
@@ -18,12 +28,21 @@
 
 #define PHASE_SHIELDED 16 // Prevents shadekin phasing in/out in this area
 
+/* Bastion of Endeavor Translation
 #define RCD_FIRELOCK		"Firelock"			// Builds an emergency glass shutter
 #define RCD_WINDOOR			"Windoor"			// Build a window door
 #define RCD_FRAME			"Frame"				// Build a Machine or Computer frame
 #define RCD_WALLFRAME		"WallFrame"			// Build a selection of wall frames
 #define RCD_CONVEYOR		"Conveyor"			// Build direction conveyors
 #define RCD_TURRET			"Turret"			// Build turrets when emagged
+*/
+#define RCD_FIRELOCK		"Противопожарный шлюз"
+#define RCD_WINDOOR			"Стеклянная дверь"
+#define RCD_FRAME			"Корпус"
+#define RCD_WALLFRAME		"Стенный каркас"
+#define RCD_CONVEYOR		"Конвейер"
+#define RCD_TURRET			"Турель"
+// End of Bastion of Endeavor Translation
 
 
 #define VANTAG_VORE_YE	"vantag_vore_ye"

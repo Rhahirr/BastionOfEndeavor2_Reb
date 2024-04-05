@@ -56,9 +56,17 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle = new
 			var/estimated_time = round(estimate_launch_time()/60,1)
 
 			if (evac)
+				/* Bastion of Endeavor Translation: Bastion of Endeavor TODO: This may or may not need additional polishing further down the line, or we can just slap the acase into the dock_name var
 				emergency_shuttle_docked.Announce(replacetext(replacetext(using_map.emergency_shuttle_docked_message, "%dock_name%", "[using_map.dock_name]"),  "%ETD%", "[estimated_time] minute\s"))
+				*/
+				emergency_shuttle_docked.Announce(replacetext_char(replacetext_char(using_map.emergency_shuttle_docked_message, "%dock_name%", "[using_map.dock_name]"),  "%ETD%", "[count_ru(estimated_time, "минут;а;ы;")]"))
+				// End of Bastion of Endeavor Translation
 			else
+				/* Bastion of Endeavor Translation
 				priority_announcement.Announce(replacetext(replacetext(using_map.shuttle_docked_message, "%dock_name%", "[using_map.dock_name]"),  "%ETD%", "[estimated_time] minute\s")) //CHOMP reversion
+				*/
+				priority_announcement.Announce(replacetext_char(replacetext_char(using_map.shuttle_docked_message, "%dock_name%", "[using_map.dock_name]"),  "%ETD%", "[count_ru(estimated_time, "минут;а;ы;")]"))
+				// End of Bastion of Endeavor Translation
 
 		//arm the escape pods
 		if (evac)
@@ -95,7 +103,11 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle = new
 	var/estimated_time = round(estimate_arrival_time()/60,1)
 
 	evac = 1
+	/* Bastion of Endeavor Translation
 	emergency_shuttle_called.Announce(replacetext(using_map.emergency_shuttle_called_message, "%ETA%", "[estimated_time] minute\s"))
+	*/
+	emergency_shuttle_called.Announce(replacetext_char(using_map.emergency_shuttle_called_message, "%ETA%", "[count_ru(estimated_time, "минут;а;ы;")]"))
+	// End of Bastion of Endeavor Translation
 	for(var/area/A in world)
 		if(istype(A, /area/hallway))
 			A.readyalert()
@@ -115,7 +127,11 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle = new
 	shuttle.move_time = SHUTTLE_TRANSIT_DURATION
 	var/estimated_time = round(estimate_arrival_time()/60,1)
 
+	/* Bastion of Endeavor Translation: Why is this even like this
 	priority_announcement.Announce(replacetext(replacetext(using_map.shuttle_called_message, "%dock_name%", "[using_map.dock_name]"),  "%ETA%", "[estimated_time] minute\s")) //CHOMP Reversion
+	*/
+	priority_announcement.Announce(replacetext_char(replacetext_char(using_map.shuttle_called_message, "%dock_name%", "[using_map.dock_name]"),  "%ETA%", "[count_ru(estimated_time, "минут;а;ы;")]"))
+	// End of Bastion of Endeavor Translation
 	atc.shift_ending()
 
 //recalls the shuttle
@@ -228,14 +244,26 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle = new
 	if (online())
 		if (shuttle.has_arrive_time())
 			var/timeleft = emergency_shuttle.estimate_arrival_time()
+			/* Bastion of Endeavor Translation
 			return "ETA-[(timeleft / 60) % 60]:[add_zero(num2text(timeleft % 60), 2)]"
+			*/
+			return "Шаттл прибудет через: [(timeleft / 60) % 60]:[add_zero(num2text(timeleft % 60), 2)]"
+			// End of Bastion of Endeavor Translation
 
 		if (waiting_to_leave())
 			if (shuttle.moving_status == SHUTTLE_WARMUP)
+				/* Bastion of Endeavor Translation
 				return "Departing..."
+				*/
+				return "Шаттл отчаливает..."
+				// End of Bastion of Endeavor Translation
 
 			var/timeleft = emergency_shuttle.estimate_launch_time()
+			/* Bastion of Endeavor Translation
 			return "ETD-[(timeleft / 60) % 60]:[add_zero(num2text(timeleft % 60), 2)]"
+			*/
+			return "До прибытия: [(timeleft / 60) % 60]:[add_zero(num2text(timeleft % 60), 2)]"
+			// End of Bastion of Endeavor Translation
 
 	return ""
 /*
@@ -245,7 +273,11 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle = new
 */
 
 /obj/effect/bgstar
+	/* Bastion of Endeavor Translation
 	name = "star"
+	*/
+	name = "Звезда"
+	// End of Bastion of Endeavor Translation
 	var/speed = 10
 	var/direction = SOUTH
 	layer = TURF_LAYER

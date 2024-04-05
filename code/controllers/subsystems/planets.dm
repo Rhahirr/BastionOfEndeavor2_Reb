@@ -1,5 +1,9 @@
 SUBSYSTEM_DEF(planets)
+	/* Bastion of Endeavor Translation
 	name = "Planets"
+	*/
+	name = "Планеты"
+	// End of Bastion of Endeavor Translation
 	init_order = INIT_ORDER_PLANETS
 	priority = FIRE_PRIORITY_PLANETS
 	wait = 2 SECONDS
@@ -15,7 +19,11 @@ SUBSYSTEM_DEF(planets)
 	var/static/list/needs_temp_update = list()
 
 /datum/controller/subsystem/planets/Initialize() // CHOMPEdit
+	/* Bastion of Endeavor Translation
 	admin_notice("<span class='danger'>Initializing planetary weather.</span>", R_DEBUG)
+	*/
+	admin_notice("<span class='danger'>Инициализация планетарной погоды.</span>", R_DEBUG)
+	// End of Bastion of Endeavor Translation
 	createPlanets()
 	return SS_INIT_SUCCESS // CHOMPEdit
 
@@ -28,7 +36,11 @@ SUBSYSTEM_DEF(planets)
 			if(Z > z_to_planet.len)
 				z_to_planet.len = Z
 			if(z_to_planet[Z])
+				/* Bastion of Endeavor Translation
 				admin_notice("<span class='danger'>Z[Z] is shared by more than one planet!</span>", R_DEBUG)
+				*/
+				admin_notice("<span class='danger'>Z-уровень [Z] используется более чем одной планетой!</span>", R_DEBUG)
+				// End of Bastion of Endeavor Translation
 				continue
 			z_to_planet[Z] = NP
 

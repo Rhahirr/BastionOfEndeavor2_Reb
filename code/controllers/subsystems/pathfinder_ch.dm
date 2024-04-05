@@ -4,7 +4,11 @@
 #define PATHFINDER_TIMEOUT 50
 
 SUBSYSTEM_DEF(pathfinder)
+	/* Bastion of Endeavor Translation
 	name = "Pathfinder"
+	*/
+	name = "Обнаружение пути"
+	// End of Bastion of Endeavor Translation
 	flags = SS_NO_INIT | SS_NO_FIRE
 
 	/// pathfinding mutex - most algorithms depend on this
@@ -62,22 +66,37 @@ SUBSYSTEM_DEF(pathfinder)
 		while(pathfinding_mutex)
 			stoplag(1)
 			if(world.time > started + PATHFINDER_TIMEOUT)
+				/* Bastion of Endeavor Translation
 				stack_trace("pathfinder timeout; check debug logs.")
 				log_debug("pathfinder timeout of instance with debug variables [instance.debug_log_string()]")
+				*/
+				stack_trace("Время ожидания обнаружения пути истекло; проверьте логи отладки.")
+				log_debug("Время ожидания обнаружения пути истекло; переменные отладки: [instance.debug_log_string()]")
+				// End of Bastion of Endeavor Translation
 				return
 	else
 		while(pathfinding_mutex)
 			stoplag(3)
 			if(world.time > started + PATHFINDER_TIMEOUT)
+				/* Bastion of Endeavor Translation
 				stack_trace("pathfinder timeout; check debug logs.")
 				log_debug("pathfinder timeout of instance with debug variables [instance.debug_log_string()]")
+				*/
+				stack_trace("Время ожидания обнаружения пути истекло; проверьте логи отладки.")
+				log_debug("Время ожидания обнаружения пути истекло; переменные отладки: [instance.debug_log_string()]")
+				// End of Bastion of Endeavor Translation
 				return
 	--pathfinding_blocked
 	pathfinding_mutex = TRUE
 	. = instance.search()
 	if(world.time > started + PATHFINDER_TIMEOUT)
+		/* Bastion of Endeavor Translation
 		stack_trace("pathfinder timeout; check debug logs.")
 		log_debug("pathfinder timeout of instance with debug variables [instance.debug_log_string()]")
+		*/
+		stack_trace("Время ожидания обнаружения пути истекло; проверьте логи отладки.")
+		log_debug("Время ожидания обнаружения пути истекло; переменные отладки: [instance.debug_log_string()]")
+		// End of Bastion of Endeavor Translation
 	pathfinding_mutex = FALSE
 
 #undef PATHFINDER_TIMEOUT
@@ -123,10 +142,17 @@ SUBSYSTEM_DEF(pathfinder)
 	pass_silicons_jps = !!length(pass_silicons_jps)
 	// pass_old_astar = !!length(pass_old_astar)
 	pass_tg_jps = !!length(pass_tg_jps)
+	/* Bastion of Endeavor Translation
 	if(pass_silicons_astar != pass_silicons_jps || pass_silicons_jps  != pass_tg_jps)
 		log_and_message_admins("turf pair [COORD(start)], [COORD(goal)] mismatch silicons-astar [pass_silicons_astar] silicons-jps [pass_silicons_jps] tg-jps [pass_tg_jps]")
 	else
 		log_and_message_admins("turf pair [COORD(start)], [COORD(goal)] succeeded")
+	*/
+	if(pass_silicons_astar != pass_silicons_jps || pass_silicons_jps  != pass_tg_jps)
+		log_and_message_admins("Пара тюрфов [COORD(start)], [COORD(goal)] mismatch silicons-astar [pass_silicons_astar] silicons-jps [pass_silicons_jps] tg-jps [pass_tg_jps]")
+	else
+		log_and_message_admins("Пара тюрфов [COORD(start)], [COORD(goal)] успешно нашла тропу.")
+	// End of Bastion of Endeavor Translation
 
 /proc/pathfinding_run_benchmark(times = 1000, turf/source = get_turf(usr))
 	var/list/turf/nearby = RANGE_TURFS(100, source)

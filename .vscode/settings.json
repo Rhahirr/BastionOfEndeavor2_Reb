@@ -16,9 +16,14 @@
 	},
 	"files.eol": "\n",
 	"files.encoding": "utf8",
+	/* Bastion of Endeavor Edit: I'd prefer not to have merge conflicts thank you.
 	"files.insertFinalNewline": true,
 	"files.trimFinalNewlines": true,
 	"files.trimTrailingWhitespace": true,
+	*/
+	"files.insertFinalNewline": false,
+	"files.trimFinalNewlines": false,
+	"files.trimTrailingWhitespace": false,
 	"files.associations": {
 		"*.{dme,dmf,dmm,dm}": "dm",
 	},

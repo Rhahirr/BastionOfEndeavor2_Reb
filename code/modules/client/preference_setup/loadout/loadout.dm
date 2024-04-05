@@ -19,13 +19,26 @@ var/list/gear_datums = list()
 		var/use_category = initial(G.sort_category)
 
 		if(!use_name)
+			/* Bastion of Endeavor Translation
 			error("Loadout - Missing display name: [G]")
+			*/
+			error("Личные вещи - Отсутствует имя: [G]")
+			// End of Bastion of Endeavor Translation
 			continue
 		if(isnull(initial(G.cost)))
+			/* Bastion of Endeavor Translation
 			error("Loadout - Missing cost: [G]")
 			continue
+			*/
+			error("Личные вещи - Отсутствует стоимость: [G]")
+			continue
+			// End of Bastion of Endeavor Translation
 		if(!initial(G.path))
+			/* Bastion of Endeavor Translation
 			error("Loadout - Missing path definition: [G]")
+			*/
+			error("Личные вещи - Отсутствует путь: [G]")
+			// End of Bastion of Endeavor Translation
 			continue
 
 		if(!loadout_categories[use_category])
@@ -95,16 +108,28 @@ var/list/gear_datums = list()
 	var/total_cost = 0
 	for(var/gear_name in pref.gear)
 		if(!gear_datums[gear_name])
+			/* Bastion of Endeavor Translation: Hacky and afwul
 			to_chat(preference_mob, "<span class='warning'>You cannot have more than one of the \the [gear_name]</span>")
+			*/
+			to_chat(preference_mob, "<span class='warning'>Вы не можете иметь больше одного экземпляра данного предмета ([gear_name]).</span>")
+			// End of Bastion of Endeavor Translation
 			pref.gear -= gear_name
 		else if(!(gear_name in valid_gear_choices()))
+			/* Bastion of Endeavor Translation
 			to_chat(preference_mob, "<span class='warning'>You cannot take \the [gear_name] as you are not whitelisted for the species or item.</span>")		//Vorestation Edit
+			*/
+			to_chat(preference_mob, "<span class='warning'>Вы не можете выбрать данный предмет ([gear_name]), поскольку не обладаете вайтлистом на него или расу, для которой он предназначен.</span>")		//Vorestation Edit
+			// End of Bastion of Endeavor Translation
 			pref.gear -= gear_name
 		else
 			var/datum/gear/G = gear_datums[gear_name]
 			if(total_cost + G.cost > MAX_GEAR_COST)
 				pref.gear -= gear_name
+				/* Bastion of Endeavor Translation
 				to_chat(preference_mob, "<span class='warning'>You cannot afford to take \the [gear_name]</span>")
+				*/
+				to_chat(preference_mob, "<span class='warning'>У вас не хватает очков, чтобы выбрать данный предмет ([gear_name]).</span>")
+				// End of Bastion of Endeavor Translation
 			else
 				total_cost += G.cost
 
@@ -123,9 +148,18 @@ var/list/gear_datums = list()
 		fcolor = "#E67300"
 
 	. += "<table align = 'center' width = 100%>"
+	/* Bastion of Endeavor Translation
 	. += "<tr><td colspan=3><center><a href='?src=\ref[src];prev_slot=1'>\<\<</a><b><font color = '[fcolor]'>\[[pref.gear_slot]\]</font> </b><a href='?src=\ref[src];next_slot=1'>\>\></a><b><font color = '[fcolor]'>[total_cost]/[MAX_GEAR_COST]</font> loadout points spent.</b> \[<a href='?src=\ref[src];clear_loadout=1'>Clear Loadout</a>\]</center></td></tr>"
+	*/
+	. += "<tr><td colspan=4><center><a href='?src=\ref[src];prev_slot=1'>\<\<</a><b><font color = '[fcolor]'>\[[pref.gear_slot]\]</font> </b><a href='?src=\ref[src];next_slot=1'>\>\></a><b><font color = '[fcolor]'>[total_cost]/[MAX_GEAR_COST]</font> [count_ru(total_cost, "оч;ко;ка;ков", TRUE)] потрачено.</b> \[<a href='?src=\ref[src];clear_loadout=1'>Сбросить всё</a>\]</center></td></tr>"
+	// End of Bastion of Endeavor Translation
 
+	/* Bastion of Endeavor Edit: Rearrange stuff
 	. += "<tr><td colspan=3><center><b>"
+	*/
+	// </center></b> -- pleasing the linter gods
+	. += "<tr><td colspan=4><center><b>"
+	// End of Bastion of Endeavor Edit
 	var/firstcat = 1
 	for(var/category in loadout_categories)
 
@@ -151,9 +185,16 @@ var/list/gear_datums = list()
 	. += "</b></center></td></tr>"
 
 	var/datum/loadout_category/LC = loadout_categories[current_tab]
+	/* Bastion of Endeavor Edit: Rearrange stuff
 	. += "<tr><td colspan=3><hr></td></tr>"
 	. += "<tr><td colspan=3><b><center>[LC.category]</center></b></td></tr>"
 	. += "<tr><td colspan=3><hr></td></tr>"
+	*/
+	. += "<tr><td colspan=4><hr></td></tr>"
+	. += "<tr><td colspan=4><b><center>[LC.category]</center></b></td></tr>"
+	. += "<tr><td colspan=4></td></tr>"
+	. += "<tr><td colspan=4><hr></td></tr>"
+	// End of Bastion of Endeavor Edit
 	for(var/gear_name in LC.gear)
 		var/datum/gear/G = LC.gear[gear_name]
 		//VOREStation Edit Start
@@ -164,11 +205,29 @@ var/list/gear_datums = list()
 				continue
 		//VOREStation Edit End
 		var/ticked = (G.display_name in pref.gear)
+		/* Bastion of Endeavor Translation: Buffing the names to account for our lengthy names, nerfing the cost width, adding a new column
 		. += "<tr style='vertical-align:top;'><td width=25%><a style='white-space:normal;' [ticked ? "class='linkOn' " : ""]href='?src=\ref[src];toggle_gear=[html_encode(G.display_name)]'>[G.display_name]</a></td>"
 		. += "<td width = 10% style='vertical-align:top'>[G.cost]</td>"
 		. += "<td><font size=2><i>[G.description]</i></font></td></tr>"
+		*/
+		if(G.categorized_ru)
+			. += "<tr><td colspan=4><b>[G.categorized_ru]</b><hr></td></tr>"
+		if(G.display_name_ru)
+			. += "<tr style='vertical-align:top;'><td width=30%><a style='white-space:normal;' [ticked ? "class='linkOn' " : ""]href='?src=\ref[src];toggle_gear=[html_encode(G.display_name)]'>[G.display_name_ru]</a></td>"
+		else
+			. += "<tr style='vertical-align:top;'><td width=30%><a style='white-space:normal;' [ticked ? "class='linkOn' " : ""]href='?src=\ref[src];toggle_gear=[html_encode(G.display_name)]'>[G.display_name]</a></td>"
+		. += "<td width = 15% style='vertical-align:top; text-align:center'>[G.allowed_roles_list_ru]</td>"
+		. += "<td width = 5% style='vertical-align:top; text-align:center';>[G.cost]</td>"
+		. += "<td><font size=2><i>[G.description]</i></font></td></tr>"
+		if(G.has_bottom_bar_ru)
+			. += "<tr><td colspan=4><hr></td></tr>"
+		// End of Bastion of Endeavor Translation
 		if(ticked)
+			/* Bastion of Endeavor Edit: We want more space
 			. += "<tr><td colspan=3>"
+			*/
+			. += "<tr><td colspan=4>"
+			// End of Bastion of Endeavor Edit
 			for(var/datum/gear_tweak/tweak in G.gear_tweaks)
 				. += " <a href='?src=\ref[src];gear=[url_encode(G.display_name)];tweak=\ref[tweak]'>[tweak.get_contents(get_tweak_metadata(G, tweak))]</a>"
 			. += "</td></tr>"
@@ -258,6 +317,12 @@ var/list/gear_datums = list()
 	var/list/gear_tweaks = list() //List of datums which will alter the item after it has been spawned.
 	var/exploitable = 0		//Does it go on the exploitable information list?
 	var/type_category = null
+	// Bastion of Endeavor Addition
+	var/display_name_ru
+	var/allowed_roles_list_ru
+	var/categorized_ru
+	var/has_bottom_bar_ru = FALSE
+	// End of Bastion of Endeavor Addition
 
 /datum/gear/New()
 	..()

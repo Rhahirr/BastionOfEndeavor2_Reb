@@ -10,6 +10,7 @@
 #define VIS_COUNT			32
 
 //Protean organs
+// Bastion of Endeavor TODO: I'm not sure if we need these translated here specifically, can't easily test it either
 #define O_ORCH		"orchestrator"
 #define O_FACT		"refactory"
 
@@ -19,6 +20,7 @@
 //species defines
 
 //station species
+// Bastion of Endeavor TODO: Again, mob defines MIGHT stay unlocalized but we'll see
 #define SPECIES_AKULA			"Akula"
 #define SPECIES_ALRAUNE			"Alraune"
 #define SPECIES_NEVREAN			"Nevrean"

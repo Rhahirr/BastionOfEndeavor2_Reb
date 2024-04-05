@@ -52,7 +52,11 @@
 
 	if(has_hidden_gear)
 		using = new /obj/screen()
+		/* Bastion of Endeavor Translation: A more intuitive name.
 		using.name = "toggle"
+		*/
+		using.name = "Снаряжение"
+		// End of Bastion of Endeavor Translation
 		using.icon = HUD.ui_style
 		using.icon_state = "other"
 		using.screen_loc = ui_inventory
@@ -65,7 +69,11 @@
 	if(hud_data.has_a_intent)
 
 		using = new /obj/screen()
+		/* Bastion of Endeavor Translation
 		using.name = "act_intent"
+		*/
+		using.name = "Намерение"
+		// End of Bastion of Endeavor Translation
 		using.icon = HUD.ui_style
 		using.icon_state = "intent_"+a_intent
 		using.screen_loc = ui_acti
@@ -83,7 +91,11 @@
 		ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
 		ico.DrawBox(rgb(255,255,255,1),1,ico.Height()/2,ico.Width()/2,ico.Height())
 		using = new /obj/screen()
+		/* Bastion of Endeavor Translation
 		using.name = I_HELP
+		*/
+		using.name = "Помочь"
+		// End of Bastion of Endeavor Translation
 		using.icon = ico
 		using.screen_loc = ui_acti
 		using.alpha = HUD.ui_alpha
@@ -95,7 +107,11 @@
 		ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
 		ico.DrawBox(rgb(255,255,255,1),ico.Width()/2,ico.Height()/2,ico.Width(),ico.Height())
 		using = new /obj/screen()
+		/* Bastion of Endeavor Translation
 		using.name = I_DISARM
+		*/
+		using.name = "Обезвредить"
+		// End of Bastion of Endeavor Translation
 		using.icon = ico
 		using.screen_loc = ui_acti
 		using.alpha = HUD.ui_alpha
@@ -107,7 +123,11 @@
 		ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
 		ico.DrawBox(rgb(255,255,255,1),ico.Width()/2,1,ico.Width(),ico.Height()/2)
 		using = new /obj/screen()
+		/* Bastion of Endeavor Translation
 		using.name = I_GRAB
+		*/
+		using.name = "Схватить"
+		// End of Bastion of Endeavor Translation
 		using.icon = ico
 		using.screen_loc = ui_acti
 		using.alpha = HUD.ui_alpha
@@ -119,7 +139,11 @@
 		ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
 		ico.DrawBox(rgb(255,255,255,1),1,1,ico.Width()/2,ico.Height()/2)
 		using = new /obj/screen()
+		/* Bastion of Endeavor Translation
 		using.name = I_HURT
+		*/
+		using.name = "Навредить"
+		// End of Bastion of Endeavor Translation
 		using.icon = ico
 		using.screen_loc = ui_acti
 		using.alpha = HUD.ui_alpha
@@ -130,7 +154,11 @@
 
 	if(hud_data.has_m_intent)
 		using = new /obj/screen()
+		/* Bastion of Endeavor Translation
 		using.name = "mov_intent"
+		*/
+		using.name = "Передвижение"
+		// End of Bastion of Endeavor Translation
 		using.icon = HUD.ui_style
 		using.icon_state = (m_intent == "run" ? "running" : "walking")
 		using.screen_loc = ui_movi
@@ -141,7 +169,11 @@
 
 	if(hud_data.has_drop)
 		using = new /obj/screen()
+		/* Bastion of Endeavor Translation
 		using.name = "drop"
+		*/
+		using.name = "Отпустить"
+		// End of Bastion of Endeavor Translation
 		using.icon = HUD.ui_style
 		using.icon_state = "act_drop"
 		using.screen_loc = ui_drop_throw
@@ -152,7 +184,11 @@
 	if(hud_data.has_hands)
 
 		using = new /obj/screen()
+		/* Bastion of Endeavor Translation
 		using.name = "equip"
+		*/
+		using.name = "Надеть"
+		// End of Bastion of Endeavor Translation
 		using.icon = HUD.ui_style
 		using.icon_state = "act_equip"
 		using.screen_loc = ui_equip
@@ -169,7 +205,11 @@
 
 		inv_box = new /obj/screen/inventory/hand()
 		inv_box.hud = HUD
+		/* Bastion of Endeavor Translation: Those will need to be translated all across the code.
 		inv_box.name = "r_hand"
+		*/
+		inv_box.name = "Правая рука"
+		// End of Bastion of Endeavor Translation
 		inv_box.icon = HUD.ui_style
 		inv_box.icon_state = "r_hand_inactive"
 		if(!hand)	//This being 0 or null means the right hand is in use
@@ -184,7 +224,11 @@
 
 		inv_box = new /obj/screen/inventory/hand()
 		inv_box.hud = HUD
+		/* Bastion of Endeavor Translation: Those might need to be translated all across the code.
 		inv_box.name = "l_hand"
+		*/
+		inv_box.name = "Левая рука"
+		// End of Bastion of Endeavor Translation
 		inv_box.icon = HUD.ui_style
 		inv_box.icon_state = "l_hand_inactive"
 		if(hand)	//This being 1 means the left hand is in use
@@ -198,7 +242,11 @@
 		slot_info["[slot_l_hand]"] = inv_box.screen_loc
 
 		using = new /obj/screen/inventory()
+		/* Bastion of Endeavor Translation
 		using.name = "hand"
+		*/
+		using.name = "Рука"
+		// End of Bastion of Endeavor Translation
 		using.icon = HUD.ui_style
 		using.icon_state = "hand1"
 		using.screen_loc = ui_swaphand1
@@ -208,7 +256,11 @@
 		adding += using
 
 		using = new /obj/screen/inventory()
+		/* Bastion of Endeavor Translation
 		using.name = "hand"
+		*/
+		using.name = "Рука"
+		// End of Bastion of Endeavor Translation
 		using.icon = HUD.ui_style
 		using.icon_state = "hand2"
 		using.screen_loc = ui_swaphand2
@@ -219,7 +271,11 @@
 
 	if(hud_data.has_resist)
 		using = new /obj/screen()
+		/* Bastion of Endeavor Translation
 		using.name = "resist"
+		*/
+		using.name = "Сопротивляться"
+		// End of Bastion of Endeavor Translation
 		using.icon = HUD.ui_style
 		using.icon_state = "act_resist"
 		using.screen_loc = ui_pull_resist
@@ -231,7 +287,11 @@
 		throw_icon = new /obj/screen()
 		throw_icon.icon = HUD.ui_style
 		throw_icon.icon_state = "act_throw_off"
+		/* Bastion of Endeavor Translation
 		throw_icon.name = "throw"
+		*/
+		throw_icon.name = "Метнуть"
+		// End of Bastion of Endeavor Translation
 		throw_icon.screen_loc = ui_drop_throw
 		throw_icon.color = HUD.ui_color
 		throw_icon.alpha = HUD.ui_alpha
@@ -241,7 +301,11 @@
 		pullin = new /obj/screen()
 		pullin.icon = HUD.ui_style
 		pullin.icon_state = "pull0"
+		/* Bastion of Endeavor Translation
 		pullin.name = "pull"
+		*/
+		pullin.name = "Потянуть"
+		// End of Bastion of Endeavor Translation
 		pullin.screen_loc = ui_pull_resist
 		hotkeybuttons += pullin
 		hud_elements |= pullin
@@ -252,7 +316,11 @@
 		internals.icon_state = "internal0"
 		if(istype(internal, /obj/item/weapon/tank)) //Internals on already? Iight, prove it
 			internals.icon_state = "internal1"
+		/* Bastion of Endeavor Translation
 		internals.name = "internal"
+		*/
+		internals.name = "Подача воздуха"
+		// End of Bastion of Endeavor Translation
 		internals.screen_loc = ui_internal
 		hud_elements |= internals
 
@@ -260,54 +328,94 @@
 		healths = new /obj/screen()
 		healths.icon = HUD.ui_style
 		healths.icon_state = "health0"
+		/* Bastion of Endeavor Translation
 		healths.name = "health"
+		*/
+		healths.name = "Здоровье"
+		// End of Bastion of Endeavor Translation
 		healths.screen_loc = ui_health
 		hud_elements |= healths
 
 	autowhisper_display = new /obj/screen()
+	/* Bastion of Endeavor Translation
 	autowhisper_display.icon = 'icons/mob/screen/minimalist.dmi'
 	autowhisper_display.icon_state = "autowhisper"
 	autowhisper_display.name = "autowhisper"
+	*/
+	autowhisper_display.icon = 'russian/_modular/icons/mob/screen/minimalist_ru.dmi'
+	autowhisper_display.icon_state = "autowhisper"
+	autowhisper_display.name = "Автоматический шёпот"
+	// End of Bastion of Endeavor Translation
 	autowhisper_display.screen_loc = ui_under_health
 	hud_elements |= autowhisper_display
 	adding |= autowhisper_display
 
 	var/obj/screen/aw = new /obj/screen()
+	/* Bastion of Endeavor Translation
 	aw.icon = 'icons/mob/screen/minimalist.dmi'
 	aw.icon_state = "aw-select"
 	aw.name = "autowhisper mode"
+	*/
+	aw.icon = 'russian/_modular/icons/mob/screen/minimalist_ru.dmi'
+	aw.icon_state = "aw-select"
+	aw.name = "Режим автоматического шёпота"
+	// End of Bastion of Endeavor Translation
 	aw.screen_loc = ui_under_health
 	hud_elements |= aw
 	adding |= aw
 
 	aw = new /obj/screen()
+	/* Bastion of Endeavor Translation
 	aw.icon = 'icons/mob/screen/minimalist.dmi'
 	aw.icon_state = "lang"
 	aw.name = "check known languages"
+	*/
+	aw.icon = 'russian/_modular/icons/mob/screen/minimalist_ru.dmi'
+	aw.icon_state = "lang"
+	aw.name = "Показать известные языки"
+	// End of Bastion of Endeavor Translation
 	aw.screen_loc = ui_under_health
 	hud_elements |= aw
 	adding |= aw
 
 	aw = new /obj/screen()
+	/* Bastion of Endeavor Translation
 	aw.icon = 'icons/mob/screen/minimalist.dmi'
 	aw.icon_state = "pose"
 	aw.name = "set pose"
+	*/
+	aw.icon = 'russian/_modular/icons/mob/screen/minimalist_ru.dmi'
+	aw.icon_state = "pose"
+	aw.name = "Установить позу"
+	// End of Bastion of Endeavor Translation
 	aw.screen_loc = ui_under_health
 	hud_elements |= aw
 	adding |= aw
 
 	aw = new /obj/screen()
+	/* Bastion of Endeavor Translation
 	aw.icon = 'icons/mob/screen/minimalist.dmi'
 	aw.icon_state = "up"
 	aw.name = "move upwards"
+	*/
+	aw.icon = 'russian/_modular/icons/mob/screen/minimalist_ru.dmi'
+	aw.icon_state = "up"
+	aw.name = "Переместиться вверх"
+	// End of Bastion of Endeavor Translation
 	aw.screen_loc = ui_under_health
 	hud_elements |= aw
 	adding |= aw
 
 	aw = new /obj/screen()
+	/* Bastion of Endeavor Translation
 	aw.icon = 'icons/mob/screen/minimalist.dmi'
 	aw.icon_state = "down"
 	aw.name = "move downwards"
+	*/
+	aw.icon = 'russian/_modular/icons/mob/screen/minimalist_ru.dmi'
+	aw.icon_state = "down"
+	aw.name = "Переместиться вниз"
+	// End of Bastion of Endeavor Translation
 	aw.screen_loc = ui_under_health
 	hud_elements |= aw
 	adding |= aw
@@ -315,7 +423,11 @@
 	aw = new /obj/screen()
 	aw.icon = HUD.ui_style
 	aw.icon_state = "use"
+	/* Bastion of Endeavor Translation
 	aw.name = "use held item on self"
+	*/
+	aw.name = "Использовать предмет на себе"
+	// End of Bastion of Endeavor Translation
 	aw.screen_loc = ui_swaphand2
 	using.color = HUD.ui_color
 	using.alpha = HUD.ui_alpha
@@ -392,8 +504,13 @@
 
 /mob/living/carbon/human/verb/toggle_hotkey_verbs()
 	set category = "OOC"
+	/* Bastion of Endeavor Translation
 	set name = "Toggle hotkey buttons"
 	set desc = "This disables or enables the user interface buttons which can be used with hotkeys."
+	*/
+	set name = "Отображение хоткейных клавиш"
+	set desc = "Скрыть/отобразить на интерфейсе кнопки, используемые через хоткеи."
+	// End of Bastion of Endeavor Translation
 
 	if(hud_used.hotkey_ui_hidden)
 		client.screen += hud_used.hotkeybuttons
@@ -404,9 +521,18 @@
 
 //Used for new human mobs created by cloning/goleming/etc.
 /mob/living/carbon/human/proc/set_cloned_appearance()
+	/* Bastion of Endeavor Translation
 	f_style = "Shaved"
+	*/
+	f_style = "Бритая голова"
+	// End of Bastion of Endeavor Translation
+	// Bastion of Endeavor TODO: Ok so. Mobs aren't localized as of now. Come back here after they are!
 	if(dna.species == "Human") //no more xenos losing ears/tentacles
+		/* Bastion of Endeavor Translation
 		h_style = pick("Bedhead", "Bedhead 2", "Bedhead 3")
+		*/
+		h_style = pick("Отлёжанные", "Отлёжанные 2", "Отлёжанные 3")
+		// End of Bastion of Endeavor Translation
 	all_underwear.Cut()
 	regenerate_icons()
 
@@ -414,23 +540,39 @@
 	invisibility = 101
 
 /obj/screen/ling/chems
+	/* Bastion of Endeavor Translation
 	name = "chemical storage"
+	*/
+	name = "Резервуар химикатов"
+	// End of Bastion of Endeavor Translation
 	icon_state = "power_display"
 
 /obj/screen/wizard
 	invisibility = 101
 
 /obj/screen/wizard/instability
+	/* Bastion of Endeavor Translation
 	name = "instability"
+	*/
+	name = "Нестабильность"
+	// End of Bastion of Endeavor Translation
 	icon_state = "instability-1"
 	invisibility = 0
 
 /obj/screen/wizard/energy
+	/* Bastion of Endeavor Translation
 	name = "energy"
+	*/
+	name = "Энергия"
+	// End of Bastion of Endeavor Translation
 	icon_state = "wiz_energy"
 
 /obj/screen/useself
+	/* Bastion of Endeavor Translation
 	name = "use held item on self"
+	*/
+	name = "Использовать предмет на себе"
+	// End of Bastion of Endeavor Translation
 	icon_state = "use"
 	var/next = 0
 

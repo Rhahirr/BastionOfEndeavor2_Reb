@@ -12,8 +12,13 @@
 	closeToolTip(usr)
 
 /obj/screen/ghost/returntomenu
+	/* Bastion of Endeavor Translation
 	name = "Return to menu"
 	desc = "Return to the title screen menu."
+	*/
+	name = "Вернуться в меню"
+	desc = "Вернуться обратно в меню."
+	// End of Bastion of Endeavor Translation
 	icon_state = "returntomenu"
 
 /obj/screen/ghost/returntomenu/Click()
@@ -22,8 +27,13 @@
 	G.abandon_mob()
 
 /obj/screen/ghost/jumptomob
+	/* Bastion of Endeavor Translation
 	name = "Jump to mob"
 	desc = "Pick a mob from a list to jump to."
+	*/
+	name = "Прыгнуть к существу"
+	desc = "Выбрать существо и переместиться к нему."
+	// End of Bastion of Endeavor Translation
 	icon_state = "jumptomob"
 
 /obj/screen/ghost/jumptomob/Click()
@@ -32,8 +42,13 @@
 	G.jumptomob()
 
 /obj/screen/ghost/orbit
+	/* Bastion of Endeavor Translation
 	name = "Orbit"
 	desc = "Pick a mob to follow and orbit."
+	*/
+	name = "Следовать"
+	desc = "Выбрать существо и следовать за ним."
+	// End of Bastion of Endeavor Translation
 	icon_state = "orbit"
 
 /obj/screen/ghost/orbit/Click()
@@ -42,8 +57,13 @@
 	G.follow()
 
 /obj/screen/ghost/reenter_corpse
+	/* Bastion of Endeavor Translation
 	name = "Reenter corpse"
 	desc = "Only applicable if you HAVE a corpse..."
+	*/
+	name = "Войти в тело"
+	desc = "При условии, что тело есть..."
+	// End of Bastion of Endeavor Translation
 	icon_state = "reenter_corpse"
 
 /obj/screen/ghost/reenter_corpse/Click()
@@ -52,8 +72,13 @@
 	G.reenter_corpse()
 
 /obj/screen/ghost/teleport
+	/* Bastion of Endeavor Translation
 	name = "Teleport"
 	desc = "Pick an area to teleport to."
+	*/
+	name = "Телепортироваться"
+	desc = "Выбрать место и телепортироваться в него."
+	// End of Bastion of Endeavor Translation
 	icon_state = "teleport"
 
 /obj/screen/ghost/teleport/Click()
@@ -62,8 +87,13 @@
 	G.dead_tele()
 
 /obj/screen/ghost/pai
+	/* Bastion of Endeavor Translation
 	name = "pAI Alert"
 	desc = "Ping all the unoccupied pAI devices in the world."
+	*/
+	name = "Подсветить ПИИ"
+	desc = "Подсветить свободные персональные ИИ."
+	// End of Bastion of Endeavor Translation
 	icon_state = "pai"
 
 /obj/screen/ghost/pai/Click()
@@ -72,8 +102,13 @@
 	G.paialert()
 
 /obj/screen/ghost/up
+	/* Bastion of Endeavor Translation
 	name = "Move Upwards"
 	desc = "Move up a z-level."
+	*/
+	name = "Переместиться вверх"
+	desc = "Подняться на один Z-уровень."
+	// End of Bastion of Endeavor Translation
 	icon_state = "up"
 
 /obj/screen/ghost/up/Click()
@@ -82,8 +117,13 @@
 	G.zMove(UP)
 
 /obj/screen/ghost/down
+	/* Bastion of Endeavor Translation
 	name = "Move Downwards"
 	desc = "Move down a z-level."
+	*/
+	name = "Переместиться вниз"
+	desc = "Опуститься на один Z-уровень."
+	// End of Bastion of Endeavor Translation
 	icon_state = "down"
 
 /obj/screen/ghost/down/Click()
@@ -93,8 +133,13 @@
 
 // CHOMPedit start
 /obj/screen/ghost/vr
+	/* Bastion of Endeavor Translation
 	name = "Enter VR"
 	desc = "Enter virtual reality."
+	*/
+	name = "Войти в виртуальную реальность"
+	desc = "Посетить виртуальный мир."
+	// End of Bastion of Endeavor Translation
 	icon = 'modular_chomp/icons/mob/screen_ghost.dmi'
 	icon_state = "entervr"
 

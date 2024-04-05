@@ -120,7 +120,11 @@ const InputArea = (props: {
       }}
       onChange={(_, value) => onType(value)}
       onInput={(_, value) => onType(value)}
+      /* Bastion of Endeavor Translation
       placeholder="Type something..."
+      */
+      placeholder="Введите текст..."
+      /* End of Bastion of Endeavor Translation */
       value={input}
     />
   );

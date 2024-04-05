@@ -85,7 +85,11 @@
 
 	return {"<!DOCTYPE html>
 <html>
+	<!-- Bastion of Endeavor Unicode Edit: Ok but seriously why is this not UTF-8 to begin with? This is literally the reason the build is unplayable in russian by default.
 	<meta charset=ISO-8859-1">
+	-->
+	<meta charset=\"UTF-8\">
+	<!-- End of Bastion of Endeavor Unicode Edit -->
 	<head>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		[head_content]
@@ -112,8 +116,13 @@
 
 /datum/browser/proc/open(var/use_onclose = 1)
 	if(isnull(window_id))	//null check because this can potentially nuke goonchat
+		/* Bastion of Endeavor Translation
 		WARNING("Browser [title] tried to open with a null ID")
 		to_chat(user, "<span class='userdanger'>The [title] browser you tried to open failed a sanity check! Please report this on github!</span>")
+		*/
+		WARNING("Браузер '[title]' попытался открыться без ID")
+		to_chat(user, "<span class='userdanger'>Вы попытались открыть браузер '[title]', но он не имеет ID! Доложите об этом разработчикам!</span>")
+		// End of Bastion of Endeavor Translation
 		return
 	var/window_size = ""
 	if (width && height)
@@ -194,9 +203,17 @@
 	if(!isnull(window_id))//null check because this can potentially nuke goonchat
 		user << browse(null, "window=[window_id]")
 	else
+		/* Bastion of Endeavor Translation
 		WARNING("Browser [title] tried to close with a null ID")
+		*/
+		WARNING("Браузер '[title]' попытался закрыться без ID")
+		// End of Bastion of Endeavor Translation
 
+/* Bastion of Endeavor Translation
 /datum/browser/modal/alert/New(User,Message,Title,Button1="Ok",Button2,Button3,StealFocus = 1,Timeout=6000)
+*/
+/datum/browser/modal/alert/New(User,Message,Title,Button1="Ок",Button2,Button3,StealFocus = 1,Timeout=6000)
+// End of Bastion of Endeavor Translation
 	if (!User)
 		return
 
@@ -227,7 +244,11 @@
 	close()
 
 //designed as a drop in replacement for alert(); functions the same. (outside of needing User specified)
+/* Bastion of Endeavor Translation
 /proc/tgalert(var/mob/User, Message, Title, Button1="Ok", Button2, Button3, StealFocus = 1, Timeout = 6000)
+*/
+/proc/tgalert(var/mob/User, Message, Title, Button1="Ок", Button2, Button3, StealFocus = 1, Timeout = 6000)
+// End of Bastion of Endeavor Translation
 	if (!User)
 		User = usr
 	switch(askuser(User, Message, Title, Button1, Button2, Button3, StealFocus, Timeout))
@@ -239,7 +260,11 @@
 			return Button3
 
 //Same shit, but it returns the button number, could at some point support unlimited button amounts.
+/* Bastion of Endeavor Translation
 /proc/askuser(var/mob/User,Message, Title, Button1="Ok", Button2, Button3, StealFocus = 1, Timeout = 6000)
+*/
+/proc/askuser(var/mob/User,Message, Title, Button1="Ок", Button2, Button3, StealFocus = 1, Timeout = 6000)
+// End of Bastion of Endeavor Translation
 	if (!istype(User))
 		if (istype(User, /client/))
 			var/client/C = User
@@ -299,7 +324,11 @@
 /datum/browser/modal/listpicker
 	var/valueslist = list()
 
+/* Bastion of Endeavor Translation
 /datum/browser/modal/listpicker/New(User,Message,Title,Button1="Ok",Button2,Button3,StealFocus = 1, Timeout = FALSE,list/values,inputtype="checkbox", width, height, slidecolor)
+*/
+/datum/browser/modal/listpicker/New(User,Message,Title,Button1="Ок",Button2,Button3,StealFocus = 1, Timeout = FALSE,list/values,inputtype="checkbox", width, height, slidecolor)
+// End of Bastion of Endeavor Translation
 	if (!User)
 		return
 
@@ -346,7 +375,11 @@
 	opentime = 0
 	close()
 
+/* Bastion of Endeavor Translation
 /proc/presentpicker(var/mob/User,Message, Title, Button1="Ok", Button2, Button3, StealFocus = 1,Timeout = 6000,list/values, inputtype = "checkbox", width, height, slidecolor)
+*/
+/proc/presentpicker(var/mob/User,Message, Title, Button1="Ок", Button2, Button3, StealFocus = 1,Timeout = 6000,list/values, inputtype = "checkbox", width, height, slidecolor)
+// End of Bastion of Endeavor Translation
 	if (!istype(User))
 		if (istype(User, /client/))
 			var/client/C = User
@@ -371,7 +404,11 @@
 			pickerlist += list(list("checked" = 1, "value" = GLOB.bitfields[bitfield][i], "name" = i, "allowed_edit" = can_edit))
 		else
 			pickerlist += list(list("checked" = 0, "value" = GLOB.bitfields[bitfield][i], "name" = i, "allowed_edit" = can_edit))
+	/* Bastion of Endeavor Translation
 	var/list/result = presentpicker(User, "", title, Button1="Save", Button2 = "Cancel", Timeout=FALSE, values = pickerlist, width = nwidth, height = nheight, slidecolor = nslidecolor)
+	*/
+	var/list/result = presentpicker(User, "", title, Button1="Сохранить", Button2 = "Отмена", Timeout=FALSE, values = pickerlist, width = nwidth, height = nheight, slidecolor = nslidecolor)
+	// End of Bastion of Endeavor Translation
 	if (islist(result))
 		if (result["button"] == 2) // If the user pressed the cancel button
 			return
@@ -384,7 +421,11 @@
 /datum/browser/modal/color_matrix_picker
 	var/color_matrix
 
+/* Bastion of Endeavor Translation
 /datum/browser/modal/color_matrix_picker/New(mob/user, message, title, button1 = "Ok", button2, button3, stealfocus = TRUE, timeout = 0, list/values)
+*/
+/datum/browser/modal/color_matrix_picker/New(mob/user, message, title, button1 = "Готово", button2, button3, stealfocus = TRUE, timeout = 0, list/values)
+// End of Bastion of Endeavor Translation
 	if(!user)
 		return
 	if(!values)
@@ -454,7 +495,11 @@
 	opentime = 0
 	close()
 
+/* Bastion of Endeavor Translation
 /proc/color_matrix_picker(mob/user, message, title, button1 = "Ok", button2, button3, stealfocus, timeout = 10 MINUTES, list/values)
+*/
+/proc/color_matrix_picker(mob/user, message, title, button1 = "Готово", button2, button3, stealfocus, timeout = 10 MINUTES, list/values)
+// End of Bastion of Endeavor Translation
 	if(!istype(user))
 		if(istype(user, /client))
 			var/client/C = user

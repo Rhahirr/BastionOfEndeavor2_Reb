@@ -13,7 +13,9 @@ var/global/list/seen_religions = list()
 		seen_religions    |= M.client.prefs.religion*/
 	return
 
+// VOREStation Edits Start
 var/global/list/citizenship_choices = list(
+	/* Bastion of Endeavor Translation
 	"Earth",
 	"Mars",
 	"Sif",
@@ -21,9 +23,19 @@ var/global/list/citizenship_choices = list(
 	"Moghes",
 	"Meralar",
 	"Qerr'balak"
+	*/
+	"Земля",
+	"Марс",
+	"Сиф",
+	"Бинма",
+	"Мог",
+	"Мералар",
+	"Кверр'балак"
+	// End of Bastion of Endeavor Translation
 	)
 
 var/global/list/home_system_choices = list(
+	/* Bastion of Endeavor Translation
 	"Earth, Sol",
 	"Luna, Sol",
 	"Mars, Sol",
@@ -52,9 +64,40 @@ var/global/list/home_system_choices = list(
 	"AH-CV Prosperity",
 	"AH-CV Migrant",
 	"Altevian Colony Ship"
+	*/
+	"Земля, Сол",
+	"Луна, Сол",
+	"Марс, Сол",
+	"Венера, Сол",
+	"Титан, Сол",
+	"Кара, Вир",
+	"Сиф, Вир",
+	"Бринкбёрн, Никс",
+	"Бинма, Тау Кита",
+	"Кверр'балак, Кверр'валис",
+	"Эпсилон Малой Медведицы",
+	"Мералар, Раркаджар",
+	"Тал, Вилос",
+	"Менхир, Алат-Хаар",
+	"Алтам, Ваззенд",
+	"У'зата, Келезаката",
+	"Мог, Уоя-Иса",
+	"Зохок, Уоя-Иса",
+	"Варилак, Антарес",
+	"Санкторум, Святилище",
+	"Инфернум, Святилище",
+	"Изобилие Во Всём Умиротворённом, Бета-Карнелиум Вентрум",
+	"Джорул, Баркалис",
+	"Флотилия Шельфа",
+	"Флотилия Уй-Орси",
+	"КС-АГ Благополучие",
+	"КС-АГ Мигрант",
+	"Альтевийское колониальное судно"
+	// End of Bastion of Endeavor Translation
 	)
 
 var/global/list/faction_choices = list(
+	/* Bastion of Endeavor Translation
 	"Sol Central",
 	"NanoTrasen Incorporated",
 	"Hephaestus Industries",
@@ -87,17 +130,58 @@ var/global/list/faction_choices = list(
 	"Proxima Centauri Risk Control",
 	"HIVE Security",
 	"Stealth Assault Enterprises"
+	*/
+	"Центр Сол", // not a fan of this one but oh well
+	"НаноТрейзен",
+	"Гефест",
+	"Вей-Мед",
+	"Дзен-Ху",
+	"Уорд-Такахаси",
+	"Бишоп",
+	"Морфей",
+	"Зион",
+	"Союз независимой торговли",
+	"Майор Билл",
+	"Айронкрест",
+	"Грейсон",
+	"Эфир",
+	"Точка Фокуса",
+	"СтарФлайт",
+	"Телерадиовещательная сеть Окулюм",
+	"Почта Периферии",
+	"Свободная трибуна Анур",
+	"Провизия Центавра",
+	"Эйнштейн",
+	"Вульф",
+	"Гилтари",
+	"Койот",
+	"Химера",
+	"Китсухана",
+	"Ассоциация независимых пилотов",
+	"Силы обороны локальной системы",
+	"Единые солнечные силы обороны",
+	"Контроль рисков Проксима-Центавра",
+	"Служба безопасности РОИ",
+	"Скрытый Удар" // this makes no sense but i'm out of ideas, for future reference this is the SAARE mercs lorewise
+	// End of Bastion of Endeavor Translation
 	)
 
 var/global/list/antag_faction_choices = list()	//Should be populated after brainstorming. Leaving as blank in case brainstorming does not occur.
 
 var/global/list/antag_visiblity_choices = list(
+	/* Bastion of Endeavor Translation
 	"Hidden",
 	"Shared",
 	"Known"
+	*/
+	"Скрыта",
+	"Раскрыта для союзников",
+	"Раскрыта"
+	// End of Bastion of Endeavor Translation
 	)
 
 var/global/list/religion_choices = list(
+	/* Bastion of Endeavor Translation
 	"Unitarianism",
 	"Neopaganism",
 	"Islam",
@@ -116,4 +200,24 @@ var/global/list/religion_choices = list(
 	"Tajr-kii Rarkajar",
 	"Agnosticism",
 	"Deism"
+	*/
+	"Унитаризм",
+	"Неоязычество",
+	"Ислам",
+	"Христианство",
+	"Иудаизм",
+	"Индуизм",
+	"Буддизм",
+	"Плеромаизм",
+	"Спектрализм",
+	"Факт-синтоизм",
+	"Национальная религия Кишара",
+	"Верование дальнобойщиков",
+	"Нок",
+	"Сингулярианство",
+	"Ксилар Квалл",
+	"Таджр-кий Раркаджар",
+	"Агностицизм",
+	"Деизм"
+	// End of Bastion of Endeavor Translation
 	)

@@ -115,7 +115,11 @@
 	if((A.overlays.len + A.underlays.len) > 80)
 		// we use fucking insertion check
 		// > 80 = death.
+		/* Bastion of Endeavor Translation
 		CRASH("get_flat_icon tried to process more than 80 layers")
+		*/
+		CRASH("Попытка обработать более 80 слоев с помощью get_flat_icon.")
+		// End of Bastion of Endeavor Translation
 
 	// otherwise, we have to blend in all overlays/underlays.
 	var/icon/flat = BLANK
@@ -144,7 +148,11 @@
 		// if it's float layer, shove it right above atom.
 		if(current_layer < 0)
 			if(current_layer < -1000)
+				/* Bastion of Endeavor Translation
 				CRASH("who the hell is using -1000 or below on float layers?")
+				*/
+				CRASH("Плавающий слой ниже -1000.")
+				// End of Bastion of Endeavor Translation
 			current_layer = A.layer + (1000 + current_layer) / 1000
 		// else, add 1 so it doesn't potentially collide on float
 		else
@@ -167,7 +175,11 @@
 		// if it's float layer, shove it right below atom.
 		if(current_layer < 0)
 			if(current_layer < -1000)
+				/* Bastion of Endeavor Translation
 				CRASH("who the hell is using -1000 or below on float layers?")
+				*/
+				CRASH("Плавающий слой ниже -1000.")
+				// End of Bastion of Endeavor Translation
 			current_layer = A.layer - (1000 + current_layer) / 1000
 		// else, subtract 1 so it doesn't potentially collide on float
 		else

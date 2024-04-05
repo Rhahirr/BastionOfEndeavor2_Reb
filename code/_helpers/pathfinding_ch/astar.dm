@@ -235,7 +235,11 @@ GLOBAL_VAR_INIT(astar_visualization_persist, 3 SECONDS)
 			#ifdef ASTAR_DEBUGGING
 			astar_wipe_colors_after(turfs_got_colored, GLOB.astar_visualization_persist)
 			#endif
+			/* Bastion of Endeavor Translation
 			CRASH("A* hit node limit - something went horribly wrong! args: [json_encode(args)]; vars: [json_encode(vars)]")
+			*/
+			CRASH("A* достиг предела узлов - что-то пошло очень не так! Аргументы: [json_encode(args)]; переменные: [json_encode(vars)]")
+			// End of Bastion of Endeavor Translation
 
 	#ifdef ASTAR_DEBUGGING
 	astar_wipe_colors_after(turfs_got_colored, GLOB.astar_visualization_persist)

@@ -73,7 +73,11 @@
 	if(!ispath(path))
 		path = text2path(path)
 		if(!ispath(path))
+			/* Bastion of Endeavor Translation
 			warning("Z-level [our_turf] has invalid baseturf '[get_base_turf_by_area(our_turf)]' in area '[get_area(our_turf)]'")
+			*/
+			warning("Z-уровень [our_turf] обладает недопустимым основным тюрфом '[get_base_turf_by_area(our_turf)]' в зоне '[get_area(our_turf)]'.")
+			// End of Bastion of Endeavor Translation
 			path = /turf/space
 
 	var/do_plane = ispath(path, /turf/space) ? SPACE_PLANE : null

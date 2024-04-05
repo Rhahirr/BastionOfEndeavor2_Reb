@@ -1,5 +1,9 @@
 SUBSYSTEM_DEF(input)
+	/* Bastion of Endeavor Translation
 	name = "Input"
+	*/
+	name = "Управление"
+	// End of Bastion of Endeavor Translation
 	wait = 1 // SS_TICKER means this runs every tick
 	init_order = INIT_ORDER_INPUT
 	flags = SS_TICKER | SS_NO_INIT // CHOMPEdit

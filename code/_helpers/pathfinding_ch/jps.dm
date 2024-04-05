@@ -588,7 +588,11 @@ GLOBAL_VAR_INIT(jps_visualization_resolve, TRUE)
 			. += current
 			current = get_step_towards(current, next)
 			if(!safety--)
+				/* Bastion of Endeavor Translation
 				CRASH("failed jps output processing due to running out of safety, that shouldn't be possible")
+				*/
+				CRASH("JPS не удался по причине окончания safety, это не должно быть возможно.")
+				// End of Bastion of Endeavor Translation
 		++index
 
 	. += nodes[index]

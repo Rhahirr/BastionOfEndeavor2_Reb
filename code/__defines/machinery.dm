@@ -43,6 +43,7 @@ var/global/defer_powernet_rebuild = 0      // True if net rebuild will be called
 #define AI_CAMERA_LUMINOSITY 6
 
 // Camera networks
+/* Bastion of Endeavor Translation
 #define NETWORK_CRESCENT "Spaceport"
 // #define NETWORK_CAFE_DOCK "Cafe Dock"
 #define NETWORK_CARGO "Cargo"
@@ -80,9 +81,49 @@ var/global/defer_powernet_rebuild = 0      // True if net rebuild will be called
 #define NETWORK_ALARM_FIRE "Fire Alarms"
 #define NETWORK_TALON_HELMETS "TalonHelmets" //VOREStation Add
 #define NETWORK_TALON_SHIP "TalonShip" //VOREStation Add
+*/
+#define NETWORK_CRESCENT "Космопорт"
+#define NETWORK_CARGO "Грузовой отдел"
+#define NETWORK_CIRCUITS "Схемы"
+#define NETWORK_CIVILIAN "Гражданский экипаж"
+#define NETWORK_COMMAND "Командование"
+#define NETWORK_ENGINE "Двигатель"
+#define NETWORK_ENGINEERING "Инженерный отдел"
+#define NETWORK_ENGINEERING_OUTPOST "Инженерный аванпост"
+#define NETWORK_ERT "Отряд быстрого реагирования"
+#define NETWORK_DEFAULT "Станция"
+#define NETWORK_MEDICAL "Медицинский отдел"
+#define NETWORK_MERCENARY "Наёмники" // don't have a better name
+#define NETWORK_MINE "Шахтерский аванпост"
+#define NETWORK_NORTHERN_STAR "Северная Звезда"
+#define NETWORK_RESEARCH "Научный отдел"
+#define NETWORK_RESEARCH_OUTPOST "Научный аванпост"
+#define NETWORK_ROBOTS "Роботы"
+#define NETWORK_PRISON "Тюрьма"
+#define NETWORK_SECURITY "Служба безопасности"
+#define NETWORK_INTERROGATION "Допросная"
+#define NETWORK_TELECOM "Телекоммуникационный отдел"
+#define NETWORK_TCOMMS "Телекоммуникационный отдел" // thanks yawn wider
+#define NETWORK_OUTSIDE "Наружняя сеть"
+#define NETWORK_SUBSTATIONS "Подстанции"
+#define NETWORK_EXPLORATION "Экспедиционный отдел"
+#define NETWORK_XENOBIO "Ксенобиология"
+#define NETWORK_THUNDER "Развлечения"
+#define NETWORK_BODYCAM "Нательные камеры"
+#define NETWORK_COMMUNICATORS "Коммуникаторы"
+#define NETWORK_ALARM_ATMOS "Атмосферные тревоги"
+#define NETWORK_ALARM_POWER "Перебои электричества"
+#define NETWORK_ALARM_FIRE "Пожарные тревоги"
+#define NETWORK_TALON_HELMETS "Шлемы Когтя" // do we even have these?
+#define NETWORK_TALON_SHIP "НТС Коготь"
+// End of Bastion of Endeavor Translation
 
 // Those networks can only be accessed by pre-existing terminals. AIs and new terminals can't use them.
+/* Bastion of Endeavor Translation: Unsure how this will pan out but sure
 var/list/restricted_camera_networks = list(NETWORK_ERT,NETWORK_MERCENARY,"Secret", NETWORK_COMMUNICATORS, NETWORK_EXPLORATION)
+*/
+var/list/restricted_camera_networks = list(NETWORK_ERT,NETWORK_MERCENARY,"Секретная сеть", NETWORK_COMMUNICATORS, NETWORK_EXPLORATION)
+// End of Bastion of Endeavor Translation
 
 #define TRANSMISSION_WIRE		0 //Is this ever used? I don't think it is.
 #define TRANSMISSION_RADIO		1 //Radio transmissions (like airlock controller to pump)

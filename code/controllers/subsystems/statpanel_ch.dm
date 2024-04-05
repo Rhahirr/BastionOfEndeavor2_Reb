@@ -1,5 +1,9 @@
 SUBSYSTEM_DEF(statpanels)
+	/* Bastion of Endeavor Translation
 	name = "Stat Panels"
+	*/
+	name = "Статпанель"
+	// End of Bastion of Endeavor Translation
 	wait = 4
 	init_order = INIT_ORDER_STATPANELS
 	//init_stage = INITSTAGE_EARLY
@@ -28,6 +32,7 @@ SUBSYSTEM_DEF(statpanels)
 		//var/datum/map_config/cached = SSmapping.next_map_config
 		global_data = list(
 			//"Map: [SSmapping.config?.map_name || "Loading..."]",
+			/* Bastion of Endeavor Translation
 			"Map: [using_map.name]",
 			//cached ? "Next Map: [cached.map_name]" : null,
 			//"Next Map: -- Not Available --",
@@ -36,6 +41,16 @@ SUBSYSTEM_DEF(statpanels)
 			"Round Time: [ROUND_TIME()]",
 			"Station Time: [stationtime2text()]",
 			"Time Dilation: [round(SStime_track.time_dilation_current,1)]% AVG:([round(SStime_track.time_dilation_avg_fast,1)]%, [round(SStime_track.time_dilation_avg,1)]%, [round(SStime_track.time_dilation_avg_slow,1)]%)"
+			*/
+			"Карта: [using_map.name]",
+			//cached ? "Next Map: [cached.map_name]" : null,
+			//"Next Map: -- Not Available --",
+			"ID раунда: [GLOB.round_id ? GLOB.round_id : "НЕТ"]",
+			"Время сервера: [time2text(world.timeofday, "YYYY-MM-DD hh:mm:ss")]",
+			"Время раунда: [ROUND_TIME()]",
+			"Время на станции: [stationtime2text()]",
+			"Замедление: [round(SStime_track.time_dilation_current,1)]% в среднем ([round(SStime_track.time_dilation_avg_fast,1)]%, [round(SStime_track.time_dilation_avg,1)]%, [round(SStime_track.time_dilation_avg_slow,1)]%)"
+			// End of Bastion of Endeavor Translation
 		)
 
 		if(emergency_shuttle.evac)
@@ -53,7 +68,11 @@ SUBSYSTEM_DEF(statpanels)
 		if(!target?.stat_panel?.is_ready()) // Null target client, client has null stat panel, or stat panel isn't ready
 			continue
 
+		/* Bastion of Endeavor Translation
 		if(target.stat_tab == "Status" && num_fires % status_wait == 0)
+		*/
+		if(target.stat_tab == "Статус" && num_fires % status_wait == 0)
+		// End of Bastion of Endeavor Translation
 			set_status_tab(target)
 
 		if(!target.holder)
@@ -62,15 +81,27 @@ SUBSYSTEM_DEF(statpanels)
 			//target.stat_panel.send_message("update_split_admin_tabs", !!(target.prefs.toggles & SPLIT_ADMIN_TABS))
 			target.stat_panel.send_message("update_split_admin_tabs", FALSE)
 
+			/* Bastion of Endeavor Translation
 			if(!("MC" in target.panel_tabs) || !("Tickets" in target.panel_tabs))
+			*/
+			if(!("ГК" in target.panel_tabs) || !("Запросы" in target.panel_tabs))
+			// End of Bastion of Endeavor Translation
 				target.stat_panel.send_message("add_admin_tabs", target.holder.href_token)
 
 			//if(target.stat_tab == "MC" && ((num_fires % mc_wait == 0) || target?.prefs.read_preference(/datum/preference/toggle/fast_mc_refresh)))
 				//set_MC_tab(target)
+			/* Bastion of Endeavor Translation
 			if(target.stat_tab == "MC" && ((num_fires % mc_wait == 0)))
+			*/
+			if(target.stat_tab == "ГК" && ((num_fires % mc_wait == 0)))
+			// End of Bastion of Endeavor Translation
 				set_MC_tab(target)
 
+			/* Bastion of Endeavor Translation
 			if(target.stat_tab == "Tickets" && num_fires % default_wait == 0)
+			*/
+			if(target.stat_tab == "Запросы" && num_fires % default_wait == 0)
+			// End of Bastion of Endeavor Translation
 				set_tickets_tab(target)
 
 			if(!length(GLOB.sdql2_queries) && ("SDQL2" in target.panel_tabs))
@@ -136,7 +167,11 @@ SUBSYSTEM_DEF(statpanels)
 	target.stat_panel.send_message("update_stat", list(
 		global_data = global_data,
 		//ping_str = "Ping: [round(target.lastping, 1)]ms (Average: [round(target.avgping, 1)]ms)",
+		/* Bastion of Endeavor Translation
 		ping_str = "Ping: -- Not Available --",
+		*/
+		ping_str = "Пинг: -- Недоступен --",
+		// End of Bastion of Endeavor Translation
 		other_str = target.mob?.get_status_tab_items(),
 	))
 
@@ -153,7 +188,11 @@ SUBSYSTEM_DEF(statpanels)
 
 	if(!target.obj_window)
 		target.obj_window = new(target)
+	/* Bastion of Endeavor Translation
 	if(!target.examine_icon && !target.obj_window.examine_target && target.stat_tab == "Examine")
+	*/
+	if(!target.examine_icon && !target.obj_window.examine_target && target.stat_tab == "Осмотр")
+	// End of Bastion of Endeavor Translation
 		target.obj_window.examine_target = description_holders["icon"]
 		target.obj_window.atoms_to_show += target.obj_window.examine_target
 		START_PROCESSING(SSobj_tab_items, target.obj_window)
@@ -178,7 +217,11 @@ SUBSYSTEM_DEF(statpanels)
 
 /datum/controller/subsystem/statpanels/proc/set_SDQL2_tab(client/target)
 	var/list/sdql2A = list()
+	/* Bastion of Endeavor Translation
 	sdql2A[++sdql2A.len] = list("", "Access Global SDQL2 List", REF(GLOB.sdql2_vv_statobj))
+	*/
+	sdql2A[++sdql2A.len] = list("", "Показать глобальный список SDQL2", REF(GLOB.sdql2_vv_statobj))
+	// End of Bastion of Endeavor Translation
 	var/list/sdql2B = list()
 	for(var/datum/SDQL2_query/query as anything in GLOB.sdql2_queries)
 		sdql2B = query.generate_stat()
@@ -274,6 +317,7 @@ SUBSYSTEM_DEF(statpanels)
 
 /datum/controller/subsystem/statpanels/proc/generate_mc_data()
 	mc_data = list(
+		/* Bastion of Endeavor Translation
 		list("CPU:", world.cpu),
 		list("Instances:", "[num2text(world.contents.len, 10)]"),
 		list("World Time:", "[world.time]"),
@@ -283,21 +327,45 @@ SUBSYSTEM_DEF(statpanels)
 		list("Master Controller:", Master.stat_entry(), "\ref[Master]"),
 		list("Failsafe Controller:", Failsafe.stat_entry(), "\ref[Failsafe]"),
 		list("","")
+		*/
+		list("Процессор:", world.cpu),
+		list("Инстанций:", "[num2text(world.contents.len, 10)]"),
+		list("Время мира:", "[world.time]"),
+		list("Глобальные переменные:", GLOB.stat_entry(), "\ref[GLOB]"),
+		//list("[config]:", config.stat_entry(), "\ref[config]"),
+		list("Byond:", "FPS: [world.fps] | Тиков: [world.time/world.tick_lag] | Дрифт: [round(Master.tickdrift,1)] / [round((Master.tickdrift/(world.time/world.tick_lag))*100,0.1)]% | Внутреннее использование тиков: [round(MAPTICK_LAST_INTERNAL_TICK_USAGE,0.1)]%"),
+		list("Главный контроллер:", Master.stat_entry(), "\ref[Master]"),
+		list("Проверочный контроллер:", Failsafe.stat_entry(), "\ref[Failsafe]"),
+		list("","")
+		// End of Bastion of Endeavor Translation
 	)
 	for(var/datum/controller/subsystem/sub_system as anything in Master.subsystems)
+	/* Bastion of Endeavor Translation
 		mc_data[++mc_data.len] = list("\[[sub_system.state_letter()]][sub_system.name]", sub_system.stat_entry(), "\ref[sub_system]")
 	mc_data[++mc_data.len] = list("Camera Net", "Cameras: [global.cameranet.cameras.len] | Chunks: [global.cameranet.chunks.len]", "\ref[global.cameranet]")
+	*/
+		mc_data[++mc_data.len] = list("\[[sub_system.state_letter()]] [sub_system.name]", sub_system.stat_entry(), "\ref[sub_system]")
+	mc_data[++mc_data.len] = list("Сеть камер", "Камер: [global.cameranet.cameras.len] | Чанков: [global.cameranet.chunks.len]", "\ref[global.cameranet]")
+	// End of Bastion of Endeavor Translation
 
 ///immediately update the active statpanel tab of the target client
 /datum/controller/subsystem/statpanels/proc/immediate_send_stat_data(client/target)
 	if(!target.stat_panel.is_ready())
 		return FALSE
 
+	/* Bastion of Endeavor Translation
 	if(target.stat_tab == "Examine")
+	*/
+	if(target.stat_tab == "Осмотр")
+	// End of Bastion of Endeavor Translation
 		set_examine_tab(target)
 		return TRUE
 
+	/* Bastion of Endeavor Translation
 	if(target.stat_tab == "Status")
+	*/
+	if(target.stat_tab == "Статус")
+	// End of Bastion of Endeavor Translation
 		set_status_tab(target)
 		return TRUE
 
@@ -330,11 +398,19 @@ SUBSYSTEM_DEF(statpanels)
 	if(!target.holder)
 		return FALSE
 
+	/* Bastion of Endeavor Translation
 	if(target.stat_tab == "MC")
+	*/
+	if(target.stat_tab == "ГК")
+	// End of Bastion of Endeavor Translation
 		set_MC_tab(target)
 		return TRUE
 
+	/* Bastion of Endeavor Translation
 	if(target.stat_tab == "Tickets")
+	*/
+	if(target.stat_tab == "Запросы")
+	// End of Bastion of Endeavor Translation
 		set_tickets_tab(target)
 		return TRUE
 

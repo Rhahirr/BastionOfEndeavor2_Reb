@@ -28,7 +28,11 @@
 /datum/data/record/Destroy(var/force)
 	if(data_core.locked.Find(src))
 		if(!force)
+			/* Bastion of Endeavor Translation
 			stack_trace("Someone tried to qdel a record that was in data_core.locked [log_info_line(src)]")
+			*/
+			stack_trace("Кто-то пытался qdel'нуть запись в data_core.locked [log_info_line(src)]")
+			// End of Bastion of Endeavor Translation
 			return QDEL_HINT_LETMELIVE
 		data_core.locked -= src
 	data_core.medical -= src

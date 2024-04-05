@@ -8,7 +8,11 @@
 //
 
 SUBSYSTEM_DEF(machines)
+	/* Bastion of Endeavor Translation
 	name = "Machines"
+	*/
+	name = "Аппаратура"
+	// End of Bastion of Endeavor Translation
 	priority = FIRE_PRIORITY_MACHINES
 	init_order = INIT_ORDER_MACHINES
 	flags = SS_KEEP_TIMING
@@ -32,7 +36,11 @@ SUBSYSTEM_DEF(machines)
 
 /datum/controller/subsystem/machines/Initialize() // CHOMPEdit
 	makepowernets()
+	/* Bastion of Endeavor Translation
 	admin_notice("<span class='danger'>Initializing atmos machinery.</span>", R_DEBUG)
+	*/
+	admin_notice("<span class='danger'>Инициализация атмосферной аппаратуры.</span>", R_DEBUG)
+	// End of Bastion of Endeavor Translation
 	setup_atmos_machinery(all_machines)
 	fire()
 	return SS_INIT_SUCCESS // CHOMPEdit
@@ -84,6 +92,7 @@ SUBSYSTEM_DEF(machines)
 
 //CHOMPEdit Begin
 /datum/controller/subsystem/machines/stat_entry(msg)
+	/* Bastion of Endeavor Translation
 	msg = "C:{"
 	msg += "PI:[round(cost_pipenets,1)]|"
 	msg += "MC:[round(cost_machinery,1)]|"
@@ -95,6 +104,19 @@ SUBSYSTEM_DEF(machines)
 	msg += "PN:[SSmachines.powernets.len]|"
 	msg += "PO:[SSmachines.powerobjs.len]|"
 	msg += "MC/MS:[round((cost ? SSmachines.processing_machines.len/cost_machinery : 0),0.1)]"
+	*/
+	msg = "| С:{"
+	msg += "ТС:[round(cost_pipenets,1)]|"
+	msg += "МАШ:[round(cost_machinery,1)]|"
+	msg += "ЭС:[round(cost_powernets,1)]|"
+	msg += "ЭЛ:[round(cost_power_objects,1)]"
+	msg += "} "
+	msg += "ТР:[SSmachines.networks.len]|"
+	msg += "МАШ:[SSmachines.processing_machines.len]|"
+	msg += "ЭС:[SSmachines.powernets.len]|"
+	msg += "ЭМ:[SSmachines.powerobjs.len]|"
+	msg += "МАШ/МС:[round((cost ? SSmachines.processing_machines.len/cost_machinery : 0),0.1)]"
+	// End of Bastion of Endeavor Translation
 	return ..()
 // CHOMPEdit End
 
@@ -167,19 +189,36 @@ SUBSYSTEM_DEF(machines)
 /datum/controller/subsystem/machines/Recover()
 	for(var/datum/D as anything in SSmachines.networks)
 		if(!istype(D, /datum/pipe_network))
+			/* Bastion of Endeavor Translation
 			error("Found wrong type during SSmachinery recovery: list=SSmachines.networks, item=[D], type=[D?.type]")
 			SSmachines.networks -= D
+			*/
+			error("Во время Recover() SSmachinery найден неправильный тип: list=SSmachines.networks, item=[D], type=[D?.type].")
+			SSmachines.networks -= D
+			// End of Bastion of Endeavor Translation
 	for(var/datum/D as anything in SSmachines.processing_machines)
 		if(!istype(D, /obj/machinery))
+			/* Bastion of Endeavor Translation
 			error("Found wrong type during SSmachinery recovery: list=SSmachines.machines, item=[D], type=[D?.type]")
+			*/
+			error("Во время Recover() SSmachinery найден неправильный тип: list=SSmachines.machines, item=[D], type=[D?.type].")
+			// End of Bastion of Endeavor Translation
 			SSmachines.processing_machines -= D
 	for(var/datum/D as anything in SSmachines.powernets)
 		if(!istype(D, /datum/powernet))
+			/* Bastion of Endeavor Translation
 			error("Found wrong type during SSmachinery recovery: list=SSmachines.powernets, item=[D], type=[D?.type]")
+			*/
+			error("Во время Recover() SSmachinery найден неправильный тип: list=SSmachines.powernets, item=[D], type=[D?.type].")
+			// End of Bastion of Endeavor Translation
 			SSmachines.powernets -= D
 	for(var/datum/D as anything in SSmachines.powerobjs)
 		if(!istype(D, /obj/item))
+			/* Bastion of Endeavor Translation
 			error("Found wrong type during SSmachinery recovery: list=SSmachines.powerobjs, item=[D], type=[D?.type]")
+			*/
+			error("Во время Recover() SSmachinery найден неправильный тип: list=SSmachines.powerobjs, item=[D], type=[D?.type].")
+			// End of Bastion of Endeavor Translation
 			SSmachines.powerobjs -= D
 
 	all_machines = SSmachines.all_machines

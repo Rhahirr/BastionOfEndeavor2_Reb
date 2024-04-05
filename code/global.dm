@@ -13,12 +13,19 @@ var/global/datum/universal_state/universe = new
 var/global/list/global_map = null
 
 // Noises made when hit while typing.
+/* Bastion of Endeavor Translation
 var/list/hit_appends	= list("-OOF", "-ACK", "-UGH", "-HRNK", "-HURGH", "-GLORF")
+*/
+var/list/hit_appends	= list("-УФ", "-АЙ", "-ЭЙ", "-ГХХ", "-КХХ", "-МХХ")
+// End of Bastion of Endeavor Translation
 var/log_path			= "data/logs/" //See world.dm for the full calculated path
 var/diary				= null
 var/error_log			= null
 var/debug_log			= null
 var/href_logfile		= null
+// Bastion of Endeavor Addition: Adds grammar logging.
+var/grammar_log_ru		= null
+// End of Bastion of Endeavor Addition
 //CHOMPStation Removal Start TFF 24/12/19 - Blep. Remove extra stuff. Where do these even come in?
 /*
 var/station_name		= "Yawn Wider Station"
@@ -33,7 +40,11 @@ var/const/star_name		= "Virgo-Erigone"
 var/const/starsys_name	= "Virgo-Erigone"
 */
 //CHOMPStation Removal End
+/* Bastion of Endeavor Translation
 var/const/game_version	= "CHOMPStation"	//CHOMPStation Edit TFF 24/12/19 - Chompers
+*/
+var/const/game_version	= "Bastion of Endeavor"
+// End of Bastion of Endeavor Translation
 var/changelog_hash		= ""
 var/servernews_hash		= "" //ChompADD - news hash gen
 var/game_year			= (text2num(time2text(world.realtime, "YYYY")) + 544) //YW EDIT
@@ -95,6 +106,8 @@ var/list/IClog     = list()
 var/list/OOClog    = list()
 var/list/adminlog  = list()
 
+var/list/powernets = list()	// TODO - Move into SSmachines
+
 var/Debug2 = 0
 var/datum/debug/debugobj
 
@@ -132,6 +145,7 @@ var/custom_event_msg = null
 var/global/list/alphabet_uppercase = list("A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z")
 
 
+// Bastion of Endeavor TODO: Yeah no, not until mobs are localized. If I touch this now, borgs will be borked.
 // Used by robots and robot preferences for regular modules.
 var/list/robot_module_types = list(
 	"Standard", "Engineering",/* "Surgeon",*/  "Crisis", //CHOMPedit: Combining Surgeon and Crisis.
@@ -183,12 +197,22 @@ var/max_explosion_range = 14
 // Announcer intercom, because too much stuff creates an intercom for one message then hard del()s it.
 var/global/obj/item/device/radio/intercom/omni/global_announcer = new /obj/item/device/radio/intercom/omni(null)
 
+/* Bastion of Endeavor Translation
 var/list/station_departments = list("Command", "Medical", "Engineering", "Research", "Security", "Cargo", "Exploration", "Civilian") //VOREStation Edit
+*/
+var/list/station_departments = list("Командование", "Медицинский отдел", "Инженерный отдел", "Научный отдел", "Служба безопасности", "Грузовой отдел", "Экспедиционный отдел", "Гражданский экипаж") //VOREStation Edit
+// End of Bastion of Endeavor Translation
 
 //Icons for in-game HUD glasses. Why don't we just share these a little bit?
+/* Bastion of Endeavor Edit: Russian icons.
 var/static/icon/ingame_hud = icon('icons/mob/hud.dmi')
 var/static/icon/ingame_hud_med = icon('icons/mob/hud_med.dmi')
 var/static/icon/buildmode_hud = icon('icons/misc/buildmode.dmi')
+*/
+var/static/icon/ingame_hud = icon('russian/_modular/icons/mob/hud_ru.dmi')
+var/static/icon/ingame_hud_med = icon('icons/mob/hud_med.dmi')
+var/static/icon/buildmode_hud = icon('russian/_modular/icons/misc/buildmode_ru.dmi')
+// End of Bastion of Endeavor Edit
 
 //Keyed list for caching icons so you don't need to make them for records, IDs, etc all separately.
 //Could be useful for AI impersonation or something at some point?

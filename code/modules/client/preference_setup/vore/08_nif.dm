@@ -24,14 +24,22 @@
 		pref.nif_path = text2path(pref.nif_path) 	//Try to convert it to a hard path.
 		if(!pref.nif_path)							//If we couldn't, kill it.
 			pref.nif_path = null					//Kill!
+			/* Bastion of Endeavor Translation
 			WARNING("Loaded a NIF but it was an invalid path, [pref.real_name]")
+			*/
+			WARNING("Загружен НИФ с недопустимым путём, [pref.real_name]")
+			// End of Bastion of Endeavor Translation
 
 	if (ispath(pref.nif_path, /obj/item/device/nif/protean) && pref.species != SPECIES_PROTEAN) //no free nifs
 		pref.nif_path = null
 
 	if(ispath(pref.nif_path) && isnull(pref.nif_durability))		//How'd you lose this?
 		pref.nif_durability = initial(pref.nif_path.durability)		//Well, have a new one, my bad.
+		/* Bastion of Endeavor Translation
 		WARNING("Loaded a NIF but with no durability, [pref.real_name]")
+		*/
+		WARNING("Загружен НИФ без параметра прочности, [pref.real_name]")
+		// End of Bastion of Endeavor Translation
 
 	if(!islist(pref.nif_savedata))
 		pref.nif_savedata = list()
@@ -52,9 +60,17 @@
 		//If they leave round after they get their NIF extracted, it will save as 'gone' anyway
 		//The NIF will save automatically every time durability changes too now.
 		var/savefile/S = new /savefile(pref.path)
+		/* Bastion of Endeavor Translation
 		if(!S) WARNING ("Couldn't load NIF save savefile? [pref.real_name]")
+		*/
+		if(!S) WARNING ("Не удалось загрузить НИФ из файла сохранения, [pref.real_name]")
+		// End of Bastion of Endeavor Translation
 		S.cd = "/character[pref.default_slot]"
 		save_character(S)
 
 /datum/category_item/player_setup_item/vore/nif/content(var/mob/user)
+	/* Bastion of Endeavor Translation
 	. += "<b>NIF:</b> [ispath(pref.nif_path) ? "Present" : "None"]"
+	*/
+	. += "<b>НИФ:</b> [ispath(pref.nif_path) ? "Установлен" : "Отсутствует"]"
+	// End of Bastion of Endeavor Translation

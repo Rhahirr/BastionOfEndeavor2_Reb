@@ -1,5 +1,9 @@
 SUBSYSTEM_DEF(chemistry)
+	/* Bastion of Endeavor Translation
 	name = "Chemistry"
+	*/
+	name = "Химия"
+	// End of Bastion of Endeavor Translation
 	wait = 20
 	flags = SS_NO_FIRE
 	init_order = INIT_ORDER_CHEMISTRY
@@ -11,7 +15,11 @@ SUBSYSTEM_DEF(chemistry)
 	var/list/chemical_reagents = list()
 
 /datum/controller/subsystem/chemistry/Recover()
+	/* Bastion of Endeavor Translation
 	log_debug("[name] subsystem Recover().")
+	*/
+	log_debug("Вызван Recover() подсистемы '[name]'.")
+	// End of Bastion of Endeavor Translation
 	chemical_reactions = SSchemistry.chemical_reactions
 	chemical_reagents = SSchemistry.chemical_reagents
 
@@ -22,7 +30,11 @@ SUBSYSTEM_DEF(chemistry)
 
 //CHOMPEdit Begin
 /datum/controller/subsystem/chemistry/stat_entry(msg)
+	/* Bastion of Endeavor Translation
 	msg = "C: [chemical_reagents.len] | R: [chemical_reactions.len]"
+	*/
+	msg = "| Веществ: [chemical_reagents.len] | Реакций: [chemical_reactions.len]"
+	// End of Bastion of Endeavor Translation
 	return ..()
 //CHOMPEdit End
 

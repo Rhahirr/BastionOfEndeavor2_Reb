@@ -12,8 +12,13 @@
 	closeToolTip(usr)
 
 /obj/screen/nifsc/reenter
+	/* Bastion of Endeavor Translation
 	name = "Re-enter NIF"
 	desc = "Return into the NIF"
+	*/
+	name = "Вернуться в НИФ"
+	desc = "Войти обратно в НИФ."
+	// End of Bastion of Endeavor Translation
 	icon_state = "reenter"
 
 /obj/screen/nifsc/reenter/Click()
@@ -22,8 +27,13 @@
 	CS.reenter_soulcatcher()
 
 /obj/screen/nifsc/arproj
+	/* Bastion of Endeavor Translation
 	name = "AR project"
 	desc = "Project your form into Augmented Reality for those around your predator with the appearance of your loaded character."
+	*/
+	name = "Воплотиться в проекции"
+	desc = "Проецировать своего текущего персонажа в дополненной реальности рядом с носителем НИФа."
+	// End of Bastion of Endeavor Translation
 	icon_state = "arproj"
 
 /obj/screen/nifsc/arproj/Click()
@@ -32,8 +42,13 @@
         CS.ar_project()
 
 /obj/screen/nifsc/jumptoowner
+	/* Bastion of Endeavor Translation
 	name = "Jump back to host"
 	desc = "Jumb back to the Soulcather host"
+	*/
+	name = "Прыгнуть к носителю"
+	desc = "Переместиться к носителю НИФа."
+	// End of Bastion of Endeavor Translation
 	icon_state = "jump"
 
 /obj/screen/nifsc/jumptoowner/Click()
@@ -42,8 +57,13 @@
 	CS.jump_to_owner()
 
 /obj/screen/nifsc/nme
+	/* Bastion of Endeavor Translation
 	name = "Emote into Soulcatcher"
 	desc = "Emote into the NIF's Soulcatcher (circumventing AR emoting)"
+	*/
+	name = "Действие в Ловце душ"
+	desc = "Отправить действие в Ловец душ НИФа (вместо действия через проекцию)."
+	// End of Bastion of Endeavor Translation
 	icon_state = "nme"
 
 /obj/screen/nifsc/nme/Click()
@@ -52,8 +72,13 @@
 	CS.nme()
 
 /obj/screen/nifsc/nsay
+	/* Bastion of Endeavor Translation
 	name = "Speak into Soulcatcher"
 	desc = "Speak into the NIF's Soulcatcher (circumventing AR speaking)"
+	*/
+	name = "Сказать в Ловце душ"
+	desc = "Сказать вслух в Ловце душ НИФа (вместо речи через проекцию)."
+	// End of Bastion of Endeavor Translation
 	icon_state = "nsay"
 
 /obj/screen/nifsc/nsay/Click()

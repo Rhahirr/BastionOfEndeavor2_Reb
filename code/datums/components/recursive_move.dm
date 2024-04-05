@@ -24,11 +24,19 @@
 	var/recursion = 0 // safety check - max iterations
 	while(istype(cur_parent) && (recursion < 64))
 		if(cur_parent == cur_parent.loc) //safety check incase a thing is somehow inside itself, cancel
+			/* Bastion of Endeavor Translation
 			log_debug("RECURSIVE_MOVE: Parent is inside itself. ([holder]) ([holder.type])")
+			*/
+			log_debug("RECURSIVE_MOVE: Родитель компонента находится в себе же. ([holder]) ([holder.type])")
+			// End of Bastion of Endeavor Translation
 			reset_parents()
 			break
 		if(cur_parent in parents) //safety check incase of circular contents. (A inside B, B inside C, C inside A), cancel
+			/* Bastion of Endeavor Translation
 			log_debug("RECURSIVE_MOVE: Parent is inside a circular inventory. ([holder]) ([holder.type])")
+			*/
+			log_debug("RECURSIVE_MOVE: Родитель компонента в зацикленном инвентаре. ([holder]) ([holder.type])")
+			// End of Bastion of Endeavor Translation
 			reset_parents()
 			break
 		recursion++
@@ -39,7 +47,11 @@
 		cur_parent = cur_parent.loc
 
 	if(recursion >= 64) // If we escaped due to iteration limit, cancel
+		/* Bastion of Endeavor Translation
 		log_debug("RECURSIVE_MOVE: Parent hit recursion limit. ([holder]) ([holder.type])")
+		*/
+		log_debug("RECURSIVE_MOVE: Родитель компонента превысил лимит рекурсии. ([holder]) ([holder.type])")
+		// End of Bastion of Endeavor Translation
 		reset_parents()
 		parents.Cut()
 
@@ -107,11 +119,20 @@
 
 //the banana peel of testing stays
 /obj/item/weapon/bananapeel/testing
+	/* Bastion of Endeavor Translation
 	name = "banana peel of testing"
 	desc = "spams world log with debugging information"
+	*/
+	name = "Банановая кожура для отладки"
+	desc = "Флудит в лог мира отладочной информацией."
+	// End of Bastion of Endeavor Translation
 
 /obj/item/weapon/bananapeel/testing/proc/shmove(var/atom/source, var/atom/old_loc, var/atom/new_loc)
+	/* Bastion of Endeavor Translation
 	world.log << "the [source] moved from [old_loc]([old_loc.x],[old_loc.y],[old_loc.z]) to [new_loc]([new_loc.x],[new_loc.y],[new_loc.z])"
+	*/
+	world.log << "Источник [source] переместился с [old_loc]([old_loc.x],[old_loc.y],[old_loc.z]) на [new_loc]([new_loc.x],[new_loc.y],[new_loc.z])."
+	// End of Bastion of Endeavor Translation
 
 /obj/item/weapon/bananapeel/testing/Initialize()
 	. = ..()

@@ -27,7 +27,11 @@ export const ReconnectButton = (props) => {
           Byond.command('.reconnect');
         }}
       >
+        {/* Bastion of Endeavor Translation
         Reconnect
+        */}
+        Переподключиться
+        {/* End of Bastion of Endeavor Translation */}
       </Button>
       <Button
         color="white"
@@ -36,7 +40,11 @@ export const ReconnectButton = (props) => {
           Byond.command('.quit');
         }}
       >
+        {/* Bastion of Endeavor Translation
         Relaunch game
+        */}
+        Перезапустить игру
+        {/* End of Bastion of Endeavor Translation */}
       </Button>
       <Button
         color="white"
@@ -44,7 +52,11 @@ export const ReconnectButton = (props) => {
           dispatch(dismissWarning());
         }}
       >
+        {/* Bastion of Endeavor Translation
         Dismiss
+        */}
+        Скрыть
+        {/* End of Bastion of Endeavor Translation */}
       </Button>
     </>
   );

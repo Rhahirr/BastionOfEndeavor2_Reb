@@ -37,7 +37,11 @@
 			fdel(err_file)
 		shelleo_ids[shelleo_id] = FALSE
 	else
+		/* Bastion of Endeavor Translation
 		CRASH("Operating System: [world.system_type] not supported") // If you encounter this error, you are encouraged to update this proc with support for the new operating system
+		*/
+		CRASH("Операционная система [world.system_type] не поддерживается.")
+		// End of Bastion of Endeavor Translation
 	. = list(errorcode, stdout, stderr)
 #undef SHELLEO_NAME
 #undef SHELLEO_ERR

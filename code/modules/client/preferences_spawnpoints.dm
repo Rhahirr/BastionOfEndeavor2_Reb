@@ -12,7 +12,11 @@ var/list/spawntypes = list()
 	var/display_name //Name used in preference setup.
 	var/list/restrict_job = null
 	var/list/disallow_job = null
+	/* Bastion of Endeavor Translation
 	var/announce_channel = "Common"
+	*/
+	var/announce_channel = "Общий"
+	// End of Bastion of Endeavor Translation
 	var/allow_offmap_spawn = FALSE //CHOMPEdit - add option to allow offmap spawns to a spawnpoint without entirely restricting that spawnpoint
 	var/allowed_mob_types = JOB_SILICON|JOB_CARBON
 
@@ -39,8 +43,13 @@ var/list/spawntypes = list()
 	return get_turf(pick(turfs))
 
 /datum/spawnpoint/arrivals
+	/* Bastion of Endeavor Translation
 	display_name = "Arrivals Shuttle"
 	msg = "will arrive to the station shortly by shuttle"
+	*/
+	display_name = "Шаттл при прибытии"
+	msg = "прибыл;;а;о;и; на станцию на шаттле"
+	// End of Bastion of Endeavor Translation
 	disallow_job = list(JOB_OUTSIDER) //CHOMPEdit add
 
 /datum/spawnpoint/arrivals/New()
@@ -48,8 +57,13 @@ var/list/spawntypes = list()
 	turfs = latejoin
 
 /datum/spawnpoint/gateway
+	/* Bastion of Endeavor Translation
 	display_name = "Gateway"
 	msg = "has completed translation from offsite gateway"
+	*/
+	display_name = "Аванпостовый телепорт"
+	msg = "прибыл;;а;о;и; на станцию с помощью телепорта на аванпосте"
+	// End of Bastion of Endeavor Translation
 
 /datum/spawnpoint/gateway/New()
 	..()
@@ -64,8 +78,13 @@ var/list/spawntypes = list()
 	turfs = latejoin_elevator
 */
 /datum/spawnpoint/cryo
+	/* Bastion of Endeavor Translation
 	display_name = "Cryogenic Storage"
 	msg = "has completed cryogenic revival"
+	*/
+	display_name = "Криогенное хранилище"
+	msg = "завершил;;а;о;и; пробуждение от криогенного сна"
+	// End of Bastion of Endeavor Translation
 	allowed_mob_types = JOB_CARBON
 	disallow_job = list(JOB_OUTSIDER) //CHOMPEdit add
 
@@ -74,8 +93,13 @@ var/list/spawntypes = list()
 	turfs = latejoin_cryo
 
 /datum/spawnpoint/cyborg
+	/* Bastion of Endeavor Translation
 	display_name = "Cyborg Storage"
 	msg = "has been activated from storage"
+	*/
+	display_name = "Хранилище киборгов"
+	msg = ";был активирован;была активирована;было активировано;были активированы; из хранилища"
+	// End of Bastion of Endeavor Translation
 	allowed_mob_types = JOB_SILICON
 	disallow_job = list(JOB_OUTSIDER) //CHOMPEdit add
 
@@ -102,8 +126,13 @@ var/global/list/latejoin_tram   = list()
 	..()
 
 /datum/spawnpoint/tram
+	/* Bastion of Endeavor Translation
 	display_name = "Tram Station"
 	msg = "will arrive to the station shortly by shuttle"
+	*/
+	display_name = "Трамвайный вокзал"
+	msg = "прибыл;;а;о;и; на станцию на шаттле"
+	// End of Bastion of Endeavor Translation
 	disallow_job = list(JOB_OUTSIDER) //CHOMPEdit add
 
 /datum/spawnpoint/tram/New()

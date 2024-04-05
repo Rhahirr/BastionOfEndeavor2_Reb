@@ -55,14 +55,22 @@
 
 /datum/category_item/player_setup_item/player_global/settings/content(var/mob/user)
 	. = list()
+	/* Bastion of Endeavor Translation
 	. += "<b>Preferences</b><br>"
+	*/
+	. += "<b>Предпочтения</b><br>"
+	// End of Bastion of Endeavor Translation
 	. += "<table>"
 	var/mob/pref_mob = preference_mob()
 	for(var/datum/client_preference/client_pref as anything in get_client_preferences())
 		if(!client_pref.may_toggle(pref_mob))
 			continue
 
+		/* Bastion of Endeavor Translation
 		. += "<tr><td>[client_pref.description]: </td>"
+		*/
+		. += "<tr><td style=\"white-space: nowrap\">[client_pref.description]: </td>"
+		// End of Bastion of Endeavor Translation
 		if(pref_mob.is_preference_enabled(client_pref.key))
 			. += "<td><span class='linkOn'><b>[client_pref.enabled_description]</b></span></td> <td><a href='?src=\ref[src];toggle_off=[client_pref.key]'>[client_pref.disabled_description]</a></td>"
 		else
@@ -135,7 +143,11 @@
 	if(!client)
 		return FALSE
 	if(!client.prefs)
+		/* Bastion of Endeavor Translation
 		log_debug("Client prefs found to be null for mob [src] and client [ckey], this should be investigated.")
+		*/
+		log_debug("Предпочтения клиента для существа [src] и клиента [ckey] равны null.")
+		// End of Bastion of Endeavor Translation
 		return FALSE
 
 	return client.set_preference(preference, set_preference)

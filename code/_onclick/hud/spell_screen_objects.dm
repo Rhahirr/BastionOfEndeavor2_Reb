@@ -1,5 +1,9 @@
 /obj/screen/movable/spell_master
+	/* Bastion of Endeavor Translation
 	name = "Spells"
+	*/
+	name = "Заклинания"
+	// End of Bastion of Endeavor Translation
 	icon = 'icons/mob/screen_spells.dmi'
 	icon_state = "wiz_spell_ready"
 	var/list/obj/screen/spell/spell_objects = list()
@@ -131,7 +135,11 @@
 		spell.update_charge(forced)
 
 /obj/screen/movable/spell_master/genetic
+	/* Bastion of Endeavor Translation
 	name = "Mutant Powers"
+	*/
+	name = "Силы мутанта"
+	// End of Bastion of Endeavor Translation
 	icon_state = "genetic_spell_ready"
 
 	open_state = "genetics_open"
@@ -140,7 +148,11 @@
 	screen_loc = ui_genetic_master
 
 /obj/screen/movable/spell_master/swarm
+	/* Bastion of Endeavor Translation
 	name = "Swarm Abilities"
+	*/
+	name = "Способности роя"
+	// End of Bastion of Endeavor Translation
 	icon_state = "nano_spell_ready"
 
 	open_state = "swarm_open"

@@ -1,6 +1,11 @@
 /obj/screen/popup
+	/* Bastion of Endeavor Translation: My best guess given the context
 	name = "popup"
 	desc = "NOTICE ME!"
+	*/
+	name = "Всплывающее окно"
+	desc = "Смотри сюда!"
+	// End of Bastion of Endeavor Translation
 
 	icon = 'icons/mob/screen1_popups.dmi'
 	plane = PLANE_PLAYER_HUD_ABOVE
@@ -57,7 +62,11 @@
 		create_fake_ad_popup(popup_type)
 
 /obj/screen/popup/default
+	/* Bastion of Endeavor Translation
 	name = "CLICK ME"
+	*/
+	name = "ЖМИ СЮДА"
+	// End of Bastion of Endeavor Translation
 
 	icon_state = "popup1"
 

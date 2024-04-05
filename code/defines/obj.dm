@@ -8,7 +8,11 @@
 	return attack_hand(user)
 
 /obj/structure/signpost/attack_hand(mob/user as mob)
+	/* Bastion of Endeavor Translation: What?
 	if(tgui_alert(user, "Travel back to ss13?","Return?",list("Yes","No")) == "Yes")
+	*/
+	if(tgui_alert(user, "Вернуться в SS13?","Вернуться?",list("Да","Нет")) == "Да")
+	// End of Bastion of Endeavor Translation
 		if(user.z != src.z)	return
 		user.forceMove(pick(latejoin))
 
@@ -48,12 +52,21 @@
  * This item is completely unused, but removing it will break something in R&D and Radio code causing PDA and Ninja code to fail on compile
  */
 
+/* Bastion of Endeavor Translation: What even is this? Do we want this?
 /var/list/acting_rank_prefixes = list("acting", "temporary", "interim", "provisional")
+*/
+/var/list/acting_rank_prefixes = list("действующий", "временный", "заменяющий", "предварительный")
+// End of Bastion of Endeavor Translation
 
 /proc/make_list_rank(rank)
 	for(var/prefix in acting_rank_prefixes)
+		/* Bastion of Endeavor Unicode Edit
 		if(findtext(rank, "[prefix] ", 1, 2+length(prefix)))
 			return copytext(rank, 2+length(prefix))
+		*/
+		if(findtext_char(rank, "[prefix] ", 1, 2+length_char(prefix)))
+			return copytext_char(rank, 2+length_char(prefix))
+		// End of Bastion of Endeavor Unicode Edit
 	return rank
 
 /obj/effect/laser

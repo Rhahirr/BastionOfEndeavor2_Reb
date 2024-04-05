@@ -10,4 +10,8 @@
 	if (!isnull(message))
 		message = " - [message]"
 
+	/* Bastion of Endeavor Translation
 	return "[file]:[line]:Assertion failed: [condition][message]"
+	*/
+	return "[file]:[line]: Не удался ASSERT: [condition][message]"
+	// End of Bastion of Endeavor Translation

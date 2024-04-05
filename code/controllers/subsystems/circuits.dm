@@ -3,7 +3,11 @@
 // Might make this also process them in the future if its better to do that than using the obj ticker.
 //
 SUBSYSTEM_DEF(circuit)
+	/* Bastion of Endeavor Translation
 	name = "Circuit"
+	*/
+	name = "Микросхемы"
+	// End of Bastion of Endeavor Translation
 	init_order = INIT_ORDER_CIRCUIT
 	flags = SS_NO_FIRE
 	var/list/all_components = list()								// Associative list of [component_name]:[component_path] pairs
@@ -43,7 +47,11 @@ SUBSYSTEM_DEF(circuit)
 		cached_assemblies[path] = new path
 
 
+	/* Bastion of Endeavor Translation
 	circuit_fabricator_recipe_list["Assemblies"] = list(
+	*/
+	circuit_fabricator_recipe_list["Корпусы"] = list(
+	// End of Bastion of Endeavor Translation
 		/obj/item/device/electronic_assembly/default,
 		/obj/item/device/electronic_assembly/calc,
 		/obj/item/device/electronic_assembly/clam,
@@ -87,7 +95,11 @@ SUBSYSTEM_DEF(circuit)
 		/obj/item/clothing/suit/circuitry
 		)
 
+	/* Bastion of Endeavor Translation
 	circuit_fabricator_recipe_list["Tools"] = list(
+	*/
+	circuit_fabricator_recipe_list["Инструменты"] = list(
+	// End of Bastion of Endeavor Translation
 		/obj/item/device/integrated_electronics/wirer,
 		/obj/item/device/integrated_electronics/debugger,
 		/obj/item/device/integrated_electronics/detailer

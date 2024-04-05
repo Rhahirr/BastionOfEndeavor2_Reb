@@ -52,7 +52,11 @@
 /datum/proc/_AddElement(list/arguments)
 	if(QDELING(src))
 		var/datum/element/element_type = arguments[1]
+		/* Bastion of Endeavor Translation
 		stack_trace("We just tried to add the element [element_type] to a qdeleted datum, something is fucked")
+		*/
+		stack_trace("Попытка добавить элемент [element_type] на qdel'ящийся датум, что-то пошло не так.")
+		// End of Bastion of Endeavor Translation
 		return
 
 	var/datum/element/ele = SSdcs.GetElement(arguments)
@@ -60,7 +64,11 @@
 		return // the crash message has already been sent
 	arguments[1] = src
 	if(ele.Attach(arglist(arguments)) == ELEMENT_INCOMPATIBLE)
+		/* Bastion of Endeavor Translation
 		CRASH("Incompatible element [ele.type] was assigned to a [type]! args: [json_encode(args)]")
+		*/
+		CRASH("Несовместимый элемент [ele.type] прикреплён к [type]! Аргументы: [json_encode(args)].")
+		// End of Bastion of Endeavor Translation
 
 /**
  * Finds the singleton for the element type given and detaches it from src
@@ -84,7 +92,11 @@
  */
 /datum/proc/AddElementTrait(trait, source, datum/element/eletype, ...)
 	if(!ispath(eletype, /datum/element))
+		/* Bastion of Endeavor Translation
 		CRASH("AddElementTrait called, but [eletype] is not of a /datum/element path")
+		*/
+		CRASH("Вызван AddElementTrait, но [eletype] не является типом /datum/element.")
+		// End of Bastion of Endeavor Translation
 	ADD_TRAIT(src, trait, source)
 	if(HAS_TRAIT_NOT_FROM(src, trait, source))
 		return

@@ -28,17 +28,37 @@ GLOBAL_LIST_EMPTY(alien_whitelist) // CHOMPEdit - Managed Globals
 /proc/load_alienwhitelist()
 	var/text = file2text("config/alienwhitelist.txt")
 	if (!text)
+		/* Bastion of Endeavor Translation
 		log_misc("Failed to load config/alienwhitelist.txt")
+		*/
+		log_misc("Не удалось загрузить config/alienwhitelist.txt")
+		// End of Bastion of Endeavor Translation
 	else
+		/* Bastion of Endeavor Unicode Edit
 		var/lines = splittext(text, "\n") // Now we've got a bunch of "ckey = something" strings in a list
+		*/
+		var/lines = splittext_char(text, "\n") // Now we've got a bunch of "ckey = something" strings in a list
+		// End of Bastion of Endeavor Unicode Edit
 		for(var/line in lines)
+			/* Bastion of Endeavor Unicode Edit
 			var/list/left_and_right = splittext(line, " - ") // Split it on the dash into left and right
+			*/
+			var/list/left_and_right = splittext_char(line, " - ") // Split it on the dash into left and right
+			// End of Bastion of Endeavor Unicode Edit
 			if(LAZYLEN(left_and_right) != 2)
+				/* Bastion of Endeavor Translation
 				warning("Alien whitelist entry is invalid: [line]") // If we didn't end up with a left and right, the line is bad
+				*/
+				warning("Недопустимая запись вайтлиста рас: [line]")
+				// End of Bastion of Endeavor Translation
 				continue
 			var/key = left_and_right[1]
 			if(key != ckey(key))
+				/* Bastion of Endeavor Translation
 				warning("Alien whitelist entry appears to have key, not ckey: [line]") // The key contains invalid ckey characters
+				*/
+				warning("Запись вайтлиста рас содержит кей вместо скея: [line]") // The key contains invalid ckey characters
+				// End of Bastion of Endeavor Translation
 				continue
 			var/list/our_whitelists = GLOB.alien_whitelist[key] // Try to see if we have one already and add to it // CHOMPEdit - Managed Globals
 			if(!our_whitelists) // Guess this is their first/only whitelist entry
@@ -61,7 +81,11 @@ GLOBAL_LIST_EMPTY(alien_whitelist) // CHOMPEdit - Managed Globals
 
 	//Search the whitelist
 	var/list/our_whitelists = GLOB.alien_whitelist[M.ckey] // CHOMPEdit - Managed Globals
+	/* Bastion of Endeavor Translation
 	if("All" in our_whitelists)
+	*/
+	if("Все" in our_whitelists)
+	// End of Bastion of Endeavor Translation
 		return TRUE
 	if(species.name in our_whitelists)
 		return TRUE
@@ -84,7 +108,11 @@ GLOBAL_LIST_EMPTY(alien_whitelist) // CHOMPEdit - Managed Globals
 
 	//Search the whitelist
 	var/list/our_whitelists = GLOB.alien_whitelist[M.ckey] // CHOMPEdit - Managed Globals
+	/* Bastion of Endeavor Translation
 	if("All" in our_whitelists)
+	*/
+	if("Все" in our_whitelists)
+	// End of Bastion of Endeavor Translation
 		return TRUE
 	if(language.name in our_whitelists)
 		return TRUE
@@ -107,9 +135,17 @@ GLOBAL_LIST_EMPTY(alien_whitelist) // CHOMPEdit - Managed Globals
 	//If we have a loaded file, search it
 	if(GLOB.alien_whitelist) // CHOMPEdit - Managed Globals
 		for (var/s in GLOB.alien_whitelist) // CHOMPEdit - Managed Globals
+			/* Bastion of Endeavor Unicode Edit
 			if(findtext(s,"[M.ckey] - [module]"))
+			*/
+			if(findtext_char(s,"[M.ckey] - [module]"))
+			// End of Bastion of Endeavor Unicode Edit
 				return 1
+			/* Bastion of Endeavor Translation
 			if(findtext(s,"[M.ckey] - All"))
+			*/
+			if(findtext_char(s,"[M.ckey] - Все"))
+			// End of Bastion of Endeavor Translation
 				return 1
 
 /proc/whitelist_overrides(mob/M)

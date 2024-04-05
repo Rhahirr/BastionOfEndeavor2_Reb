@@ -18,18 +18,35 @@
 		if(!t)	continue
 
 		t = trim(t)
+		/* Bastion of Endeavor Unicode Edit
 		if (length(t) == 0)
+		*/
+		if (length_char(t) == 0)
+		// End of Bastion of Endeavor Unicode Edit
 			continue
+		/* Bastion of Endeavor Unicode Edit
 		else if (copytext(t, 1, 2) == "#")
+		*/
+		else if (copytext_char(t, 1, 2) == "#")
+		// End of Bastion of Endeavor Unicode Edit
 			continue
 
+		/* Bastion of Endeavor Unicode Edit
 		var/pos = findtext(t, " ")
+		*/
+		var/pos = findtext_char(t, " ")
+		// End of Bastion of Endeavor Unicode Edit
 		var/name = null
 		var/value = null
 
 		if (pos)
+			/* Bastion of Endeavor Unicode Edit
 			name = lowertext(copytext(t, 1, pos))
 			value = copytext(t, pos + 1)
+			*/
+			name = lowertext(copytext_char(t, 1, pos))
+			value = copytext_char(t, pos + 1)
+			// End of Bastion of Endeavor Unicode Edit
 		else
 			name = lowertext(t)
 

@@ -1,5 +1,9 @@
 /datum/ColorMate
+	/* Bastion of Endeavor Translation
 	var/name = "colouring"
+	*/
+	var/name = "Окрашивание"
+	// End of Bastion of Endeavor Translation
 	var/atom/movable/inserted
 	var/activecolor = "#FFFFFF"
 	var/list/color_matrix_last
@@ -83,13 +87,21 @@
 				active_mode = text2num(params["mode"])
 				return TRUE
 			if("choose_color")
+				/* Bastion of Endeavor Translation
 				var/chosen_color = input(inserted, "Choose a color: ", "ColorMate colour picking", activecolor) as color|null
+				*/
+				var/chosen_color = input(inserted, "Выберите цвет: ", "Перекрашивание", activecolor) as color|null
+				// End of Bastion of Endeavor Translation
 				if(chosen_color)
 					activecolor = chosen_color
 				return TRUE
 			if("paint")
 				do_paint(inserted)
+				/* Bastion of Endeavor Translation
 				temp = "Painted Successfully!"
+				*/
+				temp = "[cap_ru(inserted)] успешно [verb_ru(inserted, "перекрашен;;а;о;ы;")]!"
+				// End of Bastion of Endeavor Translation
 				if(istype(inserted, /mob/living/simple_mob))
 					var/mob/living/simple_mob/M = inserted
 					M.has_recoloured = TRUE
@@ -208,6 +220,10 @@
 		COLORTEST("FFFFFF", cm)
 #undef COLORTEST
 		if(passed < minimum_matrix_tests)
+			/* Bastion of Endeavor Translation
 			temp = "Matrix is too dark. (passed [passed] out of [minimum_matrix_tests] required tests. Minimum lightness: [minimum_matrix_lightness])."
+			*/
+			temp = "Матрица слишком тёмная (пройдено [passed] из [minimum_matrix_tests] требуемых тестов). Требуемая яркость – [minimum_matrix_lightness]."
+			// End of Bastion of Endeavor Translation
 			return FALSE
 		return TRUE

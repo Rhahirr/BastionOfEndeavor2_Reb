@@ -5,6 +5,7 @@ var/church_name = null
 
 	var/name = ""
 
+	// Bastion of Endeavor Note: Do we... even need any of this?
 	name += pick("Holy", "United", "First", "Second", "Last")
 
 	if (prob(20))
@@ -171,8 +172,13 @@ var/syndicate_code_response//Code response for traitors.
 	)
 
 	var/safety[] = list(1,2,3)//Tells the proc which options to remove later on.
+	/* Bastion of Endeavor Translation: Bastion of Endeavor TODO: Should look into how those will behave in normal russian speech.
 	var/nouns[] = list("love","hate","anger","peace","pride","sympathy","bravery","loyalty","honesty","integrity","compassion","charity","success","courage","deceit","skill","beauty","brilliance","pain","misery","beliefs","dreams","justice","truth","faith","liberty","knowledge","thought","information","culture","trust","dedication","progress","education","hospitality","leisure","trouble","friendships", "relaxation")
 	var/drinks[] = list("vodka and tonic","gin fizz","bahama mama","manhattan","black Russian","whiskey soda","long island tea","margarita","Irish coffee"," manly dwarf","Irish cream","doctor's delight","Beepksy Smash","tequilla sunrise","brave bull","gargle blaster","bloody mary","whiskey cola","white Russian","vodka martini","martini","Cuba libre","kahlua","vodka","redwine","moonshine")
+	*/
+	var/nouns[] = list("любовь","ненависть","гнев","мир","гордость","симпатия","храбрость","верность","честность","искренность","сострадание","благотворительность","успех","смелость","обман","навык","красота","совершенство","боль","страдания","убеждения","мечты","справедливость","правда","вера","свобода","знание","мысль","информация","культура","доверие","решимость","прогресс","образование","гостеприимство","досуг","проблемы","отношения", "отдых")
+	var/drinks[] = list("водка и тоник","джин физз","багама мама","манхэттен","черный русский","виски с содовой","лонг айленд","маргарита","айриш кофе","мужественный карлик","айриш крим","радость доктора","бипски смэш","текила санрайз","храбрый бык","глоткодёр","кровавая мэри","виски кола","белый русский","водка мартини","мартини","куба либре","калуа","водка","вино","самогон")
+	// End of Bastion of Endeavor Translation
 	var/locations[] = teleportlocs.len ? teleportlocs : drinks//if null, defaults to drinks instead.
 
 	var/names[] = list()

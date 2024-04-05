@@ -1,5 +1,9 @@
 SUBSYSTEM_DEF(character_setup)
+	/* Bastion of Endeavor Translation
 	name = "Character Setup"
+	*/
+	name = "Редактор персонажа"
+	// End of Bastion of Endeavor Translation
 	init_order = INIT_ORDER_DEFAULT
 	priority = FIRE_PRIORITY_CHARSETUP
 	flags = SS_BACKGROUND | SS_NO_INIT // CHOMPEdit

@@ -1,5 +1,9 @@
 /datum/category_group/player_setup_category/volume_sliders
+	/* Bastion of Endeavor Translation
 	name = "Sound"
+	*/
+	name = "Звук"
+	// End of Bastion of Endeavor Translation
 	sort_order = 7
 	category_item_type = /datum/category_item/player_setup_item/volume_sliders
 
@@ -29,10 +33,17 @@
 			pref.volume_channels["[channel]"] = clamp(pref.volume_channels["[channel]"], 0, 2)
 
 /datum/category_item/player_setup_item/volume_sliders/volume/content(var/mob/user)
+	/* Bastion of Endeavor Translation
 	. += "<b>Volume Settings</b><br>"
 	for(var/channel in pref.volume_channels)
 		. += "[channel]: <a href='?src=\ref[src];change_volume=[channel];'><b>[pref.volume_channels[channel] * 100]%</b></a><br>"
 	. += "<br>"
+	*/
+	. += "<b>Настройки звука</b><br><table>"
+	for(var/channel in pref.volume_channels)
+		. += "<tr><td>[channel]:</td><td><a href='?src=\ref[src];change_volume=[channel];'><b>[pref.volume_channels[channel] * 100]%</b></a></td></tr>"
+	. += "</table><br>"
+	// End of Bastion of Endeavor Translation
 
 /datum/category_item/player_setup_item/volume_sliders/volume/OnTopic(var/href, var/list/href_list, var/mob/user)
 	if(href_list["change_volume"])
@@ -40,7 +51,11 @@
 			var/channel = href_list["change_volume"]
 			if(!(channel in pref.volume_channels))
 				pref.volume_channels["[channel]"] = 1
+			/* Bastion of Endeavor Translation
 			var/value = tgui_input_number(usr, "Choose your volume for [channel] (0-200%)", "[channel] volume", (pref.volume_channels[channel] * 100), 200, 0)
+			*/
+			var/value = tgui_input_number(usr, "Укажите громкость (0-200%):", "[channel]", (pref.volume_channels[channel] * 100), 200, 0)
+			// End of Bastion of Endeavor Translation
 			if(isnum(value))
 				value = CLAMP(value, 0, 200)
 				pref.volume_channels["[channel]"] = (value / 100)
@@ -68,7 +83,11 @@
 /datum/volume_panel/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
+		/* Bastion of Endeavor Translation
 		ui = new(user, src, "VolumePanel", "Volume Panel")
+		*/
+		ui = new(user, src, "VolumePanel", "Микшер")
+		// End of Bastion of Endeavor Translation
 		ui.open()
 
 /datum/volume_panel/tgui_data(mob/user)
@@ -96,9 +115,15 @@
 				return TRUE
 
 /client/verb/volume_panel()
+	/* Bastion of Endeavor Translation
 	set name = "Volume Panel"
 	set category = "Preferences"
 	set desc = "Allows you to adjust volume levels on the fly."
+	*/
+	set name = "Микшер"
+	set category = "Предпочтения"
+	set desc = "Позволяет регулировать громкость игры."
+	// End of Bastion of Endeavor Translation
 
 	if(!volume_panel)
 		volume_panel = new(src)

@@ -96,7 +96,11 @@
 
 /datum/weakref/vv_get_dropdown()
 	. = ..()
+	/* Bastion of Endeavor Translation: Unsure but oh well
 	VV_DROPDOWN_OPTION(VV_HK_WEAKREF_RESOLVE, "Go to reference")
+	*/
+	VV_DROPDOWN_OPTION(VV_HK_WEAKREF_RESOLVE, "Показать ссылку")
+	// End of Bastion of Endeavor Translation
 
 /datum/weakref/vv_do_topic(list/href_list)
 	. = ..()

@@ -18,7 +18,11 @@ var/list/preferences_datums = list()
 	var/lastchangelog = ""				//Saved changlog filesize to detect if there was a change
 	var/ooccolor = "#010000"			//Whatever this is set to acts as 'reset' color and is thus unusable as an actual custom color
 	var/be_special = 0					//Special role selection
+	/* Bastion of Endeavor Translation: The tooltip below this remains unlocalized due to being handled differently
 	var/UI_style = "Midnight"
+	*/
+	var/UI_style = "Полночь"
+	// End of Bastion of Endeavor Translation
 	var/UI_style_color = "#ffffff"
 	var/UI_style_alpha = 255
 	var/tooltipstyle = "Midnight"		//Style for popup tooltips
@@ -28,7 +32,11 @@ var/list/preferences_datums = list()
 
 	var/tgui_fancy = TRUE
 	var/tgui_lock = FALSE
+	/* Bastion of Endeavor Edit: We would really prefer to push for TGUI usage for the time being
 	var/tgui_input_mode = FALSE			// All the Input Boxes (Text,Number,List,Alert)
+	*/
+	var/tgui_input_mode = TRUE
+	// End of Bastion of Endeavor Edit
 	var/tgui_large_buttons = TRUE
 	var/tgui_swapped_buttons = FALSE
 	var/obfuscate_key = FALSE
@@ -45,20 +53,36 @@ var/list/preferences_datums = list()
 	var/bday_day = 0					//Birthday day
 	var/last_birthday_notification = 0	//The last year we were notified about our birthday
 	var/bday_announce = FALSE			//Public announcement for birthdays
+	/* Bastion of Endeavor Translation
 	var/spawnpoint = "Arrivals Shuttle" //where this character will spawn (0-2).
+	*/
+	var/spawnpoint = "Шаттл при прибытии"
+	// End of Bastion of Endeavor Translation
 	var/b_type = "A+"					//blood type (not-chooseable)
 	var/blood_reagents = "default"		//blood restoration reagents
 	var/backbag = 2						//backpack type
 	var/pdachoice = 1					//PDA type
+	/* Bastion of Endeavor Translation
 	var/h_style = "Bald"				//Hair type
+	*/
+	var/h_style = "Лысая голова"				//Hair type
+	// End of Bastion of Endeavor Translation
 	var/r_hair = 0						//Hair color
 	var/g_hair = 0						//Hair color
 	var/b_hair = 0						//Hair color
+	/* Bastion of Endeavor Translation
 	var/grad_style = "none"				//Gradient style
+	*/
+	var/grad_style = "Нет"				//Gradient style
+	// End of Bastion of Endeavor Translation
 	var/r_grad = 0						//Gradient color
 	var/g_grad = 0						//Gradient color
 	var/b_grad = 0						//Gradient color
+	/* Bastion of Endeavor Translation
 	var/f_style = "Shaved"				//Face hair type
+	*/
+	var/f_style = "Бритое лицо"				//Face hair type
+	// End of Bastion of Endeavor Translation
 	var/r_facial = 0					//Face hair color
 	var/g_facial = 0					//Face hair color
 	var/b_facial = 0					//Face hair color
@@ -86,6 +110,7 @@ var/list/preferences_datums = list()
 	var/digitigrade = 0
 
 		//Some faction information.
+	/* Bastion of Endeavor Translation
 	var/home_system = "Unset"           //Current home or residence.
 	var/birthplace = "Unset"           //Location of birth.
 	var/citizenship = "None"            //Government or similar entity with which you hold citizenship.
@@ -93,6 +118,15 @@ var/list/preferences_datums = list()
 	var/religion = "None"               //Religious association.
 	var/antag_faction = "None"			//Antag associated faction.
 	var/antag_vis = "Hidden"			//How visible antag association is to others.
+	*/
+	var/home_system = "Не указано"
+	var/birthplace = "Не указано"
+	var/citizenship = "Нет"
+	var/faction = "Нет"
+	var/religion = "Нет"
+	var/antag_faction = "Нет"
+	var/antag_vis = "Скрыта"
+	// End of Bastion of Endeavor Translation
 
 		//Mob preview
 	var/list/char_render_holders		//Should only be a key-value list of north/south/east/west = obj/screen.
@@ -145,9 +179,14 @@ var/list/preferences_datums = list()
 	var/exploit_record = ""
 	var/disabilities = 0
 
+	/* Bastion of Endeavor Translation
 	var/economic_status = "Average"
 
 	var/uplinklocation = "PDA"
+	*/
+	var/economic_status = "Средний доход"
+	var/uplinklocation = "КПК"
+	// End of Bastion of Endeavor Translation
 
 	// OOC Metadata:
 	var/metadata = ""
@@ -258,7 +297,11 @@ var/list/preferences_datums = list()
 	if(!user || !user.client)	return
 
 	if(!get_mob_by_key(client_ckey))
+		/* Bastion of Endeavor Translation
 		to_chat(user, "<span class='danger'>No mob exists for the given client!</span>")
+		*/
+		to_chat(user, "<span class='danger'>За данным клиентом не закреплено существо!</span>")
+		// End of Bastion of Endeavor Translation
 		return
 
 	if(!char_render_holders)
@@ -266,17 +309,33 @@ var/list/preferences_datums = list()
 	show_character_previews()
 
 	var/dat = "<html><body><center>"
+	// Bastion of Endeavor Addition: Adding a wiki page
+	dat += "Подробное описание настроек доступно на вики Bastion of Endeavor: <a href='?src=\ref[src];open_wiki=1'>Открыть</a><br>"
+	// End of Bastion of Endeavor Addition
 
 	if(path)
+		/* Bastion of Endeavor Translation
 		dat += "Slot - "
 		dat += "<a href='?src=\ref[src];load=1'>Load slot</a> - "
 		dat += "<a href='?src=\ref[src];save=1'>Save slot</a> - "
 		dat += "<a href='?src=\ref[src];reload=1'>Reload slot</a> - "
 		dat += "<a href='?src=\ref[src];resetslot=1'>Reset slot</a> - "
 		dat += "<a href='?src=\ref[src];copy=1'>Copy slot</a>"
+		*/
+		dat += "Слот - "
+		dat += "<a href='?src=\ref[src];load=1'>Загрузить</a> - "
+		dat += "<a href='?src=\ref[src];save=1'>Сохранить</a> - "
+		dat += "<a href='?src=\ref[src];reload=1'>Перезагрузить</a> - "
+		dat += "<a href='?src=\ref[src];resetslot=1'>Сбросить</a> - "
+		dat += "<a href='?src=\ref[src];copy=1'>Копировать</a>"
+		// End of Bastion of Endeavor Translation
 
 	else
+		/* Bastion of Endeavor Translation
 		dat += "Please create an account to save your preferences."
+		*/
+		dat += "Пожалуйста, создайте учётную запись BYOND, чтобы сохранить свои настройки."
+		// End of Bastion of Endeavor Translation
 
 	dat += "<br>"
 	dat += player_setup.header()
@@ -286,7 +345,11 @@ var/list/preferences_datums = list()
 	dat += "</html></body>"
 	//user << browse(dat, "window=preferences;size=635x736")
 	winshow(user, "preferences_window", TRUE)
+	/* Bastion of Endeavor Translation: Upscaling this to make it display the character in full size as well
 	var/datum/browser/popup = new(user, "preferences_browser", "Character Setup", 800, 800)
+	*/
+	var/datum/browser/popup = new(user, "preferences_browser", "Редактор персонажа", 1200, 800)
+	// End of Bastion of Endeavor Translation
 	popup.set_content(dat)
 	popup.open(FALSE) // Skip registring onclose on the browser pane
 	onclose(user, "preferences_window", src) // We want to register on the window itself
@@ -346,7 +409,11 @@ var/list/preferences_datums = list()
 		if(config.forumurl)
 			user << link(config.forumurl)
 		else
+			/* Bastion of Endeavor Translation
 			to_chat(user, "<span class='danger'>The forum URL is not set in the server configuration.</span>")
+			*/
+			to_chat(user, "<span class='danger'>URL форума не задан в настройках сервера.</span>")
+			// End of Bastion of Endeavor Translation
 			return
 	ShowChoices(usr)
 	return 1
@@ -368,9 +435,15 @@ var/list/preferences_datums = list()
 			open_load_dialog(usr)
 			return 1
 	else if(href_list["resetslot"])
+		/* Bastion of Endeavor Translation
 		if("Yes" != tgui_alert(usr, "This will reset the current slot. Continue?", "Reset current slot?", list("No", "Yes")))
 			return 0
 		if("Yes" != tgui_alert(usr, "Are you completely sure that you want to reset this character slot?", "Reset current slot?", list("No", "Yes")))
+		*/
+		if("Да" != tgui_alert(usr, "Это действие полностью сбросит текущий слот. Продолжить?", "Сбросить слот?", list("Нет", "Да")))
+			return 0
+		if("Да" != tgui_alert(usr, "Вы действительно хотите сбросить текущий слот персонажа?", "Сбросить текущий слот?", list("Нет", "Да")))
+		// End of Bastion of Endeavor Translation
 			return 0
 		load_character(SAVE_RESET)
 		sanitize_preferences()
@@ -382,6 +455,10 @@ var/list/preferences_datums = list()
 		// User closed preferences window, cleanup anything we need to.
 		clear_character_previews()
 		return 1
+	// Bastion of Endeavor Addition: The wiki button
+	else if(href_list["open_wiki"])
+		usr << link("[config.wikiurl]Редактор_персонажа")
+	// End of Bastion of Endeavor Addition
 	else
 		return 0
 
@@ -417,11 +494,19 @@ var/list/preferences_datums = list()
 
 /datum/preferences/proc/open_load_dialog(mob/user)
 	if(selecting_slots)
+		/* Bastion of Endeavor Translation
 		to_chat(user, "<span class='warning'>You already have a slot selection dialog open!</span>")
+		*/
+		to_chat(user, "<span class='warning'>У вас уже открыто окно выбора слота!</span>")
+		// End of Bastion of Endeavor Translation
 		return
 	var/savefile/S = new /savefile(path)
 	if(!S)
+		/* Bastion of Endeavor Translation
 		error("Somehow missing savefile path?! [path]")
+		*/
+		error("Каким-то образом пропал путь файла сохранения?! [path]")
+		// End of Bastion of Endeavor Translation
 		return
 
 	var/name
@@ -433,7 +518,11 @@ var/list/preferences_datums = list()
 		S["real_name"] >> name
 		S["nickname"] >> nickname //vorestation edit
 		if(!name)
+			/* Bastion of Endeavor Translation
 			name = "[i] - \[Unused Slot\]"
+			*/
+			name = "[i] - \[Свободный слот\]"
+			// End of Bastion of Endeavor Translation
 		else if(i == default_slot)
 			name = "►[i] - [name]"
 		else
@@ -443,14 +532,22 @@ var/list/preferences_datums = list()
 		charlist["[name][nickname ? " ([nickname])" : ""]"] = i
 
 	selecting_slots = TRUE
+	/* Bastion of Endeavor Translation
 	var/choice = tgui_input_list(user, "Select a character to load:", "Load Slot", charlist, default)
+	*/
+	var/choice = tgui_input_list(user, "Выберите слот, который вы хотели бы загрузить:", "Загрузить слот", charlist, default)
+	// End of Bastion of Endeavor Translation
 	selecting_slots = FALSE
 	if(!choice)
 		return
 
 	var/slotnum = charlist[choice]
 	if(!slotnum)
+		/* Bastion of Endeavor Translation
 		error("Player picked [choice] slot to load, but that wasn't one we sent.")
+		*/
+		error("Игрок попытался загрузить слот [choice], но мы почему-то отправили ему другой.")
+		// End of Bastion of Endeavor Translation
 		return
 
 	load_character(slotnum)
@@ -460,11 +557,19 @@ var/list/preferences_datums = list()
 
 /datum/preferences/proc/open_copy_dialog(mob/user)
 	if(selecting_slots)
+		/* Bastion of Endeavor Translation
 		to_chat(user, "<span class='warning'>You already have a slot selection dialog open!</span>")
+		*/
+		to_chat(user, "<span class='warning'>У вас уже открыто окно выбора слота!</span>")
+		// End of Bastion of Endeavor Translation
 		return
 	var/savefile/S = new /savefile(path)
 	if(!S)
+		/* Bastion of Endeavor Translation
 		error("Somehow missing savefile path?! [path]")
+		*/
+		error("Каким-то образом пропал путь файла сохранения?! [path]")
+		// End of Bastion of Endeavor Translation
 		return
 
 	var/name
@@ -475,7 +580,11 @@ var/list/preferences_datums = list()
 		S["real_name"] >> name
 		S["nickname"] >> nickname //vorestation edit
 		if(!name)
+			/* Bastion of Endeavor Translation
 			name = "[i] - \[Unused Slot\]"
+			*/
+			name = "[i] - \[Свободный слот\]"
+			// End of Bastion of Endeavor Translation
 		if(i == default_slot)
 			name = "►[i] - [name]"
 		else
@@ -483,14 +592,22 @@ var/list/preferences_datums = list()
 		charlist["[name][nickname ? " ([nickname])" : ""]"] = i
 
 	selecting_slots = TRUE
+	/* Bastion of Endeavor Translation
 	var/choice = tgui_input_list(user, "Select a character to COPY TO:", "Copy Slot", charlist)
+	*/
+	var/choice = tgui_input_list(user, "Выберите слот, В КОТОРЫЙ вы хотите скопировать текущий:", "Копировать слот", charlist)
+	// End of Bastion of Endeavor Translation
 	selecting_slots = FALSE
 	if(!choice)
 		return
 
 	var/slotnum = charlist[choice]
 	if(!slotnum)
+		/* Bastion of Endeavor Translation
 		error("Player picked [choice] slot to copy to, but that wasn't one we sent.")
+		*/
+		error("Игрок попытался скопировать в слот [choice], но мы почему-то прислали ему другой.")
+		// End of Bastion of Endeavor Translation
 		return
 
 	overwrite_character(slotnum)

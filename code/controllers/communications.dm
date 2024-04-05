@@ -131,6 +131,7 @@ var/const/CSN_FREQ = 1365 //VOREStation Add
 var/const/OUT_FREQ = 1367 //CHOMPstation Add
 
 var/list/radiochannels = list(
+	/* Bastion of Endeavor Translation: Shortening the names to take less space, russian text is long is enough as it is
 	"Common"		= PUB_FREQ,
 	"Science"		= SCI_FREQ,
 	"Command"		= COMM_FREQ,
@@ -152,6 +153,29 @@ var/list/radiochannels = list(
 	"Talon"			= TALON_FREQ, //VOREStation Add
 	"Casino" 		= CSN_FREQ,
 	"Outsider" 		= OUT_FREQ //CHOMPstation Add
+	*/
+	"Общий"						= PUB_FREQ,
+	"Научный"					= SCI_FREQ, 
+	"Командование"				= COMM_FREQ, 
+	"Медицинский"				= MED_FREQ,
+	"Инженерный"				= ENG_FREQ,
+	"СБ" 						= SEC_FREQ,
+	"Нательная камера"			= BDCM_FREQ,
+	"ОБР" 						= ERT_FREQ,
+	"Спецотряд" 				= DTH_FREQ,
+	"Наёмники" 					= SYND_FREQ,
+	"Налётчики"					= RAID_FREQ,
+	"Грузовой" 					= SUP_FREQ,
+	"Обслуживание" 				= SRV_FREQ,
+	"Экспедиция"				= EXP_FREQ,
+	"Канал ИИ"					= AI_FREQ,
+	"Развлечения" 				= ENT_FREQ,
+	"Медицинский (В)"			= MED_I_FREQ,
+	"СБ (В)"					= SEC_I_FREQ,
+	"Коготь"					= TALON_FREQ,
+	"Казино" 					= CSN_FREQ,
+	"Посторонние" 				= OUT_FREQ
+	// End of Bastion of Endeavor Translation
 )
 
 // Hey, if anyone ever needs to update tgui/packages/tgui/constants.js with new radio channels
@@ -397,4 +421,8 @@ var/global/datum/controller/radio/radio_controller
 		if(islist(data[i]))
 			var/list/L = data[i]
 			for(var/t in L)
+				/* Bastion of Endeavor Translation
 				. += "data\[\"[i]\"\] list has: [t]"
+				*/
+				. += "список data\[\"[i]\"\] имеет: [t]"
+				// End of Bastion of Endeavor Translation

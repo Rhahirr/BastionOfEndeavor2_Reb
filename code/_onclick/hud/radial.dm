@@ -6,7 +6,11 @@ GLOBAL_LIST_EMPTY(radial_menus)
 // Ported from TG
 
 /obj/screen/radial
+	/* Bastion of Endeavor Edit: Russian icons.
 	icon = 'icons/mob/radial.dmi'
+	*/
+	icon = 'russian/_modular/icons/mob/radial_ru.dmi'
+	// End of Bastion of Endeavor Edit
 	layer = LAYER_HUD_ABOVE
 	plane = PLANE_PLAYER_HUD_ABOVE
 	var/datum/radial_menu/parent
@@ -41,7 +45,11 @@ GLOBAL_LIST_EMPTY(radial_menus)
 			parent.element_chosen(choice,usr)
 
 /obj/screen/radial/center
+	/* Bastion of Endeavor Translation
 	name = "Close Menu"
+	*/
+	name = "Закрыть меню"
+	// End of Bastion of Endeavor Translation
 	icon_state = "radial_center"
 
 /obj/screen/radial/center/MouseEntered(location, control, params)
@@ -169,7 +177,11 @@ GLOBAL_LIST_EMPTY(radial_menus)
 /datum/radial_menu/proc/HideElement(obj/screen/radial/slice/E)
 	E.cut_overlays()
 	E.alpha = 0
+	/* Bastion of Endeavor Translation: What even is this?
 	E.name = "None"
+	*/
+	E.name = "Ничего"
+	// End of Bastion of Endeavor Translation
 	E.maptext = null
 	E.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	E.choice = null
@@ -195,7 +207,11 @@ GLOBAL_LIST_EMPTY(radial_menus)
 	E.mouse_opacity = MOUSE_OPACITY_ICON
 	E.cut_overlays()
 	if(choice_id == NEXT_PAGE_ID)
+		/* Bastion of Endeavor Translation
 		E.name = "Next Page"
+		*/
+		E.name = "Следующая страница"
+		// End of Bastion of Endeavor Translation
 		E.next_page = TRUE
 		E.add_overlay("radial_next")
 	else

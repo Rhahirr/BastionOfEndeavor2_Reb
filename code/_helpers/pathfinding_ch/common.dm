@@ -76,7 +76,11 @@ GLOBAL_DATUM_INIT(generic_pathfinding_actor, /atom/movable/pathfinding_predicate
  */
 /datum/pathfinding/proc/search()
 	RETURN_TYPE(/list)
+	/* Bastion of Endeavor Translation
 	CRASH("Not implemented on base type.")
+	*/
+	CRASH("Search() не применяется на заданном типе.")
+	// End of Bastion of Endeavor Translation
 
 /datum/pathfinding/proc/debug_log_string()
 	return json_encode(vars)

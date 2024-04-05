@@ -100,7 +100,11 @@ const getChatTimestamp = (message) => {
     const dateTime = new Date(message.createdAt);
     stamp =
       '[' +
+      /* Bastion of Endeavor Translation
       dateTime.toLocaleTimeString([], {
+      */
+      dateTime.toLocaleTimeString('en-GB', {
+        /* End of Bastion of Endeavor Translation */
         hour: '2-digit',
         minute: '2-digit',
       }) +
@@ -795,7 +799,11 @@ class ChatRenderer {
       '<!doctype html>\n' +
       '<html>\n' +
       '<head>\n' +
+      /* Bastion of Endeavor Translation
       '<title>SS13 Chat Log</title>\n' +
+      */
+      '<title>История чата SS13</title>\n' +
+      /* End of Bastion of Endeavor Translation */
       '<style>\n' +
       cssText +
       '</style>\n' +

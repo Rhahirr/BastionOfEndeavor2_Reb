@@ -66,7 +66,11 @@ export class ChatPanel extends Component {
             icon="arrow-down"
             onClick={() => chatRenderer.scrollToBottom()}
           >
+            {/* Bastion of Endeavor Translation
             Scroll to bottom
+            */}
+            Переместиться вниз
+            {/* End of Bastion of Endeavor Translation */}
           </Button>
         )}
       </>

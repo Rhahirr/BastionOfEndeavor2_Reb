@@ -1,7 +1,11 @@
 #define PLANT_TICK_TIME 75  // Number of ticks between the plant processor cycling.
 
 SUBSYSTEM_DEF(plants)
+	/* Bastion of Endeavor Translation
 	name = "Plants"
+	*/
+	name = "Растения"
+	// End of Bastion of Endeavor Translation
 	init_order = INIT_ORDER_PLANTS
 	priority = FIRE_PRIORITY_PLANTS
 	wait = PLANT_TICK_TIME
@@ -24,7 +28,11 @@ SUBSYSTEM_DEF(plants)
 
 //CHOMPEdit Begin
 /datum/controller/subsystem/plants/stat_entry(msg)
+	/* Bastion of Endeavor Translation
 	msg = "P:[processing.len]|S:[seeds.len]"
+	*/
+	msg = "| Обрабатывается: [processing.len] | Семян:[seeds.len]"
+	// End of Bastion of Endeavor Translation
 	return ..()
 
 /datum/controller/subsystem/plants/Initialize()
@@ -149,14 +157,24 @@ SUBSYSTEM_DEF(plants)
 
 // Debug for testing seed genes.
 /client/proc/show_plant_genes()
+	/* Bastion of Endeavor Translation
 	set category = "Debug"
 	set name = "Show Plant Genes"
 	set desc = "Prints the round's plant gene masks."
+	*/
+	set category = "Отладка"
+	set name = "Показать гены растений"
+	set desc = "Отобразить генетические маски растений в этом раунде."
+	// End of Bastion of Endeavor Translation
 
 	if(!holder)	return
 
 	if(!SSplants || !SSplants.gene_tag_masks)
+		/* Bastion of Endeavor Translation
 		to_chat(usr, "Gene masks not set.")
+		*/
+		to_chat(usr, "Маски генов не установлены.")
+		// End of Bastion of Endeavor Translation
 		return
 
 	for(var/mask in SSplants.gene_tag_masks)

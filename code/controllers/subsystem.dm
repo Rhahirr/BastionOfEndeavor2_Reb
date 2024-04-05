@@ -11,7 +11,11 @@
 	// Metadata; you should define these.
 
 	/// Name of the subsystem - you must change this
+	/* Bastion of Endeavor Translation
 	name = "fire coderbus"
+	*/
+	name = "Срабатывания"
+	// End of Bastion of Endeavor Translation
 
 	/// Order of initialization. Higher numbers are initialized first, lower numbers later. Use or create defines such as [INIT_ORDER_DEFAULT] so we can see the order in one file.
 	var/init_order = INIT_ORDER_DEFAULT
@@ -131,7 +135,11 @@
 ///Sleeping in here prevents future fires until returned.
 /datum/controller/subsystem/proc/fire(resumed = FALSE)
 	flags |= SS_NO_FIRE
+	/* Bastion of Endeavor Translation
 	throw EXCEPTION("Subsystem [src]([type]) does not fire() but did not set the SS_NO_FIRE flag. Please add the SS_NO_FIRE flag to any subsystem that doesn't fire so it doesn't get added to the processing list and waste cpu.")
+	*/
+	throw EXCEPTION("Подсистема [src] ([type]) не использует fire(), но и не имеет флага SS_NO_FIRE. Пожалуйста, добавляйте этот флаг в подсистемы, которые не срабатывают, чтобы они не добавлялись в список processing и не тратили ресурсы зря.")
+	// End of Bastion of Endeavor Translation
 
 /datum/controller/subsystem/Destroy()
 	dequeue()
@@ -235,15 +243,23 @@
 //hook for printing stats to the "MC" statuspanel for admins to see performance and related stats etc.
 //CHOMPEdit Begin
 /datum/controller/subsystem/stat_entry(msg)
+	/* Bastion of Endeavor Translation
 	if(can_fire && !(SS_NO_FIRE & flags))
 		msg = "[round(cost,1)]ms|[round(tick_usage,1)]%([round(tick_overrun,1)]%)|[round(ticks,0.1)]\t[msg]"
 	else
 		msg = "OFFLINE\t[msg]"
+	*/
+	if(can_fire && !(SS_NO_FIRE & flags))
+		msg = "[round(cost,1)] мс | [round(tick_usage,1)]% ([round(tick_overrun,1)]%) | [round(ticks,0.1)]\t[msg]"
+	else
+		msg = "ПОДСИСТЕМА ОТКЛЮЧЕНА\t[msg]"
+	// End of Bastion of Endeavor Translation
 	return msg
 //CHOMPEdit End
 
 /datum/controller/subsystem/proc/state_letter()
 	switch (state)
+		/* Bastion of Endeavor Translation
 		if (SS_RUNNING)
 			. = "R"
 		if (SS_QUEUED)
@@ -254,6 +270,18 @@
 			. = "S"
 		if (SS_IDLE)
 			. = "  "
+		*/
+		if (SS_RUNNING)
+			. = "Р"
+		if (SS_QUEUED)
+			. = "О"
+		if (SS_PAUSED, SS_PAUSING)
+			. = "П"
+		if (SS_SLEEPING)
+			. = "С"
+		if (SS_IDLE)
+			. = "  "
+		// End of Bastion of Endeavor Translation
 
 //could be used to postpone a costly subsystem for (default one) var/cycles, cycles
 //for instance, during cpu intensive operations like explosions
@@ -281,14 +309,24 @@
 // an opportunity to clean up the subsystem or check it for errors in ways that would otherwise be too slow.
 // You should log the errors/cleanup results, so you can fix the problem rather than using this as a crutch.
 /datum/controller/subsystem/proc/fail()
+	/* Bastion of Endeavor Translation
 	var/msg = "[name] subsystem being blamed for MC failure"
+	log_world(msg)
+	*/
+	var/msg = "Подсистема '[name]' обвиняется в провале Главного контроллера."
+	log_world(msg)
+	// End of Bastion of Endeavor Translation
 	log_world(msg)
 	log_game(msg)
 
 // DO NOT ATTEMPT RECOVERY. Only log debugging info. You should leave the subsystem as it is.
 // Attempting recovery here could make things worse, create hard recursions with the MC disabling it every run, etc.
 /datum/controller/subsystem/proc/critfail()
+	/* Bastion of Endeavor Translation
 	var/msg = "[name] subsystem received final blame for MC failure"
+	*/
+	var/msg = "Подсистема '[name]' окончательно виновата в провале Главного контроллера."
+	// End of Bastion of Endeavor Translation
 	log_world(msg)
 	log_game(msg)
 

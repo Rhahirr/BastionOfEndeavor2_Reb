@@ -20,8 +20,13 @@ var/global/list/side_effects = list()				//list of all medical sideeffects types
 var/global/list/mechas_list = list()				//list of all mechs. Used by hostile mobs target tracking.
 var/global/list/joblist = list()					//list of all jobstypes, minus borg and AI
 
+/* Bastion of Endeavor Translation: Herms have no workable pronouns in Russian; neuter and plural are the closest we can have.
 #define all_genders_define_list list(MALE,FEMALE,PLURAL,NEUTER,HERM) //VOREStaton Edit
 #define all_genders_text_list list("Male","Female","Plural","Neuter","Herm") //VOREStation Edit
+*/
+#define all_genders_define_list list(MALE,FEMALE,PLURAL,NEUTER)
+#define all_genders_text_list list("Мужской","Женский","Средний","Множественное число")
+// End of Bastion of Endeavor Translation
 
 var/list/mannequins_
 
@@ -53,8 +58,13 @@ GLOBAL_LIST_INIT(custom_species_bases, new) // Species that can be used for a Cu
 var/datum/category_collection/underwear/global_underwear = new()
 
 	//Backpacks
+/* Bastion of Endeavor Translation
 var/global/list/backbaglist = list("Nothing", "Backpack", "Satchel", "Satchel Alt", "Messenger Bag", "Sports Bag", "Strapless Satchel") //VOREStation edit
 var/global/list/pdachoicelist = list("Default", "Slim", "Old", "Rugged", "Holographic", "Wrist-Bound","Slider", "Vintage")
+*/
+var/global/list/backbaglist = list("Нет", "Рюкзак", "Сумка", "Ранец", "Курьерская сумка", "Спортивная сумка", "Сумка без лямки")
+var/global/list/pdachoicelist = list("Обычный", "Тонкий", "Старый", "Потрёпанный", "Голографический", "Наручный", "Выдвижной", "Винтажный")
+// End of Bastion of Endeavor Translation
 var/global/list/exclude_jobs = list(/datum/job/ai,/datum/job/cyborg)
 
 // Visual nets
@@ -76,6 +86,7 @@ GLOBAL_LIST_EMPTY(alloy_data)
 
 // Strings which corraspond to bodypart covering flags, useful for outputting what something covers.
 var/global/list/string_part_flags = list(
+	/* Bastion of Endeavor Translation: These are practically unused, so I'll just put them in their case forms specifically for the only thing they're used.
 	"head" = HEAD,
 	"face" = FACE,
 	"eyes" = EYES,
@@ -85,10 +96,22 @@ var/global/list/string_part_flags = list(
 	"feet" = FEET,
 	"arms" = ARMS,
 	"hands" = HANDS
+	*/
+	"голову" = HEAD,
+	"лицо" = FACE,
+	"глаза" = EYES,
+	"верхнюю часть тела" = UPPER_TORSO,
+	"нижнюю часть тела" = LOWER_TORSO,
+	"ноги" = LEGS,
+	"ступни" = FEET,
+	"руки" = ARMS,
+	"ладони" = HANDS
+	// End of Bastion of Endeavor Translation
 )
 
 // Strings which corraspond to slot flags, useful for outputting what slot something is.
 var/global/list/string_slot_flags = list(
+	/* Bastion of Endeavor Translation: Same as above.
 	"back" = SLOT_BACK,
 	"face" = SLOT_MASK,
 	"waist" = SLOT_BELT,
@@ -102,6 +125,21 @@ var/global/list/string_slot_flags = list(
 	"body" = SLOT_ICLOTHING,
 	"uniform" = SLOT_TIE,
 	"holster" = SLOT_HOLSTER
+	*/
+	"на спине" = SLOT_BACK,
+	"на лице" = SLOT_MASK,
+	"на талии" = SLOT_BELT,
+	"в слоте для карты" = SLOT_ID,
+	"на ушах" = SLOT_EARS,
+	"на глазах" = SLOT_EYES,
+	"на ладонях" = SLOT_GLOVES,
+	"на голове" = SLOT_HEAD,
+	"на ступнях" = SLOT_FEET,
+	"в качестве верхней одежды" = SLOT_OCLOTHING,
+	"на теле" = SLOT_ICLOTHING,
+	"на одежде" = SLOT_TIE,
+	"в кобуре" = SLOT_HOLSTER
+	// End of Bastion of Endeavor Translation
 )
 
 GLOBAL_LIST_EMPTY(mannequins)
@@ -175,7 +213,11 @@ GLOBAL_LIST_EMPTY(mannequins)
 		if (isnull(GLOB.all_languages[L.name]))
 			GLOB.all_languages[L.name] = L
 		else
+			/* Bastion of Endeavor Translation
 			log_debug("Language name conflict! [T] is named [L.name], but that is taken by [GLOB.all_languages[L.name].type]")
+			*/
+			log_debug("Конфликт названий языков! [T] называется [L.name], но это имя уже занято языком '[GLOB.all_languages[L.name].type]'.")
+			// End of Bastion of Endeavor Translation
 			if(isnull(GLOB.language_name_conflicts[L.name]))
 				GLOB.language_name_conflicts[L.name] = list(GLOB.all_languages[L.name])
 			GLOB.language_name_conflicts[L.name] += L
@@ -186,7 +228,11 @@ GLOBAL_LIST_EMPTY(mannequins)
 			if(isnull(GLOB.language_keys[L.key]))
 				GLOB.language_keys[L.key] = L
 			else
+				/* Bastion of Endeavor Translation
 				log_debug("Language key conflict! [L] has key [L.key], but that is taken by [(GLOB.language_keys[L.key])]")
+				*/
+				log_debug("Конфликт ключей языков! [L] имеет ключ [L.key], но он уже занят языком [(GLOB.language_keys[L.key])].")
+				// End of Bastion of Endeavor Translation
 				if(isnull(GLOB.language_key_conflicts[L.key]))
 					GLOB.language_key_conflicts[L.key] = list(GLOB.language_keys[L.key])
 				GLOB.language_key_conflicts[L.key] += L

@@ -1,7 +1,11 @@
 #define DATUMLESS "NO_DATUM"
 
 SUBSYSTEM_DEF(sounds)
+	/* Bastion of Endeavor Translation
 	name = "Sounds"
+	*/
+	name = "Звуки"
+	// End of Bastion of Endeavor Translation
 	flags = SS_NO_FIRE
 	init_order = INIT_ORDER_SOUNDS
 	var/static/using_channels_max = CHANNEL_HIGHEST_AVAILABLE //BYOND max channels
@@ -75,7 +79,11 @@ SUBSYSTEM_DEF(sounds)
 /// Reserves a channel for a datum. Automatic cleanup only when the datum is deleted. Returns an integer for channel.
 /datum/controller/subsystem/sounds/proc/reserve_sound_channel(datum/D)
 	if(!D) //i don't like typechecks but someone will fuck it up
+		/* Bastion of Endeavor Translation
 		CRASH("Attempted to reserve sound channel without datum using the managed proc.")
+		*/
+		CRASH("Попытка зарезервировать звуковой канал проком без датума.")
+		// End of Bastion of Endeavor Translation
 	.= reserve_channel()
 	if(!.)
 		return FALSE
@@ -103,7 +111,11 @@ SUBSYSTEM_DEF(sounds)
 	var/text_channel = num2text(number)
 	var/index = reserved_channels[text_channel]
 	if(!index)
+		/* Bastion of Endeavor Translation
 		CRASH("Attempted to (internally) free a channel that wasn't reserved.")
+		*/
+		CRASH("Попытка (внутренне) освободить ничем не занятый канал.")
+		// End of Bastion of Endeavor Translation
 	reserved_channels -= text_channel
 	// push reserve index up, which makes it now on a channel that is reserved
 	channel_reserve_high++

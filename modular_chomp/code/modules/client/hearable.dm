@@ -9,7 +9,11 @@
 	. = ..()
 	parent_atom = parent
 	if(!istype(parent_atom))
+		/* Bastion of Endeavor Translation
 		CRASH("hearer intialized on non-atom")
+		*/
+		CRASH("Hearer инициализирован не на атоме.")
+		// End of Bastion of Endeavor Translation
 	RegisterSignal(SSdcs, COMSIG_VISIBLE_MESSAGE, PROC_REF(on_message))
 
 /datum/component/hearer/UnregisterFromParent()

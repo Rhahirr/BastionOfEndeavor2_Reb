@@ -35,7 +35,11 @@
 	return mobs
 //CHOMPEdit End
 /proc/random_hair_style(gender, species = SPECIES_HUMAN)
+	/* Bastion of Endeavor Translation: Fairly certain this is safe to translate, knowing all of those will likely be hardcoded in later.
 	var/h_style = "Bald"
+	*/
+	var/h_style = "Лысая голова"
+	// End of Bastion of Endeavor Translation
 
 	var/list/valid_hairstyles = list()
 	for(var/hairstyle in hair_styles_list)
@@ -54,7 +58,11 @@
 	return h_style
 
 /proc/random_facial_hair_style(gender, species = SPECIES_HUMAN)
+	/* Bastion of Endeavor Translation
 	var/f_style = "Shaved"
+	*/
+	var/f_style = "Бритое лицо"
+	// End of Bastion of Endeavor Translation
 
 	var/list/valid_facialhairstyles = list()
 	for(var/facialhairstyle in facial_hair_styles_list)
@@ -158,8 +166,13 @@ Proc for attack log creation, because really why not
 
 	if(ismob(user)) //CHOMPEdit Begin
 		if(SSdbcore.Connect())
+			/* Bastion of Endeavor Translation
 			user.attack_log += text("\[[time_stamp()]\] [span_red("Attacked [target_str]: [what_done]")]")
 			var/datum/db_query/query_insert = SSdbcore.NewQuery("INSERT INTO erro_attacklog (id, time, ckey, mob, message) VALUES (null, NOW(), :t_ckey, :t_mob, :t_content)", list("t_ckey" = user.ckey, "t_mob" = user.real_name, "t_content" = "<font color='red'>Attacked [target_str]: [what_done]</font>"))
+			*/
+			user.attack_log += text("\[[time_stamp()]\] [span_red("Атаковал [target_str]: [what_done]")]")
+			var/datum/db_query/query_insert = SSdbcore.NewQuery("INSERT INTO erro_attacklog (id, time, ckey, mob, message) VALUES (null, NOW(), :t_ckey, :t_mob, :t_content)", list("t_ckey" = user.ckey, "t_mob" = user.real_name, "t_content" = "<font color='red'>Атаковал [target_str]: [what_done]</font>"))
+			// End of Bastion of Endeavor Translation
 			spawn() //Change this to a spawn so it doesn't hold us up
 				query_insert.Execute(async=use_async)
 				qdel(query_insert)
@@ -167,8 +180,13 @@ Proc for attack log creation, because really why not
 		//	rustg_sql_query_async(SSdbcore.connection, "INSERT INTO erro_attacklog (id, time, ckey, mob, message) VALUES (null, NOW(), :t_ckey, :t_mob, :t_content)", json_encode(list("t_ckey" = user.ckey, "t_mob" = user.real_name, "t_content" = "<font color='red'>Attacked [target_str]: [what_done]</font>")))
 	if(ismob(target))
 		if(SSdbcore.Connect())
+			/* Bastion of Endeavor Translation
 			target.attack_log += text("\[[time_stamp()]\] [span_orange("Attacked by [user_str]: [what_done]")]")
 			var/datum/db_query/query_insert = SSdbcore.NewQuery("INSERT INTO erro_attacklog (id, time, ckey, mob, message) VALUES (null, NOW(), :t_ckey, :t_mob, :t_content)", list("t_ckey" = target.ckey, "t_mob" = target.real_name, "t_content" = "<font color='orange'>Attacked by [user_str]: [what_done]</font>"))
+			*/
+			target.attack_log += text("\[[time_stamp()]\] [span_orange("[verb_ru(user, "Атакован;;а;о;ы")] [user_str]: [what_done]")]")
+			var/datum/db_query/query_insert = SSdbcore.NewQuery("INSERT INTO erro_attacklog (id, time, ckey, mob, message) VALUES (null, NOW(), :t_ckey, :t_mob, :t_content)", list("t_ckey" = target.ckey, "t_mob" = target.real_name, "t_content" = "<font color='orange'>[verb_ru(user, "Атакован;;а;о;ы")] [user_str]: [what_done]</font>"))
+			// End of Bastion of Endeavor Translation
 			spawn() //Change this to a spawn so it doesn't hold us up
 				if(query_insert)
 					query_insert.Execute(async=use_async)
@@ -178,7 +196,11 @@ Proc for attack log creation, because really why not
 	//CHOMPEdit End
 	log_attack(user_str,target_str,what_done)
 	if(admin_notify)
+		/* Bastion of Endeavor Translation
 		msg_admin_attack("[key_name_admin(user)] vs [target_str]: [what_done]")
+		*/
+		msg_admin_attack("[key_name_admin(user)] против [target_str]: [what_done]")
+		// End of Bastion of Endeavor Translation
 
 //checks whether this item is a module of the robot it is located in.
 /proc/is_robot_module(var/obj/item/thing)
@@ -200,10 +222,18 @@ Proc for attack log creation, because really why not
 	if(!time)
 		return TRUE //Done!
 	if(user.status_flags & DOING_TASK)
+		/* Bastion of Endeavor Translation
 		to_chat(user, "<span class='warning'>You're in the middle of doing something else already.</span>")
+		*/ 
+		to_chat(user, "<span class='warning'>Вы уже в процессе выполнения другого действия.</span>")
+		// End of Bastion of Endeavor Translation
 		return FALSE //Performing an exclusive do_after or do_mob already
 	if(target?.flags & IS_BUSY)
+		/* Bastion of Endeavor Translation
 		to_chat(user, "<span class='warning'>Someone is already doing something with \the [target].</span>")
+		*/
+		to_chat(user, "<span class='warning'>Кто-то уже выполняет действие [prep_adv_ru("с", target, ICASE)].</span>")
+		// End of Bastion of Endeavor Translation
 		return FALSE
 	var/user_loc = user.loc
 	var/target_loc = target.loc
@@ -266,10 +296,18 @@ Proc for attack log creation, because really why not
 	if(!delay)
 		return TRUE //Okay. Done.
 	if(user.status_flags & DOING_TASK)
+		/* Bastion of Endeavor Translation
 		to_chat(user, "<span class='warning'>You're in the middle of doing something else already.</span>")
+		*/
+		to_chat(user, "<span class='warning'>Вы уже в процессе выполнения другого действия.</span>")
+		// End of Bastion of Endeavor Translation
 		return FALSE //Performing an exclusive do_after or do_mob already
 	if(target?.flags & IS_BUSY)
+		/* Bastion of Endeavor Translation
 		to_chat(user, "<span class='warning'>Someone is already doing something with \the [target].</span>")
+		*/
+		to_chat(user, "<span class='warning'>Кто-то уже выполняет действие [prep_adv_ru("с", target, ICASE)].</span>")
+		// End of Bastion of Endeavor Translation
 		return FALSE
 
 	var/atom/target_loc = null
@@ -374,7 +412,12 @@ Proc for attack log creation, because really why not
 		cached_character_icons[cachekey] = .
 
 /proc/not_has_ooc_text(mob/user)
+	/* Bastion of Endeavor Translation
 	if (config.allow_Metadata && (!user.client?.prefs?.metadata || length(user.client.prefs.metadata) < 15))
 		to_chat(user, "<span class='warning'>Please set informative OOC notes related to RP/ERP preferences. Set them using the 'OOC Notes' button on the 'General' tab in character setup.</span>")
+	*/
+	if (config.allow_Metadata && (!user.client?.prefs?.metadata || length_char(user.client.prefs.metadata) < 15))
+		to_chat(user, "<span class='warning'>Пожалуйста, добавьте для своего персонажа информативные Примечания OOC, относящиеся к пожеланиям в ролевом отыгрыше. Это можно сделать на вкладке Общее в Редакторе персонажа.</span>")
+	// End of Bastion of Endeavor Translation
 		return TRUE
 	return FALSE

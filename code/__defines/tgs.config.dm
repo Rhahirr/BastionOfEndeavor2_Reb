@@ -3,9 +3,15 @@
 #define TGS_READ_GLOBAL(Name) GLOB.##Name
 #define TGS_WRITE_GLOBAL(Name, Value) GLOB.##Name = ##Value
 #define TGS_WORLD_ANNOUNCE(message) to_chat(world, "<span class='boldannounce'>[html_encode(##message)]</span>")
+/* Bastion of Endeavor Translation
 #define TGS_INFO_LOG(message) log_to_dd("TGS Info: [##message]")
 #define TGS_WARNING_LOG(message) log_to_dd("TGS Warn: [##message]")
 #define TGS_ERROR_LOG(message) log_to_dd("TGS Error: [##message]")
+*/
+#define TGS_INFO_LOG(message) log_to_dd("Информация TGS: [##message]")
+#define TGS_WARNING_LOG(message) log_to_dd("Предупреждение TGS: [##message]")
+#define TGS_ERROR_LOG(message) log_to_dd("Ошибка TGS: [##message]")
+// End of Bastion of Endeavor Translation
 #define TGS_NOTIFY_ADMINS(event) message_admins(##event)
 #define TGS_CLIENT_COUNT GLOB.clients.len
 #define TGS_PROTECT_DATUM(Path) GENERAL_PROTECT_DATUM(##Path)

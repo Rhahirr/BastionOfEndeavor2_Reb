@@ -26,14 +26,22 @@
 /proc/callHook(hook, list/args=null)
 	var/hook_path = text2path("/hook/[hook]")
 	if(!hook_path)
+		/* Bastion of Endeavor Translation
 		error("Invalid hook '/hook/[hook]' called.")
+		*/
+		error("Вызван недопустимый хук '/hook/[hook]'.")
+		// End of Bastion of Endeavor Translation
 		return 0
 
 	var/caller = new hook_path
 	var/status = 1
 	for(var/P in typesof("[hook_path]/proc"))
 		if(!call(caller, P)(arglist(args)))
+			/* Bastion of Endeavor Translation
 			error("Hook '[P]' failed or runtimed.")
+			*/
+			error("Хук '[P]' провалился или словил рантайм.")
+			// End of Bastion of Endeavor Translation
 			status = 0
 
 	return status

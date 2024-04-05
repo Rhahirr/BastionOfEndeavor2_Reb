@@ -45,6 +45,7 @@
 
 /datum/category_item/player_setup_item/vore/misc/content(var/mob/user)
 	. += "<br>"
+	/* Bastion of Endeavor Translation
 	. += "<b>Appear in Character Directory:</b> <a [pref.show_in_directory ? "class='linkOn'" : ""] href='?src=\ref[src];toggle_show_in_directory=1'><b>[pref.show_in_directory ? "Yes" : "No"]</b></a><br>"
 	. += "<b>Character Directory Vore Tag:</b> <a href='?src=\ref[src];directory_tag=1'><b>[pref.directory_tag]</b></a><br>"
 	. += "<b>Character Directory Gender:</b> <a href='?src=\ref[src];directory_gendertag=1'><b>[pref.directory_gendertag]</b></a><br>" // CHOMPStation Edit: Character Directory Update
@@ -55,45 +56,82 @@
 	. += "<b>Capture Crystal Preference:</b> <a [pref.capture_crystal ? "class='linkOn'" : ""] href='?src=\ref[src];toggle_capture_crystal=1'><b>[pref.capture_crystal ? "Yes" : "No"]</b></a><br>"
 	. += "<b>Spawn With Backup Implant:</b> <a [pref.auto_backup_implant ? "class='linkOn'" : ""] href='?src=\ref[src];toggle_implant=1'><b>[pref.auto_backup_implant ? "Yes" : "No"]</b></a><br>"
 	. += "<b>Allow petting as robot:</b> <a [pref.borg_petting ? "class='linkOn'" : ""] href='?src=\ref[src];toggle_borg_petting=1'><b>[pref.borg_petting ? "Yes" : "No"]</b></a><br>"
+	*/
+	. += "<b>Режим датчиков одежды:</b> <a [pref.sensorpref ? "" : ""] href='?src=\ref[src];toggle_sensor_setting=1'><b>[sensorpreflist[pref.sensorpref]]</b></a><br>"
+	. += "<b>Разрешить заключение в кристалл:</b> <a [pref.capture_crystal ? "class='linkOn'" : ""] href='?src=\ref[src];toggle_capture_crystal=1'><b>[pref.capture_crystal ? "Да" : "Нет"]</b></a><br>"
+	. += "<b>Имплантат резервного копирования:</b> <a [pref.auto_backup_implant ? "class='linkOn'" : ""] href='?src=\ref[src];toggle_implant=1'><b>[pref.auto_backup_implant ? "Да" : "Нет"]</b></a><br>"
+	. += "<br><b>Теги в Списке персонажей</b><br>"
+	. += "<a [pref.show_in_directory ? "class='linkOn'" : ""] href='?src=\ref[src];toggle_show_in_directory=1'><b>[pref.show_in_directory ? "Отображать в Списке персонажей" : "Отображать в Списке персонажей"]</b></a><br>"
+	. += "<table><tr><td>Роль в Vore:</td><td><a href='?src=\ref[src];directory_tag=1'><b>[pref.directory_tag]</b></a></td></tr>"
+	. += "<tr><td>Роль в ERP:</td><td><a href='?src=\ref[src];directory_erptag=1'><b>[pref.directory_erptag]</b></a></td></tr>"
+	. += "<tr><td>Гендер:</td><td><a href='?src=\ref[src];directory_gendertag=1'><b>[pref.directory_gendertag]</b></a></td></tr>" // CHOMPStation Edit: Character Directory Update
+	. += "<tr><td>Ориентация:</td><td><a href='?src=\ref[src];directory_sexualitytag=1'><b>[pref.directory_sexualitytag]</b></a></td></tr>" // CHOMPStation Edit: Character Directory Update
+	. += "<tr><td>Объявление:</td><td><a href='?src=\ref[src];directory_ad=1'><b>Установить</b></a></td></tr></table><br>"
+	. += "<b><a [pref.borg_petting ? "class='linkOn'" : ""] href='?src=\ref[src];toggle_borg_petting=1'><b>[pref.borg_petting ? "Допускать" : "Не допускать"]</b></a> поглаживания, будучи роботом</b><br>"
+	// End of Bastion of Endeavor Translation
 
 /datum/category_item/player_setup_item/vore/misc/OnTopic(var/href, var/list/href_list, var/mob/user)
 	if(href_list["toggle_show_in_directory"])
 		pref.show_in_directory = pref.show_in_directory ? 0 : 1;
 		return TOPIC_REFRESH
 	else if(href_list["directory_tag"])
+		/* Bastion of Endeavor Translation
 		var/new_tag = tgui_input_list(user, "Pick a new Vore tag for the character directory", "Character Vore Tag", GLOB.char_directory_tags, pref.directory_tag)
+		*/
+		var/new_tag = tgui_input_list(user, "Укажите роль в Vore для Списка персонажей:", "Роль в Vore", GLOB.char_directory_tags, pref.directory_tag)
+		// End of Bastion of Endeavor Translation
 		if(!new_tag)
 			return
 		pref.directory_tag = new_tag
 		return TOPIC_REFRESH
 	// CHOMPStation Edit Start: Directory Update
 	else if(href_list["directory_gendertag"])
+		/* Bastion of Endeavor Translation
 		var/new_gendertag = tgui_input_list(user, "Pick a new Gender tag for the character directory. This is YOUR gender, not what you prefer.", "Character Gender Tag", GLOB.char_directory_gendertags, pref.directory_gendertag)
+		*/
+		var/new_gendertag = tgui_input_list(user, "Укажите гендер вашего персонажа для Списка персонажей.", "Пол персонажа", GLOB.char_directory_gendertags, pref.directory_gendertag)
+		// End of Bastion of Endeavor Translation
 		if(!new_gendertag)
 			return
 		pref.directory_gendertag = new_gendertag
 		return TOPIC_REFRESH
 	else if(href_list["directory_sexualitytag"])
+		/* Bastion of Endeavor Translation
 		var/new_sexualitytag = tgui_input_list(user, "Pick a new Sexuality/Orientation tag for the character directory", "Character Sexuality/Orientation Tag", GLOB.char_directory_sexualitytags, pref.directory_sexualitytag)
+		*/
+		var/new_sexualitytag = tgui_input_list(user, "Укажите ориентацию вашего персонажа для Списка персонажей.", "Ориентация персонажа", GLOB.char_directory_sexualitytags, pref.directory_sexualitytag)
+		// End of Bastion of Endeavor Translation
 		if(!new_sexualitytag)
 			return
 		pref.directory_sexualitytag = new_sexualitytag
 		return TOPIC_REFRESH
 	// CHOMPStation Edit End: Directory Update
 	else if(href_list["directory_erptag"])
+		/* Bastion of Endeavor Translation
 		var/new_erptag = tgui_input_list(user, "Pick a new ERP tag for the character directory", "Character ERP Tag", GLOB.char_directory_erptags, pref.directory_erptag)
+		*/
+		var/new_erptag = tgui_input_list(user, "Укажите роль в ERP для Списка персонажей:", "Роль в ERP", GLOB.char_directory_erptags, pref.directory_erptag)
+		// End of Bastion of Endeavor Translation
 		if(!new_erptag)
 			return
 		pref.directory_erptag = new_erptag
 		return TOPIC_REFRESH
 	else if(href_list["directory_ad"])
+		/* Bastion of Endeavor Translation
 		var/msg = sanitize(tgui_input_text(user,"Write your advertisement here!", "Flavor Text", html_decode(pref.directory_ad), multiline = TRUE, prevent_enter = TRUE), extra = 0)	//VOREStation Edit: separating out OOC notes
+		*/
+		var/msg = sanitize(tgui_input_text(user,"Введите объявление для своего персонажа!", "Объявление", html_decode(pref.directory_ad), multiline = TRUE, prevent_enter = TRUE), extra = 0)	//VOREStation Edit: separating out OOC notes
+		// End of Bastion of Endeavor Translation
 		if(!msg)
 			return
 		pref.directory_ad = msg
 		return TOPIC_REFRESH
 	else if(href_list["toggle_sensor_setting"])
+		/* Bastion of Endeavor Translation
 		var/new_sensorpref = tgui_input_list(user, "Choose your character's sensor preferences:", "Character Preferences", sensorpreflist, sensorpreflist[pref.sensorpref])
+		*/
+		var/new_sensorpref = tgui_input_list(user, "Укажите предпочитаемый режим датчиков одежды:", "Режим датчиков", sensorpreflist, sensorpreflist[pref.sensorpref])
+		// End of Bastion of Endeavor Translation
 		if (!isnull(new_sensorpref) && CanUseTopic(user))
 			pref.sensorpref = sensorpreflist.Find(new_sensorpref)
 			return TOPIC_REFRESH

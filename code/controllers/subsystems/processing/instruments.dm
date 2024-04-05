@@ -1,5 +1,9 @@
 PROCESSING_SUBSYSTEM_DEF(instruments)
+	/* Bastion of Endeavor Translation
 	name = "Instruments"
+	*/
+	name = "Музыкальные инструменты"
+	// End of Bastion of Endeavor Translation
 	wait = 0.5
 	init_order = INIT_ORDER_INSTRUMENTS
 	flags = SS_KEEP_TIMING

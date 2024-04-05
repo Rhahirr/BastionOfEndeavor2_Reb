@@ -11,7 +11,11 @@
 
 
 /datum/action
+	/* Bastion of Endeavor Translation
 	var/name = "Generic Action"
+	*/
+	var/name = "Некое действие"
+	// End of Bastion of Endeavor Translation
 	var/action_type = AB_ITEM
 	var/procname = null
 	var/atom/movable/target = null
@@ -152,7 +156,11 @@
 
 //Hide/Show Action Buttons ... Button
 /obj/screen/movable/action_button/hide_toggle
+	/* Bastion of Endeavor Translation
 	name = "Hide Buttons"
+	*/
+	name = "Скрыть кнопки"
+	// End of Bastion of Endeavor Translation
 	icon = 'icons/mob/actions.dmi'
 	icon_state = "bg_default"
 	var/hidden = 0
@@ -162,9 +170,17 @@
 
 	hidden = usr.hud_used.action_buttons_hidden
 	if(hidden)
+		/* Bastion of Endeavor Translation
 		name = "Show Buttons"
+		*/
+		name = "Показать кнопки"
+		// End of Bastion of Endeavor Translation
 	else
+		/* Bastion of Endeavor Translation
 		name = "Hide Buttons"
+		*/
+		name = "Скрыть кнопки"
+		// End of Bastion of Endeavor Translation
 	UpdateIcon()
 	usr.update_action_buttons()
 

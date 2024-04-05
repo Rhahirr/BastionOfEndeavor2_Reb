@@ -16,7 +16,11 @@
 	var/list/channels_to_use = list()
 	for(var/I in world.TgsChatChannelInfo())
 		var/datum/tgs_chat_channel/channel = I
+		/* Bastion of Endeavor Unicode Edit: Better safe than sorry
 		var/list/applicable_tags = splittext(channel.tag, ",")
+		*/
+		var/list/applicable_tags = splittext_char(channel.tag, ",")
+		// End of Bastion of Endeavor Unicode Edit
 		if(channel_tag in applicable_tags)
 			channels_to_use += channel
 
@@ -30,6 +34,11 @@
   * message - The message to send.
   */
 /proc/send2adminchat(category, message)
+	/* Bastion of Endeavor Unicode Edit
 	category = replacetext(replacetext(category, "\proper", ""), "\improper", "")
 	message = replacetext(replacetext(message, "\proper", ""), "\improper", "")
+	*/
+	category = replacetext_char(replacetext_char(category, "\proper", ""), "\improper", "")
+	message = replacetext_char(replacetext_char(message, "\proper", ""), "\improper", "")
+	// End of Bastion of Endeavor Unicode Edit
 	world.TgsTargetedChatBroadcast("[category] | [message]", TRUE)

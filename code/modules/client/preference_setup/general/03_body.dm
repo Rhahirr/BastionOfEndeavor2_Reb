@@ -65,7 +65,12 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		tail_style = null
 
 /datum/preferences/proc/get_available_styles(var/style_list)
+	/* Bastion of Endeavor Translation: There's no way to translate this to make sense because for some reason normal ears and wings means a lack of thereof but not the tails
 	. = list("Normal" = null)
+	*/
+	. = list("\[ Сбросить \]" = null)
+	// End of Bastion of Endeavor Translation
+
 	for(var/path in style_list)
 		var/datum/sprite_accessory/instance = style_list[path]
 		if(!istype(instance))
@@ -74,6 +79,10 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			continue
 		if(instance.species_allowed && (!species || !(species in instance.species_allowed)) && (!client || !check_rights(R_ADMIN | R_EVENT | R_FUN, 0, client)) && (!custom_base || !(custom_base in instance.species_allowed))) //VOREStation Edit: Custom Species
 			continue
+		// Bastion of Endeavor Addition: This is hacky but if no one is fixing these entries, fine I'll do it myself
+		if(instance.name == "Вы не должны видеть этот текст...")
+			continue
+		// End of Bastion of Endeavor Addition
 		.[instance.name] = instance
 
 /datum/preferences/proc/mass_edit_marking_list(var/marking, var/change_on = TRUE, var/change_color = TRUE, var/marking_value = null, var/on = TRUE, var/color = "#000000")
@@ -382,7 +391,11 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 	character.set_gender(pref.biological_gender)
 
+	/* Bastion of Endeavor Translation
 	if(pref.species == "Grey")//YWadd START
+	*/
+	if(pref.species == "Серый")//YWadd START
+	// End of Bastion of Endeavor Translation
 		character.wingdings = pref.wingdings
 
 	if(pref.colorblind_mono == 1)
@@ -400,7 +413,11 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 	// Destroy/cyborgize organs and limbs.
 	//VOREStation Edit
+	/* Bastion of Endeavor Translation: Bastion of Endeavor TODO: Might need to be rolled back depending on species localization
 	character.synthetic = pref.species == "Protean" ? all_robolimbs["protean"] : null //Clear the existing var. (unless protean, then switch it to the normal protean limb)
+	*/
+	character.synthetic = pref.species == SPECIES_PROTEAN ? all_robolimbs["protean"] : null
+	// End of Bastion of Endeavor Translation
 	var/list/organs_to_edit = list()
 	for (var/name in list(BP_TORSO, BP_HEAD, BP_GROIN, BP_L_ARM, BP_R_ARM, BP_L_HAND, BP_R_HAND, BP_L_LEG, BP_R_LEG, BP_L_FOOT, BP_R_FOOT))
 		var/obj/item/organ/external/O = character.organs_by_name[name]
@@ -474,6 +491,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	. = list()
 
 	var/datum/species/mob_species = GLOB.all_species[pref.species]
+	/* Bastion of Endeavor Translation
 	. += "<table><tr style='vertical-align:top'><td><b>Body</b> "
 	. += "(<a href='?src=\ref[src];random=1'>&reg;</A>)"
 	. += "<br>"
@@ -485,6 +503,18 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	//YWcommented moved onto disabilities. += "Needs Glasses: <a href='?src=\ref[src];disabilities=[NEARSIGHTED]'><b>[pref.disabilities & NEARSIGHTED ? "Yes" : "No"]</b></a><br>"
 	. += "Limbs: <a href='?src=\ref[src];limbs=1'>Adjust</a> <a href='?src=\ref[src];reset_limbs=1'>Reset</a><br>"
 	. += "Internal Organs: <a href='?src=\ref[src];organs=1'>Adjust</a><br>"
+	*/
+	. += "<table><tr style='vertical-align:top'><td><b>Тело</b> "
+	// . += "(<a href='?src=\ref[src];random=1'>&reg;</A>)" // this does nothing, i'm removing this
+	. += "<br>"
+	. += "Раса: <a href='?src=\ref[src];show_species=1'>[pref.species]</a><br>"
+	. += "Группа крови: <a href='?src=\ref[src];blood_type=1'>[pref.b_type]</a><br>"
+	if(has_flag(mob_species, HAS_SKIN_TONE))
+		. += "Тон кожи: <a href='?src=\ref[src];skin_tone=1'>[-pref.s_tone + 35]/220</a><br>" // i dont think this is still relevant but sure?
+	. += "Инвалидность: <a href='?src=\ref[src];disabilities_yw=1'>Настроить</a><br>" // YWadd
+	. += "Части тела: <a href='?src=\ref[src];limbs=1'>Настроить</a><a href='?src=\ref[src];reset_limbs=1'>Сбросить</a><br>"
+	. += "Внутренние органы: <a href='?src=\ref[src];organs=1'>Настроить</a><br>"
+	// End of Bastion of Endeavor Translation
 	//display limbs below
 	var/ind = 0
 	for(var/name in pref.organ_data)
@@ -492,6 +522,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		var/organ_name = null
 
 		switch(name)
+			/* Bastion of Endeavor Translation: UGH
 			if(BP_TORSO)
 				organ_name = "torso"
 			if(BP_GROIN)
@@ -534,41 +565,121 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 				organ_name = "stomach"
 			if(O_INTESTINE)
 				organ_name = "intestines"
+			*/
+			if(BP_TORSO)
+				organ_name = "торс"
+			if(BP_GROIN)
+				organ_name = "пах"
+			if(BP_HEAD)
+				organ_name = "голова"
+			if(BP_L_ARM)
+				organ_name = "левая рука"
+			if(BP_R_ARM)
+				organ_name = "правая рука"
+			if(BP_L_LEG)
+				organ_name = "левая нога"
+			if(BP_R_LEG)
+				organ_name = "правая нога"
+			if(BP_L_FOOT)
+				organ_name = "левая ступня"
+			if(BP_R_FOOT)
+				organ_name = "правая ступня"
+			if(BP_L_HAND)
+				organ_name = "левая ладонь"
+			if(BP_R_HAND)
+				organ_name = "правая ладонь"
+			if(O_HEART)
+				organ_name = "сердце"
+			if(O_EYES)
+				organ_name = "глаза"
+			if(O_VOICE)
+				organ_name = "гортань"
+			if(O_BRAIN)
+				organ_name = "мозг"
+			if(O_LUNGS)
+				organ_name = "лёгкие"
+			if(O_LIVER)
+				organ_name = "печень"
+			if(O_KIDNEYS)
+				organ_name = "почки"
+			if(O_SPLEEN)
+				organ_name = "селезёнка"
+			if(O_STOMACH)
+				organ_name = "желудок"
+			if(O_INTESTINE)
+				organ_name = "кишечник"
+			// End of Bastion of Endeavor Translation
 
 		if(status == "cyborg")
 			++ind
 			if(ind > 1)
+				/* Bastion of Endeavor Translation: not really a translation buuuuuuuut
 				. += ", "
+				*/
+				. += "<br>"
+				// End of Bastion of Endeavor Translation
 			var/datum/robolimb/R
 			if(pref.rlimb_data[name] && all_robolimbs[pref.rlimb_data[name]])
 				R = all_robolimbs[pref.rlimb_data[name]]
 			else
 				R = basic_robolimb
+			/* Bastion of Endeavor Translation
 			. += "\t[R.company] [organ_name] prosthesis"
+			*/
+			. += "\t– [non_type_verb_ru(morphable_1 = "простетическ;ий ;ая ;ое ;ие ", noun = organ_name, after_word = " ([R.company])")]"
+			// End of Bastion of Endeavor Translation
 		else if(status == "amputated")
 			++ind
 			if(ind > 1)
+				/* Bastion of Endeavor Translation
 				. += ", "
 			. += "\tAmputated [organ_name]"
+				*/
+				. += "<br>"
+			. += "\t– [non_type_verb_ru(morphable_1 = "ампутированн;ый ;ая ;ое ;ые ", noun = organ_name)]"
+				// End of Bastion of Endeavor Translation
 		else if(status == "mechanical")
 			++ind
 			if(ind > 1)
+				/* Bastion of Endeavor Translation
 				. += ", "
+				*/
+				. += "<br>"
+				// End of Bastion of Endeavor Translation
 			switch(organ_name)
+				/* Bastion of Endeavor Translation
 				if ("brain")
 					. += "\tPositronic [organ_name]"
+				*/
+				if ("мозг")
+					. += "\t– [non_type_verb_ru(morphable_1 = "позитронн;ый ;ая ;ое ;ые ", noun = organ_name)]"
+				// End of Bastion of Endeavor Translation
 				else
+					/* Bastion of Endeavor Translation
 					. += "\tSynthetic [organ_name]"
+					*/
+					. += "\t– [non_type_verb_ru(morphable_1 = "синтетическ;ий ;ая ;ое ;ие ", noun = organ_name)]"
+					// End of Bastion of Endeavor Translation
 		else if(status == "digital")
 			++ind
 			if(ind > 1)
+				/* Bastion of Endeavor Translation
 				. += ", "
 			. += "\tDigital [organ_name]"
+				*/
+				. += "<br>"
+			. += "\t– [non_type_verb_ru(morphable_1 = "цифров;ой ;ая ;ое ;ые ", noun = organ_name)]"
+				// End of Bastion of Endeavor Translation
 		else if(status == "assisted")
 			++ind
 			if(ind > 1)
+				/* Bastion of Endeavor Translation
 				. += ", "
+				*/
+				. += "<br>"
+				// End of Bastion of Endeavor Translation
 			switch(organ_name)
+				/* Bastion of Endeavor Translation
 				if("heart")
 					. += "\tPacemaker-assisted [organ_name]"
 				if("lungs")
@@ -581,18 +692,41 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 					. += "\tAssisted-interface [organ_name]"
 				else
 					. += "\tMechanically assisted [organ_name]"
+				*/
+				if("сердце")
+					. += "\t– кардиостимулируемое сердце"
+				if("лёгкие")
+					. += "\t– искусственно усиленные лёгкие"
+				if("гортань")
+					. += "\t– модифицированная гортань"
+				if("глаза")
+					. += "\t– глаза с искусственной сетчаткой"
+				if("мозг")
+					. += "\t– вспомогательный мозговой интерфейс"
+				else
+					. += "\t– [non_type_verb_ru(morphable_1 = "полумеханическ;ий ;ая ;ое ;ие ", noun = organ_name)]"
+				// End of Bastion of Endeavor Translation
+	/* Bastion of Endeavor Edit: Really don't see the point of this
 	if(!ind)
 		. += "\[...\]<br><br>"
 	else
 		. += "<br><br>"
+	*/
+	. += "<br>"
+	// End of Bastion of Endeavor Edit
 
 	if(LAZYLEN(pref.body_descriptors))
 		. += "<table>"
 		for(var/entry in pref.body_descriptors)
 			var/datum/mob_descriptor/descriptor = mob_species.descriptors[entry]
+			/* Bastion of Endeavor Translation: do we need this?
 			. += "<tr><td><b>[capitalize(descriptor.chargen_label)]:</b></td><td>[descriptor.get_standalone_value_descriptor(pref.body_descriptors[entry])]</td><td><a href='?src=\ref[src];change_descriptor=[entry]'>Change</a><br/></td></tr>"
+			*/
+			. += "<tr><td><b>[capitalize(descriptor.chargen_label)]:</b></td><td>[descriptor.get_standalone_value_descriptor(pref.body_descriptors[entry])]</td><td><a href='?src=\ref[src];change_descriptor=[entry]'>Изменить</a><br/></td></tr>"
+			// End of Bastion of Endeavor Translation
 		. += "</table><br>"
 
+	/* Bastion of Endeavor Translation
 	. += "</td><td><b>Preview</b><br>"
 	. += "<br><a href='?src=\ref[src];cycle_bg=1'>Cycle background</a>"
 	. += "<br><a href='?src=\ref[src];toggle_preview_value=[EQUIP_PREVIEW_LOADOUT]'>[pref.equip_preview_mob & EQUIP_PREVIEW_LOADOUT ? "Hide loadout" : "Show loadout"]</a>"
@@ -601,7 +735,17 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	. += "</td></tr></table>"
 
 	. += "<b>Hair</b><br>"
+	*/
+	. += "</td><td><b>Предпросмотр</b><br>"
+	. += "<br><a href='?src=\ref[src];cycle_bg=1'>Сменить фон</a>"
+	. += "<br><a href='?src=\ref[src];toggle_preview_value=[EQUIP_PREVIEW_LOADOUT]'>[pref.equip_preview_mob & EQUIP_PREVIEW_LOADOUT ? "Скрыть личные вещи" : "Показать личные вещи"]</a>"
+	. += "<br><a href='?src=\ref[src];toggle_preview_value=[EQUIP_PREVIEW_JOB]'>[pref.equip_preview_mob & EQUIP_PREVIEW_JOB ? "Скрыть униформу" : "Показать униформу"]</a>"
+	. += "<br><a href='?src=\ref[src];toggle_animations=1'>[pref.animations_toggle ? "Выключить анимации" : "Включить анимации"]</a>"
+	. += "</td></tr></table>"
+	. += "<b>Причёска</b><br>"
+	// End of Bastion of Endeavor Translation
 	if(has_flag(mob_species, HAS_HAIR_COLOR))
+	/* Bastion of Endeavor Translation
 		. += "<a href='?src=\ref[src];hair_color=1'>Change Color</a> [color_square(pref.r_hair, pref.g_hair, pref.b_hair)] "
 	. += " Style: <a href='?src=\ref[src];hair_style_left=[pref.h_style]'><</a> <a href='?src=\ref[src];hair_style_right=[pref.h_style]''>></a> <a href='?src=\ref[src];hair_style=1'>[pref.h_style]</a><br>" //The <</a> & ></a> in this line is correct-- those extra characters are the arrows you click to switch between styles.
 
@@ -610,25 +754,57 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	. += " Style: <a href='?src=\ref[src];grad_style_left=[pref.grad_style]'><</a> <a href='?src=\ref[src];grad_style_right=[pref.grad_style]''>></a> <a href='?src=\ref[src];grad_style=1'>[pref.grad_style]</a><br>"
 
 	. += "<br><b>Facial</b><br>"
+	*/
+		. += "<a href='?src=\ref[src];hair_color=1'>Выбрать цвет</a> [color_square(pref.r_hair, pref.g_hair, pref.b_hair)] "
+	. += " Вид: <a href='?src=\ref[src];hair_style_left=[pref.h_style]'><</a> <a href='?src=\ref[src];hair_style_right=[pref.h_style]''>></a> <a href='?src=\ref[src];hair_style=1'>[pref.h_style]</a><br>"
+	. += "<b>Градиент</b><br>"
+	. += "<a href='?src=\ref[src];grad_color=1'>Выбрать цвет</a> [color_square(pref.r_grad, pref.g_grad, pref.b_grad)] "
+	. += " Вид: <a href='?src=\ref[src];grad_style_left=[pref.grad_style]'><</a> <a href='?src=\ref[src];grad_style_right=[pref.grad_style]''>></a> <a href='?src=\ref[src];grad_style=1'>[pref.grad_style]</a><br>"
+	. += "<br><b>Лицевая растительность</b><br>"
+	// End of Bastion of Endeavor Translation
 	if(has_flag(mob_species, HAS_HAIR_COLOR))
+		/* Bastion of Endeavor Translation
 		. += "<a href='?src=\ref[src];facial_color=1'>Change Color</a> [color_square(pref.r_facial, pref.g_facial, pref.b_facial)] "
 	. += " Style: <a href='?src=\ref[src];facial_style_left=[pref.f_style]'><</a> <a href='?src=\ref[src];facial_style_right=[pref.f_style]''>></a> <a href='?src=\ref[src];facial_style=1'>[pref.f_style]</a><br>" //Same as above with the extra > & < characters
+		*/
+		. += "<a href='?src=\ref[src];facial_color=1'>Выбрать цвет</a> [color_square(pref.r_facial, pref.g_facial, pref.b_facial)] "
+	. += " Вид: <a href='?src=\ref[src];facial_style_left=[pref.f_style]'><</a> <a href='?src=\ref[src];facial_style_right=[pref.f_style]''>></a> <a href='?src=\ref[src];facial_style=1'>[pref.f_style]</a><br>"
+		// End of Bastion of Endeavor Translation
 
 	if(has_flag(mob_species, HAS_EYE_COLOR))
+		/* Bastion of Endeavor Translation
 		. += "<br><b>Eyes</b><br>"
 		. += "<a href='?src=\ref[src];eye_color=1'>Change Color</a> [color_square(pref.r_eyes, pref.g_eyes, pref.b_eyes)]<br>"
+		*/
+		. += "<br><b>Глаза</b><br>"
+		. += "<a href='?src=\ref[src];eye_color=1'>Выбрать цвет</a> [color_square(pref.r_eyes, pref.g_eyes, pref.b_eyes)]<br>"
+		// End of Bastion of Endeavor Translation
 
 	if(has_flag(mob_species, HAS_SKIN_COLOR))
+		/* Bastion of Endeavor Translation
 		. += "<br><b>Body Color</b><br>"
 		. += "<a href='?src=\ref[src];skin_color=1'>Change Color</a> [color_square(pref.r_skin, pref.g_skin, pref.b_skin)]<br>"
+		*/
+		. += "<br><b>Цвет тела</b><br>"
+		. += "<a href='?src=\ref[src];skin_color=1'>Выбрать цвет</a> [color_square(pref.r_skin, pref.g_skin, pref.b_skin)]<br>"
+		// End of Bastion of Endeavor Translation
 
 	if(mob_species.digi_allowed)
+		/* Bastion of Endeavor Translation
 		. += "<br><b>Digitigrade?:</b> <a href='?src=\ref[src];digitigrade=1'><b>[pref.digitigrade ? "Yes" : "No"]</b></a><br>"
+		*/
+		. += "<br><b>Пальцехождение:</b> <a href='?src=\ref[src];digitigrade=1'><b>[pref.digitigrade ? "Да" : "Нет"]</b></a><br>"
+		// End of Bastion of Endeavor Translation
 
+	/* Bastion of Endeavor Translation
 	. += "<h2>Genetics Settings</h2>"
+	*/
+	. += "<h2>Особенности</h2>"
+	// End of Bastion of Endeavor Translation
 
 	var/list/ear_styles = pref.get_available_styles(global.ear_styles_list)
 	var/datum/sprite_accessory/ears/ear = ear_styles[pref.ear_style]
+	/* Bastion of Endeavor Translation
 	. += "<b>Ears</b><br>"
 	if(istype(ear))
 		. += " Style: <a href='?src=\ref[src];ear_style=1'>[ear.name]</a><br>"
@@ -640,9 +816,23 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			. += "<a href='?src=\ref[src];ear_color3=1'>Change Tertiary Color</a> [color_square(pref.r_ears3, pref.g_ears3, pref.b_ears3)]<br>"
 	else
 		. += " Style: <a href='?src=\ref[src];ear_style=1'>Select</a><br>"
+	*/
+	. += "<b>Голова (уши, рога, усики)</b><br>"
+	if(istype(ear))
+		. += " Вид: <a href='?src=\ref[src];ear_left=[pref.ear_style]'><</a> <a href='?src=\ref[src];ear_right=[pref.ear_style]''>></a> <a href='?src=\ref[src];ear_style=1'>[ear.name]</a><br>"
+		if(ear.do_colouration)
+			. += "<a href='?src=\ref[src];ear_color=1'>Выбрать цвет</a> [color_square(pref.r_ears, pref.g_ears, pref.b_ears)]<br>"
+		if(ear.extra_overlay)
+			. += "<a href='?src=\ref[src];ear_color2=1'>Выбрать второй цвет</a> [color_square(pref.r_ears2, pref.g_ears2, pref.b_ears2)]<br>"
+		if(ear.extra_overlay2)
+			. += "<a href='?src=\ref[src];ear_color3=1'>Выбрать третий цвет</a> [color_square(pref.r_ears3, pref.g_ears3, pref.b_ears3)]<br>"
+	else
+		. += " Вид: <a href='?src=\ref[src];ear_style=1'>Выбрать</a><br>"
+	// End of Bastion of Endeavor Translation
 
 	var/list/tail_styles = pref.get_available_styles(global.tail_styles_list)
 	var/datum/sprite_accessory/tail/tail = tail_styles[pref.tail_style]
+	/* Bastion of Endeavor Translation
 	. += "<b>Tail</b><br>"
 	if(istype(tail))
 		. += " Style: <a href='?src=\ref[src];tail_style=1'>[tail.name]</a><br>"
@@ -654,9 +844,23 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			. += "<a href='?src=\ref[src];tail_color3=1'>Change Tertiary Color</a> [color_square(pref.r_tail3, pref.g_tail3, pref.b_tail3)]<br>"
 	else
 		. += " Style: <a href='?src=\ref[src];tail_style=1'>Select</a><br>"
+	*/
+	. += "<b>Нижняя часть тела (хвосты, тавровые туловища)</b><br>"
+	if(istype(tail))
+		. += " Вид: <a href='?src=\ref[src];tail_left=[pref.tail_style]'><</a> <a href='?src=\ref[src];tail_right=[pref.tail_style]''>></a> <a href='?src=\ref[src];tail_style=1'>[tail.name]</a><br>"
+		if(tail.do_colouration)
+			. += "<a href='?src=\ref[src];tail_color=1'>Выбрать цвет</a> [color_square(pref.r_tail, pref.g_tail, pref.b_tail)]<br>"
+		if(tail.extra_overlay)
+			. += "<a href='?src=\ref[src];tail_color2=1'>Выбрать второй цвет</a> [color_square(pref.r_tail2, pref.g_tail2, pref.b_tail2)]<br>"
+		if(tail.extra_overlay2)
+			. += "<a href='?src=\ref[src];tail_color3=1'>Выбрать третий цвет</a> [color_square(pref.r_tail3, pref.g_tail3, pref.b_tail3)]<br>"
+	else
+		. += " Вид: <a href='?src=\ref[src];tail_style=1'>Выбрать</a><br>"
+	// End of Bastion of Endeavor Translation
 
 	var/list/wing_styles = pref.get_available_styles(global.wing_styles_list)
 	var/datum/sprite_accessory/wing/wings = wing_styles[pref.wing_style]
+	/* Bastion of Endeavor Translation: might as well just grab all of it
 	. += "<b>Wing</b><br>"
 	if(istype(wings))
 		. += " Style: <a href='?src=\ref[src];wing_style=1'>[wings.name]</a><br>"
@@ -680,6 +884,30 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	. += "<b>Allow Synth color:</b> <a href='?src=\ref[src];synth_color=1'><b>[pref.synth_color ? "Yes" : "No"]</b></a><br>"
 	if(pref.synth_color)
 		. += "<a href='?src=\ref[src];synth2_color=1'>Change Color</a> [color_square(pref.r_synth, pref.g_synth, pref.b_synth)]"
+	*/
+	. += "<b>Спина (крылья, панцири)</b><br>"
+	if(istype(wings))
+		. += " Вид: <a href='?src=\ref[src];wing_style=1'>[wings.name]</a><br>"
+		if(wings.do_colouration)
+			. += "<a href='?src=\ref[src];wing_color=1'>Выбрать цвет</a> [color_square(pref.r_wing, pref.g_wing, pref.b_wing)]<br>"
+		if(wings.extra_overlay)
+			. += "<a href='?src=\ref[src];wing_color2=1'>Выбрать второй цвет</a> [color_square(pref.r_wing2, pref.g_wing2, pref.b_wing2)]<br>"
+		if(wings.extra_overlay2)
+			. += "<a href='?src=\ref[src];wing_color3=1'>Выбрать третий цвет</a> [color_square(pref.r_wing3, pref.g_wing3, pref.b_wing3)]<br>"
+	else
+		. += " Вид: <a href='?src=\ref[src];wing_style=1'>Выбрать</a><br>"
+
+	. += "<br><a href='?src=\ref[src];marking_style=1'>Особенности тела +</a><br>"
+	. += "<table>"
+	for(var/M in pref.body_markings)
+		. += "<tr><td>[M]</td><td>[pref.body_markings.len > 1 ? "<a href='?src=\ref[src];marking_up=[M]'>&#708;</a> <a href='?src=\ref[src];marking_down=[M]'>&#709;</a> <a href='?src=\ref[src];marking_move=[M]'>mv</a> " : ""]<a href='?src=\ref[src];marking_remove=[M]'>-</a> <a href='?src=\ref[src];marking_color=[M]'>Цвет</a> [color_square(hex = pref.body_markings[M]["color"] ? pref.body_markings[M]["color"] : "#000000")] <a href='?src=\ref[src];marking_submenu=[M]'>Настроить</a></td></tr>"
+	. += "</table>"
+	. += "<br>"
+	. += "<b>Особенности тела поверх синтетических частей:</b> <a href='?src=\ref[src];synth_markings=1'><b>[pref.synth_markings ? "Да" : "Нет"]</b></a><br>"
+	. += "<b>Цвет поверх синтетических частей:</b> <a href='?src=\ref[src];synth_color=1'><b>[pref.synth_color ? "Да" : "Нет"]</b></a><br>"
+	if(pref.synth_color)
+		. += "<a href='?src=\ref[src];synth2_color=1'>Выбрать цвет</a> [color_square(pref.r_synth, pref.g_synth, pref.b_synth)]"
+	// End of Bastion of Endeavor Translation
 
 	. = jointext(.,null)
 
@@ -698,20 +926,32 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			var/desc_id = href_list["change_descriptor"]
 			if(pref.body_descriptors[desc_id])
 				var/datum/mob_descriptor/descriptor = mob_species.descriptors[desc_id]
+				/* Bastion of Endeavor Translation: A bit iffy about this, might need to get looked at for mob localization
 				var/choice = tgui_input_list(usr, "Please select a descriptor.", "Descriptor", descriptor.chargen_value_descriptors)
+				*/
+				var/choice = tgui_input_list(usr, "Выберите описание.", "Описание", descriptor.chargen_value_descriptors)
+				// End of Bastion of Endeavor Translation
 				if(choice && mob_species.descriptors[desc_id]) // Check in case they sneakily changed species.
 					pref.body_descriptors[desc_id] = descriptor.chargen_value_descriptors[choice]
 					return TOPIC_REFRESH
 
 	else if(href_list["blood_type"])
+		/* Bastion of Endeavor Translation
 		var/new_b_type = tgui_input_list(user, "Choose your character's blood-type:", "Character Preference", valid_bloodtypes)
+		*/
+		var/new_b_type = tgui_input_list(user, "Выберите группу крови вашего персонажа:", "Группа крови", valid_bloodtypes)
+		// End of Bastion of Endeavor Translation
 		if(new_b_type && CanUseTopic(user))
 			pref.b_type = new_b_type
 			return TOPIC_REFRESH
 
 	else if(href_list["show_species"])
 		// Actual whitelist checks are handled elsewhere, this is just for accessing the preview window.
+		/* Bastion of Endeavor Translation
 		var/choice = tgui_input_list(usr, "Which species would you like to look at?", "Species Choice", GLOB.playable_species)
+		*/
+		var/choice = tgui_input_list(usr, "Выберите интересующую расу, чтобы увидеть её описание:", "Выбор расы", GLOB.playable_species)
+		// End of Bastion of Endeavor Translation
 		if(!choice) return
 		pref.species_preview = choice
 		SetSpecies(preference_mob())
@@ -749,7 +989,11 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 				pref.h_style = pick(valid_hairstyles)
 			else
 				//this shouldn't happen
+				/* Bastion of Endeavor Translation: I sure hope the above comment is true
 				pref.h_style = hair_styles_list["Bald"]
+				*/
+				pref.h_style = hair_styles_list["Лысая голова"]
+				// End of Bastion of Endeavor Translation
 
 			//grab one of the valid facial hair styles for the newly chosen species
 			var/list/valid_facialhairstyles = pref.get_valid_facialhairstyles()
@@ -758,7 +1002,11 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 				pref.f_style = pick(valid_facialhairstyles)
 			else
 				//this shouldn't happen
+				/* Bastion of Endeavor Translation
 				pref.f_style = facial_hair_styles_list["Shaved"]
+				*/
+				pref.f_style = facial_hair_styles_list["Бритое лицо"]
+				// End of Bastion of Endeavor Translation
 
 			//reset hair colour and skin colour
 			pref.r_hair = 0//hex2num(copytext(new_hair, 2, 4))
@@ -780,7 +1028,11 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	else if(href_list["hair_color"])
 		if(!has_flag(mob_species, HAS_HAIR_COLOR))
 			return TOPIC_NOACTION
+		/* Bastion of Endeavor Translation
 		var/new_hair = input(user, "Choose your character's hair colour:", "Character Preference", rgb(pref.r_hair, pref.g_hair, pref.b_hair)) as color|null
+		*/
+		var/new_hair = input(user, "Выберите цвет волос вашего персонажа:", "Цвет волос", rgb(pref.r_hair, pref.g_hair, pref.b_hair)) as color|null
+		// End of Bastion of Endeavor Translation
 		if(new_hair && has_flag(mob_species, HAS_HAIR_COLOR) && CanUseTopic(user))
 			pref.r_hair = hex2num(copytext(new_hair, 2, 4))
 			pref.g_hair = hex2num(copytext(new_hair, 4, 6))
@@ -790,7 +1042,10 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	else if(href_list["grad_color"])
 		if(!has_flag(mob_species, HAS_HAIR_COLOR))
 			return TOPIC_NOACTION
+		/* Bastion of Endeavor Translation
 		var/new_grad = input(user, "Choose your character's secondary hair color:", "Character Preference", rgb(pref.r_grad, pref.g_grad, pref.b_grad)) as color|null
+		*/
+		var/new_grad = input(user, "Выберите второй цвет волос вашего персонажа:", "Цвет градиента волос", rgb(pref.r_grad, pref.g_grad, pref.b_grad)) as color|null		// End of Bastion of Endeavor Translation
 		if(new_grad && has_flag(mob_species, HAS_HAIR_COLOR) && CanUseTopic(user))
 			pref.r_grad = hex2num(copytext(new_grad, 2, 4))
 			pref.g_grad = hex2num(copytext(new_grad, 4, 6))
@@ -800,7 +1055,10 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	else if(href_list["grad_color"])
 		if(!has_flag(mob_species, HAS_HAIR_COLOR))
 			return TOPIC_NOACTION
+		/* Bastion of Endeavor Translation: Why tho
 		var/new_grad = input(user, "Choose your character's secondary hair color:", "Character Preference", rgb(pref.r_grad, pref.g_grad, pref.b_grad)) as color|null
+		*/
+		var/new_grad = input(user, "Выберите второй цвет волос вашего персонажа:", "Цвет градиента волос", rgb(pref.r_grad, pref.g_grad, pref.b_grad)) as color|null		// End of Bastion of Endeavor Translation
 		if(new_grad && has_flag(mob_species, HAS_HAIR_COLOR) && CanUseTopic(user))
 			pref.r_grad = hex2num(copytext(new_grad, 2, 4))
 			pref.g_grad = hex2num(copytext(new_grad, 4, 6))
@@ -810,7 +1068,11 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	else if(href_list["hair_style"])
 		var/list/valid_hairstyles = pref.get_valid_hairstyles()
 
+		/* Bastion of Endeavor Translation
 		var/new_h_style = tgui_input_list(user, "Choose your character's hair style:", "Character Preference", valid_hairstyles, pref.h_style)
+		*/
+		var/new_h_style = tgui_input_list(user, "Выберите причёску вашего персонажа:", "Причёска", valid_hairstyles, pref.h_style)
+		// End of Bastion of Endeavor Translation
 		if(new_h_style && CanUseTopic(user))
 			pref.h_style = new_h_style
 			return TOPIC_REFRESH_UPDATE_PREVIEW
@@ -818,7 +1080,11 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	else if(href_list["grad_style"])
 		var/list/valid_gradients = GLOB.hair_gradients
 
+		/* Bastion of Endeavor Translation
 		var/new_grad_style = input(user, "Choose a color pattern for your hair:", "Character Preference", pref.grad_style)  as null|anything in valid_gradients
+		*/
+		var/new_grad_style = input(user, "Выберите вид градиента волос вашего персонажа:", "Вид градиента волос", pref.grad_style)  as null|anything in valid_gradients
+		// End of Bastion of Endeavor Translation
 		if(new_grad_style && CanUseTopic(user))
 			pref.grad_style = new_grad_style
 			return TOPIC_REFRESH_UPDATE_PREVIEW
@@ -826,7 +1092,11 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	else if(href_list["grad_style"])
 		var/list/valid_gradients = GLOB.hair_gradients
 
+		/* Bastion of Endeavor Translation
 		var/new_grad_style = tgui_input_list(user, "Choose a color pattern for your hair:", "Character Preference", valid_gradients, pref.grad_style)
+		*/
+		var/new_grad_style = tgui_input_list(user, "Выберите вид градиента волос вашего персонажа:", "Вид градиента волос", valid_gradients, pref.grad_style)
+		// End of Bastion of Endeavor Translation
 		if(new_grad_style && CanUseTopic(user))
 			pref.grad_style = new_grad_style
 			return TOPIC_REFRESH_UPDATE_PREVIEW
@@ -856,7 +1126,11 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	else if(href_list["facial_color"])
 		if(!has_flag(mob_species, HAS_HAIR_COLOR))
 			return TOPIC_NOACTION
+		/* Bastion of Endeavor Translation
 		var/new_facial = input(user, "Choose your character's facial-hair colour:", "Character Preference", rgb(pref.r_facial, pref.g_facial, pref.b_facial)) as color|null
+		*/
+		var/new_facial = input(user, "Выберите цвет лицевой растительности вашего персонажа:", "Цвет лицевой растительности", rgb(pref.r_facial, pref.g_facial, pref.b_facial)) as color|null
+		// End of Bastion of Endeavor Translation
 		if(new_facial && has_flag(mob_species, HAS_HAIR_COLOR) && CanUseTopic(user))
 			pref.r_facial = hex2num(copytext(new_facial, 2, 4))
 			pref.g_facial = hex2num(copytext(new_facial, 4, 6))
@@ -871,7 +1145,11 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	else if(href_list["eye_color"])
 		if(!has_flag(mob_species, HAS_EYE_COLOR))
 			return TOPIC_NOACTION
+		/* Bastion of Endeavor Translation
 		var/new_eyes = input(user, "Choose your character's eye colour:", "Character Preference", rgb(pref.r_eyes, pref.g_eyes, pref.b_eyes)) as color|null
+		*/
+		var/new_eyes = input(user, "Выберите цвет глаз вашего персонажа:", "Цвет глаз", rgb(pref.r_eyes, pref.g_eyes, pref.b_eyes)) as color|null
+		// End of Bastion of Endeavor Translation
 		if(new_eyes && has_flag(mob_species, HAS_EYE_COLOR) && CanUseTopic(user))
 			pref.r_eyes = hex2num(copytext(new_eyes, 2, 4))
 			pref.g_eyes = hex2num(copytext(new_eyes, 4, 6))
@@ -881,7 +1159,11 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	else if(href_list["skin_tone"])
 		if(!has_flag(mob_species, HAS_SKIN_TONE))
 			return TOPIC_NOACTION
+		/* Bastion of Endeavor Translation
 		var/new_s_tone = tgui_input_number(user, "Choose your character's skin-tone:\n(Light 1 - 220 Dark)", "Character Preference", (-pref.s_tone) + 35, 220, 1)
+		*/
+		var/new_s_tone = tgui_input_number(user, "Выберите тон кожи вашего персонажа от 1 (светлый) до 220 (тёмный):", "Тон кожи", (-pref.s_tone) + 35, 220, 1)
+		// End of Bastion of Endeavor Translation
 		if(new_s_tone && has_flag(mob_species, HAS_SKIN_TONE) && CanUseTopic(user))
 			pref.s_tone = 35 - max(min( round(new_s_tone), 220),1)
 			return TOPIC_REFRESH_UPDATE_PREVIEW
@@ -889,7 +1171,11 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	else if(href_list["skin_color"])
 		if(!has_flag(mob_species, HAS_SKIN_COLOR))
 			return TOPIC_NOACTION
+		/* Bastion of Endeavor Translation
 		var/new_skin = input(user, "Choose your character's skin colour: ", "Character Preference", rgb(pref.r_skin, pref.g_skin, pref.b_skin)) as color|null
+		*/
+		var/new_skin = input(user, "Выберите цвет тела вашего персонажа:", "Цвет тела", rgb(pref.r_skin, pref.g_skin, pref.b_skin)) as color|null
+		// End of Bastion of Endeavor Translation
 		if(new_skin && has_flag(mob_species, HAS_SKIN_COLOR) && CanUseTopic(user))
 			pref.r_skin = hex2num(copytext(new_skin, 2, 4))
 			pref.g_skin = hex2num(copytext(new_skin, 4, 6))
@@ -899,7 +1185,11 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	else if(href_list["facial_style"])
 		var/list/valid_facialhairstyles = pref.get_valid_facialhairstyles()
 
+		/* Bastion of Endeavor Translation
 		var/new_f_style = tgui_input_list(user, "Choose your character's facial-hair style:", "Character Preference", valid_facialhairstyles, pref.f_style)
+		*/
+		var/new_f_style = tgui_input_list(user, "Выберите вид лицевой растительности вашего персонажа:", "Лицевая растительность", valid_facialhairstyles, pref.f_style)
+		// End of Bastion of Endeavor Translation
 		if(new_f_style && CanUseTopic(user))
 			pref.f_style = new_f_style
 			return TOPIC_REFRESH_UPDATE_PREVIEW
@@ -937,7 +1227,11 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			else if(!(pref.species in S.species_allowed) && !(pref.custom_base in S.species_allowed) && !(spec.base_species in S.species_allowed))
 				usable_markings -= M
 		*/ //VOREStation Removal End
+		/* Bastion of Endeavor Translation
 		var/new_marking = tgui_input_list(user, "Choose a body marking:", "Character Preference", usable_markings)
+		*/
+		var/new_marking = tgui_input_list(user, "Выберите особенность тела:", "Особенности тела", usable_markings)
+		// End of Bastion of Endeavor Translation
 		if(new_marking && CanUseTopic(user))
 			pref.body_markings[new_marking] = pref.mass_edit_marking_list(new_marking) //New markings start black
 			return TOPIC_REFRESH_UPDATE_PREVIEW
@@ -967,7 +1261,11 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		if(start != 1)
 			move_locs -= pref.body_markings[start-1]
 
+		/* Bastion of Endeavor Translation
 		var/inject_after = tgui_input_list(user, "Move [M] ahead of...", "Character Preference", move_locs) //Move ahead of any marking that isn't the current or previous one.
+		*/
+		var/inject_after = tgui_input_list(user, "Передвинуть особенность '[M]' вперёд какой другой особенности?", "Особенности тела", move_locs)
+		// End of Bastion of Endeavor Translation
 		var/newpos = pref.body_markings.Find(inject_after)
 		if(newpos)
 			moveElement(pref.body_markings, start, newpos+1)
@@ -982,9 +1280,17 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	else if(href_list["marking_color"])
 		var/M = href_list["marking_color"]
 		if (isnull(pref.body_markings[M]["color"]))
+			/* Bastion of Endeavor Translation
 			if (tgui_alert(user, "You currently have customized marking colors. This will reset each bodypart's color. Are you sure you want to continue?","Reset Bodypart Colors",list("Yes","No")) == "No")
+			*/
+			if (tgui_alert(user, "Ваша особенность тела настроена отдельно для разных частей тела. Смена цвета приведёт к сбросу этой настройки. Вы действительно хотите изменить цвет?","Сброс цвета части тела",list("Да","Нет")) == "No")
+			// End of Bastion of Endeavor Translation
 				return TOPIC_NOACTION
+		/* Bastion of Endeavor Translation
 		var/mark_color = input(user, "Choose the [M] color: ", "Character Preference", pref.body_markings[M]["color"]) as color|null
+		*/
+		var/mark_color = input(user, "Выберите цвет особенности тела – [M]: ", "[M]", pref.body_markings[M]["color"]) as color|null
+		// End of Bastion of Endeavor Translation
 		if(mark_color && CanUseTopic(user))
 			pref.body_markings[M] = pref.mass_edit_marking_list(M,FALSE,TRUE,pref.body_markings[M],color="[mark_color]")
 			return TOPIC_REFRESH_UPDATE_PREVIEW
@@ -1009,7 +1315,11 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		if (pref.body_markings.Find(marking) == 0)
 			winshow(user, "prefs_markings_subwindow", FALSE)
 			return TOPIC_NOACTION
+		/* Bastion of Endeavor Translation
 		var/mark_color = input(user, "Choose the [marking] color: ", "Character Preference", pref.body_markings[marking]["color"]) as color|null
+		*/
+		var/mark_color = input(user, "Выберите цвет особенности тела – [marking]: ", "[marking]", pref.body_markings[marking]["color"]) as color|null
+		// End of Bastion of Endeavor Translation
 		if(mark_color && CanUseTopic(user))
 			pref.body_markings[marking] = pref.mass_edit_marking_list(marking,FALSE,TRUE,pref.body_markings[marking],color="[mark_color]")
 			markings_subwindow(user, marking)
@@ -1022,7 +1332,11 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			return TOPIC_NOACTION
 		var/zone = href_list["zone"]
 		pref.body_markings[marking]["color"] = null //turn off the color button outside the submenu
+		/* Bastion of Endeavor Translation
 		var/mark_color = input(user, "Choose the [marking] color: ", "Character Preference", pref.body_markings[marking][zone]["color"]) as color|null
+		*/
+		var/mark_color = input(user, "Выберите цвет особенности тела – [marking]: ", "[marking]", pref.body_markings[marking][zone]["color"]) as color|null
+		// End of Bastion of Endeavor Translation
 		if(mark_color && CanUseTopic(user))
 			pref.body_markings[marking][zone]["color"] = "[mark_color]"
 			markings_subwindow(user, marking)
@@ -1044,16 +1358,32 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 	else if(href_list["limbs"])
 
+		/* Bastion of Endeavor Translation
 		var/list/limb_selection_list = list("Left Leg","Right Leg","Left Arm","Right Arm","Left Foot","Right Foot","Left Hand","Right Hand","Full Body")
+		*/
+		var/list/limb_selection_list = list("Левая нога","Правая нога","Левая рука","Правая рука","Левая ступня","Правая ступня","Левая ладонь","Правая ладонь","Всё тело")
+		// End of Bastion of Endeavor Translation
 
 		// Full prosthetic bodies without a brain are borderline unkillable so make sure they have a brain to remove/destroy.
 		var/datum/species/current_species = GLOB.all_species[pref.species]
 		if(!current_species.has_organ["brain"])
+			/* Bastion of Endeavor Translation
 			limb_selection_list -= "Full Body"
+			*/
+			limb_selection_list -= "Всё тело"
+			// End of Bastion of Endeavor Translation
 		else if(pref.organ_data[BP_TORSO] == "cyborg")
+			/* Bastion of Endeavor Translation
 			limb_selection_list |= "Head"
+			*/
+			limb_selection_list |= "Голова"
+			// End of Bastion of Endeavor Translation
 
+		/* Bastion of Endeavor Translation
 		var/organ_tag = tgui_input_list(user, "Which limb do you want to change?", "Limb Choice", limb_selection_list)
+		*/
+		var/organ_tag = tgui_input_list(user, "Какую часть тела вы хотели бы изменить?", "Выбор части тела", limb_selection_list)
+		// End of Bastion of Endeavor Translation
 
 		if(!organ_tag || !CanUseTopic(user)) return TOPIC_NOACTION
 
@@ -1062,6 +1392,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		var/third_limb = null  // if you try to unchange the hand, the arm should also change
 
 		// Do not let them amputate their entire body, ty.
+		/* Bastion of Endeavor Translation: WE BLOATIN THE CODE
 		var/list/choice_options = list("Normal","Amputated","Prosthesis")
 		switch(organ_tag)
 			if("Left Leg")
@@ -1098,10 +1429,52 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 				choice_options = list("Normal","Prosthesis")
 
 		var/new_state = tgui_input_list(user, "What state do you wish the limb to be in?", "State Choice", choice_options)
+		*/
+		var/list/choice_options = list("Органическое","Ампутированное","Механическое")
+		switch(organ_tag)
+			if("Левая нога")
+				limb =        BP_L_LEG
+				second_limb = BP_L_FOOT
+			if("Правая нога")
+				limb =        BP_R_LEG
+				second_limb = BP_R_FOOT
+			if("Левая рука")
+				limb =        BP_L_ARM
+				second_limb = BP_L_HAND
+			if("Правая рука")
+				limb =        BP_R_ARM
+				second_limb = BP_R_HAND
+			if("Левая ступня")
+				limb =        BP_L_FOOT
+				third_limb =  BP_L_LEG
+			if("Правая ступня")
+				limb =        BP_R_FOOT
+				third_limb =  BP_R_LEG
+			if("Левая рука")
+				limb =        BP_L_HAND
+				third_limb =  BP_L_ARM
+			if("Правая рука")
+				limb =        BP_R_HAND
+				third_limb =  BP_R_ARM
+			if("Голова")
+				limb =        BP_HEAD
+				choice_options = list("Механическое")
+			if("Всё тело")
+				limb =        BP_TORSO
+				second_limb = BP_HEAD
+				third_limb =  BP_GROIN
+				choice_options = list("Органическое","Механическое")
+
+		var/new_state = tgui_input_list(user, "Выберите состояние части (частей) тела:", "Части тела", choice_options) // a bit ugly but its annoying to account for FBPs
+		// End of Bastion of Endeavor Translation
 		if(!new_state || !CanUseTopic(user)) return TOPIC_NOACTION
 
 		switch(new_state)
+			/* Bastion of Endeavor Translation
 			if("Normal")
+			*/
+			if("Органическое")
+			// End of Bastion of Endeavor Translation
 				pref.organ_data[limb] = null
 				pref.rlimb_data[limb] = null
 				if(limb == BP_TORSO)
@@ -1115,7 +1488,11 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 					pref.organ_data[third_limb] = null
 					pref.rlimb_data[third_limb] = null
 
+			/* Bastion of Endeavor Translation
 			if("Amputated")
+			*/
+			if("Ампутированное")
+			// End of Bastion of Endeavor Translation
 				if(limb == BP_TORSO)
 					return
 				pref.organ_data[limb] = "amputated"
@@ -1124,7 +1501,11 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 					pref.organ_data[second_limb] = "amputated"
 					pref.rlimb_data[second_limb] = null
 
+			/* Bastion of Endeavor Translation
 			if("Prosthesis")
+			*/
+			if("Механическое")
+			// End of Bastion of Endeavor Translation
 				var/tmp_species = pref.species ? pref.species : SPECIES_HUMAN
 				var/list/usable_manufacturers = list()
 				for(var/company in chargen_robolimbs)
@@ -1140,7 +1521,11 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 					usable_manufacturers[company] = M
 				if(!usable_manufacturers.len)
 					return
+				/* Bastion of Endeavor Translation
 				var/choice = tgui_input_list(user, "Which manufacturer do you wish to use for this limb?", "Manufacturer Choice", usable_manufacturers)
+				*/
+				var/choice = tgui_input_list(user, "Выберите изготовителя/бренд части тела:", "Выбор производителя", usable_manufacturers)
+				// End of Bastion of Endeavor Translation
 				if(!choice)
 					return
 
@@ -1168,11 +1553,16 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 	else if(href_list["organs"])
 
+		/* Bastion of Endeavor Translation
 		var/organ_name = tgui_input_list(user, "Which internal function do you want to change?", "Internal Organ", list("Heart", "Eyes", "Larynx", "Lungs", "Liver", "Kidneys", "Spleen", "Intestines", "Stomach", "Brain"))
+		*/
+		var/organ_name = tgui_input_list(user, "Выберите внутренний орган на замену:", "Внутренние органы", list("Сердце", "Глаза", "Гортань", "Лёгкие", "Печень", "Почки", "Селезёнка", "Кишечник", "Желудок", "Мозг"))
+		// End of Bastion of Endeavor Translation
 		if(!organ_name) return
 
 		var/organ = null
 		switch(organ_name)
+			/* Bastion of Endeavor Translation
 			if("Heart")
 				organ = O_HEART
 			if("Eyes")
@@ -1196,8 +1586,34 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 					to_chat(user, "<span class='warning'>You may only select a cybernetic or synthetic brain if you have a full prosthetic body.</span>")
 					return
 				organ = "brain"
+			*/
+			if("Сердце")
+				organ = O_HEART
+			if("Глаза")
+				organ = O_EYES
+			if("Гортань")
+				organ = O_VOICE
+			if("Лёгкие")
+				organ = O_LUNGS
+			if("Печень")
+				organ = O_LIVER
+			if("Почки")
+				organ = O_KIDNEYS
+			if("Селезёнка")
+				organ = O_SPLEEN
+			if("Кишечник")
+				organ = O_INTESTINE
+			if("Желудок")
+				organ = O_STOMACH
+			if("Мозг")
+				if(pref.organ_data[BP_HEAD] != "cyborg")
+					to_chat(user, "<span class='warning'>Иметь неорганический мозг разрешено только в полностью простетическом теле.</span>")
+					return
+				organ = "brain"
+			// End of Bastion of Endeavor Translation
 
 		var/datum/species/current_species = GLOB.all_species[pref.species]
+		/* Bastion of Endeavor Translation
 		var/list/organ_choices = list("Normal")
 		if(pref.organ_data[BP_TORSO] == "cyborg")
 			organ_choices -= "Normal"
@@ -1215,9 +1631,29 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			organ_choices += "Mechanical"
 
 		var/new_state = tgui_input_list(user, "What state do you wish the organ to be in?", "State Choice", organ_choices)
+		*/
+		var/list/organ_choices = list("Органический")
+		if(pref.organ_data[BP_TORSO] == "cyborg")
+			organ_choices -= "Органический"
+			if(organ_name == "Мозг")
+				organ_choices += "Кибернетический"
+				if(!(current_species.spawn_flags & SPECIES_NO_POSIBRAIN))
+					organ_choices += "Позитронный"
+				if(!(current_species.spawn_flags & SPECIES_NO_DRONEBRAIN))
+					organ_choices += "Цифровой"
+			else
+				organ_choices += "Полумеханический"
+				organ_choices += "Механический"
+		else
+			organ_choices += "Полумеханический"
+			organ_choices += "Механический"
+
+		var/new_state = tgui_input_list(user, "Укажите состояние выбранного органа:", "Внутренние органы", organ_choices)
+		// End of Bastion of Endeavor Translation
 		if(!new_state) return
 
 		switch(new_state)
+			/* Bastion of Endeavor Translation
 			if("Normal")
 				pref.organ_data[organ] = null
 			if("Assisted")
@@ -1230,6 +1666,20 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 				pref.organ_data[organ] = "digital"
 			if("Positronic")
 				pref.organ_data[organ] = "mechanical"
+			*/
+			if("Органический")
+				pref.organ_data[organ] = null
+			if("Полумеханический")
+				pref.organ_data[organ] = "assisted"
+			if("Кибернетический")
+				pref.organ_data[organ] = "assisted"
+			if("Механический")
+				pref.organ_data[organ] = "mechanical"
+			if("Цифровой")
+				pref.organ_data[organ] = "digital"
+			if("Позитронный")
+				pref.organ_data[organ] = "mechanical"
+			// End of Bastion of Endeavor Translation
 
 		return TOPIC_REFRESH
 
@@ -1251,7 +1701,11 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["synth2_color"])
+		/* Bastion of Endeavor Translation
 		var/new_color = input(user, "Choose your character's synth colour: ", "Character Preference", rgb(pref.r_synth, pref.g_synth, pref.b_synth)) as color|null
+		*/
+		var/new_color = input(user, "Выберите цвет синтетических частей тела вашего персонажа: ", "Цвет синтетических частей", rgb(pref.r_synth, pref.g_synth, pref.b_synth)) as color|null
+		// End of Bastion of Endeavor Translation
 		if(new_color && CanUseTopic(user))
 			pref.r_synth = hex2num(copytext(new_color, 2, 4))
 			pref.g_synth = hex2num(copytext(new_color, 4, 6))
@@ -1299,14 +1753,22 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	//YW Add End
 
 	else if(href_list["ear_style"])
+		/* Bastion of Endeavor Translation
 		var/new_ear_style = tgui_input_list(user, "Select an ear style for this character:", "Character Preference", pref.get_available_styles(global.ear_styles_list), pref.ear_style)
+		*/
+		var/new_ear_style = tgui_input_list(user, "Выберите вид головы вашего персонажа:", "Вид головы", sortList(pref.get_available_styles(global.ear_styles_list)), pref.ear_style)
+		// End of Bastion of Endeavor Translation
 		if(new_ear_style)
 			pref.ear_style = new_ear_style
 
 		return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["ear_color"])
+		/* Bastion of Endeavor Translation
 		var/new_earc = input(user, "Choose your character's ear colour:", "Character Preference",
+		*/
+		var/new_earc = input(user, "Выберите цвет головы вашего персонажа:", "Цвет головы",
+		// End of Bastion of Endeavor Translation
 			rgb(pref.r_ears, pref.g_ears, pref.b_ears)) as color|null
 		if(new_earc)
 			pref.r_ears = hex2num(copytext(new_earc, 2, 4))
@@ -1315,7 +1777,11 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["ear_color2"])
+		/* Bastion of Endeavor Translation
 		var/new_earc2 = input(user, "Choose your character's ear colour:", "Character Preference",
+		*/
+		var/new_earc2 = input(user, "Выберите второй цвет головы вашего персонажа:", "Второй цвет головы",
+		// End of Bastion of Endeavor Translation
 			rgb(pref.r_ears2, pref.g_ears2, pref.b_ears2)) as color|null
 		if(new_earc2)
 			pref.r_ears2 = hex2num(copytext(new_earc2, 2, 4))
@@ -1324,7 +1790,11 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["ear_color3"])
+		/* Bastion of Endeavor Translation
 		var/new_earc3 = input(user, "Choose your character's tertiary ear colour:", "Character Preference",
+		*/
+		var/new_earc3 = input(user, "Выберите третий цвет головы вашего персонажа:", "Третий цвет головы",
+		// End of Bastion of Endeavor Translation
 			rgb(pref.r_ears3, pref.g_ears3, pref.b_ears3)) as color|null
 		if(new_earc3)
 			pref.r_ears3 = hex2num(copytext(new_earc3, 2, 4))
@@ -1332,14 +1802,90 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			pref.b_ears3 = hex2num(copytext(new_earc3, 6, 8))
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
+	// Bastion of Endeavor Addition: Selector arrows
+	else if(href_list["ear_left"])
+		var/H = href_list["ear_left"]
+		var/list/ear_styles = sortList(pref.get_available_styles(global.ear_styles_list))
+		var/start = ear_styles.Find(H)
+
+		if(start != 1) //If we're not the beginning of the list, become the previous element.
+			pref.ear_style = ear_styles[start-1]
+		else //But if we ARE, become the final element.
+			pref.ear_style = ear_styles[ear_styles.len]
+		return TOPIC_REFRESH_UPDATE_PREVIEW
+
+	else if(href_list["ear_right"])
+		var/H = href_list["ear_right"]
+		var/list/ear_styles = sortList(pref.get_available_styles(global.ear_styles_list))
+		var/start = ear_styles.Find(H)
+
+		if(start != ear_styles.len) //If we're not the end of the list, become the next element.
+			pref.ear_style = ear_styles[start+1]
+		else //But if we ARE, become the first element.
+			pref.ear_style = ear_styles[1]
+		return TOPIC_REFRESH_UPDATE_PREVIEW
+	
+	else if(href_list["tail_left"])
+		var/H = href_list["tail_left"]
+		var/list/tail_styles = sortList(pref.get_available_styles(global.tail_styles_list))
+		var/start = tail_styles.Find(H)
+
+		if(start != 1) //If we're not the beginning of the list, become the previous element.
+			pref.tail_style = tail_styles[start-1]
+		else //But if we ARE, become the final element.
+			pref.tail_style = tail_styles[tail_styles.len]
+		return TOPIC_REFRESH_UPDATE_PREVIEW
+
+	else if(href_list["tail_right"])
+		var/H = href_list["tail_right"]
+		var/list/tail_styles = sortList(pref.get_available_styles(global.tail_styles_list))
+		var/start = tail_styles.Find(H)
+
+		if(start != tail_styles.len) //If we're not the end of the list, become the next element.
+			pref.tail_style = tail_styles[start+1]
+		else //But if we ARE, become the first element.
+			pref.tail_style = tail_styles[1]
+		return TOPIC_REFRESH_UPDATE_PREVIEW
+	
+	else if(href_list["wing_left"])
+		var/H = href_list["wing_left"]
+		var/list/wing_styles = sortList(pref.get_available_styles(global.wing_styles_list))
+		var/start = wing_styles.Find(H)
+
+		if(start != 1) //If we're not the beginning of the list, become the previous element.
+			pref.wing_style = wing_styles[start-1]
+		else //But if we ARE, become the final element.
+			pref.wing_style = wing_styles[wing_styles.len]
+		return TOPIC_REFRESH_UPDATE_PREVIEW
+
+	else if(href_list["wing_right"])
+		var/H = href_list["wing_right"]
+		var/list/wing_styles = sortList(pref.get_available_styles(global.wing_styles_list))
+		var/start = wing_styles.Find(H)
+
+		if(start != wing_styles.len) //If we're not the end of the list, become the next element.
+			pref.wing_style = wing_styles[start+1]
+		else //But if we ARE, become the first element.
+			pref.wing_style = wing_styles[1]
+		return TOPIC_REFRESH_UPDATE_PREVIEW
+	// End of Bastion of Endeavor Addition
+
 	else if(href_list["tail_style"])
+		/* Bastion of Endeavor Translation
 		var/new_tail_style = tgui_input_list(user, "Select a tail style for this character:", "Character Preference", pref.get_available_styles(global.tail_styles_list), pref.tail_style)
+		*/
+		var/new_tail_style = tgui_input_list(user, "Выберите вид нижней части туловища вашего персонажа:", "Вид нижней части", sortList(pref.get_available_styles(global.tail_styles_list)), pref.tail_style)
+		// End of Bastion of Endeavor Translation
 		if(new_tail_style)
 			pref.tail_style = new_tail_style
 		return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["tail_color"])
+		/* Bastion of Endeavor Translation
 		var/new_tailc = input(user, "Choose your character's tail/taur colour:", "Character Preference",
+		*/
+		var/new_tailc = input(user, "Выберите цвет нижней части туловища вашего персонажа:", "Цвет нижней части",
+		// End of Bastion of Endeavor Translation
 			rgb(pref.r_tail, pref.g_tail, pref.b_tail)) as color|null
 		if(new_tailc)
 			pref.r_tail = hex2num(copytext(new_tailc, 2, 4))
@@ -1348,7 +1894,11 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["tail_color2"])
+		/* Bastion of Endeavor Translation
 		var/new_tailc2 = input(user, "Choose your character's secondary tail/taur colour:", "Character Preference",
+		*/
+		var/new_tailc2 = input(user, "Выберите второй цвет нижней части туловища вашего персонажа:", "Второй цвет нижней части",
+		// End of Bastion of Endeavor Translation
 			rgb(pref.r_tail2, pref.g_tail2, pref.b_tail2)) as color|null
 		if(new_tailc2)
 			pref.r_tail2 = hex2num(copytext(new_tailc2, 2, 4))
@@ -1357,7 +1907,11 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["tail_color3"])
+		/* Bastion of Endeavor Translation
 		var/new_tailc3 = input(user, "Choose your character's tertiary tail/taur colour:", "Character Preference",
+		*/
+		var/new_tailc3 = input(user, "Выберите третий цвет нижней части туловища вашего персонажа:", "Третий цвет нижней части",
+		// End of Bastion of Endeavor Translation
 			rgb(pref.r_tail3, pref.g_tail3, pref.b_tail3)) as color|null
 		if(new_tailc3)
 			pref.r_tail3 = hex2num(copytext(new_tailc3, 2, 4))
@@ -1366,14 +1920,22 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["wing_style"])
+		/* Bastion of Endeavor Translation
 		var/new_wing_style = tgui_input_list(user, "Select a wing style for this character:", "Character Preference", pref.get_available_styles(global.wing_styles_list), pref.wing_style)
+		*/
+		var/new_wing_style = tgui_input_list(user, "Выберите вид спины вашего персонажа:", "Вид спины", pref.get_available_styles(global.wing_styles_list), pref.wing_style)
+		// End of Bastion of Endeavor Translation
 		if(new_wing_style)
 			pref.wing_style = new_wing_style
 
 		return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["wing_color"])
+		/* Bastion of Endeavor Translation
 		var/new_wingc = input(user, "Choose your character's wing colour:", "Character Preference",
+		*/
+		var/new_wingc = input(user, "Выберите цвет спины вашего персонажа:", "Цвет спины",
+		// End of Bastion of Endeavor Translation
 			rgb(pref.r_wing, pref.g_wing, pref.b_wing)) as color|null
 		if(new_wingc)
 			pref.r_wing = hex2num(copytext(new_wingc, 2, 4))
@@ -1382,7 +1944,11 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["wing_color2"])
+		/* Bastion of Endeavor Translation
 		var/new_wingc2 = input(user, "Choose your character's secondary wing colour:", "Character Preference",
+		*/
+		var/new_wingc2 = input(user, "Выберите второй цвет спины вашего персонажа:", "Второй цвет спины",
+		// End of Bastion of Endeavor Translation
 			rgb(pref.r_wing2, pref.g_wing2, pref.b_wing2)) as color|null
 		if(new_wingc2)
 			pref.r_wing2 = hex2num(copytext(new_wingc2, 2, 4))
@@ -1391,13 +1957,18 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["wing_color3"])
+		/* Bastion of Endeavor Translation
 		var/new_wingc3 = input(user, "Choose your character's tertiary wing colour:", "Character Preference",
+		*/
+		var/new_wingc3 = input(user, "Выберите третий цвет спины вашего персонажа:", "Третий цвет спины",
+		// End of Bastion of Endeavor Translation
 			rgb(pref.r_wing3, pref.g_wing3, pref.b_wing3)) as color|null
 		if(new_wingc3)
 			pref.r_wing3 = hex2num(copytext(new_wingc3, 2, 4))
 			pref.g_wing3 = hex2num(copytext(new_wingc3, 4, 6))
 			pref.b_wing3 = hex2num(copytext(new_wingc3, 6, 8))
 			return TOPIC_REFRESH_UPDATE_PREVIEW
+
 	return ..()
 
 /datum/category_item/player_setup_item/general/body/proc/reset_limbs()
@@ -1421,20 +1992,32 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	if(!pref.species_preview || !(pref.species_preview in GLOB.all_species))
 		pref.species_preview = SPECIES_HUMAN
 	var/datum/species/current_species = GLOB.all_species[pref.species_preview]
+	/* Bastion of Endeavor Translation
 	var/dat = "<body>"
 	dat += "<center><h2>[current_species.name] \[<a href='?src=\ref[src];show_species=1'>change</a>\]</h2></center><hr/>"
+	*/
+	var/dat = "<meta charset='utf-8'><body>"
+	dat += "<center><h2>[current_species.name] \[<a href='?src=\ref[src];show_species=1'>изменить</a>\]</h2></center><hr/>"
+	// End of Bastion of Endeavor Translation
 	dat += "<table padding='8px'>"
 	dat += "<tr>"
 	//vorestation edit begin
+	/* Bastion of Endeavor Edit: We have a dedicated wiki button and this one just opens a page in the same browser window it's in, unnecessary and clunky
 	if(current_species.wikilink)
 		dat += "<td width = 400>[current_species.blurb]<br><br>See <a href=[current_species.wikilink]>the wiki</a> for more details.</td>"
+		
 	else
 		dat += "<td width = 400>[current_species.blurb]</td>"
+	*/
+	dat += "<td width = 400>[current_species.blurb]</td>"
+	// End of Bastion of Endeavor Edit
 	//vorestation edit end
 	dat += "<td width = 200 align='center'>"
 	if("preview" in cached_icon_states(current_species.icobase))
+		// Bastion of Endeavor TODO: Pay special attention to this when localizing species
 		usr << browse_rsc(icon(current_species.icobase,"preview"), "species_preview_[current_species.name].png")
 		dat += "<img src='species_preview_[current_species.name].png' width='64px' height='64px'><br/><br/>"
+	/* Bastion of Endeavor Translation
 	dat += "<b>Language:</b> [current_species.species_language]<br/>"
 	dat += "<small>"
 	if(current_species.spawn_flags & SPECIES_CAN_JOIN)
@@ -1471,6 +2054,44 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		dat += "</br><b>Has a variety of eye colours.</b>"
 	if(current_species.flags & IS_PLANT)
 		dat += "</br><b>Has a plantlike physiology.</b>"
+	*/
+	dat += "<b>Язык:</b> [current_species.species_language]<br/>"
+	dat += "<small>"
+	if(current_species.spawn_flags & SPECIES_CAN_JOIN)
+		switch(current_species.rarity_value)
+			if(1 to 2)
+				dat += "</br><b>Распространены на станциях.</b>"
+			if(3 to 4)
+				dat += "</br><b>Практически не встречаются на станциях.</b>"
+			if(5)
+				dat += "</br><b>Никогда не встречаются на станциях.</b>"
+			else
+				dat += "</br><b>Иногда встречаются на станциях.</b>"
+	if(current_species.spawn_flags & SPECIES_IS_WHITELISTED)
+		dat += "</br><b>Раса защищена вайтлистом.</b>"
+	if(!current_species.has_organ[O_HEART])
+		dat += "</br><b>Не имеют кровеносной системы.</b>"
+	if(!current_species.has_organ[O_LUNGS])
+		dat += "</br><b>Не имеют дыхательной системы.</b>"
+	if(current_species.flags & NO_SCAN)
+		dat += "</br><b>Не имеют ДНК.</b>"
+	if(current_species.flags & NO_DEFIB)
+		dat += "</br><b>Не могут быть реанимированы дефибрилятором.</b>"
+	if(current_species.flags & NO_PAIN)
+		dat += "</br><b>Не чувствуют боли.</b>"
+	if(current_species.flags & NO_SLIP)
+		dat += "</br><b>Обладают хорошим сцеплением.</b>"
+	if(current_species.flags & NO_POISON)
+		dat += "</br><b>Обладают иммунитетом от ядов.</b>"
+	if(current_species.appearance_flags & HAS_SKIN_TONE)
+		dat += "</br><b>Могут иметь различный тон кожи.</b>"
+	if(current_species.appearance_flags & HAS_SKIN_COLOR)
+		dat += "</br><b>Могут иметь различный цвет тела.</b>"
+	if(current_species.appearance_flags & HAS_EYE_COLOR)
+		dat += "</br><b>Могут иметь различный цвет глаз.</b>"
+	if(current_species.flags & IS_PLANT)
+		dat += "</br><b>Обладают растительным строением.</b>"
+	// End of Bastion of Endeavor Translation
 	dat += "</small></td>"
 	dat += "</tr>"
 	dat += "</table><center><hr/>"
@@ -1484,31 +2105,62 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 	if(restricted)
 		if(restricted == 1)
+			/* Bastion of Endeavor Translation
 			dat += "<font color='red'><b>You cannot play as this species.</br><small>If you wish to be whitelisted, you can make an application post on <a href='?src=\ref[user];preference=open_whitelist_forum'>the forums</a>.</small></b></font></br>"
+			*/
+			dat += "<font color='red'><b>Вам недоступна эта раса.</br><small>Чтобы выбрать эту расу, необходимо подать особую заявку в Discord и дождаться её принятия.</small></b></font></br>"
+			// End of Bastion of Endeavor Translation
 		else if(restricted == 2)
+			/* Bastion of Endeavor Translation
 			dat += "<font color='red'><b>You cannot play as this species.</br><small>This species is not available for play as a station race..</small></b></font></br>"
+			*/
+			dat += "<font color='red'><b>Вам недоступна эта раса.</br><small>Эта раса недоступна для игры в качестве экипажа.</small></b></font></br>"
+			// End of Bastion of Endeavor Translation
 	if(!restricted || check_rights(R_ADMIN|R_EVENT, 0) || current_species.spawn_flags & SPECIES_WHITELIST_SELECTABLE)	//VOREStation Edit: selectability
+		/* Bastion of Endeavor Translation
 		dat += "\[<a href='?src=\ref[src];set_species=[pref.species_preview]'>select</a>\]"
+		*/
+		dat += "\[<a href='?src=\ref[src];set_species=[pref.species_preview]'>Выбрать</a>\]"
+		// End of Bastion of Endeavor Translation
 	dat += "</center></body>"
 
 	user << browse(dat, "window=species;size=700x400")
 
 /datum/category_item/player_setup_item/general/body/proc/markings_subwindow(mob/user, marking)
+	/* Bastion of Endeavor Translation
 	var/static/list/part_to_string = list(BP_HEAD = "Head", BP_TORSO = "Upper Body", BP_GROIN = "Lower Body", BP_R_ARM = "Right Arm", BP_L_ARM = "Left Arm", BP_R_HAND = "Right Hand", BP_L_HAND = "Left Hand", BP_R_LEG = "Right Leg", BP_L_LEG = "Left Leg", BP_R_FOOT = "Right Foot", BP_L_FOOT = "Left Foot")
 	var/dat = "<html><body><center><h2>Editing '[marking]'</h2><br>"
 	dat += "<a href='?src=\ref[src];toggle_all_marking_selection=[marking];toggle=1'>Enable All</a> "
 	dat += "<a href='?src=\ref[src];toggle_all_marking_selection=[marking];toggle=0'>Disable All</a> "
 	dat += "<a href='?src=\ref[src];color_all_marking_selection=[marking]'>Change Color of All</a><br></center>"
+	*/
+	var/static/list/part_to_string = list(BP_HEAD = "Голова", BP_TORSO = "Верхняя часть тела", BP_GROIN = "Нижняя часть тела", BP_R_ARM = "Правая рука", BP_L_ARM = "Левая рука", BP_R_HAND = "Правая ладонь", BP_L_HAND = "Левая ладонь", BP_R_LEG = "Правая нога", BP_L_LEG = "Левая нога", BP_R_FOOT = "Правая ступня", BP_L_FOOT = "Левая ступня")
+	var/dat = "<html><body><center><h2>[marking]</h2>"
+	dat += "<a href='?src=\ref[src];toggle_all_marking_selection=[marking];toggle=1'>Показывать на всех частях тела</a><br>"
+	dat += "<a href='?src=\ref[src];toggle_all_marking_selection=[marking];toggle=0'>Скрыть на всех частях тела</a><br>"
+	dat += "<a href='?src=\ref[src];color_all_marking_selection=[marking]'>Изменить цвет на всех частях тела</a><br></center>"
+	// End of Bastion of Endeavor Translation
 	dat += "<br>"
 	for (var/bodypart in pref.body_markings[marking])
 		if (!islist(pref.body_markings[marking][bodypart])) continue
+		/* Bastion of Endeavor Translation
 		dat += "[part_to_string[bodypart]]: [color_square(hex = pref.body_markings[marking][bodypart]["color"])] "
 		dat += "<a href='?src=\ref[src];zone_marking_color=[marking];zone=[bodypart]'>Change</a> "
 		dat += "<a href='?src=\ref[src];zone_marking_toggle=[marking];zone=[bodypart];toggle=[!pref.body_markings[marking][bodypart]["on"]]'>[pref.body_markings[marking][bodypart]["on"] ? "Toggle Off" : "Toggle On"]</a><br>"
+		*/
+		dat += "<table><tr><td>[part_to_string[bodypart]]: [color_square(hex = pref.body_markings[marking][bodypart]["color"])]</td>"
+		dat += "<td><a href='?src=\ref[src];zone_marking_color=[marking];zone=[bodypart]'>Изменить</a></td>"
+		dat += "<td><a href='?src=\ref[src];zone_marking_toggle=[marking];zone=[bodypart];toggle=[!pref.body_markings[marking][bodypart]["on"]]'>[pref.body_markings[marking][bodypart]["on"] ? "Показывается" : "Не показывается"]</a><br></td></tr>"
+		dat += "</table>"
+		// End of Bastion of Endeavor Translation
 
 	dat += "</body></html>"
 	winshow(user, "prefs_markings_subwindow", TRUE)
+	/* Bastion of Endeavor Translation
 	pref.markings_subwindow = new(user, "prefs_markings_browser", "Marking Editor", 400, 400)
+	*/
+	pref.markings_subwindow = new(user, "prefs_markings_browser", "Редактор особенности тела", 400, 500)
+	// End of Bastion of Endeavor Translation
 	pref.markings_subwindow.set_content(dat)
 	pref.markings_subwindow.open(FALSE)
 	onclose(user, "prefs_markings_subwindow", src)

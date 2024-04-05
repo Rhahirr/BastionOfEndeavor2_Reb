@@ -2,7 +2,11 @@
 Player tips procs and lists are defined under /code/modules/player_tips_vr
 */
 SUBSYSTEM_DEF(player_tips)
+	/* Bastion of Endeavor Translation
 	name = "Periodic Player Tips"
+	*/
+	name = "Периодические подсказки"
+	// End of Bastion of Endeavor Translation
 	priority = FIRE_PRIORITY_PLAYERTIPS
 	runlevels = RUNLEVEL_GAME
 	wait = 3000 //We check if it's time to send a tip every 5 minutes (300 seconds)

@@ -235,7 +235,11 @@ macro "borghotkeymode"
 		command = ".options"
 	elem
 		name = "F2"
+		/* Bastion of Endeavor Translation
 		command = "ooc"
+		*/
+		command = "Чат-OOC"
+		// End of Bastion of Endeavor Translation
 	elem
 		name = "F2+REP"
 		command = ".screenshot auto"
@@ -465,7 +469,11 @@ macro "macro"
 		command = ".options"
 	elem
 		name = "F2"
+		/* Bastion of Endeavor Translation
 		command = "ooc"
+		*/
+		command = "Чат-OOC"
+		// End of Bastion of Endeavor Translation
 	elem
 		name = "F2+REP"
 		command = ".screenshot auto"
@@ -752,7 +760,11 @@ macro "hotkeymode"
 		command = ".options"
 	elem
 		name = "F2"
+		/* Bastion of Endeavor Translation
 		command = "ooc"
+		*/
+		command = "Чат-OOC"
+		// End of Bastion of Endeavor Translation
 	elem
 		name = "F2+REP"
 		command = ".screenshot auto"
@@ -976,7 +988,11 @@ macro "borgmacro"
 		command = ".options"
 	elem
 		name = "F2"
+		/* Bastion of Endeavor Translation
 		command = "ooc"
+		*/
+		command = "Чат-OOC"
+		// End of Bastion of Endeavor Translation
 	elem
 		name = "F2+REP"
 		command = ".screenshot auto"
@@ -1011,6 +1027,108 @@ macro "borgmacro"
 		name = "CTRL+SHIFT+SUBTRACT"
 		command = "planedown"
 
+// Bastion of Endeavor Addition: Remade this relic entirely
+menu "menu"
+	elem
+		name = "&Меню"
+		command = ""
+		saved-params = "is-checked"
+	elem
+		name = "&Редактор персонажа"
+		command = "Редактор-персонажа"
+		category = "&Меню"
+		saved-params = "is-checked"
+	elem
+		name = "&Микшер"
+		command = "Микшер"
+		category = "&Меню"
+		saved-params = "is-checked"
+	elem
+		name = "&Сохранить историю чата"
+		command = "Сохранить-историю-чата"
+		category = "&Меню"
+		saved-params = "is-checked"
+	elem
+		name = "&Переподключиться"
+		command = ".reconnect"
+		category = "&Меню"
+		saved-params = "is-checked"
+	elem
+		name = "&Масштабирование"
+		command = ""
+		saved-params = "is-checked"
+	elem "nearest-neighbor"
+		name = "&Метод ближайших соседей"
+		command = ".winset \"mapwindow.map.zoom-mode=distort\""
+		category = "&Масштабирование"
+		can-check = true
+		group = "scale"
+		saved-params = "is-checked"
+	elem "point-sample"
+		name = "&Точечное сэмплирование"
+		command = ".winset \"mapwindow.map.zoom-mode=normal\""
+		category = "&Масштабирование"
+		can-check = true
+		group = "scale"
+		saved-params = "is-checked"
+	elem "blur"
+		name = "&Размытие"
+		command = ".winset \"mapwindow.map.zoom-mode=blur\""
+		category = "&Масштабирование"
+		can-check = true
+		group = "scale"
+		saved-params = "is-checked"
+	elem
+		name = "&Помощь"
+		command = ""
+		saved-params = "is-checked"
+	elem
+		name = "&Починить верхнюю панель"
+		command = "Починить-чат"
+		category = "&Помощь"
+		saved-params = "is-checked"
+	elem
+		name = "&Починить чат"
+		command = "Починить-чат"
+		category = "&Помощь"
+		saved-params = "is-checked"
+	elem
+		name = "&Обновить окна TGUI"
+		command = "Обновить-окна-TGUI"
+		category = "&Помощь"
+		saved-params = "is-checked"
+	elem
+		name = "&Закрыть окна TGUI"
+		command = "Закрыть-окна-TGUI"
+		category = "&Помощь"
+		saved-params = "is-checked"
+	elem
+		name = ""
+		command = ""
+		category = "&Помощь"
+		saved-params = "is-checked"
+	elem
+		name = "&Помощь администратора\tF1"
+		command = "request-help"
+		category = "&Помощь"
+		saved-params = "is-checked"
+	elem
+		name = "&Правила сервера"
+		command = "Вики-сервера"
+		category = "&Помощь"
+		saved-params = "is-checked"
+	elem
+		name = "&Вики сервера"
+		command = "Вики-сервера"
+		category = "&Помощь"
+		saved-params = "is-checked"
+	elem
+		name = "&Показать управление"
+		command = "hotkeys-help"
+		category = "&Помощь"
+		saved-params = "is-checked"
+// End of Bastion of Endeavor Addition
+/* Bastion of Endeavor Removal: Remade this ancient relic entirely, commenting it out is useless so ours is added above
 menu "menu"
 	elem
 		name = "&File"
@@ -1143,6 +1261,8 @@ menu "menu"
 		command = "hotkeys-help"
 		category = "&Help"
 		saved-params = "is-checked"
+*/
+// End of Bastion of Endeavor Removal
 
 window "mainwindow"
 	elem "mainwindow"
@@ -1153,7 +1273,11 @@ window "mainwindow"
 		anchor2 = -1,-1
 		is-default = true
 		saved-params = "pos;size;is-minimized;is-maximized"
+		/* Bastion of Endeavor Translation
 		title = "CHOMPStation" // CHOMP Edit
+		*/
+		title = "BASTION OF ENDEAVOR 2" // CHOMP Edit
+		// End of Bastion of Endeavor Translation
 		is-maximized = true
 		statusbar = false
 		icon = 'icons/ss13_64.png' // CHOMP Edit
@@ -1169,12 +1293,21 @@ window "mainwindow"
 		saved-params = ""
 	elem "hotkey_toggle"
 		type = BUTTON
+		/* Bastion of Endeavor Edit: Since we're removing the chat button
 		pos = 560,400
 		size = 80x20
+		*/
+		pos = 520,400
+		size = 120x40
+		// End of Bastion of Endeavor Edit
 		anchor1 = 100,100
 		anchor2 = -1,-1
 		saved-params = ""
+		/* Bastion of Endeavor Translation
 		text = "Hotkey Toggle"
+		*/
+		text = "Горячие клавиши"
+		// End of Bastion of Endeavor Translation
 		command = ".winset \"mainwindow.macro!=macro ? mainwindow.macro=macro hotkey_toggle.is-checked=false input.focus=true : mainwindow.macro=hotkeymode hotkey_toggle.is-checked=true mapwindow.map.focus=true\""
 		button-type = pushbox
 	elem "mainvsplit"
@@ -1214,6 +1347,11 @@ window "mainwindow"
 		anchor2 = -1,-1
 		saved-params = "is-checked"
 		text = "Chat"
+		/* Bastion of Endeavor Edit: We don't actually need this
+		is-visible = true
+		*/
+		is-visible = false
+		// End of Bastion of Endeavor Edit
 		command = ".winset \"saybutton.is-checked=true?input.command=\"!say \\\"\" macrobutton.is-checked=false:input.command=\""
 		button-type = pushbox
 	elem "tooltip"
@@ -1338,6 +1476,9 @@ window "rpane"
 		text = "Patreon"
 		command = "patreon"
 		group = "rpanemode"
+		// Bastion of Endeavor Addition: We handle these differently
+		is-visible = false
+		// End of Bastion of Endeavor Addition
 	elem "discord"
 		type = BUTTON
 		pos = 428,0
@@ -1349,6 +1490,9 @@ window "rpane"
 		text = "Discord"
 		command = "discord"
 		group = "rpanemode"
+		// Bastion of Endeavor Addition: We handle these differently
+		is-visible = false
+		// End of Bastion of Endeavor Addition
 	elem "github"
 		type = BUTTON
 		pos = 368,0
@@ -1360,6 +1504,9 @@ window "rpane"
 		text = "GitHub"
 		command = "github"
 		group = "rpanemode"
+		// Bastion of Endeavor Addition: We handle these differently
+		is-visible = false
+		// End of Bastion of Endeavor Addition
 	elem "mapb"
 		type = BUTTON
 		pos = 308,0
@@ -1371,6 +1518,9 @@ window "rpane"
 		text = "Map"
 		command = "map"
 		group = "rpanemode"
+		// Bastion of Endeavor Addition: We handle these differently
+		is-visible = false
+		// End of Bastion of Endeavor Addition
 	elem "rulesb"
 		type = BUTTON
 		pos = 248,0
@@ -1382,6 +1532,9 @@ window "rpane"
 		text = "Rules"
 		command = "rules"
 		group = "rpanemode"
+		// Bastion of Endeavor Addition: We handle these differently
+		is-visible = false
+		// End of Bastion of Endeavor Addition
 	elem "forumb"
 		type = BUTTON
 		pos = 188,0
@@ -1393,6 +1546,9 @@ window "rpane"
 		text = "Forum"
 		command = "forum"
 		group = "rpanemode"
+		// Bastion of Endeavor Addition: We handle these differently
+		is-visible = false
+		// End of Bastion of Endeavor Addition
 	elem "wikib"
 		type = BUTTON
 		pos = 128,0
@@ -1404,6 +1560,9 @@ window "rpane"
 		text = "Wiki"
 		command = "wiki"
 		group = "rpanemode"
+		// Bastion of Endeavor Addition: We handle these differently
+		is-visible = false
+		// End of Bastion of Endeavor Addition
 	elem "textb"
 		type = BUTTON
 		pos = 0,0
@@ -1445,7 +1604,11 @@ window "preferences_window"
 	elem "preferences_window"
 		type = MAIN
 		pos = 281,0
+		/* Bastion of Endeavor Edit
 		size = 1000x800
+		*/
+		size = 1200x800
+		// End of Bastion of Endeavor Edit
 		anchor1 = -1,-1
 		anchor2 = -1,-1
 		is-visible = false
@@ -1454,14 +1617,23 @@ window "preferences_window"
 	elem "preferences_browser"
 		type = BROWSER
 		pos = 0,0
+		/* Bastion of Endeavor Edit
 		size = 800x800
+		*/
+		size = 900x800
+		// End of Bastion of Endeavor Edit
 		anchor1 = 0,0
 		anchor2 = 80,100
 		saved-params = ""
 	elem "character_preview_map"
 		type = MAP
+		/* Bastion of Endeavor Edit
 		pos = 800,0
 		size = 200x800
+		*/
+		pos = 900,0
+		size = 300x800
+		// End of Bastion of Endeavor Edit
 		anchor1 = 80,0
 		anchor2 = 100,100
 		right-click = true

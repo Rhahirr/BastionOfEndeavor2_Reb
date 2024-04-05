@@ -14,7 +14,11 @@ SUBSYSTEM_DEF(nanoui)
 		processing_uis |= SSnanoui.processing_uis
 
 /datum/controller/subsystem/nanoui/stat_entry()
+	/* Bastion of Endeavor Translation
 	return ..("[processing_uis.len] UIs")
+	*/
+	return ..("Окон: [processing_uis.len]")
+	// End of Bastion of Endeavor Translation
 
 /datum/controller/subsystem/nanoui/fire(resumed)
 	for(var/thing in processing_uis)

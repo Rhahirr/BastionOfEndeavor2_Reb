@@ -3,27 +3,45 @@
 #define PREF_FBP_SOFTWARE "software"
 
 /datum/category_group/player_setup_category/general_preferences
+	/* Bastion of Endeavor Translation
 	name = "General"
+	*/
+	name = "Общее"
+	// End of Bastion of Endeavor Translation
 	sort_order = 1
 	category_item_type = /datum/category_item/player_setup_item/general
 
+/* Bastion of Endeavor Removal: Don't need it
 /datum/category_group/player_setup_category/skill_preferences
 	name = "Skills"
 	sort_order = 2
 	category_item_type = /datum/category_item/player_setup_item/skills
+*/
 
 /datum/category_group/player_setup_category/occupation_preferences
+	/* Bastion of Endeavor Translation
 	name = "Occupation"
+	*/
+	name = "Профессия"
+	// End of Bastion of Endeavor Translation
 	sort_order = 3
 	category_item_type = /datum/category_item/player_setup_item/occupation
 
 /datum/category_group/player_setup_category/appearance_preferences
+	/* Bastion of Endeavor Translation
 	name = "Antagonism"
+	*/
+	name = "Особые роли"
+	// End of Bastion of Endeavor Translation
 	sort_order = 4
 	category_item_type = /datum/category_item/player_setup_item/antagonism
 
 /datum/category_group/player_setup_category/loadout_preferences
+	/* Bastion of Endeavor Translation
 	name = "Loadout"
+	*/
+	name = "Личные вещи"
+	// End of Bastion of Endeavor Translation
 	sort_order = 5
 	category_item_type = /datum/category_item/player_setup_item/loadout
 /* //VOREStation Removal
@@ -33,7 +51,11 @@
 	category_item_type = /datum/category_item/player_setup_item/traits
 */ //VOREStation Removal End
 /datum/category_group/player_setup_category/global_preferences
+	/* Bastion of Endeavor Translation
 	name = "Global"
+	*/
+	name = "Настройки"
+	// End of Bastion of Endeavor Translation
 	sort_order = 6 //VOREStation Edit due to above commented out
 	category_item_type = /datum/category_item/player_setup_item/player_global
 
@@ -278,7 +300,11 @@
 	return 0 //Something went wrong!
 
 /datum/category_item/player_setup_item/proc/get_min_age()
+	/* Bastion of Endeavor Translation: Bastion of Endeavor TODO: Might need to be removed later on depending on how we handle species names
 	var/datum/species/S = GLOB.all_species[pref.species ? pref.species : "Human"]
+	*/
+	var/datum/species/S = GLOB.all_species[pref.species ? pref.species : SPECIES_HUMAN]
+	// End of Bastion of Endeavor Translation
 	if(!is_FBP())
 		return S.min_age // If they're not a robot, we can just use the species var.
 	var/FBP_type = get_FBP_type()
@@ -292,7 +318,11 @@
 	return S.min_age // welp
 
 /datum/category_item/player_setup_item/proc/get_max_age()
+	/* Bastion of Endeavor Translation: Bastion of Endeavor TODO: Might need to be removed later on depending on how we handle species names
 	var/datum/species/S = GLOB.all_species[pref.species ? pref.species : "Human"]
+	*/
+	var/datum/species/S = GLOB.all_species[pref.species ? pref.species : SPECIES_HUMAN]
+	// End of Bastion of Endeavor Translation
 	if(!is_FBP())
 		return S.max_age // If they're not a robot, we can just use the species var.
 	var/FBP_type = get_FBP_type()

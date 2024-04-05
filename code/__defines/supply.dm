@@ -13,7 +13,14 @@
 #define SUP_CONTRABAND	  0x4 // Able to order contraband supply packs
 
 // Supply_order status values
+/* Bastion of Endeavor Translation: Breaks TGUI consoles for now but oh well
 #define SUP_ORDER_REQUESTED "Requested"
 #define SUP_ORDER_APPROVED  "Approved"
 #define SUP_ORDER_DENIED    "Denied"
 #define SUP_ORDER_SHIPPED   "Shipped"
+*/
+#define SUP_ORDER_REQUESTED "Запрошен"
+#define SUP_ORDER_APPROVED  "Одобрен"
+#define SUP_ORDER_DENIED    "Отклонён"
+#define SUP_ORDER_SHIPPED   "Поставлен"
+// End of Bastion of Endeavor Translation

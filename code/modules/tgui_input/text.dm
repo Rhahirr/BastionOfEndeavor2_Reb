@@ -15,7 +15,11 @@
  * * encode - Toggling this determines if input is filtered via html_encode. Setting this to FALSE gives raw input.
  * * timeout - The timeout of the textbox, after which the modal will close and qdel itself. Set to zero for no timeout.
  */
+/* Bastion of Endeavor Translation
 /proc/tgui_input_text(mob/user, message = "", title = "Text Input", default, max_length = INFINITY, multiline = FALSE, encode = FALSE, timeout = 0, prevent_enter = FALSE)
+*/
+/proc/tgui_input_text(mob/user, message = "", title = "Ввод текста", default, max_length = INFINITY, multiline = FALSE, encode = FALSE, timeout = 0, prevent_enter = FALSE)
+// End of Bastion of Endeavor Translation
 	if (!user)
 		user = usr
 	if (!istype(user))
@@ -137,10 +141,17 @@
 	switch(action)
 		if("submit")
 			if(max_length)
+				/* Bastion of Endeavor Translation
 				if(length(params["entry"]) > max_length)
 					CRASH("[usr] typed a text string longer than the max length")
 				if(encode && (length(html_encode(params["entry"])) > max_length))
 					to_chat(usr, span_notice("Your message was clipped due to special character usage."))
+				*/
+				if(length_char(params["entry"]) > max_length)
+					CRASH("[usr] ввёл текст длиннее максимальной длины строки.")
+				if(encode && (length_char(html_encode(params["entry"])) > max_length))
+					to_chat(usr, span_notice("Ваше сообщение было обрезано в связи с использованием особых символов."))
+				// End of Bastion of Endeavor Translation
 			set_entry(params["entry"])
 			closed = TRUE
 			SStgui.close_uis(src)

@@ -200,13 +200,29 @@
 
 /datum/component/personal_crafting/proc/check_requirements(atom/source, datum/crafting_recipe/R, list/surroundings)
 	if(!check_contents(source, R, surroundings))
+		/* Bastion of Endeavor Translation
 		return ", missing component."
+		*/
+		return ", отсутствует необходимый компонент."
+		// End of Bastion of Endeavor Translation
 	if(!check_tools(source, R, surroundings))
+		/* Bastion of Endeavor Translation
 		return ", missing tool."
+		*/
+		return ", отсутствует необходимый инструмент."
+		// End of Bastion of Endeavor Translation
 	if(!check_reagents(source, R, surroundings))
+		/* Bastion of Endeavor Translation
 		return ", missing reagents."
+		*/
+		return ", отсутствует необходимое вещество."
+		// End of Bastion of Endeavor Translation
 	if(!check_machinery(source, R, surroundings))
+		/* Bastion of Endeavor Translation
 		return  ", missing machinery."
+		*/
+		return  ", отсутствует необходимое оборудование."
+		// End of Bastion of Endeavor Translation
 	return
 
 /datum/component/personal_crafting/proc/construct_item(atom/a, datum/crafting_recipe/R)
@@ -219,7 +235,11 @@
 	if(R.one_per_turf)
 		for(var/content in get_turf(a))
 			if(istype(content, R.result))
+				/* Bastion of Endeavor Translation
 				return ", object already present."
+				*/
+				return ", объект уже имеется."
+				// End of Bastion of Endeavor Translation
 
 	//If we're a mob we'll try a do_after; non mobs will instead instantly construct the item
 	if(ismob(a) && !do_after(a, R.time, target = a))
@@ -468,10 +488,18 @@
 					user.put_in_hands(result)
 				else
 					result.forceMove(user.drop_location())
+				/* Bastion of Endeavor Translation
 				to_chat(user, "<span class='notice'>[TR.name] constructed.</span>")
+				*/
+				to_chat(user, "<span class='notice'>Вы изготовили [TR.result_name_ru].</span>")
+				// End of Bastion of Endeavor Translation
 				TR.on_craft_completion(user, result)
 			else
+				/* Bastion of Endeavor Translation
 				to_chat(user, "<span class='warning'>Construction failed[result]</span>")
+				*/
+				to_chat(user, "<span class='warning'>Не удалось изготовить [TR.result_name_ru][result]</span>")
+				// End of Bastion of Endeavor Translation
 			busy = FALSE
 		if("toggle_recipes")
 			display_craftable_only = !display_craftable_only
@@ -498,7 +526,11 @@
 			//We just need the name, so cheat-typecast to /atom for speed (even tho Reagents are /datum they DO have a "name" var)
 			//Also these are typepaths so sadly we can't just do "[a]"
 			L += "[req[req_atom]] [initial(req_atom.name)]"
+		/* Bastion of Endeavor Translation
 		req_text += L.Join(" OR ")
+		*/
+		req_text += L.Join(" ИЛИ ")
+		// End of Bastion of Endeavor Translation
 
 	for(var/obj/machinery/content as anything in R.machinery)
 		req_text += "[R.reqs[content]] [initial(content.name)]"
@@ -527,7 +559,11 @@
 
 // Screen objects
 /obj/screen/craft
+	/* Bastion of Endeavor Translation: Not the best way to put it but we're avoiding english terms where we can
 	name = "crafting menu"
+	*/
+	name = "Изготовление предметов"
+	// End of Bastion of Endeavor Translation
 	icon = 'icons/mob/screen/midnight.dmi'
 	icon_state = "craft"
 	screen_loc = ui_smallquad

@@ -2,7 +2,11 @@
 #define MAX_TICKS_TO_MAKE_UP 3 //how many missed ticks will we attempt to make up for this run.
 
 SUBSYSTEM_DEF(throwing)
+	/* Bastion of Endeavor Translation
 	name = "Throwing"
+	*/
+	name = "Метание"
+	// End of Bastion of Endeavor Translation
 	wait = 1
 	flags = SS_NO_INIT|SS_KEEP_TIMING
 
@@ -10,7 +14,11 @@ SUBSYSTEM_DEF(throwing)
 	var/list/processing = list()
 //CHOMPEdit Begin
 /datum/controller/subsystem/throwing/stat_entry(msg)
+	/* Bastion of Endeavor Translation
 	msg = "P:[length(processing)]"
+	*/
+	msg = "| Обрабатывается: [length(processing)]"
+	// End of Bastion of Endeavor Translation
 	return ..()
 //CHOMPEdit End
 /datum/controller/subsystem/throwing/fire(resumed = 0)

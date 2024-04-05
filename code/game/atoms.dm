@@ -12,7 +12,11 @@
 	var/throwpass = 0
 	var/germ_level = GERM_LEVEL_AMBIENT // The higher the germ level, the more germ on the atom.
 	var/simulated = TRUE //filter for actions - used by lighting overlays
+	/* Bastion of Endeavor Translation: Bastion of Endeavor TODO: Might wanna come back to this after mobs are localized!
 	var/atom_say_verb = "says"
+	*/
+	var/atom_say_verb = "говор;ит;ит;ит;ят;"
+	// End of Bastion of Endeavor Translation
 	var/bubble_icon = "normal" ///what icon the atom uses for speechbubbles
 	var/fluorescent // Shows up under a UV light.
 
@@ -90,9 +94,17 @@
 // Must return an Initialize hint. Defined in code/__defines/subsystems.dm
 /atom/proc/Initialize(mapload, ...)
 	if(QDELETED(src))
+		/* Bastion of Endeavor Translation
 		stack_trace("GC: -- [type] had initialize() called after qdel() --")
+		*/
+		stack_trace("Мусоросборщик: [type] вызвал initialize() после qdel().")
+		// End of Bastion of Endeavor Translation
 	if(initialized)
+		/* Bastion of Endeavor Translation
 		stack_trace("Warning: [src]([type]) initialized multiple times!")
+		*/
+		stack_trace("Внимание: [src] ([type]) инициализирован несколько раз!")
+		// End of Bastion of Endeavor Translation
 	initialized = TRUE
 	return INITIALIZE_HINT_NORMAL
 
@@ -224,24 +236,52 @@
 //All atoms
 /atom/proc/examine(mob/user, var/infix = "", var/suffix = "")
 	//This reformat names to get a/an properly working on item descriptions when they are bloody
+	/* Bastion of Endeavor Translation: There is some polishing done here.
 	var/f_name = "\a [src][infix]."
+	*/
+	var/f_name = "[ncase_ru(src)][infix]."
+	// End of Bastion of Endeavor Translation
 	if(src.blood_DNA && !istype(src, /obj/effect/decal))
 		if(gender == PLURAL)
+			/* Bastion of Endeavor Translation
 			f_name = "some "
+			*/
+			f_name = ""
+			// End of Bastion of Endeavor Translation
 		else
+			/* Bastion of Endeavor Translation
 			f_name = "a "
+			*/
+			f_name = ""
+			// End of Bastion of Endeavor Translation
 		if(blood_color != SYNTH_BLOOD_COLOUR)
+			/* Bastion of Endeavor Translation
 			f_name += "<span class='danger'>blood-stained</span> [name][infix]!"
+			*/
+			f_name += "<span class='danger'>[verb_ru(src, "окровавленн;ый;ая;ое;ые;")]</span> [ncase_ru(src)][infix]!"
+			// End of Bastion of Endeavor Translation
 		else
+			/* Bastion of Endeavor Translation
 			f_name += "oil-stained [name][infix]."
+			*/
+			f_name += "[verb_ru(src, "замасленн;ый;ая;ое;ые;")] [ncase_ru(src)][infix]."
+			// End of Bastion of Endeavor Translation
 
+	/* Bastion of Endeavor Translation
 	var/list/output = list("[icon2html(src,user.client)] That's [f_name] [suffix]", get_examine_desc())
+	*/
+	var/list/output = list("[icon2html(src,user.client)] Это [f_name] [suffix]", get_examine_desc())
+	// End of Bastion of Endeavor Translation
 
 	if(user.client?.prefs.examine_text_mode == EXAMINE_MODE_INCLUDE_USAGE)
 		output += description_info
 
 	if(user.client?.prefs.examine_text_mode == EXAMINE_MODE_SWITCH_TO_PANEL)
+		/* Bastion of Endeavor Translation
 		user.client.statpanel = "Examine" // Switch to stat panel
+		*/
+		user.client.statpanel = "Осмотр" // Switch to stat panel
+		// End of Bastion of Endeavor Translation
 	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE, user, output)
 	return output
 
@@ -316,17 +356,29 @@
 			return 0
 		if (H.gloves)
 			if(src.fingerprintslast != H.key)
+				/* Bastion of Endeavor Translation
 				src.fingerprintshidden += text("\[[time_stamp()]\] (Wearing gloves). Real name: [], Key: []",H.real_name, H.key)
+				*/
+				src.fingerprintshidden += text("\[[time_stamp()]\] (в перчатках). Настоящее имя: [], кей: []",H.real_name, H.key)
+				// End of Bastion of Endeavor Translation
 				src.fingerprintslast = H.key
 			return 0
 		if (!( src.fingerprints ))
 			if(src.fingerprintslast != H.key)
+				/* Bastion of Endeavor Translation
 				src.fingerprintshidden += text("\[[time_stamp()]\] Real name: [], Key: []",H.real_name, H.key)
+				*/
+				src.fingerprintshidden += text("\[[time_stamp()]\] Настоящее имя: [], кей: []",H.real_name, H.key)
+				// End of Bastion of Endeavor Translation
 				src.fingerprintslast = H.key
 			return 1
 	else
 		if(src.fingerprintslast != M.key)
+			/* Bastion of Endeavor Translation
 			src.fingerprintshidden += text("\[[time_stamp()]\] Real name: [], Key: []",M.real_name, M.key)
+			*/
+			src.fingerprintshidden += text("\[[time_stamp()]\] Настоящее имя: [], кей: []",M.real_name, M.key)
+			// End of Bastion of Endeavor Translation
 			src.fingerprintslast = M.key
 	return
 
@@ -345,7 +397,11 @@
 		//He has no prints!
 		if (mFingerprints in M.mutations)
 			if(fingerprintslast != M.key)
+				/* Bastion of Endeavor Translation
 				fingerprintshidden += "[time_stamp()]: [key_name(M)] (No fingerprints mutation)"
+				*/
+				fingerprintshidden += "[time_stamp()]: [key_name(M)] (мутация – без отпечатков)"
+				// End of Bastion of Endeavor Translation
 				fingerprintslast = M.key
 			return 0		//Now, lets get to the dirty work.
 		//First, make sure their DNA makes sense.
@@ -359,7 +415,11 @@
 		//Now, deal with gloves.
 		if (H.gloves && H.gloves != src)
 			if(fingerprintslast != H.key)
+				/* Bastion of Endeavor Translation
 				fingerprintshidden += "[time_stamp()]: [key_name(H)] (Wearing [H.gloves])"
+				*/
+				fingerprintshidden += "[time_stamp()]: [key_name(H)] ([prep_adv_ru("в", H.gloves, PCASE)])"
+				// End of Bastion of Endeavor Translation
 				fingerprintslast = H.key
 			H.gloves.add_fingerprint(M)
 
@@ -541,7 +601,11 @@
 
 	if(radio_message)
 		for(var/obj/O as anything in hearing_objs)
+			/* Bastion of Endeavor Translation
 			O.hear_talk(src, list(new /datum/multilingual_say_piece(GLOB.all_languages["Noise"], radio_message)), null)
+			*/
+			O.hear_talk(src, list(new /datum/multilingual_say_piece(GLOB.all_languages["Звук"], radio_message)), null)
+			// End of Bastion of Endeavor Translation
 	else
 		for(var/obj/O as anything in hearing_objs)
 			O.show_message(message, AUDIBLE_MESSAGE, deaf_message, VISIBLE_MESSAGE)
@@ -599,8 +663,13 @@
 
 /atom/vv_get_dropdown()
 	. = ..()
+	/* Bastion of Endeavor Translation
 	VV_DROPDOWN_OPTION(VV_HK_ATOM_EXPLODE, "Explosion")
 	VV_DROPDOWN_OPTION(VV_HK_ATOM_EMP, "Emp Pulse")
+	*/
+	VV_DROPDOWN_OPTION(VV_HK_ATOM_EXPLODE, "Создать взрыв")
+	VV_DROPDOWN_OPTION(VV_HK_ATOM_EMP, "Создать ЭМИ")
+	// End of Bastion of Endeavor Translation
 
 /atom/vv_do_topic(list/href_list)
 	. = ..()
@@ -624,7 +693,11 @@
 		[custom_edit_name]
 		<br><font size='1'>
 		<a href='?_src_=vars;[HrefToken()];rotatedatum=\ref[src];rotatedir=left'><<</a>
+		<!-- Bastion of Endeavor Translation
 		<a href='?_src_=vars;[HrefToken()];datumedit=\ref[src];varnameedit=dir'>[dir2text(dir)]</a>
+		-->
+		<a href='?_src_=vars;[HrefToken()];datumedit=\ref[src];varnameedit=dir'>[dir2text_ru(dir)]</a>
+		<!-- End of Bastion of Endeavor Translation -->
 		<a href='?_src_=vars;[HrefToken()];rotatedatum=\ref[src];rotatedir=right'>>></a>
 		</font>
 		"}
@@ -672,7 +745,11 @@
 		return
 	var/list/speech_bubble_hearers = list()
 	for(var/mob/M in get_mobs_in_view(7, src))
+		/* Bastion of Endeavor Translation: Bastion of Endeavor Note: Changing to ncase, kinda experimental
 		M.show_message("<span class='npcsay'><span class='name'>[src]</span> [atom_say_verb], \"[message]\"</span>", 2, null, 1)
+		*/
+		M.show_message("<span class='npcsay'><span class='name'>[cap_ru(src)]</span> [verb_ru(src, atom_say_verb)], \"[message]\"</span>", 2, null, 1)
+		// End of Bastion of Endeavor Translation
 		if(M.client)
 			speech_bubble_hearers += M.client
 

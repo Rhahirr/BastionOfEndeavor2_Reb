@@ -5,12 +5,20 @@
 
 /datum/controller/subsystem/mapping/proc/pickEngine(pickedEngine)
 	if(!engine_loader_pickable)
+		/* Bastion of Endeavor Translation
 		to_world_log("Ignoring player picked engine")
+		*/
+		to_world_log("Игнорируем выбранный игроками генератор")
+		// End of Bastion of Endeavor Translation
 		return // Either this map doesn't use this engine loader or doesn't need one at all.
 
 	var/turf/T = get_turf(engine_loader_pickable)
 	if(!isturf(T))
+		/* Bastion of Endeavor Translation
 		to_world_log("[log_info_line(engine_loader_pickable)] not on a turf! Cannot place engine template.")
+		*/
+		to_world_log("[log_info_line(engine_loader_pickable)] не находится на тюрфе! Невозможно расположить шаблон генератора.")
+		// End of Bastion of Endeavor Translation
 		return
 
 	// Choose an engine type
@@ -19,7 +27,11 @@
 		var/chosen_name = pickedEngine //Instead of using the config, we'll take an argument.
 		chosen_type = map_templates[chosen_name]
 		if(!istype(chosen_type))
+			/* Bastion of Endeavor Translation
 			error("Configured engine map [chosen_name] is not a valid engine map name!")
+			*/
+			error("Карта генератора [chosen_name] не является допустимым названием карты!")
+			// End of Bastion of Endeavor Translation
 	if(!istype(chosen_type))
 		var/list/engine_types = list()
 		for(var/map in map_templates)
@@ -27,9 +39,15 @@
 			if(istype(MT))
 				engine_types += MT
 		chosen_type = pick(engine_types)
+	/* Bastion of Endeavor Translation
 	global_announcer.autosay("Engineering has selected [chosen_type.name] as todays engine.", "Engine Constructor")
 	to_world_log("Chose Engine Map: [chosen_type.name]")
 	admin_notice("<span class='danger'>Chose Engine Map: [chosen_type.name]</span>", R_DEBUG)
+	*/
+	global_announcer.autosay("Выбранный инженерным отделом генератор – [chosen_type.name].", "Установщик генераторов")
+	to_world_log("Выбранный генератор: [chosen_type.name]")
+	admin_notice("<span class='danger'>Выбранный генератор: [chosen_type.name]</span>", R_DEBUG)
+	// End of Bastion of Endeavor Translation
 
 	// Annihilate movable atoms
 	engine_loader_pickable.annihilate_bounds()

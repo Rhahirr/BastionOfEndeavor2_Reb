@@ -1,5 +1,9 @@
 PROCESSING_SUBSYSTEM_DEF(obj_tab_items)
+	/* Bastion of Endeavor Translation
 	name = "Obj Tab Items"
+	*/
+	name = "Осмотр в статпанели"
+	// End of Bastion of Endeavor Translation
 	flags = SS_NO_INIT
 	runlevels = RUNLEVEL_LOBBY | RUNLEVELS_DEFAULT
 	wait = 0.1 SECONDS

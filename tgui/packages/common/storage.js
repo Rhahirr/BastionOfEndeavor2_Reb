@@ -11,7 +11,11 @@ export const IMPL_LOCAL_STORAGE = 1;
 export const IMPL_INDEXED_DB = 2;
 
 const INDEXED_DB_VERSION = 1;
+/* Bastion of Endeavor Edit
 const INDEXED_DB_NAME = 'chomp'; // CHOMPEdit - CHOMPStation Localstore
+*/
+const INDEXED_DB_NAME = 'bastionofendeavor'; // CHOMPEdit - CHOMPStation Localstore
+// End of Bastion of Endeavor Edit
 const INDEXED_DB_STORE_NAME = 'storage-v1';
 
 const READ_ONLY = 'readonly';

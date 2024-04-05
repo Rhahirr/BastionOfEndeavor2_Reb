@@ -9,30 +9,50 @@
 	var/job_other_high = 0
 
 /client/verb/toggle_random_emote_pitch()
+	/* Bastion of Endeavor Translation: I hate this
 	set name = "Toggle Random Emote Pitch"
 	set category = "Preferences"
 	set desc = "Toggles whether or not emotes with sound you make will have random pitch."
+	*/
+	set name = "Случайный тон озвученных действий"
+	set category = "Предпочтения.Звуки"
+	set desc = "Переключить случайное изменение высоты голоса при озвученных действиях."
+	// End of Bastion of Endeavor Translation
 
 	var/pref_path = /datum/client_preference/random_emote_pitch
 
 	toggle_preference(pref_path)
 
+	/* Bastion of Endeavor Translation
 	to_chat(src, "Audible emotes you make will [ (is_preference_enabled(pref_path)) ? "now" : "no longer"] have a random pitch applied to them.")
+	*/
+	to_chat(src, "Озвученные действия [ (is_preference_enabled(pref_path)) ? "теперь" : "больше не"] будут случайно изменять высоту голоса.")
+	// End of Bastion of Endeavor Translation
 
 	SScharacter_setup.queue_preferences_save(prefs)
 
 	feedback_add_details("admin_verb","TRandomEmotePitch") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/verb/toggle_autotranscore()
+	/* Bastion of Endeavor Translation
 	set name = "Toggle Automatic Transcore Notification"
 	set category = "Preferences"
 	set desc = "Toggles whether or not your death with a backup implant will automatically trigger a transcore notification after a few minutes."
+	*/
+	set name = "Автоматическое уведомление трансядра"
+	set category = "Предпочтения"
+	set desc = "Переключить автоматическое уведомление трансядра в случае вашей смерти с имплантатом резервного копирования."
+	// End of Bastion of Endeavor Translation
 
 	var/pref_path = /datum/client_preference/autotranscore
 
 	toggle_preference(pref_path)
 
+	/* Bastion of Endeavor Translation
 	to_chat(src, "Your death with a backup implant will [ (is_preference_enabled(pref_path)) ? "now" : "no longer"] trigger an automatic transcore notification.")
+	*/
+	to_chat(src, "Ваша смерть [ (is_preference_enabled(pref_path)) ? "теперь" : "больше не"] будет автоматически уведомлять трансядро.")
+	// End of Bastion of Endeavor Translation
 
 	SScharacter_setup.queue_preferences_save(prefs)
 
@@ -56,8 +76,13 @@
 	*/
 	if (copy_name)
 		if(config.humans_need_surnames)
+			/* Bastion of Endeavor Unicode Edit
 			var/firstspace = findtext(real_name, " ")
 			var/name_length = length(real_name)
+			*/
+			var/firstspace = findtext_char(real_name, " ")
+			var/name_length = length_char(real_name)
+			// End of Bastion of Endeavor Unicode Edit
 			if(!firstspace)	//we need a surname
 				real_name += " [pick(last_names)]"
 			else if(firstspace == name_length)
@@ -165,7 +190,11 @@
 						bodytype = selected_species.get_bodytype()
 					var/dsi_company = GLOB.dsi_to_species[bodytype]
 					if (!dsi_company)
+						/* Bastion of Endeavor Translation
 						dsi_company = "DSI - Adaptive"
+						*/
+						dsi_company = "Дарксайд – Адаптивный"
+						// End of Bastion of Endeavor Translation
 					O.robotize(dsi_company)
 
 	for(var/N in character.organs_by_name)

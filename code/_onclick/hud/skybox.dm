@@ -4,7 +4,11 @@
 
 // Skybox screen object.
 /obj/screen/skybox
+	/* Bastion of Endeavor Translation: Literally no idea where this name is even used but oh well.
 	name = "skybox"
+	*/
+	name = "Горизонт"
+	// End of Bastion of Endeavor Translation
 	icon = null
 	vis_flags = NONE
 	appearance_flags = TILE_BOUND|PIXEL_SCALE

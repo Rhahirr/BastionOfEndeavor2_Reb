@@ -52,7 +52,11 @@ export const createPage = (obj) => {
   return {
     isMain: false,
     id: createUuid(),
+    /* Bastion of Endeavor Translation
     name: 'New Tab',
+    */
+    name: 'Новая вкладка',
+    // End of Bastion of Endeavor Translation
     acceptedTypes: acceptedTypes,
     unreadCount: 0,
     hideUnreadCount: false,
@@ -68,7 +72,11 @@ export const createMainPage = () => {
   }
   return createPage({
     isMain: true,
+    /* Bastion of Endeavor Translation
     name: 'Main',
+    */
+    name: 'Главная',
+    // End of Bastion of Endeavor Translation
     acceptedTypes,
   });
 };

@@ -22,7 +22,11 @@ By using these methods of finding references, you can make your life far, far ea
 */
 
 SUBSYSTEM_DEF(garbage)
+	/* Bastion of Endeavor Translation
 	name = "Garbage"
+	*/
+	name = "Мусоросборщик"
+	// End of Bastion of Endeavor Translation
 	priority = FIRE_PRIORITY_GARBAGE
 	wait = 2 SECONDS
 	flags = SS_POST_FIRE_TIMING|SS_BACKGROUND|SS_NO_INIT
@@ -69,6 +73,7 @@ SUBSYSTEM_DEF(garbage)
 	var/list/counts = list()
 	for (var/list/L in queues)
 		counts += length(L)
+	/* Bastion of Endeavor Translation
 	msg += "Q:[counts.Join(",")]|D:[delslasttick]|G:[gcedlasttick]|"
 	msg += "GR:"
 	if (!(delslasttick+gcedlasttick))
@@ -83,6 +88,22 @@ SUBSYSTEM_DEF(garbage)
 		msg += "TGR:[round((totalgcs/(totaldels+totalgcs))*100, 0.01)]%"
 	msg += " P:[pass_counts.Join(",")]"
 	msg += "|F:[fail_counts.Join(",")]"
+	*/
+	msg += "О:[counts.Join(",")]|У:[delslasttick]|С:[gcedlasttick]|"
+	msg += "М:"
+	if (!(delslasttick+gcedlasttick))
+		msg += "нет|"
+	else
+		msg += "[round((gcedlasttick/(delslasttick+gcedlasttick))*100, 0.01)]%|"
+
+	msg += "ВУ:[totaldels]|ВМ:[totalgcs]|"
+	if (!(totaldels+totalgcs))
+		msg += "нет|"
+	else
+		msg += "ВМУ:[round((totalgcs/(totaldels+totalgcs))*100, 0.01)]%"
+	msg += " П:[pass_counts.Join(",")]"
+	msg += "|Н:[fail_counts.Join(",")]"
+	// End of Bastion of Endeavor Translation
 	return ..()
 
 /datum/controller/subsystem/garbage/Shutdown()
@@ -96,6 +117,7 @@ SUBSYSTEM_DEF(garbage)
 		var/list/entry = list()
 		del_log[path] = entry
 
+		/* Bastion of Endeavor Translation
 		if (I.qdel_flags & QDEL_ITEM_SUSPENDED_FOR_LAG)
 			entry["SUSPENDED FOR LAG"] = TRUE
 		if (I.failures)
@@ -117,6 +139,29 @@ SUBSYSTEM_DEF(garbage)
 			entry["Total No Hint"] = I.no_hint
 		if(LAZYLEN(I.extra_details))
 			entry["Deleted Metadata"] = I.extra_details
+		*/
+		if (I.qdel_flags & QDEL_ITEM_SUSPENDED_FOR_LAG)
+			entry["ЗАДЕРЖАН ИЗ-ЗА ЛАГОВ"] = TRUE
+		if (I.failures)
+			entry["Неудач"] = I.failures
+		entry["Счётчик qdel()"] = I.qdels
+		entry["Стоимость Destroy(), мс"] = I.destroy_time
+
+		if (I.hard_deletes)
+			entry["Всего хард-удалений"] = I.hard_deletes
+			entry["Затрачено на хард удаления, мс"] = I.hard_delete_time
+			entry["Наибольшие затраты, мс"] = I.hard_delete_max
+			if (I.hard_deletes_over_threshold)
+				entry["Хард-удалений за границей"] = I.hard_deletes_over_threshold
+		if (I.slept_destroy)
+			entry["Спящих"] = I.slept_destroy
+		if (I.no_respect_force)
+			entry["Игнорирующих"] = I.no_respect_force
+		if (I.no_hint)
+			entry["Без намёка"] = I.no_hint
+		if(LAZYLEN(I.extra_details))
+			entry["Метаданных"] = I.extra_details
+		// End of Bastion of Endeavor Translation
 
 	log_debug("", del_log)
 
@@ -225,8 +270,13 @@ SUBSYSTEM_DEF(garbage)
 				var/type = D.type
 				var/datum/qdel_item/I = items[type]
 
+				/* Bastion of Endeavor Translation
 				var/message = "## TESTING: GC: -- [ref(D)] | [type] was unable to be GC'd --"
 				message = "[message] (ref count of [refcount(D)])"
+				*/
+				var/message = "## МУСОР: Не удалось собрать [ref(D)] | [type]."
+				message = "[message] (refcount = [refcount(D)])"
+				// End of Bastion of Endeavor Translation
 				log_world(message)
 
 				/*var/detail = D.dump_harddel_info()
@@ -238,7 +288,11 @@ SUBSYSTEM_DEF(garbage)
 					var/client/admin = c
 					if(!check_rights_for(admin, R_ADMIN))
 						continue
+					/* Bastion of Endeavor Translation
 					to_chat(admin, "## TESTING: GC: -- [ADMIN_VV(D)] | [type] was unable to be GC'd --")
+					*/
+					to_chat(admin, "## МУСОР: Не удалось собрать [ADMIN_VV(D)] | [type].")
+					// End of Bastion of Endeavor Translation
 				#endif
 				I.failures++
 
@@ -313,8 +367,13 @@ SUBSYSTEM_DEF(garbage)
 	var/threshold = 0.5 // Default, make a config
 	if (threshold && (time > threshold SECONDS))
 		if (!(type_info.qdel_flags & QDEL_ITEM_ADMINS_WARNED))
+			/* Bastion of Endeavor Translation
 			log_game("Error: [type]([refID]) took longer than [threshold] seconds to delete (took [round(time/10, 0.1)] seconds to delete)")
 			message_admins("Error: [type]([refID]) took longer than [threshold] seconds to delete (took [round(time/10, 0.1)] seconds to delete).")
+			*/
+			log_game("Мусоросборщик: [type]([refID]) занял [count_ru(round(time/10, 0.1), "секунд;у;ы;")] на удаление.")
+			message_admins("Мусоросборщик: [type]([refID]) занял [count_ru(round(time/10, 0.1), "секунд;у;ы;")] на удаление.")
+			// End of Bastion of Endeavor Translation
 			type_info.qdel_flags |= QDEL_ITEM_ADMINS_WARNED
 		type_info.hard_deletes_over_threshold++
 		var/overrun_limit = 0 // Default, make a config
@@ -361,7 +420,11 @@ SUBSYSTEM_DEF(garbage)
 
 	if(!isnull(to_delete.gc_destroyed))
 		if(to_delete.gc_destroyed == GC_CURRENTLY_BEING_QDELETED)
+			/* Bastion of Endeavor Translation
 			CRASH("[to_delete.type] destroy proc was called multiple times, likely due to a qdel loop in the Destroy logic")
+			*/
+			CRASH("Прок Destroy() типа [to_delete.type] вызван несколько раз, мог случиться зацикленный Qdel.")
+			// End of Bastion of Endeavor Translation
 		return
 
 	if (SEND_SIGNAL(to_delete, COMSIG_PARENT_PREQDELETED, force)) // Give the components a chance to prevent their parent from being deleted
@@ -395,11 +458,18 @@ SUBSYSTEM_DEF(garbage)
 			// indicates the objects Destroy() does not respect force
 			#ifdef TESTING
 			if(!trash.no_respect_force)
+				/* Bastion of Endeavor Translation
 				testing("WARNING: [to_delete.type] has been force deleted, but is \
 					returning an immortal QDEL_HINT, indicating it does \
 					not respect the force flag for qdel(). It has been \
 					placed in the queue, further instances of this type \
 					will also be queued.")
+				*/
+				testing("ВНИМАНИЕ: Тип [to_delete.type] был принудительно удалён, \
+					но возвращает неудаляемый намёк QDEL_HINT, что означает, \
+					что он не воспринимает флаг принудительности для qdel(). Он был помещён в очередь, \
+					и остальные инстанции этого типа тоже будут туда помещены.")
+				// End of Bastion of Endeavor Translation
 			#endif
 			trash.no_respect_force++
 
@@ -419,7 +489,11 @@ SUBSYSTEM_DEF(garbage)
 		else
 			#ifdef TESTING
 			if(!trash.no_hint)
+				/* Bastion of Endeavor Translation
 				testing("WARNING: [to_delete.type] is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.")
+				*/
+				testing("ВНИМАНИЕ: Тип [to_delete.type] не возвращает намёк на qdel. Он был помещён в очередь, и остальные инстанции этого типа тоже будут туда помещены.")
+				// End of Bastion of Endeavor Translation
 			#endif
 			trash.no_hint++
 			SSgarbage.Queue(to_delete)

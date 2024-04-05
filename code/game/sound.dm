@@ -126,7 +126,11 @@
 	if(is_preference_enabled(/datum/client_preference/play_lobby_music))
 		var/datum/track/T = pick(SSmedia_tracks.lobby_tracks)
 		media.push_music(T.url, world.time, 0.85)
+		/* Bastion of Endeavor Translation
 		to_chat(src,"<span class='notice'>Lobby music: <b>[T.title]</b> by <b>[T.artist]</b>.</span>")
+		*/
+		to_chat(src,"<span class='notice'>Музыка в лобби: <b>[T.artist]</b> - <b>[T.title]</b>.</span>")
+		// End of Bastion of Endeavor Translation
 
 /proc/get_sfx(soundin)
 	if(istext(soundin))
@@ -324,6 +328,7 @@ var/list/xeno_speak_sound = list('modular_chomp/sound/talksounds/xeno/xenotalk.o
 //CHOMPedit end.
 
 
+// Bastion of Endeavor TODO: Depending on how we go about emote localization, this might need adjustments
 // CHOMPEdit Start: Species sounds. This is probably inefficient, but I'm sure someone will yell at me or just do it better later:tm:
 #define canine_sounds list("cough" = null, "sneeze" = null, "scream" = list('modular_chomp/sound/voice/scream/canine/wolf_scream.ogg', 'modular_chomp/sound/voice/scream/canine/wolf_scream2.ogg', 'modular_chomp/sound/voice/scream/canine/wolf_scream3.ogg', 'modular_chomp/sound/voice/scream/canine/wolf_scream4.ogg', 'modular_chomp/sound/voice/scream/canine/wolf_scream5.ogg', 'modular_chomp/sound/voice/scream/canine/wolf_scream6.ogg'), "pain" = list('modular_chomp/sound/voice/pain/canine/wolf_pain.ogg', 'modular_chomp/sound/voice/pain/canine/wolf_pain2.ogg', 'modular_chomp/sound/voice/pain/canine/wolf_pain3.ogg', 'modular_chomp/sound/voice/pain/canine/wolf_pain4.ogg'), "gasp" = list('modular_chomp/sound/voice/gasp/canine/wolf_gasp.ogg'), "death" = list('modular_chomp/sound/voice/death/canine/wolf_death1.ogg', 'modular_chomp/sound/voice/death/canine/wolf_death2.ogg', 'modular_chomp/sound/voice/death/canine/wolf_death3.ogg', 'modular_chomp/sound/voice/death/canine/wolf_death4.ogg', 'modular_chomp/sound/voice/death/canine/wolf_death5.ogg'))
 #define feline_sounds list("cough" = null, "sneeze" = null, "scream" = list('modular_chomp/sound/voice/scream/feline/feline_scream.ogg'), "pain" = list('modular_chomp/sound/voice/pain/feline/feline_pain.ogg'), "gasp" = list('modular_chomp/sound/voice/gasp/feline/feline_gasp.ogg'), "death" = list('modular_chomp/sound/voice/death/feline/feline_death.ogg'))
@@ -378,6 +383,7 @@ var/list/xeno_speak_sound = list('modular_chomp/sound/talksounds/xeno/xenotalk.o
 
 // Global list containing all of our sound options.
 var/list/species_sound_map = list(
+	// Bastion of Endeavor Translation: Uncommented due to runtimes for now, Bastion of Endeavor TODO: Check back when mobs are localized
 	"Canine" = canine_sounds,
 	"Cervine" = cervine_sounds,
 	"Feline" = feline_sounds,
@@ -396,6 +402,27 @@ var/list/species_sound_map = list(
 	"Xeno" = xeno_sounds,
 	"None" = no_sounds,
 	"Unset" = use_default
+	/*
+	"Собака" = canine_sounds,
+	"Олень" = cervine_sounds,
+	"Кот" = feline_sounds,
+	"Человеческий самец" = male_generic_sounds,
+	"Человеческая самка" = female_generic_sounds,
+	"Ящер" = lizard_sounds,
+	"Метроид" = metroid_sounds,
+	"Мышь" = mouse_sounds,
+	"Енот" = raccoon_sounds,
+	"Робот" = robot_sounds,
+	"Слизень" = slime_sounds,
+	"Паук" = spider_sounds,
+	"Тешари" = teshari_sounds,
+	"Вокс" = vox_sounds,
+	"Лис" = vulpine_sounds,
+	"Ксеноморф" = xeno_sounds,
+	"Нет" = no_sounds,
+	"По умолчанию" = use_default
+	*/
+	// End of Bastion of Endeavor Translation
 )
 
 /* // Not sure we even really need this

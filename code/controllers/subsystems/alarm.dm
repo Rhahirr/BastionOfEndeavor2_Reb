@@ -8,7 +8,11 @@
 /var/global/datum/alarm_handler/power/power_alarm			= new()
 
 SUBSYSTEM_DEF(alarm)
+	/* Bastion of Endeavor Translation
 	name = "Alarm"
+	*/
+	name = "Тревоги"
+	// End of Bastion of Endeavor Translation
 	wait = 2 SECONDS
 	priority = FIRE_PRIORITY_ALARM
 	init_order = INIT_ORDER_ALARM
@@ -43,6 +47,10 @@ SUBSYSTEM_DEF(alarm)
 
 //CHOMPEdit Begin
 /datum/controller/subsystem/alarm/stat_entry(msg)
+	/* Bastion of Endeavor Translation
 	msg = "[number_of_active_alarms()] alarm\s"
+	*/
+	msg = "| Тревог: [number_of_active_alarms()]"
+	// End of Bastion of Endeavor Translation
 	return ..()
 //CHOMPEdit End

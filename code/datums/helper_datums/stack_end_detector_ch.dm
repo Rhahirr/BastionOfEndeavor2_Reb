@@ -17,7 +17,11 @@
 **/
 /datum/stack_end_detector/proc/prime_canary()
 	if (!_canary)
+		/* Bastion of Endeavor Translation
 		CRASH("Prime_canary called twice")
+		*/
+		CRASH("Прок prime_canary вызван дважды.")
+		// End of Bastion of Endeavor Translation
 	. = _canary
 	_canary = null
 

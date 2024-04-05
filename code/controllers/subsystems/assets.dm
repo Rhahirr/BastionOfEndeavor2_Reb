@@ -3,7 +3,11 @@
 	SSassets.OnConfigLoad()
 
 SUBSYSTEM_DEF(assets)
+	/* Bastion of Endeavor Translation
 	name = "Assets"
+	*/
+	name = "Ресурсы"
+	// End of Bastion of Endeavor Translation
 	init_order = INIT_ORDER_ASSETS
 	flags = SS_NO_FIRE
 	var/list/datum/asset_cache_item/cache = list()

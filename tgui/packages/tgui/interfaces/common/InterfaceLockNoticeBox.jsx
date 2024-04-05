@@ -21,7 +21,11 @@ export const InterfaceLockNoticeBox = (props) => {
     siliconUser = data.siliconUser,
     locked = data.locked,
     onLockStatusChange = () => act('lock'),
+    /* Bastion of Endeavor Translation
     accessText = 'an ID card',
+    */
+    accessText = 'идентификационной картой',
+    /* End of Bastion of Endeavor Translation */
     preventLocking = data.preventLocking,
   } = props;
   // For silicon users
@@ -29,14 +33,22 @@ export const InterfaceLockNoticeBox = (props) => {
     return (
       <NoticeBox color="grey">
         <Flex align="center">
+          {/* Bastion of Endeavor Translation
           <Flex.Item>Interface lock status:</Flex.Item>
+          */}
+          <Flex.Item>Блокировка интерфейса:</Flex.Item>
+          {/* End of Bastion of Endeavor Translation */}
           <Flex.Item grow={1} />
           <Flex.Item>
             <Button
               m={0}
               color={locked ? 'red' : 'green'}
               icon={locked ? 'lock' : 'unlock'}
+              /* Bastion of Endeavor Translation
               content={locked ? 'Locked' : 'Unlocked'}
+              */
+              content={locked ? 'Активна' : 'Отключена'}
+              /* End of Bastion of Endeavor Translation */
               disabled={preventLocking}
               onClick={() => {
                 if (onLockStatusChange) {
@@ -52,7 +64,12 @@ export const InterfaceLockNoticeBox = (props) => {
   // For everyone else
   return (
     <NoticeBox>
+      {/* Bastion of Endeavor Translation
       Swipe {accessText} to {locked ? 'unlock' : 'lock'} this interface.
+      */}
+      Проведите {accessText}, чтобы
+      {locked ? 'заблокировать' : 'разблокировать'} этот интерфейс.
+      {/* End of Bastion of Endeavor Translation */}
     </NoticeBox>
   );
 };

@@ -1,5 +1,9 @@
 SUBSYSTEM_DEF(time_track)
+	/* Bastion of Endeavor Translation
 	name = "Time Tracking"
+	*/
+	name = "Отслеживание времени"
+	// End of Bastion of Endeavor Translation
 	wait = 600
 	flags = SS_NO_INIT|SS_NO_TICK_CHECK
 	runlevels = RUNLEVEL_LOBBY | RUNLEVELS_DEFAULT
@@ -31,10 +35,18 @@ SUBSYSTEM_DEF(time_track)
 		time_dilation_avg = MC_AVERAGE(time_dilation_avg, time_dilation_avg_fast)
 		time_dilation_avg_slow = MC_AVERAGE_SLOW(time_dilation_avg_slow, time_dilation_avg)
 
+		/* Bastion of Endeavor Translation
 		log_game("TIDI: [time_dilation_current];[time_dilation_avg_fast];[time_dilation_avg];[time_dilation_avg_slow]")
+		*/
+		log_game("ЗАМЕДЛЕНИЕ: [time_dilation_current];[time_dilation_avg_fast];[time_dilation_avg];[time_dilation_avg_slow]")
+		// End of Bastion of Endeavor Translation
 	else
 		first_run = FALSE
+		/* Bastion of Endeavor Translation
 		log_debug("TiDi Starting Log")
+		*/
+		log_debug("Начало лога замедления времени.")
+		// End of Bastion of Endeavor Translation
 	last_tick_realtime = current_realtime
 	last_tick_byond_time = current_byondtime
 	last_tick_tickcount = current_tickcount

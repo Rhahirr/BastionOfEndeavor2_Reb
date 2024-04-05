@@ -39,5 +39,9 @@ GLOBAL_LIST_EMPTY(typelistkeys)
 				saveditems[saving] += (GLOB.typelists[type]["[saving]-saved"] * length(GLOB.typelists[type][saving]))
 
 	for (var/saving in savings)
+		/* Bastion of Endeavor Translation
 		to_chat(world, "Savings for [saving]: [savings[saving]] lists, [saveditems[saving]] items")
+		*/
+		to_chat(world, "Экономия [saving]: [savings[saving]] списков, [saveditems[saving]] элементов.")
+		// End of Bastion of Endeavor Translation
 #endif

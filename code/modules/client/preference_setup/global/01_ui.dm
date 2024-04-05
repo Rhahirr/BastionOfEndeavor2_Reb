@@ -60,6 +60,7 @@
 	pref.throwmode_loud		= sanitize_integer(pref.throwmode_loud, 0, 1, initial(pref.throwmode_loud))
 
 /datum/category_item/player_setup_item/player_global/ui/content(var/mob/user)
+	/* Bastion of Endeavor Translation
 	. = "<b>UI Style:</b> <a href='?src=\ref[src];select_style=1'><b>[pref.UI_style]</b></a><br>"
 	. += "<b>Custom UI</b> (recommended for White UI):<br>"
 	. += "-Color: <a href='?src=\ref[src];select_color=1'><b>[pref.UI_style_color]</b></a> [color_square(hex = pref.UI_style_color)] <a href='?src=\ref[src];reset=ui'>reset</a><br>"
@@ -83,40 +84,91 @@
 			. += "<a href='?src=\ref[src];select_ooc_color=1'><b>Using Default</b></a><br>"
 		else
 			. += "<a href='?src=\ref[src];select_ooc_color=1'><b>[pref.ooccolor]</b></a> [color_square(hex = pref.ooccolor)]<a href='?src=\ref[src];reset=ooc'>reset</a><br>"
+	*/
+	. = "<b>Стиль интерфейса:</b> <a href='?src=\ref[src];select_style=1'><b>[pref.UI_style]</b></a><br>"
+	. += "<b>Персонализация</b> (рекомендуется использовать Белый стиль):<br>"
+	. += "-Color: <a href='?src=\ref[src];select_color=1'><b>[pref.UI_style_color]</b></a> [color_square(hex = pref.UI_style_color)] <a href='?src=\ref[src];reset=ui'>reset</a><br>"
+	. += "-Alpha(transparency): <a href='?src=\ref[src];select_alpha=1'><b>[pref.UI_style_alpha]</b></a> <a href='?src=\ref[src];reset=alpha'>reset</a><br>"
+	. += "<b>Стиль всплывающих подсказок:</b> <a href='?src=\ref[src];select_tooltip_style=1'><b>[get_key_by_value(all_tooltip_styles_ru, pref.tooltipstyle)]</b></a><br>"
+	. += "<b>FPS клиента:</b> <a href='?src=\ref[src];select_client_fps=1'><b>[pref.client_fps]</b></a><br>"
+	. += "<b>Частота звуков окружения:</b> <a href='?src=\ref[src];select_ambience_freq=1'><b>[pref.ambience_freq]</b></a><br>"
+	. += "<b>Вероятность звуков окружения:</b> <a href='?src=\ref[src];select_ambience_chance=1'><b>[pref.ambience_chance]</b></a><br>"
+	. += "<b>Режим окон TGUI:</b> <a href='?src=\ref[src];tgui_fancy=1'><b>[(pref.tgui_fancy) ? "Красивый (по умолчанию)" : "Совместимость (медленнее)"]</b></a><br>"
+	. += "<b>Размещение окон TGUI:</b> <a href='?src=\ref[src];tgui_lock=1'><b>[(pref.tgui_lock) ? "Главный монитор" : "Свободное (по умолчанию)"]</b></a><br>"
+	. += "<b>Система ввода TGUI:</b> <a href='?src=\ref[src];tgui_input_mode=1'><b>[(pref.tgui_input_mode) ? "Включена (по умолчанию)" : "Выключена"]</b></a><br>" // doesn't match the original string because we flipped the default preference
+	. += "<b>Крупные кнопки TGUI:</b> <a href='?src=\ref[src];tgui_large_buttons=1'><b>[(pref.tgui_large_buttons) ? "Включены (по умолчанию)" : "Выключены"]</b></a><br>"
+	. += "<b>Смена мест кнопок TGUI:</b> <a href='?src=\ref[src];tgui_swapped_buttons=1'><b>[(pref.tgui_swapped_buttons) ? "Включена" : "Выключена (по умолчанию)"]</b></a><br>"
+	. += "<b>Скрывать Ckey в лобби:</b> <a href='?src=\ref[src];obfuscate_key=1'><b>[(pref.obfuscate_key) ? "Включено" : "Отключено (по умолчанию)"]</b></a><br>"
+	. += "<b>Скрывать должность в лобби:</b> <a href='?src=\ref[src];obfuscate_job=1'><b>[(pref.obfuscate_job) ? "Включено" : "Отключено (по умолчанию)"]</b></a><br>"
+	. += "<b>Отметки времени:</b> <a href='?src=\ref[src];chat_timestamps=1'><b>[(pref.chat_timestamp) ? "Включены" : "Отключены (по умолчанию)"]</b></a><br>"
+	. += "<b>Оповещения о метании:</b> <a href='?src=\ref[src];throwmode_loudness=1'><b>[(pref.throwmode_loud) ? "Отображать" : "Не отображать (по умолчанию)"]</b></a><br>"
+	if(can_select_ooc_color(user))
+		. += "<b>Цвет в чате OOC: </b>"
+		if(pref.ooccolor == initial(pref.ooccolor))
+			. += "<a href='?src=\ref[src];select_ooc_color=1'><b>По умолчанию</b></a><br>"
+		else
+			. += "<a href='?src=\ref[src];select_ooc_color=1'><b>[pref.ooccolor]</b></a> [color_square(hex = pref.ooccolor)] <a href='?src=\ref[src];reset=ooc'>Сбросить</a><br>"
+	// End of Bastion of Endeavor Translation
 
 /datum/category_item/player_setup_item/player_global/ui/OnTopic(var/href,var/list/href_list, var/mob/user)
 	if(href_list["select_style"])
+		/* Bastion of Endeavor Translation
 		var/UI_style_new = tgui_input_list(user, "Choose UI style.", "Character Preference", all_ui_styles, pref.UI_style)
+		*/
+		var/UI_style_new = tgui_input_list(user, "Выберите стиль интерфейса. Для персонализации рекомендуется выбрать Белый:", "Стиль интерфейса", all_ui_styles, pref.UI_style)
+		// End of Bastion of Endeavor Translation
 		if(!UI_style_new || !CanUseTopic(user)) return TOPIC_NOACTION
 		pref.UI_style = UI_style_new
 		return TOPIC_REFRESH
 
 	else if(href_list["select_color"])
+		/* Bastion of Endeavor Translation
 		var/UI_style_color_new = input(user, "Choose UI color, dark colors are not recommended!", "Global Preference", pref.UI_style_color) as color|null
+		*/
+		var/UI_style_color_new = input(user, "Выберите цвет интерфейса (тёмные цвета не рекомендуются!):", "Цвет интерфейса", pref.UI_style_color) as color|null
+		// End of Bastion of Endeavor Translation
 		if(isnull(UI_style_color_new) || !CanUseTopic(user)) return TOPIC_NOACTION
 		pref.UI_style_color = UI_style_color_new
 		return TOPIC_REFRESH
 
 	else if(href_list["select_alpha"])
+		/* Bastion of Endeavor Translation
 		var/UI_style_alpha_new = tgui_input_number(user, "Select UI alpha (transparency) level, between 50 and 255.", "Global Preference", pref.UI_style_alpha, 255, 50)
+		*/
+		var/UI_style_alpha_new = tgui_input_number(user, "Укажите значение альфа (непрозрачность) интерфейса от 50 до 255:", "Непрозрачность интерфейса", pref.UI_style_alpha, 255, 50)
+		// End of Bastion of Endeavor Translation
 		if(isnull(UI_style_alpha_new) || (UI_style_alpha_new < 50 || UI_style_alpha_new > 255) || !CanUseTopic(user)) return TOPIC_NOACTION
 		pref.UI_style_alpha = UI_style_alpha_new
 		return TOPIC_REFRESH
 
 	else if(href_list["select_ooc_color"])
+		/* Bastion of Endeavor Translation
 		var/new_ooccolor = input(user, "Choose OOC color:", "Global Preference") as color|null
+		*/
+		var/new_ooccolor = input(user, "Укажите цвет своих сообщений в чате OOC:", "Цвет сообщений OOC") as color|null
+		// End of Bastion of Endeavor Translation
 		if(new_ooccolor && can_select_ooc_color(user) && CanUseTopic(user))
 			pref.ooccolor = new_ooccolor
 			return TOPIC_REFRESH
 
 	else if(href_list["select_tooltip_style"])
+		/* Bastion of Endeavor Translation
 		var/tooltip_style_new = tgui_input_list(user, "Choose tooltip style.", "Global Preference", all_tooltip_styles, pref.tooltipstyle)
 		if(!tooltip_style_new || !CanUseTopic(user)) return TOPIC_NOACTION
 		pref.tooltipstyle = tooltip_style_new
+		*/
+		var/tooltip_style_new = tgui_input_list(user, "Выберите стиль всплывающих подсказок.", "Стиль всплывающих подсказок", all_tooltip_styles_ru, get_key_by_value(all_tooltip_styles_ru, pref.tooltipstyle))
+		if(!tooltip_style_new || !CanUseTopic(user)) return TOPIC_NOACTION
+		pref.tooltipstyle = all_tooltip_styles_ru[tooltip_style_new]
+		// End of Bastion of Endeavor Translation
 		return TOPIC_REFRESH
 
 	else if(href_list["select_client_fps"])
+		/* Bastion of Endeavor Translation
 		var/fps_new = tgui_input_number(user, "Input Client FPS (1-200, 0 uses server FPS)", "Global Preference", pref.client_fps, 200, 0)
+		*/
+		var/fps_new = tgui_input_number(user, "Введите значение FPS (1-200 либо 0 для FPS сервера)", "FPS клиента", pref.client_fps, 200, 0)
+		// End of Bastion of Endeavor Translation
 		if(isnull(fps_new) || !CanUseTopic(user)) return TOPIC_NOACTION
 		if(fps_new < 0 || fps_new > MAX_CLIENT_FPS) return TOPIC_NOACTION
 		pref.client_fps = fps_new
@@ -125,14 +177,22 @@
 		return TOPIC_REFRESH
 		
 	else if(href_list["select_ambience_freq"])
+		/* Bastion of Endeavor Translation
 		var/ambience_new = tgui_input_number(user, "Input how often you wish to hear ambience repeated! (1-60 MINUTES, 0 for disabled)", "Global Preference", pref.ambience_freq, 60, 0)
+		*/
+		var/ambience_new = tgui_input_number(user, "Укажите, насколько часто вы хотели бы слышать звуки окружения (Раз в 1-60 минут либо 0 для отключения)", "Частота звуков окружения", pref.ambience_freq, 60, 0)
+		// End of Bastion of Endeavor Translation
 		if(isnull(ambience_new) || !CanUseTopic(user)) return TOPIC_NOACTION
 		if(ambience_new < 0 || ambience_new > 60) return TOPIC_NOACTION
 		pref.ambience_freq = ambience_new
 		return TOPIC_REFRESH
 		
 	else if(href_list["select_ambience_chance"])
+		/* Bastion of Endeavor Translation
 		var/ambience_chance_new = tgui_input_number(user, "Input the chance you'd like to hear ambience played to you (On area change, or by random ambience). 35 means a 35% chance to play ambience. This is a range from 0-100. 0 disables ambience playing entirely. This is also affected by Ambience Frequency.", "Global Preference", pref.ambience_freq, 100, 0)
+		*/
+		var/ambience_chance_new = tgui_input_number(user, "Укажите шанс воспроизведения звуков окружения (при смене помещения или случайно) от 0 до 100. 0 отключает звуки окружения полностью. Эта настройка идёт вкупе с частотой.", "Шанс звуков окружения", pref.ambience_freq, 100, 0)
+		// End of Bastion of Endeavor Translation
 		if(isnull(ambience_chance_new) || !CanUseTopic(user)) return TOPIC_NOACTION
 		if(ambience_chance_new < 0 || ambience_chance_new > 100) return TOPIC_NOACTION
 		pref.ambience_chance = ambience_chance_new

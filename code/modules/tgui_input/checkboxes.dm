@@ -10,7 +10,11 @@
  * max_checked - The maximum number of checkboxes that can be checked (optional)
  * timeout - The timeout for the input (optional)
  */
+/* Bastion of Endeavor Translation
 /proc/tgui_input_checkboxes(mob/user, message, title = "Select", list/items, min_checked = 1, max_checked = 50, timeout = 0, ui_state = GLOB.tgui_always_state)
+*/
+/proc/tgui_input_checkboxes(mob/user, message, title = "Выбор", list/items, min_checked = 1, max_checked = 50, timeout = 0, ui_state = GLOB.tgui_always_state)
+// End of Bastion of Endeavor Translation
 	if (!user)
 		user = usr
 	if(!length(items))

@@ -17,7 +17,11 @@
 	var/lastyear = client.prefs.last_birthday_notification
 	client.prefs.last_birthday_notification = GLOB.world_time_year //We only want to ask once a year per character, this persists, update early in case of shenanigans // CHOMPEdit - Managed Globals
 	if(birthday)	//woo
+		/* Bastion of Endeavor Translation
 		msg = "Today is your birthday! Do you want to increase your character's listed age?"
+		*/
+		msg = "Сегодня ваш День рождения! Хотели бы вы увеличить возраст вашего персонажа?"
+		// End of Bastion of Endeavor Translation
 		/* //Chomp DISABLE - Absolutely not.
 		if(client.prefs.bday_announce)
 			var/list/sounds = list('sound/voice/BIRTH.ogg')
@@ -25,14 +29,26 @@
 			command_announcement.Announce("Confirmed presence of BIRTHDAY aboard the station! It is [src.real_name]'s birthday or similar sort of celebration, name day, hatchday, WHATEVER! We encourage you to go find [src.real_name] and show them how we celebrate around here! Have a secure day!", "BIRTHDAY!", oursound)
 		*/ //Chomp DISABLE END
 	else
+		/* Bastion of Endeavor Translation
 		msg = "Your birthday has passed! Do you want to increase your character's listed age?"	//sad, but thus is the life of an adult
+		*/
+		msg = "Вы отметили День рождения! Хотели бы вы увеличить возраст вашего персонажа?"
+		// End of Bastion of Endeavor Translation
+	/* Bastion of Endeavor Translation
 	if(tgui_alert(src, msg,"BIRTHDAY! ([bday_month]/[bday_day])",list("Level me up, baby","No way, I'mma stay young forever")) == "Level me up, baby")
+	*/
+	if(tgui_alert(src, msg,"ДЕНЬ РОЖДЕНИЯ! ([bday_month]/[bday_day])",list("Новый уровень, детка","Нет уж, остаюсь вечно молодым")) == "Новый уровень, детка")
+	// End of Bastion of Endeavor Translation
 		if(lastyear == 0)	//We've never been asked, so let's just assume you were keeping track before now and only add 1
 			age += 1
 		else
 			var/howmuch = GLOB.world_time_year - lastyear // CHOMPEdit - Managed Globals
 			age += howmuch
+		/* Bastion of Endeavor Translation
 		to_chat(src, "<span class = 'notice'>You are now [age]! Happy birthday!</span>")
+		*/
+		to_chat(src, "<span class = 'notice'>Вам теперь [count_ru(age, ";год;года;лет")]! С Днём рождения!</span>")
+		// End of Bastion of Endeavor Translation
 		client.prefs.age = age	//Set the age on the character sheet
 
 	client.prefs.save_character()	//Save the info

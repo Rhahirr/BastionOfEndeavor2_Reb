@@ -1,5 +1,9 @@
 SUBSYSTEM_DEF(dbcore)
+	/* Bastion of Endeavor Translation
 	name = "Database"
+	*/
+	name = "База данных"
+	// End of Bastion of Endeavor Translation
 	flags = SS_TICKER
 	wait = 10 // Not seconds because we're running on SS_TICKER
 	init_order = INIT_ORDER_DBCORE
@@ -44,7 +48,11 @@ SUBSYSTEM_DEF(dbcore)
 	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/dbcore/stat_entry(msg)
+	/* Bastion of Endeavor Translation
 	msg = "P:[length(all_queries)]|Active:[length(queries_active)]|Standby:[length(queries_standby)]"
+	*/
+	msg = "| Всего: [length(all_queries)] | Активно: [length(queries_active)] | Ожидание: [length(queries_standby)]"
+	// End of Bastion of Endeavor Translation
 	return ..()
 
 /// Resets the tracking numbers on the subsystem. Used by SStime_track.
@@ -80,8 +88,13 @@ SUBSYSTEM_DEF(dbcore)
 	while(length(processing_queries))
 		var/datum/db_query/query = popleft(processing_queries)
 		if(world.time - query.last_activity_time > (5 MINUTES))
+			/* Bastion of Endeavor Translation
 			stack_trace("Found undeleted query, check the sql.log for the undeleted query and add a delete call to the query datum.")
 			log_debug("Undeleted query: \"[query.sql]\" LA: [query.last_activity] LAT: [query.last_activity_time]")
+			*/
+			stack_trace("Обнаружен неудалённый запрос, найдите его в sql.log и вызовите его удаление через датум запросов.")
+			log_debug("Неудалённый запрос: \"[query.sql]\" ПА: [query.last_activity] ВПА: [query.last_activity_time]")
+			// End of Bastion of Endeavor Translation
 			qdel(query)
 		if(MC_TICK_CHECK)
 			return
@@ -138,7 +151,11 @@ SUBSYSTEM_DEF(dbcore)
 
 /datum/controller/subsystem/dbcore/Shutdown()
 	shutting_down = TRUE
+	/* Bastion of Endeavor Translation
 	log_debug("Clearing DB queries standby:[length(queries_standby)] active: [length(queries_active)] all: [length(all_queries)]")
+	*/
+	log_debug("Производится очистка запросов БД (ожидающих: [length(queries_standby)], активных: [length(queries_active)], всего: [length(all_queries)]).")
+	// End of Bastion of Endeavor Translation
 	//This is as close as we can get to the true round end before Disconnect() without changing where it's called, defeating the reason this is a subsystem
 	if(SSdbcore.Connect())
 		//Execute all waiting queries
@@ -159,7 +176,11 @@ SUBSYSTEM_DEF(dbcore)
 		query_round_shutdown.Execute(FALSE)
 		qdel(query_round_shutdown)
 
+	/* Bastion of Endeavor Translation
 	log_debug("Done clearing DB queries standby:[length(queries_standby)] active: [length(queries_active)] all: [length(all_queries)]")
+	*/
+	log_debug("Завершена очистка запросов БД (ожидающих: [length(queries_standby)], активных: [length(queries_active)], всего: [length(all_queries)]).")
+	// End of Bastion of Endeavor Translation
 	if(IsConnected())
 		Disconnect()
 	//stop_db_daemon()
@@ -232,17 +253,33 @@ SUBSYSTEM_DEF(dbcore)
 	else
 		connection = null
 		last_error = result["data"]
+		/* Bastion of Endeavor Translation
 		log_debug("Connect() failed | [last_error]")
+		*/
+		log_debug("Провалился Connect() | [last_error].")
+		// End of Bastion of Endeavor Translation
 		++failed_connections
 
 /datum/controller/subsystem/dbcore/proc/CheckSchemaVersion()
 	if(config.sql_enabled)
 		if(Connect())
+			/* Bastion of Endeavor Translation
 			log_world("Database connection established.")
+			*/
+			log_world("Соединение с базой данных установлено.")
+			// End of Bastion of Endeavor Translation
 		else
+			/* Bastion of Endeavor Translation
 			log_debug("Your server failed to establish a connection with the database.")
+			*/
+			log_debug("Серверу не удалось установить соединение с базой данных.")
+			// End of Bastion of Endeavor Translation
 	else
+		/* Bastion of Endeavor Translation
 		log_debug("Database is not enabled in configuration.")
+		*/
+		log_debug("База данных отключена конфигурацией сервера.")
+		// End of Bastion of Endeavor Translation
 
 /datum/controller/subsystem/dbcore/proc/InitializeRound()
 	if(!Connect())
@@ -291,7 +328,11 @@ SUBSYSTEM_DEF(dbcore)
 
 /datum/controller/subsystem/dbcore/proc/ErrorMsg()
 	if(!config.sql_enabled)
+		/* Bastion of Endeavor Translation
 		return "Database disabled by configuration"
+		*/
+		return "База данных отключена конфигурацией сервера"
+		// End of Bastion of Endeavor Translation
 	return last_error
 
 /datum/controller/subsystem/dbcore/proc/ReportError(error)
@@ -300,11 +341,20 @@ SUBSYSTEM_DEF(dbcore)
 /datum/controller/subsystem/dbcore/proc/NewQuery(sql_query, arguments, allow_during_shutdown=FALSE)
 	//If the subsystem is shutting down, disallow new queries
 	if(!allow_during_shutdown && shutting_down)
+		/* Bastion of Endeavor Translation
 		CRASH("Attempting to create a new db query during the world shutdown")
+		*/
+		CRASH("Попытка создать запрос в базу данных во время закрытия мира.")
+		// End of Bastion of Endeavor Translation
 
 	if(IsAdminAdvancedProcCall())
+		/* Bastion of Endeavor Translation
 		log_admin("ERROR: Advanced admin proc call led to sql query: [sql_query]. Query has been blocked")
 		message_admins("ERROR: Advanced admin proc call led to sql query. Query has been blocked")
+		*/
+		log_admin("Ошибка: Вызов прока администратором привёл к запросу SQL: [sql_query]. Запрос был заблокирован.")
+		message_admins(" Вызов прока администратором привёл к запросу SQL: [sql_query]. Запрос был заблокирован.")
+		// End of Bastion of Endeavor Translation
 		return FALSE
 	return new /datum/db_query(connection, sql_query, arguments)
 
@@ -318,7 +368,11 @@ SUBSYSTEM_DEF(dbcore)
 /datum/controller/subsystem/dbcore/proc/QuerySelect(list/queries, warn = FALSE, qdel = FALSE)
 	if (!islist(queries))
 		if (!istype(queries, /datum/db_query))
+			/* Bastion of Endeavor Translation
 			CRASH("Invalid query passed to QuerySelect: [queries]")
+			*/
+			CRASH("Проку QuerySelect передан недопустимый запрос: [queries]")
+			// End of Bastion of Endeavor Translation
 		queries = list(queries)
 	else
 		queries = queries.Copy() //we don't want to hide bugs in the parent caller by removing invalid values from this list.
@@ -326,7 +380,11 @@ SUBSYSTEM_DEF(dbcore)
 	for (var/datum/db_query/query as anything in queries)
 		if (!istype(query))
 			queries -= query
+			/* Bastion of Endeavor Translation
 			stack_trace("Invalid query passed to QuerySelect: `[query]` [REF(query)]")
+			*/
+			stack_trace("Проку QuerySelect передан недопустимый запрос: `[query]` [REF(query)]")
+			// End of Bastion of Endeavor Translation
 			continue
 
 		if (warn)
@@ -505,15 +563,27 @@ Ignore_errors instructes mysql to continue inserting rows if some of them have e
 /datum/db_query/proc/warn_execute(async = TRUE)
 	. = Execute(async)
 	if(!.)
+		/* Bastion of Endeavor Translation
 		to_chat(usr, span_danger("A SQL error occurred during this operation, check the server logs."))
+		*/
+		to_chat(usr, span_danger("Во время выполнения этого действия произошла ошибка SQL. Проверьте логи сервера."))
+		// End of Bastion of Endeavor Translation
 
 /datum/db_query/proc/Execute(async = TRUE, log_error = TRUE)
 	Activity("Execute")
 	if(status == DB_QUERY_STARTED)
+		/* Bastion of Endeavor Translation
 		CRASH("Attempted to start a new query while waiting on the old one")
+		*/
+		CRASH("Попытка начать новый запрос в течение выполнения предыдущего.")
+		// End of Bastion of Endeavor Translation
 
 	if(!SSdbcore.IsConnected())
+		/* Bastion of Endeavor Translation
 		last_error = "No connection!"
+		*/
+		last_error = "Нет соединения!"
+		// End of Bastion of Endeavor Translation
 		return FALSE
 
 	var/start_time
@@ -533,14 +603,29 @@ Ignore_errors instructes mysql to continue inserting rows if some of them have e
 		store_data(json_decode(job_result_str))
 
 	. = (status != DB_QUERY_BROKEN)
+	/* Bastion of Endeavor Translation: huge doubts about this but time will tell
 	var/timed_out = !. && findtext(last_error, "Operation timed out")
+	*/
+	var/timed_out = !. && findtext_char(last_error, "Время ожидания выполнения операции истекло")
+	// End of Bastion of Endeavor Translation
 	if(!. && log_error)
+		/* Bastion of Endeavor Translation
 		log_debug("[last_error] | Query used: [sql] | Arguments: [json_encode(arguments)]")
+		*/
+		log_debug("[last_error] | Запрос: [sql] | Аргументы: [json_encode(arguments)].")
+		// End of Bastion of Endeavor Translation
 	if(!async && timed_out)
+		/* Bastion of Endeavor Translation
 		log_debug("Query execution started at [start_time]")
 		log_debug("Query execution ended at [REALTIMEOFDAY]")
 		log_debug("Slow query timeout detected.")
 		log_debug("Query used: [sql]")
+		*/
+		log_debug("Выполнение запроса начато в [start_time].")
+		log_debug("Выполнение запроса завершено в [REALTIMEOFDAY].")
+		log_debug("Обнаружено превышение времени ожидания.")
+		log_debug("Запрос: [sql].")
+		// End of Bastion of Endeavor Translation
 		slow_query_check()
 
 /// Sleeps until execution of the query has finished.
@@ -579,7 +664,11 @@ Ignore_errors instructes mysql to continue inserting rows if some of them have e
 
 
 /datum/db_query/proc/slow_query_check()
+	/* Bastion of Endeavor Translation
 	message_admins("HEY! A database query timed out. Did the server just hang? <a href='?_src_=holder;[HrefToken()];slowquery=yes'>\[YES\]</a>|<a href='?_src_=holder;[HrefToken()];slowquery=no'>\[NO\]</a>")
+	*/
+	message_admins("ЭЙ! Время ожидания запроса базы данных истекло. Сервер завис? <a href='?_src_=holder;[HrefToken()];slowquery=yes'>\[ДА\]</a>|<a href='?_src_=holder;[HrefToken()];slowquery=no'>\[НЕТ\]</a>")
+	// End of Bastion of Endeavor Translation
 
 /datum/db_query/proc/NextRow(async = TRUE)
 	Activity("NextRow")

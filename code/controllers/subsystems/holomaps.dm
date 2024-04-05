@@ -3,7 +3,11 @@
 // Look in code/modules/holomap/generate_holomap.dm to find generateHoloMinimaps()
 //
 SUBSYSTEM_DEF(holomaps)
+	/* Bastion of Endeavor Translation
 	name = "HoloMiniMaps"
+	*/
+	name = "Голо-карты"
+	// End of Bastion of Endeavor Translation
 	init_order = INIT_ORDER_HOLOMAPS
 	flags = SS_NO_FIRE
 	var/static/holomaps_initialized = FALSE

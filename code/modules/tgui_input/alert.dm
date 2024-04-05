@@ -10,12 +10,24 @@
  * * timeout - The timeout of the alert, after which the modal will close and qdel itself. Set to zero for no timeout.
  * * autofocus - The bool that controls if this alert should grab window focus.
  */
+/* Bastion of Endeavor Translation
 /proc/tgui_alert(mob/user, message = "", title, list/buttons = list("Ok"), timeout = 0, autofocus = TRUE, strict_byond = FALSE)
+*/
+/proc/tgui_alert(mob/user, message = "", title, list/buttons = list("Ок"), timeout = 0, autofocus = TRUE, strict_byond = FALSE)
+// End of Bastion of Endeavor Translation
 	if (istext(buttons))
+		/* Bastion of Endeavor Translation
 		stack_trace("tgui_alert() received text for buttons instead of list")
+		*/
+		stack_trace("Кнопки tgui_alert() в формате текста, а не списка.")
+		// End of Bastion of Endeavor Translation
 		return
 	if (istext(user))
+		/* Bastion of Endeavor Translation
 		stack_trace("tgui_alert() received text for user instead of list")
+		*/
+		stack_trace("Пользователь tgui_alert() в формате текста, а не списка.")
+		// End of Bastion of Endeavor Translation
 		return
 	if (!user)
 		user = usr
@@ -153,10 +165,18 @@
  */
 /proc/tgui_alert_async(mob/user, message = "", title, list/buttons = list("Ok"), datum/callback/callback, timeout = 0, autofocus = TRUE)
 	if (istext(buttons))
+		/* Bastion of Endeavor Translation
 		stack_trace("tgui_alert() received text for buttons instead of list")
+		*/
+		stack_trace("Кнопки tgui_alert() в формате текста, а не списка.")
+		// End of Bastion of Endeavor Translation
 		return
 	if (istext(user))
+		/* Bastion of Endeavor Translation
 		stack_trace("tgui_alert() received text for user instead of list")
+		*/
+		stack_trace("Пользователь tgui_alert() в формате текста, а не списка.")
+		// End of Bastion of Endeavor Translation
 		return
 	if (!user)
 		user = usr

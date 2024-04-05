@@ -38,7 +38,11 @@
  * be used for auto-scaling the map.
  */
 /obj/screen/background
+	/* Bastion of Endeavor Translation
 	name = "background"
+	*/
+	name = "Фон"
+	// End of Bastion of Endeavor Translation
 	icon = 'icons/mob/map_backgrounds.dmi'
 	icon_state = "clear"
 	layer = MAP_VIEW_LAYER
@@ -73,7 +77,11 @@
  */
 /client/proc/register_map_obj(obj/screen/screen_obj)
 	if(!screen_obj.assigned_map)
+		/* Bastion of Endeavor Translation
 		CRASH("Can't register [screen_obj] without 'assigned_map' property.")
+		*/
+		CRASH("Невозможно зарегистрировать [screen_obj] без свойства 'assigned_map'.")
+		// End of Bastion of Endeaovr Translation
 	if(!screen_maps[screen_obj.assigned_map])
 		screen_maps[screen_obj.assigned_map] = list()
 	// NOTE: Possibly an expensive operation

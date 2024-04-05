@@ -18,8 +18,13 @@ var/global/const/base_law_type = /datum/ai_laws/nanotrasen
 	return 0
 
 /datum/ai_laws
+	/* Bastion of Endeavor Translation
 	var/name = "Unknown Laws"
 	var/law_header = "Prime Directives"
+	*/
+	var/name = "Неизвестные законы"
+	var/law_header = "Первичные директивы"
+	// End of Bastion of Endeavor Translation
 	var/selectable = 0
 	var/datum/ai_law/zero/zeroth_law = null
 	var/datum/ai_law/zero/zeroth_law_borg = null

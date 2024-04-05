@@ -2,7 +2,11 @@
 /client/update_ip_reputation()
 	var/scores[] = list("GII" = ipr_getipintel(), "IPQS" = ipr_ipqualityscore())
 
+	/* Bastion of Endeavor Translation
 	var/log_output = "IP Reputation [key] from [address]"
+	*/
+	var/log_output = "Репутация IP [key] по адресу [address]"
+	// End of Bastion of Endeavor Translation
 	var/worst = 0
 
 	for(var/service in scores)
@@ -24,12 +28,20 @@
 	var/http[] = world.Export(request)
 
 	if(!http || !islist(http)) //If we couldn't check, the service might be down, fail-safe.
+		/* Bastion of Endeavor Translation
 		log_admin("Couldn't connect to getipintel.net to check [address] for [key]")
+		*/
+		log_admin("Не удалось подключиться к getipintel.net для проверки [key] по адресу [address]")
+		// End of Bastion of Endeavor Translation
 		return -1
 
 	//429 is rate limit exceeded
 	if(text2num(http["STATUS"]) == 429)
+		/* Bastion of Endeavor Translation
 		log_and_message_admins("getipintel.net reports HTTP status 429. IP reputation checking is now disabled. If you see this, let a developer know.")
+		*/
+		log_and_message_admins("getipintel.net докладывает HTTP-статус 429. Проверка репутации IP отныне отключена. Сообщите об этом разработчику.")
+		// End of Bastion of Endeavor Translation
 		config.ip_reputation = FALSE
 		return -1
 
@@ -41,6 +53,7 @@
 	//Error handling
 	if(score < 0)
 		var/fatal = TRUE
+		/* Bastion of Endeavor Translation
 		var/ipr_error = "getipintel.net IP reputation check error while checking [address] for [key]: "
 		switch(score)
 			if(-1)
@@ -58,11 +71,34 @@
 				ipr_error += "Our IP is banned or otherwise forbidden"
 			if(-6)
 				ipr_error += "Missing contact info"
+		*/
+		var/ipr_error = "Ошибка getipintel.net при проверке репутации IP [key] по адресу [address]: "
+		switch(score)
+			if(-1)
+				ipr_error += "Не предоставлены входные данные"
+			if(-2)
+				fatal = FALSE
+				ipr_error += "Неверный IP-адрес"
+			if(-3)
+				fatal = FALSE
+				ipr_error += "Немаршрутизируемый/частный IP-адрес (спуфинг?)"
+			if(-4)
+				fatal = FALSE
+				ipr_error += "Не удалось подключиться к базе данных"
+			if(-5)
+				ipr_error += "Наш IP-адрес заблокирован"
+			if(-6)
+				ipr_error += "Отсутствуют данные для связи"
+		// End of Bastion of Endeavor Translation
 
 		log_and_message_admins(ipr_error)
 		if(fatal)
 			config.ip_reputation = FALSE
+			/* Bastion of Endeavor Translation
 			log_and_message_admins("With this error, IP reputation checking is disabled for this shift. Let a developer know.")
+			*/
+			log_and_message_admins("В связи с этой ошибкой проверка репутации IP отключена на остаток смены. Сообщите разработчикам.")
+			// End of Bastion of Endeavor Translation
 		return -1
 
 	//Went fine
@@ -78,7 +114,11 @@
 	var/http[] = world.Export(request)
 
 	if(!http || !islist(http)) //If we couldn't check, the service might be down, fail-safe.
+		/* Bastion of Endeavor Translation
 		log_admin("Couldn't connect to ipqualityscore.com to check [address] for [key]")
+		*/
+		log_admin("Не удалось подключиться к ipqualityscore.com для проверки [key] по адресу [address]")
+		// End of Bastion of Endeavor Translation
 		return -1
 
 	var/content = file2text(http["CONTENT"]) //world.Export actually returns a file object in CONTENT
@@ -88,7 +128,11 @@
 
 	//Error handling
 	if(!response["success"])
+		/* Bastion of Endeavor Translation
 		log_admin("IPQualityscore.com returned an error while processing [key] from [address]: " + response["message"])
+		*/
+		log_admin("ipqualityscore.com выдал ошибку при проверке [key] по адресу [address]: " + response["message"])
+		// End of Bastion of Endeavor Translation
 		return -1
 
 	var/score = 0

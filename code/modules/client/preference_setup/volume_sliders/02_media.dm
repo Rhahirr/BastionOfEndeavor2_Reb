@@ -19,12 +19,21 @@
 	pref.media_player = sanitize_inlist(pref.media_player, list(0, 1, 2), initial(pref.media_player))
 
 /datum/category_item/player_setup_item/volume_sliders/media/content(var/mob/user)
+	/* Bastion of Endeavor Translation
 	. += "<b>Jukebox Volume:</b>"
 	. += "<a href='?src=\ref[src];change_media_volume=1'><b>[round(pref.media_volume * 100)]%</b></a><br>"
 	. += "<b>Media Player Type:</b> Depending on you operating system, one of these might work better. "
 	. += "Use HTML5 if it works for you. If neither HTML5 nor WMP work, you'll have to fall back to using VLC, "
 	. += "but this requires you have the VLC client installed on your comptuer."
 	. += "Try the others if you want but you'll probably just get no music.<br>"
+	*/
+	. += "<b>Громкость музыкального автомата: </b>"
+	. += "<a href='?src=\ref[src];change_media_volume=1'><b>[round(pref.media_volume * 100)]%</b></a><br>"
+	. += "<b>Проигрыватель медиа:</b> результаты могут отличаться в зависимости от вашей операционной системы. "
+	. += "По возможности используйте HTML5, но если HTML5 и WMP не работают, вам понадобится использовать VLC, "
+	. += "и для его работы требуется наличие на компьютере клиента VLC. "
+	. += "Не изменяйте эту настройку, если нет на то необходимости.<br>"
+	// End of Bastion of Endeavor Translation
 	. += (pref.media_player == 2) ? "<span class='linkOn'><b>HTML5</b></span> " : "<a href='?src=\ref[src];set_media_player=2'>HTML5</a> "
 	. += (pref.media_player == 1) ? "<span class='linkOn'><b>WMP</b></span> " : "<a href='?src=\ref[src];set_media_player=1'>WMP</a> "
 	. += (pref.media_player == 0) ? "<span class='linkOn'><b>VLC</b></span> " : "<a href='?src=\ref[src];set_media_player=0'>VLC</a> "
@@ -33,7 +42,11 @@
 /datum/category_item/player_setup_item/volume_sliders/media/OnTopic(var/href, var/list/href_list, var/mob/user)
 	if(href_list["change_media_volume"])
 		if(CanUseTopic(user))
+			/* Bastion of Endeavor Translation
 			var/value = tgui_input_number(usr, "Choose your Jukebox volume (0-100%)", "Jukebox volume", round(pref.media_volume * 100), 100, 0)
+			*/
+			var/value = tgui_input_number(usr, "Укажите громкость музыкального автомата (0-100%)", "Громкость музыкального автомата", round(pref.media_volume * 100), 100, 0)
+			// End of Bastion of Endeavor Translation
 			if(isnum(value))
 				value = CLAMP(value, 0, 100)
 				pref.media_volume = value/100.0

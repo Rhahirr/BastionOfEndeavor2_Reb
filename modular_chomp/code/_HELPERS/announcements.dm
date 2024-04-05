@@ -26,7 +26,11 @@
 	players,
 	play_sound = TRUE,
 	sound_override = 'modular_chomp/sound/misc/bloop.ogg',
+	/* Bastion of Endeavor Translation
 	sender_override = "Server Admin Announcement",
+	*/
+	sender_override = "Объявление от администратора",
+	// End of Bastion of Endeavor Translation
 	encode_title = TRUE,
 	encode_text = FALSE,
 )

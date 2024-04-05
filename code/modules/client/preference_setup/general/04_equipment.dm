@@ -23,6 +23,7 @@
 	S["ttone"]	<< pref.ringtone  // CHOMPEdit - We use ttone in the pref so that it doesnt get reset
 
 var/global/list/valid_ringtones = list(
+		/* Bastion of Endeavor Translation
 		"beep",
 		"boom",
 		"slip",
@@ -48,6 +49,32 @@ var/global/list/valid_ringtones = list(
 		"roark",
 		"chitter",
 		"squish"
+		*/
+		"Би-бип",
+		"Взрыв",
+		"Звук скольжения",
+		"Гудок",
+		"Вопли",
+		"Шипение",
+		"Перегрузка",
+		"Треск",
+		"Звуки радиации",
+		"Звуки привода",
+		"Тромбон",
+		"Свисток",
+		"Чик-чирик",
+		"Хлюп-хлюп",
+		"Уведомление",
+		"Стук ящика",
+		"Бз-з-з!",
+		"Гудок",
+		"Прррб!",
+		"Гав!",
+		"Тяф!",
+		"Рор-р-р!",
+		"Стрекот",
+		"Плюх"
+		// End of Bastion of Endeavor Translation
 		)
 
 // Moved from /datum/preferences/proc/copy_to()
@@ -107,9 +134,17 @@ var/global/list/valid_ringtones = list(
 
 /datum/category_item/player_setup_item/general/equipment/content()
 	. = list()
+	/* Bastion of Endeavor Translation
 	. += "<b>Equipment:</b><br>"
+	*/
+	. += "<b>Вещи</b><br>"
+	// End of Bastion of Endeavor Translation
 	for(var/datum/category_group/underwear/UWC in global_underwear.categories)
+		/* Bastion of Endeavor Translation
 		var/item_name = pref.all_underwear[UWC.name] ? pref.all_underwear[UWC.name] : "None"
+		*/
+		var/item_name = pref.all_underwear[UWC.name] ? pref.all_underwear[UWC.name] : "Нет"
+		// End of Bastion of Endeavor Translation
 		. += "[UWC.name]: <a href='?src=\ref[src];change_underwear=[UWC.name]'><b>[item_name]</b></a>"
 		var/datum/category_item/underwear/UWI = UWC.items_by_name[item_name]
 		if(UWI)
@@ -117,10 +152,17 @@ var/global/list/valid_ringtones = list(
 				. += " <a href='?src=\ref[src];underwear=[UWC.name];tweak=\ref[gt]'>[gt.get_contents(get_metadata(UWC.name, gt))]</a>"
 
 		. += "<br>"
+	/* Bastion of Endeavor Translation
 	. += "Backpack Type: <a href='?src=\ref[src];change_backpack=1'><b>[backbaglist[pref.backbag]]</b></a><br>"
 	. += "PDA Type: <a href='?src=\ref[src];change_pda=1'><b>[pdachoicelist[pref.pdachoice]]</b></a><br>"
 	. += "Communicator Visibility: <a href='?src=\ref[src];toggle_comm_visibility=1'><b>[(pref.communicator_visibility) ? "Yes" : "No"]</b></a><br>"
 	. += "Ringtone (leave blank for job default): <a href='?src=\ref[src];set_ringtone=1'><b>[pref.ringtone]</b></a><br>"
+	*/
+	. += "Вид сумки: <a href='?src=\ref[src];change_backpack=1'><b>[backbaglist[pref.backbag]]</b></a><br>"
+	. += "Модель КПК: <a href='?src=\ref[src];change_pda=1'><b>[pdachoicelist[pref.pdachoice]]</b></a><br>"
+	. += "Рингтон КПК: <a href='?src=\ref[src];set_ringtone=1'><b>[pref.ringtone]</b></a><br>"
+	. += "Отображаться в коммуникаторах: <a href='?src=\ref[src];toggle_comm_visibility=1'><b>[(pref.communicator_visibility) ? "Да" : "Нет"]</b></a><br>"
+	// End of Bastion of Endeavor Translation
 
 	return jointext(.,null)
 
@@ -143,13 +185,21 @@ var/global/list/valid_ringtones = list(
 
 /datum/category_item/player_setup_item/general/equipment/OnTopic(var/href,var/list/href_list, var/mob/user)
 	if(href_list["change_backpack"])
+		/* Bastion of Endeavor Translation
 		var/new_backbag = tgui_input_list(user, "Choose your character's style of bag:", "Character Preference", backbaglist, backbaglist[pref.backbag])
+		*/
+		var/new_backbag = tgui_input_list(user, "Выберите внешний вид своей сумки:", "Вид сумки", backbaglist, backbaglist[pref.backbag])
+		// End of Bastion of Endeavor Translation
 		if(!isnull(new_backbag) && CanUseTopic(user))
 			pref.backbag = backbaglist.Find(new_backbag)
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["change_pda"])
+		/* Bastion of Endeavor Translation
 		var/new_pdachoice = tgui_input_list(user, "Choose your character's style of PDA:", "Character Preference", pdachoicelist, pdachoicelist[pref.pdachoice])
+		*/
+		var/new_pdachoice = tgui_input_list(user, "Выберите модель своего КПК:", "Модель КПК", pdachoicelist, pdachoicelist[pref.pdachoice])
+		// End of Bastion of Endeavor Translation
 		if(!isnull(new_pdachoice) && CanUseTopic(user))
 			pref.pdachoice = pdachoicelist.Find(new_pdachoice)
 			return TOPIC_REFRESH
@@ -158,7 +208,11 @@ var/global/list/valid_ringtones = list(
 		var/datum/category_group/underwear/UWC = global_underwear.categories_by_name[href_list["change_underwear"]]
 		if(!UWC)
 			return
+		/* Bastion of Endeavor Translation
 		var/datum/category_item/underwear/selected_underwear = tgui_input_list(user, "Choose underwear:", "Character Preference", UWC.items, pref.all_underwear[UWC.name])
+		*/
+		var/datum/category_item/underwear/selected_underwear = tgui_input_list(user, "Выберите вид нижнего белья:", "Нижнее бельё", UWC.items, pref.all_underwear[UWC.name])
+		// End of Bastion of Endeavor Translation
 		if(selected_underwear && CanUseTopic(user))
 			pref.all_underwear[UWC.name] = selected_underwear.name
 		return TOPIC_REFRESH_UPDATE_PREVIEW
@@ -179,11 +233,20 @@ var/global/list/valid_ringtones = list(
 			pref.communicator_visibility = !pref.communicator_visibility
 			return TOPIC_REFRESH
 	else if(href_list["set_ringtone"])
+		/* Bastion of Endeavor Translation
 		var/choice = tgui_input_list(user, "Please select a ringtone. All of these choices come with an associated preset sound. Alternately, select \"Other\" to specify manually.", "Character Preference", valid_ringtones + "Other", pref.ringtone)
+		*/
+		var/choice = tgui_input_list(user, "Выберите рингтон своего КПК. Каждый из этих рингтонов обладает собственным звуком. Вы также можете установить собственный рингтон с помощью варианта \"Другое\".", "Рингтон КПК", valid_ringtones + "Другое", pref.ringtone)
+		// End of Bastion of Endeavor Translation
 		if(!choice || !CanUseTopic(user))
 			return TOPIC_NOACTION
+		/* Bastion of Endeavor Translation
 		if(choice == "Other")
 			var/raw_choice = sanitize(tgui_input_text(user, "Please enter a custom ringtone. If this doesn't match any of the other listed choices, your PDA will use the default (\"beep\") sound.", "Character Preference", null, 20), 20)
+		*/
+		if(choice == "Другое")
+			var/raw_choice = sanitize(tgui_input_text(user, "Введите собственный рингтон КПК. Он будет использовать стандартный звук (\"Би-бип\").", "Рингтон КПК", null, 20), 20)
+		// End of Bastion of Endeavor Translation
 			if(raw_choice && CanUseTopic(user))
 				pref.ringtone = raw_choice
 		else

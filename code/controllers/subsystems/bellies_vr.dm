@@ -6,7 +6,11 @@
 //
 
 SUBSYSTEM_DEF(bellies)
+	/* Bastion of Endeavor Translation
 	name = "Bellies"
+	*/
+	name = "Животы"
+	// End of Bastion of Endeavor Translation
 	priority = 5
 	wait = 1 SECONDS
 	flags = SS_KEEP_TIMING|SS_NO_INIT
@@ -17,7 +21,11 @@ SUBSYSTEM_DEF(bellies)
 	var/ignored_bellies = 0
 
 /datum/controller/subsystem/bellies/stat_entry()
+	/* Bastion of Endeavor Translation
 	..("#: [belly_list.len] | P: [ignored_bellies]")
+	*/
+	..("Животов: [belly_list.len] | Игнорируется: [ignored_bellies]")
+	// End of Bastion of Endeavor Translation
 
 /datum/controller/subsystem/bellies/fire(resumed = 0)
 	if (!resumed)

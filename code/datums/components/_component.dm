@@ -53,7 +53,11 @@
 	parent = raw_args[1]
 	var/list/arguments = raw_args.Copy(2)
 	if(Initialize(arglist(arguments)) == COMPONENT_INCOMPATIBLE)
+		/* Bastion of Endeavor Translation
 		stack_trace("Incompatible [type] assigned to a [parent.type]! args: [json_encode(arguments)]")
+		*/
+		stack_trace("Несовместимый тип [type] назначен типу [parent.type]! Аргументы: [json_encode(arguments)]")
+		// End of Bastion of Endeavor Translation
 		qdel(src, TRUE, TRUE)
 		return
 
@@ -183,7 +187,11 @@
 /datum/component/proc/on_source_remove(source)
 	SHOULD_CALL_PARENT(TRUE)
 	if(dupe_mode != COMPONENT_DUPE_SOURCES)
+		/* Bastion of Endeavor Translation
 		CRASH("Component '[type]' does not use sources but is trying to remove a source")
+		*/
+		CRASH("Компонент '[type]' пытается удалить источник, но не использует источники сам по себе.")
+		// End of Bastion of Endeavor Translation
 	LAZYREMOVE(sources, source)
 	if(!LAZYLEN(sources))
 		qdel(src)
@@ -254,7 +262,11 @@
 /datum/proc/GetComponent(datum/component/c_type)
 	RETURN_TYPE(c_type)
 	if(initial(c_type.dupe_mode) == COMPONENT_DUPE_ALLOWED || initial(c_type.dupe_mode) == COMPONENT_DUPE_SELECTIVE)
+		/* Bastion of Endeavor Translation
 		stack_trace("GetComponent was called to get a component of which multiple copies could be on an object. This can easily break and should be changed. Type: \[[c_type]\]")
+		*/
+		stack_trace("GetComponent вызван для получения компонента, несколько копий которого могут быть на объекте. Это может легко поломаться, поэтому нужно поправить. Тип: \[[c_type]\]")
+		// End of Bastion of Endeavor Translation
 	var/list/dc = _datum_components
 	if(!dc)
 		return null
@@ -274,7 +286,11 @@
 /datum/proc/GetExactComponent(datum/component/c_type)
 	RETURN_TYPE(c_type)
 	if(initial(c_type.dupe_mode) == COMPONENT_DUPE_ALLOWED || initial(c_type.dupe_mode) == COMPONENT_DUPE_SELECTIVE)
+		/* Bastion of Endeavor Translation
 		stack_trace("GetComponent was called to get a component of which multiple copies could be on an object. This can easily break and should be changed. Type: \[[c_type]\]")
+		*/
+		stack_trace("GetComponent вызван для получения компонента, несколько копий которого могут быть на объекте. Это может легко поломаться, поэтому нужно поправить. Тип: \[[c_type]\]")
+		// End of Bastion of Endeavor Translation
 	var/list/dc = _datum_components
 	if(!dc)
 		return null
@@ -314,26 +330,46 @@
 	var/datum/component/component_type = original_type
 
 	if(QDELING(src))
+		/* Bastion of Endeavor Translation
 		CRASH("Attempted to add a new component of type \[[component_type]\] to a qdeleting parent of type \[[type]\]!")
+		*/
+		CRASH("Попытка добавить компонент типа \[[component_type]\] на qdel'ящийся тип \[[type]\]!")
+		// End of Bastion of Endeavor Translation
 
 	var/datum/component/new_component
 
 	if(!ispath(component_type, /datum/component))
 		if(!istype(component_type, /datum/component))
+			/* Bastion of Endeavor Translation
 			CRASH("Attempted to instantiate \[[component_type]\] as a component added to parent of type \[[type]\]!")
+			*/
+			CRASH("Попытка инстанциировать \[[component_type]\] как компонент для типа \[[type]\]!")
+			// End of Bastion of Endeavor Translation
 		else
 			new_component = component_type
 			component_type = new_component.type
 	else if(component_type == /datum/component)
+		/* Bastion of Endeavor Translation
 		CRASH("[component_type] attempted instantiation!")
+		*/
+		CRASH("Компонент [component_type] попытался инстанциироваться!")
+		// End of Bastion of Endeavor Translation
 
 	var/dupe_mode = initial(component_type.dupe_mode)
 	var/dupe_type = initial(component_type.dupe_type)
 	var/uses_sources = (dupe_mode == COMPONENT_DUPE_SOURCES)
 	if(uses_sources && !source)
+		/* Bastion of Endeavor Translation
 		CRASH("Attempted to add a sourced component of type '[component_type]' to '[type]' without a source!")
+		*/
+		CRASH("Попытка добавить компонент с источником типа '[component_type]' на '[type]' без источника!")
+		// End of Bastion of Endeavor Translation
 	else if(!uses_sources && source)
+		/* Bastion of Endeavor Translation
 		CRASH("Attempted to add a normal component of type '[component_type]' to '[type]' with a source!")
+		*/
+		CRASH("Попытка добавить компонент без источника типа '[component_type]' на '[type]' с источником!")
+		// End of Bastion of Endeavor Translation
 
 	var/datum/component/old_component
 
@@ -373,7 +409,11 @@
 						return old_component // source already registered, no work to do
 
 					if(old_component.on_source_add(arglist(list(source) + raw_args.Copy(2))) == COMPONENT_INCOMPATIBLE)
+						/* Bastion of Endeavor Translation
 						stack_trace("incompatible source added to a [old_component.type]. Args: [json_encode(raw_args)]")
+						*/
+						stack_trace("Добавлен несовместимый источник на [old_component.type]. Аргументы: [json_encode(raw_args)].")
+						// End of Bastion of Endeavor Translation
 						return null
 
 		else if(!new_component)
@@ -462,7 +502,11 @@
 		if(COMPONENT_INCOMPATIBLE)
 			var/c_type = target.type
 			qdel(target)
+			/* Bastion of Endeavor Translation
 			CRASH("Incompatible [c_type] transfer attempt to a [type]!")
+			*/
+			CRASH("Попытка перемещения несовместимого типа [c_type] на тип [type]!")
+			// End of Bastion of Endeavor Translation
 
 	if(target == AddComponent(target))
 		target._JoinParent()

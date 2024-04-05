@@ -1,5 +1,9 @@
 PROCESSING_SUBSYSTEM_DEF(dcs)
+	/* Bastion of Endeavor Translation
 	name = "Datum Component System"
+	*/
+	name = "Датумы-компоненты"
+	// End of Bastion of Endeavor Translation
 	flags = SS_NO_INIT
 	wait = 1 SECONDS
 
@@ -37,7 +41,11 @@ PROCESSING_SUBSYSTEM_DEF(dcs)
 	var/element_id = eletype
 
 	if(!ispath(eletype, /datum/element))
+		/* Bastion of Endeavor Translation
 		CRASH("Attempted to instantiate [eletype] as a /datum/element")
+		*/
+		CRASH("Попытка инстанциировать [eletype] как /datum/element.")
+		// End of Bastion of Endeavor Translation
 
 	if(initial(eletype.element_flags) & ELEMENT_BESPOKE)
 		element_id = length(arguments) == 1 ? "[arguments[1]]" : GetIdFromArguments(arguments)

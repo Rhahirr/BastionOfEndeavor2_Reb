@@ -128,7 +128,11 @@
 	set waitfor = FALSE
 	if (!callback || !istype(callback))
 		//This check only exists because the alternative is callback_select would block forever if given invalid data
+		/* Bastion of Endeavor Translation
 		CRASH("invalid callback passed to invoke_callback")
+		*/
+		CRASH("Проку invoke_callback передан недопустимый callback.")
+		// End of Bastion of Endeavor Translation
 	if (!length(callback_args))
 		callback_args = list()
 	pendingcount++

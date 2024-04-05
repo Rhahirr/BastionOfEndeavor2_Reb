@@ -45,7 +45,11 @@ var/const/tk_maxrange = 15
 		O.host = user
 		O.focus_object(src)
 	else
+		/* Bastion of Endeavor Translation: What?
 		warning("Strange attack_tk(): TK([TK in user.mutations]) empty hand([!user.get_active_hand()])")
+		*/
+		warning("Странный вызов attack_tk(): TK([TK in user.mutations]) пустая рука([!user.get_active_hand()])")
+		// End of Bastion of Endeavor Translation
 	return
 
 
@@ -61,8 +65,13 @@ var/const/tk_maxrange = 15
 	* Deletes itself if it is ever not in your hand, or if you should have no access to TK.
 */
 /obj/item/tk_grab
+	/* Bastion of Endeavor Translation
 	name = "Telekinetic Grab"
 	desc = "Magic"
+	*/
+	name = "Телекинетический захват"
+	desc = "Магия."
+	// End of Bastion of Endeavor Translation
 	icon = 'icons/obj/magic.dmi'//Needs sprites
 	icon_state = "2"
 	flags = NOBLUDGEON
@@ -110,7 +119,11 @@ var/const/tk_maxrange = 15
 	if(focus)
 		d = max(d, get_dist(user, focus)) // whichever is further
 	if(d > tk_maxrange)
+		/* Bastion of Endeavor Translation
 		to_chat(user, "<span class='notice'>Your mind won't reach that far.</span>")
+		*/
+		to_chat(user, "<span class='notice'>Ваш разум не дотягивается до [gcase_ru(target)].</span>")
+		// End of Bastion of Endeavor Translation
 		return
 
 	if(!focus)
@@ -150,7 +163,11 @@ var/const/tk_maxrange = 15
 /obj/item/tk_grab/proc/apply_focus_overlay()
 	if(!focus)	return
 	var/obj/effect/overlay/O = new /obj/effect/overlay(locate(focus.x,focus.y,focus.z))
+	/* Bastion of Endeavor Translation
 	O.name = "sparkles"
+	*/
+	O.name = "Искорки"
+	// End of Bastion of Endeavor Translation
 	O.anchored = TRUE
 	O.density = FALSE
 	O.layer = FLY_LAYER

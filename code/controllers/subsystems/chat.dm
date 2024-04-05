@@ -4,7 +4,11 @@
  */
 
 SUBSYSTEM_DEF(chat)
+	/* Bastion of Endeavor Translation
 	name = "Chat"
+	*/
+	name = "Чат"
+	// End of Bastion of Endeavor Translation
 	flags = SS_TICKER|SS_NO_INIT
 	wait = 1
 	priority = FIRE_PRIORITY_CHAT

@@ -4,7 +4,11 @@
 ////////////////////////////////
 
 SUBSYSTEM_DEF(persist)
+	/* Bastion of Endeavor Translation
 	name = "Persist"
+	*/
+	name = "Отгулы"
+	// End of Bastion of Endeavor Translation
 	priority = 20
 	wait = 15 MINUTES
 	flags = SS_BACKGROUND|SS_NO_INIT|SS_KEEP_TIMING

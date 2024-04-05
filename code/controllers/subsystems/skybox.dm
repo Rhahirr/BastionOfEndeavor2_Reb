@@ -1,7 +1,11 @@
 
 //Exists to handle a few global variables that change enough to justify this. Technically a parallax, but it exhibits a skybox effect.
 SUBSYSTEM_DEF(skybox)
+	/* Bastion of Endeavor Translation
 	name = "Space skybox"
+	*/
+	name = "Космический горизонт"
+	// End of Bastion of Endeavor Translation
 	init_order = INIT_ORDER_SKYBOX
 	flags = SS_NO_FIRE
 	var/static/list/skybox_cache = list()
@@ -20,8 +24,13 @@ SUBSYSTEM_DEF(skybox)
 
 	//Create our 'normal' space appearance
 	normal_space = new()
+	/* Bastion of Endeavor Translation
 	normal_space.name = "\proper space"
 	normal_space.desc = "Space!"
+	*/
+	normal_space.name = "Космос"
+	normal_space.desc = "Космос!"
+	// End of Bastion of Endeavor Translation
 	normal_space.mouse_opacity = 2 //Always fully opaque. It's SPACE there can't be things BEHIND IT.
 	normal_space.appearance_flags = TILE_BOUND|PIXEL_SCALE|KEEP_TOGETHER
 	normal_space.plane = SPACE_PLANE

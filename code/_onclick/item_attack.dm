@@ -104,7 +104,11 @@ avoid code duplication. This includes items that may sometimes act as a standard
 	M.lastattacker = user
 
 	if(!no_attack_log)
+		/* Bastion of Endeavor Translation
 		add_attack_logs(user,M,"attacked with [name] (INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(damtype)])")
+		*/
+		add_attack_logs(user,M,"[verb_ru(user, "атаковал")] [icase_ru(src)] (НАМЕРЕНИЕ: [user.a_intent]) (ТИП УРОНА: [damtype])")
+		// End of Bastion of Endeavor Translation
 	/////////////////////////
 
 	user.setClickCooldown(user.get_attack_speed(src))

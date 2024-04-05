@@ -1,14 +1,28 @@
 /client/var/inquisitive_ghost = 1
 /mob/observer/dead/verb/toggle_inquisition() // warning: unexpected inquisition
+	/* Bastion of Endeavor Translation
 	set name = "Toggle Inquisitiveness"
 	set desc = "Sets whether your ghost examines everything on click by default"
 	set category = "Ghost"
+	*/
+	set name = "Переключить любознательность"
+	set desc = "Переключить осмотр вашим призраком всего, на что вы нажимаете."
+	set category = "Призрак"
+	// End of Bastion of Endeavor Translation
 	if(!client) return
 	client.inquisitive_ghost = !client.inquisitive_ghost
 	if(client.inquisitive_ghost)
+		/* Bastion of Endeavor Translation
 		to_chat(src, "<span class='notice'>You will now examine everything you click on.</span>")
+		*/
+		to_chat(src, "<span class='notice'>Вы теперь будете осматривать всё, на что нажимаете.</span>")
+		// End of Bastion of Endeavor Translation
 	else
+		/* Bastion of Endeavor Translation
 		to_chat(src, "<span class='notice'>You will no longer examine things you click on.</span>")
+		*/
+		to_chat(src, "<span class='notice'>Вы больше не будете осматривать всё, на что нажимаете.</span>")
+		// End of Bastion of Endeavor Translation
 
 /mob/observer/dead/DblClickOn(var/atom/A, var/params)
 	if(client.buildmode)
@@ -78,7 +92,11 @@
 		else
 			return
 	else
+		/* Bastion of Endeavor Translation
 		to_chat(user, "[src] has no destination.")
+		*/
+		to_chat(user, "У [gcase_ru(src)] отсутствует пункт назначения.")
+		// End of Bastion of Endeavor Translation
 
 // VOREStation Edit End
 
@@ -86,7 +104,11 @@
 	if(stationgate)
 		user.loc = stationgate.loc
 	else
+		/* Bastion of Endeavor Translation
 		to_chat(user, "[src] has no destination.")
+		*/
+		to_chat(user, "У [gcase_ru(src)] отсутствует пункт назначения.")
+		// End of Bastion of Endeavor Translation
 
 // -------------------------------------------
 // This was supposed to be used by adminghosts

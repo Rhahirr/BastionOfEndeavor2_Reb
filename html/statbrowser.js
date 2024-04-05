@@ -15,9 +15,15 @@ if (!String.prototype.trim) {
 }
 
 // Status panel implementation ------------------------------------------------
+/* Bastion of Endeavor Translation
 var status_tab_parts = ["Loading..."];
 var current_tab = null;
 var mc_tab_parts = [["Loading...", ""]];
+*/
+var status_tab_parts = ["Загрузка..."];
+var current_tab = null;
+var mc_tab_parts = [["Загрузка...", ""]];
+// End of Bastion of Endeavor Translation
 var href_token = null;
 var spells = [];
 var spell_tabs = [];
@@ -48,7 +54,11 @@ function run_after_focus(callback) {
 function createStatusTab(name) {
 	if (name.indexOf(".") != -1) {
 		var splitName = name.split(".");
+		/* Bastion of Endeavor Translation
 		if (split_admin_tabs && splitName[0] === "Admin")
+		*/
+		if (split_admin_tabs && splitName[0] === "Администрация")
+		// End of Bastion of Endeavor Translation
 			name = splitName[1];
 		else
 			name = splitName[0];
@@ -69,10 +79,19 @@ function createStatusTab(name) {
 	B.className = "button";
 	//ORDERING ALPHABETICALLY
 	B.style.order = name.charCodeAt(0);
+	/* Bastion of Endeavor Translation
 	if (name == "Status" || name == "MC") {
 		B.style.order = name == "Status" ? 1 : 2;
+	*/
+	if (name == "Статус" || name == "ГК") {
+		B.style.order = name == "Статус" ? 1 : 2;
+	// End of Bastion of Endeavor Translation
 	}
+	/* Bastion of Endeavor Translation
 	if (name == "Tickets") {
+	*/
+	if (name == "Запросы") {
+	// End of Bastion of Endeavor Translation
 		B.style.order = 3;
 	}
 	//END ORDERING
@@ -156,7 +175,11 @@ function verbs_cat_check(cat) {
 	var tabCat = cat;
 	if (cat.indexOf(".") != -1) {
 		var splitName = cat.split(".");
+		/* Bastion of Endeavor Translation
 		if (split_admin_tabs && splitName[0] === "Admin")
+		*/
+		if (split_admin_tabs && splitName[0] === "Администрация")
+		// End of Bastion of Endeavor Translation
 			tabCat = splitName[1];
 		else
 			tabCat = splitName[0];
@@ -172,7 +195,11 @@ function verbs_cat_check(cat) {
 		verbcat = part[0];
 		if (verbcat.indexOf(".") != -1) {
 			var splitName = verbcat.split(".");
+			/* Bastion of Endeavor Translation
 			if (split_admin_tabs && splitName[0] === "Admin")
+			*/
+			if (split_admin_tabs && splitName[0] === "Администрация")
+			// End of Bastion of Endeavor Translation
 				verbcat = splitName[1];
 			else
 				verbcat = splitName[0];
@@ -188,7 +215,11 @@ function verbs_cat_check(cat) {
 	if (verbs_in_cat != 1) {
 		removeStatusTab(tabCat);
 		if (current_tab == tabCat)
+			/* Bastion of Endeavor Translation
 			tab_change("Status");
+			*/
+			tab_change("Статус");
+			// End of Bastion of Endeavor Translation
 	}
 }
 
@@ -252,28 +283,52 @@ function tab_change(tab) {
 		document.getElementById(tab).className = "button active"; // make current button active
 	var spell_tabs_thingy = (spell_tabs.includes(tab));
 	var verb_tabs_thingy = (verb_tabs.includes(tab));
+	/* Bastion of Endeavor Translation
 	if (tab == "Status") {
+	*/
+	if (tab == "Статус") {
+	// End of Bastion of Endeavor Translation
 		draw_status();
+	/* Bastion of Endeavor Translation
 	} else if (tab == "MC") {
+	*/
+	} else if (tab == "ГК") {
+	// End of Bastion of Endeavor Translation
 		draw_mc();
 	} else if (spell_tabs_thingy) {
 		draw_spells(tab);
 	} else if (verb_tabs_thingy) {
 		draw_verbs(tab);
+	/* Bastion of Endeavor Translation
 	} else if (tab == "Debug Stat Panel") {
+	*/
+	} else if (tab == "Отладка панели") {
+	// End of Bastion of Endeavor Translation
 		draw_debug();
+	/* Bastion of Endeavor Translation
 	} else if (tab == "Tickets") {
+	*/
+	} else if (tab == "Запросы") {
+	// End of Bastion of Endeavor Translation
 		draw_tickets();
 	} else if (misc.has(tab)) {
 		draw_misc(tab);
+	/* Bastion of Endeavor Translation
 	} else if (tab == "Examine") {
+	*/
+	} else if (tab == "Осмотр") {
+	// End of Bastion of Endeavor Translation
 		draw_examine();
 	} else if (tab == "SDQL2") {
 		draw_sdql2();
 	} else if (tab == turfname) {
 		draw_listedturf();
 	} else {
+		/* Bastion of Endeavor Translation
 		statcontentdiv.textContext = "Loading...";
+		*/
+		statcontentdiv.textContext = "Загрузка...";
+		// End of Bastion of Endeavor Translation
 	}
 	Byond.winset(Byond.windowId, {
 		'is-visible': true,
@@ -372,9 +427,15 @@ function draw_debug() {
 
 }
 function draw_status() {
+	/* Bastion of Endeavor Translation
 	if (!document.getElementById("Status")) {
 		createStatusTab("Status");
 		current_tab = "Status";
+	*/
+	if (!document.getElementById("Статус")) {
+		createStatusTab("Статус");
+		current_tab = "Статус";
+	// End of Bastion of Endeavor Translation
 	}
 	statcontentdiv.textContent = '';
 	for (var i = 0; i < status_tab_parts.length; i++) {
@@ -418,9 +479,15 @@ function draw_mc() {
 function remove_tickets() {
 	if (tickets) {
 		tickets = [];
+		/* Bastion of Endeavor Translation
 		removePermanentTab("Tickets");
 		if (current_tab == "Tickets")
 			tab_change("Status");
+		*/
+		removePermanentTab("Запросы");
+		if (current_tab == "Запросы")
+			tab_change("Статус");
+		// End of Bastion of Endeavor Translation
 	}
 	checkStatusTab();
 }
@@ -430,14 +497,22 @@ function remove_sdql2() {
 		sdql2 = [];
 		removePermanentTab("SDQL2");
 		if (current_tab == "SDQL2")
+			/* Bastion of Endeavor Translation
 			tab_change("Status");
+			*/
+			tab_change("Статус");
+			// End of Bastion of Endeavor Translation
 	}
 	checkStatusTab();
 }
 
 function iconError(e) {
 	setTimeout(function () {
+		/* Bastion of Endeavor Translation
 		if(current_tab != turfname && current_tab != "Examine") {
+		*/
+		if(current_tab != turfname && current_tab != "Осмотр") {
+		// End of Bastion of Endeavor Translation
 			return;
 		}
 		var node = e.target;
@@ -513,14 +588,24 @@ function remove_listedturf() {
 	removePermanentTab(turfname);
 	checkStatusTab();
 	if (current_tab == turfname) {
+		/* Bastion of Endeavor Translation
 		tab_change("Status");
+		*/
+		tab_change("Статус");
+		// End of Bastion of Endeavor Translation
 	}
 }
 
 function remove_mc() {
+	/* Bastion of Endeavor Translation
 	removePermanentTab("MC");
 	if (current_tab == "MC") {
 		tab_change("Status");
+	*/
+	removePermanentTab("ГК");
+	if (current_tab == "ГК") {
+		tab_change("Статус");
+	// End of Bastion of Endeavor Translation
 	}
 };
 
@@ -715,7 +800,11 @@ function draw_verbs(cat) {
 	sortVerbs();
 	if (split_admin_tabs && cat.lastIndexOf(".") != -1) {
 		var splitName = cat.split(".");
+		/* Bastion of Endeavor Translation
 		if (splitName[0] === "Admin")
+		*/
+		if (splitName[0] === "Администрация")
+		// End of Bastion of Endeavor Translation
 			cat = splitName[1];
 	}
 	verbs.reverse(); // sort verbs backwards before we draw
@@ -724,7 +813,11 @@ function draw_verbs(cat) {
 		var name = part[0];
 		if (split_admin_tabs && name.lastIndexOf(".") != -1) {
 			var splitName = name.split(".");
+			/* Bastion of Endeavor Translation
 			if (splitName[0] === "Admin")
+			*/
+			if (splitName[0] === "Администрация")
+			// End of Bastion of Endeavor Translation
 				name = splitName[1];
 		}
 		var command = part[1];
@@ -821,7 +914,11 @@ function add_verb_list(payload) {
 		var category = part[0];
 		if (category.indexOf(".") != -1) {
 			var splitName = category.split(".");
+			/* Bastion of Endeavor Translation
 			if (split_admin_tabs && splitName[0] === "Admin")
+			*/
+			if (split_admin_tabs && splitName[0] === "Администрация")
+			// End of Bastion of Endeavor Translation
 				category = splitName[1];
 			else
 				category = splitName[0];
@@ -856,8 +953,13 @@ document.addEventListener("mouseup", restoreFocus);
 document.addEventListener("keyup", restoreFocus);
 
 if (!current_tab) {
+	/* Bastion of Endeavor Translation
 	addPermanentTab("Status");
 	tab_change("Status");
+	*/
+	addPermanentTab("Статус");
+	tab_change("Статус");
+	// End of Bastion of Endeavor Translation
 }
 
 window.onload = function () {
@@ -928,24 +1030,49 @@ Byond.subscribeTo('update_stat', function (payload) {
 
 	for (var i = 0; i < parsed.length; i++) if (parsed[i] != null) status_tab_parts.push(parsed[i]);
 
+	/* Bastion of Endeavor Translation
 	if (current_tab == "Status") {
+	*/
+	if (current_tab == "Статус") {
+	// End of Bastion of Endeavor Translation
 		draw_status();
+	/* Bastion of Endeavor Translation
 	} else if (current_tab == "Debug Stat Panel") {
+	*/
+	} else if (current_tab == "Отладка панели") {
+	// End of Bastion of Endeavor Translation
 		draw_debug();
 	}
 });
 
 Byond.subscribeTo('update_mc', function (payload) {
 	mc_tab_parts = payload.mc_data;
+	/* Bastion of Endeavor Translation
 	mc_tab_parts.splice(0, 0, ["Location:", payload.coord_entry]);
+	*/
+	mc_tab_parts.splice(0, 0, ["Местоположение:", payload.coord_entry]);
+	// End of Bastion of Endeavor Translation
 
+	/* Bastion of Endeavor Translation
 	if (!verb_tabs.includes("MC")) {
 		verb_tabs.push("MC");
+	*/
+	if (!verb_tabs.includes("ГК")) {
+		verb_tabs.push("ГК");
+	// End of Bastion of Endeavor Translation
 	}
 
+	/* Bastion of Endeavor Translation
 	createStatusTab("MC");
+	*/
+	createStatusTab("ГК");
+	// End of Bastion of Endeavor Translation
 
+	/* Bastion of Endeavor Translation
 	if (current_tab == "MC") {
+	*/
+	if (current_tab == "ГК") {
+	// End of Bastion of Endeavor Translation
 		draw_mc();
 	}
 });
@@ -974,10 +1101,19 @@ Byond.subscribeTo('check_spells', function () {
 });
 
 Byond.subscribeTo('create_debug', function () {
+	/* Bastion of Endeavor Translation
 	if (!document.getElementById("Debug Stat Panel")) {
 		addPermanentTab("Debug Stat Panel");
+	*/
+	if (!document.getElementById("Отладка панели")) {
+		addPermanentTab("Отладка панели");
+	// End of Bastion of Endeavor Translation
 	} else {
+		/* Bastion of Endeavor Translation
 		removePermanentTab("Debug Stat Panel");
+		*/
+		removePermanentTab("Отладка панели");
+		// End of Bastion of Endeavor Translation
 	}
 });
 
@@ -1024,9 +1160,15 @@ Byond.subscribeTo('update_split_admin_tabs', function (status) {
 
 	if (split_admin_tabs !== status) {
 		if (split_admin_tabs === true) {
+			/* Bastion of Endeavor Translation
 			removeStatusTab("Events");
 			removeStatusTab("Fun");
 			removeStatusTab("Game");
+			*/
+			removeStatusTab("События");
+			removeStatusTab("Веселье");
+			removeStatusTab("Игра");
+			// End of Bastion of Endeavor Translation
 		}
 		update_verbs();
 	}
@@ -1035,17 +1177,32 @@ Byond.subscribeTo('update_split_admin_tabs', function (status) {
 
 Byond.subscribeTo('add_admin_tabs', function (ht) {
 	href_token = ht;
+	/* Bastion of Endeavor Translation
 	addPermanentTab("MC");
 	addPermanentTab("Tickets");
+	*/
+	addPermanentTab("ГК");
+	addPermanentTab("Запросы");
+	// End of Bastion of Endeavor Translation
 });
 
 Byond.subscribeTo('update_examine', function (S) {
 	examine = S;
+	/* Bastion of Endeavor Translation
 	if (examine.length > 0 && !verb_tabs.includes("Examine")) {
 		verb_tabs.push("Examine");
 		addPermanentTab("Examine")
+	*/
+	if (examine.length > 0 && !verb_tabs.includes("Осмотр")) {
+		verb_tabs.push("Осмотр");
+		addPermanentTab("Осмотр")
+	// End of Bastion of Endeavor Translation
 	}
+	/* Bastion of Endeavor Translation
 	if (current_tab == "Examine") {
+	*/
+	if (current_tab == "Осмотр") {
+	// End of Bastion of Endeavor Translation
 		draw_examine();
 	}
 	//tab_change("Examine"); //This is handled by DM code and a pref setting already
@@ -1064,11 +1221,21 @@ Byond.subscribeTo('update_sdql2', function (S) {
 
 Byond.subscribeTo('update_tickets', function (T) {
 	tickets = T;
+	/* Bastion of Endeavor Translation
 	if (!verb_tabs.includes("Tickets")) {
 		verb_tabs.push("Tickets");
 		addPermanentTab("Tickets");
+	*/
+	if (!verb_tabs.includes("Запросы")) {
+		verb_tabs.push("Запросы");
+		addPermanentTab("Запросы");
+	// End of Bastion of Endeavor Translation
 	}
+	/* Bastion of Endeavor Translation
 	if (current_tab == "Tickets") {
+	*/
+	if (current_tab == "Запросы") {
+	// End of Bastion of Endeavor Translation
 		draw_tickets();
 	}
 });

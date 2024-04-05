@@ -121,7 +121,11 @@ GLOBAL_VAR_INIT(round_start_time, 0)
 			midnight_rollovers++
 			rollover_safety_date = world.realtime
 		else
+			/* Bastion of Endeavor Translation
 			warning("Time rollover error: world.timeofday decreased from previous check, but the day or last rollover is less than 12 hours old. System clock?")
+			*/
+			warning("Ошибка переката времени: world.timeofday уменьшился с прошлой проверки, но с предыдущего переката прошло меньше 12 часов. Системное время?")
+			// End of Bastion of Endeavor Translation
 	rollovercheck_last_timeofday = world.timeofday
 	return midnight_rollovers
 
@@ -152,26 +156,55 @@ GLOBAL_VAR_INIT(round_start_time, 0)
 /proc/DisplayTimeText(time_value, round_seconds_to = 0.1)
 	var/second = round(time_value * 0.1, round_seconds_to)
 	if(!second)
+		/* Bastion of Endeavor Translation
 		return "right now"
+		*/
+		return "0 секунд"
+		// End of Bastion of Endeavor Translation
 	if(second < 60)
+		/* Bastion of Endeavor Translation
 		return "[second] second[(second != 1)? "s":""]"
+		*/
+		return "[count_ru(second, "секунд;у;ы;")]"
+		// End of Bastion of Endeavor Translation
 	var/minute = FLOOR(second / 60, 1)
 	second = MODULUS(second, 60)
 	var/secondT
 	if(second)
+		/* Bastion of Endeavor Translation
 		secondT = " and [second] second[(second != 1)? "s":""]"
+		*/
+		secondT = " и [count_ru(second, "секунд;у;ы;")]"
+		// End of Bastion of Endeavor Translation
 	if(minute < 60)
+		/* Bastion of Endeavor Translation
 		return "[minute] minute[(minute != 1)? "s":""][secondT]"
+		*/
+		return "[count_ru(minute, "минут;у;ы;")][secondT]"
+		// End of Bastion of Endeavor Translation
 	var/hour = FLOOR(minute / 60, 1)
 	minute = MODULUS(minute, 60)
 	var/minuteT
 	if(minute)
+		/* Bastion of Endeavor Translation
 		minuteT = " and [minute] minute[(minute != 1)? "s":""]"
+		*/
+		minuteT = " и [count_ru(minute, "минут;у;ы;")]"
+		// End of Bastion of Endeavor Translation
 	if(hour < 24)
+		/* Bastion of Endeavor Translation
 		return "[hour] hour[(hour != 1)? "s":""][minuteT][secondT]"
+		*/
+		return "[count_ru(hour, "час;;а;ов")][minuteT][secondT]"
+		// End of Bastion of Endeavor Translation
 	var/day = FLOOR(hour / 24, 1)
 	hour = MODULUS(hour, 24)
 	var/hourT
 	if(hour)
+	/* Bastion of Endeavor Translation
 		hourT = " and [hour] hour[(hour != 1)? "s":""]"
 	return "[day] day[(day != 1)? "s":""][hourT][minuteT][secondT]"
+	*/
+		hourT = " и [count_ru(hour, "час;;а;ов")]"
+	return "[count_ru(day, "д;ень;ня;ней")][hourT][minuteT][secondT]"
+	// End of Bastion of Endeavor Translation

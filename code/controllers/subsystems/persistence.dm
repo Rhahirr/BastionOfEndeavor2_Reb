@@ -1,5 +1,9 @@
 SUBSYSTEM_DEF(persistence)
+	/* Bastion of Endeavor Translation
 	name = "Persistence"
+	*/
+	name = "Межраундовое сохранение"
+	// End of Bastion of Endeavor Translation
 	init_order = INIT_ORDER_PERSISTENCE
 	flags = SS_NO_FIRE
 	var/list/tracking_values = list()
@@ -61,6 +65,10 @@ SUBSYSTEM_DEF(persistence)
 		if(P.has_admin_data)
 			dat += P.GetAdminSummary(user, can_modify)
 	dat += "</table>"
+	/* Bastion of Endeavor Translation
 	var/datum/browser/popup = new(user, "admin_persistence", "Persistence Data")
+	*/
+	var/datum/browser/popup = new(user, "admin_persistence", "Межраундовые данные")
+	// End of Bastion of Endeavor Translation
 	popup.set_content(jointext(dat, null))
 	popup.open()

@@ -1,3 +1,4 @@
+/* Bastion of Endeavor Translation
 #define VV_NUM "Number"
 #define VV_TEXT "Text"
 #define VV_MESSAGE "Mutiline Text"
@@ -19,10 +20,39 @@
 #define VV_RESTORE_DEFAULT "Restore to Default"
 #define VV_MARKED_DATUM "Marked Datum"
 #define VV_BITFIELD "Bitfield"
+*/
+#define VV_NUM "Число"
+#define VV_TEXT "Текст"
+#define VV_MESSAGE "Текст (несколько строк)"
+#define VV_ICON "Иконка"
+#define VV_ATOM_REFERENCE "Ссылка на атом" // might be a bit too far but oh well
+#define VV_DATUM_REFERENCE "Ссылка на датум"
+#define VV_MOB_REFERENCE "Ссылка на существо"
+#define VV_CLIENT "Клиент"
+#define VV_ATOM_TYPE "Путь к атому"
+#define VV_DATUM_TYPE "Путь к датуму"
+#define VV_TYPE "Путь (особый)"
+#define VV_FILE "Файл"
+#define VV_LIST "Список"
+#define VV_NEW_ATOM "Новый атом"
+#define VV_NEW_DATUM "Новый датум"
+#define VV_NEW_TYPE "Новый путь"
+#define VV_NEW_LIST "Новый список"
+#define VV_NULL "NULL"
+#define VV_RESTORE_DEFAULT "Значение по умолчанию"
+#define VV_MARKED_DATUM "Помеченный датум"
+#define VV_BITFIELD "Битфилд"
+// End of Bastion of Endeavor Translation
 
+/* Bastion of Endeavor Translation
 #define VV_MSG_MARKED "<br><font size='1' color='red'><b>Marked Object</b></font>"
 #define VV_MSG_EDITED "<br><font size='1' color='red'><b>Var Edited</b></font>"
 #define VV_MSG_DELETED "<br><font size='1' color='red'><b>Deleted</b></font>"
+*/
+#define VV_MSG_MARKED "<br><font size='1' color='red'><b>Помеченный объект</b></font>"
+#define VV_MSG_EDITED "<br><font size='1' color='red'><b>Отредактирован</b></font>"
+#define VV_MSG_DELETED "<br><font size='1' color='red'><b>Удалён</b></font>"
+// End of Bastion of Endeavor Translation
 
 #define VV_NORMAL_LIST_NO_EXPAND_THRESHOLD 50
 #define VV_SPECIAL_LIST_NO_EXPAND_THRESHOLD 150

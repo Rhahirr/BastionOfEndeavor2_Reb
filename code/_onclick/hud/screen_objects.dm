@@ -8,7 +8,11 @@
 */
 /obj/screen
 	name = ""
+	/* Bastion of Endeavor Edit: Russian icons. Don't see the harm in defining them here.
 	icon = 'icons/mob/screen1.dmi'
+	*/
+	icon = 'russian/_modular/icons/mob/screen1_ru.dmi'
+	// End of Bastion of Endeavor Edit
 	appearance_flags = TILE_BOUND|PIXEL_SCALE|NO_CLIENT_COLOR
 	layer = LAYER_HUD_BASE
 	plane = PLANE_PLAYER_HUD
@@ -65,7 +69,11 @@
 		add_overlay(object_overlays)
 
 /obj/screen/close
+	/* Bastion of Endeavor Translation
 	name = "close"
+	*/
+	name = "Закрыть"
+	// End of Bastion of Endeavor Translation
 
 /obj/screen/close/Click()
 	if(master)
@@ -98,7 +106,11 @@
 	return 1
 
 /obj/screen/grab
+	/* Bastion of Endeavor Translation
 	name = "grab"
+	*/
+	name = "Захват"
+	// End of Bastion of Endeavor Translation
 
 /obj/screen/grab/Click()
 	var/obj/item/weapon/grab/G = master
@@ -113,7 +125,11 @@
 
 
 /obj/screen/storage
+	/* Bastion of Endeavor Translation: The closest word I can think of really, given the context
 	name = "storage"
+	*/
+	name = "Ручная кладь"
+	// End of Bastion of Endeavor Translation
 
 /obj/screen/storage/Click()
 	if(!usr.checkClickCooldown())
@@ -129,7 +145,11 @@
 	return 1
 
 /obj/screen/zone_sel
+	/* Bastion of Endeavor Translation
 	name = "damage zone"
+	*/
+	name = "Участок тела"
+	// End of Bastion of Endeavor Translation
 	icon_state = "zone_sel"
 	screen_loc = ui_zonesel
 	var/selecting = BP_TORSO
@@ -250,7 +270,11 @@
 	..() // why the FUCK was this not called before
 	if(!usr)	return 1
 	switch(name)
+		/* Bastion of Endeavor Translation
 		if("toggle")
+		*/
+		if("Снаряжение")
+		// End of Bastion of Endeavor Translation
 			if(usr.hud_used.inventory_shown)
 				usr.hud_used.inventory_shown = 0
 				usr.client.screen -= usr.hud_used.other
@@ -260,24 +284,40 @@
 
 			usr.hud_used.hidden_inventory_update()
 
+		/* Bastion of Endeavor Translation
 		if("equip")
+		*/
+		if("Надеть")
+		// End of Bastion of Endeavor Translation
 			if (istype(usr.loc,/obj/mecha)) // stops inventory actions in a mech
 				return 1
 			if(ishuman(usr))
 				var/mob/living/carbon/human/H = usr
 				H.quick_equip()
 
+		/* Bastion of Endeavor Translation
 		if("resist")
+		*/
+		if("Сопротивляться")
+		// End of Bastion of Endeavor Translation
 			if(isliving(usr))
 				var/mob/living/L = usr
 				L.resist()
 
+		/* Bastion of Endeavor Translation
 		if("mov_intent")
+		*/
+		if("Передвижение")
+		// End of Bastion of Endeavor Translation
 			if(isliving(usr))
 				if(iscarbon(usr))
 					var/mob/living/carbon/C = usr
 					if(C.legcuffed)
+						/* Bastion of Endeavor Translation
 						to_chat(C, "<span class='notice'>You are legcuffed! You cannot run until you get [C.legcuffed] removed!</span>")
+						*/
+						to_chat(C, "<span class='notice'>Ваши ноги связаны! Вы не сможете бегать, пока не снимете [acase_ru(C.legcuffed)]!</span>")
+						// End of Bastion of Endeavor Translation
 						C.m_intent = "walk"	//Just incase
 						C.hud_used.move_intent.icon_state = "walking"
 						return 1
@@ -311,13 +351,21 @@
 			usr.m_int = "13,14"
 		if("Reset Machine")
 			usr.unset_machine()
+		/* Bastion of Endeavor Translation
 		if("internal")
+		*/
+		if("Подача воздуха")
+		// End of Bastion of Endeavor Translation
 			if(iscarbon(usr))
 				var/mob/living/carbon/C = usr
 				if(!C.stat && !C.stunned && !C.paralysis && !C.restrained())
 					if(C.internal)
 						C.internal = null
+						/* Bastion of Endeavor Translation
 						to_chat(C, "<span class='notice'>No longer running on internals.</span>")
+						*/
+						to_chat(C, "<span class='notice'>Вы больше не дышите через систему подачи воздуха.</span>")
+						// End of Bastion of Endeavor Translation
 						if(C.internals)
 							C.internals.icon_state = "internal0"
 					else
@@ -329,13 +377,18 @@
 								no_mask = 1
 
 						if(no_mask)
+							/* Bastion of Endeavor Translation
 							to_chat(C, "<span class='notice'>You are not wearing a suitable mask or helmet.</span>")
+							*/
+							to_chat(C, "<span class='notice'>Вы не носите подходящий шлем или маску.</span>")
+							// End of Bastion of Endeavor Translation
 							return 1
 						else
 							var/list/nicename = null
 							var/list/tankcheck = null
 							var/breathes = "oxygen"    //default, we'll check later
 							var/list/contents = list()
+							/* Bastion of Endeavor Edit: This kind of display fails to work in russian, so I'm flipping this entirely.
 							var/from = "on"
 
 							if(ishuman(C))
@@ -354,6 +407,24 @@
 									from = "in"
 									nicename |= "hardsuit"
 									tankcheck |= Rig.air_supply
+							*/
+							//var/from = "on"
+
+							if(ishuman(C))
+								var/mob/living/carbon/human/H = C
+								breathes = H.species.breath_type
+								nicename = list ("на своей одежде", "на своей спине", "на своей талии", "в своей правой руке", "в своей левой руке", "в своём левом кармане", "в своём правом кармане")
+								tankcheck = list (H.s_store, C.back, H.belt, C.r_hand, C.l_hand, H.l_store, H.r_store)
+							else
+								nicename = list("в своей правой руке", "в своей левой руке", "на своей спине")
+								tankcheck = list(C.r_hand, C.l_hand, C.back)
+							var/obj/item/weapon/rig/Rig = C.get_rig()
+							if(Rig)
+								if(Rig.air_supply && !Rig.offline)
+									//from = "in"
+									nicename |= "в своём скафандре"
+									tankcheck |= Rig.air_supply
+							// End of Bastion of Endeavor Edit
 
 							for(var/i=1, i<tankcheck.len+1, ++i)
 								if(istype(tankcheck[i], /obj/item/weapon/tank))
@@ -362,6 +433,7 @@
 										contents.Add(t.air_contents.total_moles)	//Someone messed with the tank and put unknown gasses
 										continue					//in it, so we're going to believe the tank is what it says it is
 									switch(breathes)
+										//Bastion of Endeavor TODO: Supposedly, once we have localized atmos, this will need fixing.
 																		//These tanks we're sure of their contents
 										if("nitrogen") 							//So we're a bit more picky about them.
 
@@ -410,7 +482,11 @@
 							//We've determined the best container now we set it as our internals
 
 							if(best)
+								/* Bastion of Endeavor Translation: This doesn't work as well in russian so I'm flipping this entirely.
 								to_chat(C, "<span class='notice'>You are now running on internals from [tankcheck[best]] [from] your [nicename[best]].</span>")
+								*/
+								to_chat(C, "<span class='notice'>Вы теперь дышите через [acase_ru(tankcheck[best])] [nicename[best]].</span>")
+								// End of Bastion of Endeavor Translation
 								C.internal = tankcheck[best]
 
 
@@ -418,65 +494,129 @@
 								if(C.internals)
 									C.internals.icon_state = "internal1"
 							else
+								/* Bastion of Endeavor Translation: Bastion of Endeavor TODO: As of right now, atmos is not localized, so a bandaid correction is added. Does this need fixing later on? I don't know.
 								to_chat(C, "<span class='notice'>You don't have a[breathes=="oxygen" ? "n oxygen" : addtext(" ",breathes)] tank.</span>")
+								*/
+								to_chat(C, "<span class='notice'>На вас нет [(breathes=="oxygen") ? "кислородного" : (breathes=="phoron") ? "форонового" : "азотного"] баллона.</span>")
+								// End of Bastion of Endeavor Translation
+		/* Bastion of Endeavor Translation
 		if("act_intent")
+		*/
+		if("Намерение")
+		// End of Bastion of Endeavor Translation
 			usr.a_intent_change("right")
+		/* Bastion of Endeavor Translation: I THINK this is the best way of doing this without actually touching the defines.
 		if(I_HELP)
+		*/
+		if("Помочь")
+		// End of Bastion of Endeavor Translation
 			usr.a_intent = I_HELP
 			if(ispAI(usr))
 				usr.a_intent_change(I_HELP)
 			else
 				usr.hud_used.action_intent.icon_state = "intent_help"
+		/* Bastion of Endeavor Translation
 		if(I_HURT)
+		*/
+		if("Навредить")
+		// End of Bastion of Endeavor Translation
 			usr.a_intent = I_HURT
 			if(ispAI(usr))
 				usr.a_intent_change(I_HURT)
 			else
 				usr.hud_used.action_intent.icon_state = "intent_harm"
+		/* Bastion of Endeavor Translation
 		if(I_GRAB)
+		*/
+		if("Схватить")
+		// End of Bastion of Endeavor Translation
 			usr.a_intent = I_GRAB
 			if(ispAI(usr))
 				usr.a_intent_change(I_GRAB)
 			else
 				usr.hud_used.action_intent.icon_state = "intent_grab"
+		/* Bastion of Endeavor Translation
 		if(I_DISARM)
+		*/
+		if("Обезвредить")
+		// End of Bastion of Endeavor Translation
 			usr.a_intent = I_DISARM
 			if(ispAI(usr))
 				usr.a_intent_change(I_DISARM)
 			else
 				usr.hud_used.action_intent.icon_state = "intent_disarm"
 
+		/* Bastion of Endeavor Translation
 		if("pull")
+		*/
+		if("Потянуть")
+		// End of Bastion of Endeavor Translation
 			usr.stop_pulling()
+		/* Bastion of Endeavor Translation
 		if("throw")
+		*/
+		if("Метнуть")
+		// End of Bastion of Endeavor Translation
 			if(!usr.stat && isturf(usr.loc) && !usr.restrained())
 				usr:toggle_throw_mode()
+		/* Bastion of Endeavor Translation
 		if("drop")
+		*/
+		if("Отпустить")
+		// End of Bastion of Endeavor Translation
 			if(usr.client)
 				usr.client.drop_item()
+		/* Bastion of Endeavor Translation
 		if("autowhisper")
+		*/
+		if("Автоматический шёпот")
+		// End of Bastion of Endeavor Translation
 			if(isliving(usr))
 				var/mob/living/u = usr
 				u.toggle_autowhisper()
+		/* Bastion of Endeavor Translation
 		if("autowhisper mode")
+		*/
+		if("Режим автоматического шёпота")
+		// End of Bastion of Endeavor Translation
 			if(isliving(usr))
 				var/mob/living/u = usr
 				u.autowhisper_mode()
+		/* Bastion of Endeavor Translation
 		if("check known languages")
+		*/
+		if("Показать известные языки")
+		// End of Bastion of Endeavor Translation
 			usr.check_languages()
+		/* Bastion of Endeavor Translation
 		if("set pose")
+		*/
+		if("Установить позу")
+		// End of Bastion of Endeavor Translation
 			if(ishuman(usr))
 				var/mob/living/carbon/human/u = usr
 				u.pose()
 			else if (issilicon(usr))
 				var/mob/living/silicon/u = usr
 				u.pose()
+		/* Bastion of Endeavor Translation
 		if("move upwards")
+		*/
+		if("Переместиться вверх")
+		// End of Bastion of Endeavor Translation
 			usr.up()
+		/* Bastion of Endeavor Translation
 		if("move downwards")
+		*/
+		if("Переместиться вниз")
+		// End of Bastion of Endeavor Translation
 			usr.down()
 
+		/* Bastion of Endeavor Translation
 		if("use held item on self")
+		*/
+		if("Использовать предмет на себе")
+		// End of Bastion of Endeavor Translation
 			var/obj/screen/useself/s = src
 			if(ishuman(usr))
 				var/mob/living/carbon/human/u = usr
@@ -484,9 +624,17 @@
 				if(i)
 					s.can_use(u,i)
 				else
+					/* Bastion of Endeavor Translation
 					to_chat(usr, "<span class='notice'>You're not holding anything to use. You need to have something in your active hand to use it.</span>")
+					*/
+					to_chat(usr, "<span class='notice'>Вы ничего не держите в своей руке. Чтобы использовать предмет, необходимо взять его в активную руку.</span>")
+					// End of Bastion of Endeavor Translation
 
+		/* Bastion of Endeavor Translation
 		if("module")
+		*/
+		if("Модуль")
+		// End of Bastion of Endeavor Translation
 			if(isrobot(usr))
 				var/mob/living/silicon/robot/R = usr
 //				if(R.module)
@@ -494,112 +642,212 @@
 //					return 1
 				R.pick_module()
 
+		/* Bastion of Endeavor Translation
 		if("inventory")
+		*/
+		if("Инвентарь")
+		// End of Bastion of Endeavor Translation
 			if(isrobot(usr))
 				var/mob/living/silicon/robot/R = usr
 				if(R.module)
 					R.hud_used.toggle_show_robot_modules()
 					return 1
 				else
+					/* Bastion of Endeavor Translation
 					to_chat(R, "You haven't selected a module yet.")
+					*/
+					to_chat(R, "Вы ещё не выбрали модуль.")
+					// End of Bastion of Endeavor Translation
 
+		/* Bastion of Endeavor Translation
 		if("radio")
+		*/
+		if("Рация")
+		// End of Bastion of Endeavor Translation
 			if(issilicon(usr))
 				usr:radio_menu()
+		/* Bastion of Endeavor Translation
 		if("panel")
+		*/
+		if("Панель")
+		// End of Bastion of Endeavor Translation
 			if(issilicon(usr))
 				usr:installed_modules()
 
+		/* Bastion of Endeavor Translation
 		if("store")
+		*/
+		if("Убрать в инвентарь")
+		// End of Bastion of Endeavor Translation
 			if(isrobot(usr))
 				var/mob/living/silicon/robot/R = usr
 				if(R.module)
 					R.uneq_active()
 				else
+					/* Bastion of Endeavor Translation
 					to_chat(R, "You haven't selected a module yet.")
+					*/
+					to_chat(R, "Вы ещё не выбрали модуль.")
+					// End of Bastion of Endeavor Translation
 
+		/* Bastion of Endeavor Translation
 		if("module1")
+		*/
+		if("Модуль 1")
+		// End of Bastion of Endeavor Translation
 			if(istype(usr, /mob/living/silicon/robot))
 				usr:toggle_module(1)
 
+		/* Bastion of Endeavor Translation
 		if("module2")
+		*/
+		if("Модуль 2")
+		// End of Bastion of Endeavor Translation
 			if(istype(usr, /mob/living/silicon/robot))
 				usr:toggle_module(2)
 
+		/* Bastion of Endeavor Translation
 		if("module3")
+		*/
+		if("Модуль 3")
+		// End of Bastion of Endeavor Translation
 			if(istype(usr, /mob/living/silicon/robot))
 				usr:toggle_module(3)
 
+		/* Bastion of Endeavor Translation
 		if("AI Core")
+		*/
+		if("Ядро ИИ")
+		// End of Bastion of Endeavor Translation
 			if(isAI(usr))
 				var/mob/living/silicon/ai/AI = usr
 				AI.view_core()
 
+		/* Bastion of Endeavor Translation
 		if("Show Camera List")
+		*/
+		if("Список камер")
+		// End of Bastion of Endeavor Translation
 			if(isAI(usr))
 				var/mob/living/silicon/ai/AI = usr
+								/* Bastion of Endeavor Translation
 				var/camera = tgui_input_list(AI, "Pick Camera:", "Camera Choice", AI.get_camera_list())
+				*/
+				var/camera = tgui_input_list(AI, "Выберите камеру:", "Выбор камеры", AI.get_camera_list())
+				// End of Bastion of Endeavor Translation
 				AI.ai_camera_list(camera)
 
+		/* Bastion of Endeavor Translation
 		if("Track With Camera")
+		*/
+		if("Отслеживать камерами")
+		// End of Bastion of Endeavor Translation
 			if(isAI(usr))
 				var/mob/living/silicon/ai/AI = usr
+				/* Bastion of Endeavor Translation
 				var/target_name = tgui_input_list(AI, "Pick Mob:", "Mob Choice", AI.trackable_mobs())
+				*/
+				var/target_name = tgui_input_list(AI, "Выберите существо:", "Выбор существа", AI.trackable_mobs())
+				// End of Bastion of Endeavor Translation
 				AI.ai_camera_track(target_name)
 
+				/* Bastion of Endeavor Translation
 		if("Toggle Camera Light")
+		*/
+		if("Включить подсветку камеры")
+		// End of Bastion of Endeavor Translation
 			if(isAI(usr))
 				var/mob/living/silicon/ai/AI = usr
 				AI.toggle_camera_light()
 
+		/* Bastion of Endeavor Translation
 		if("Crew Monitoring")
+		*/
+		if("Мониторинг экипажа")
+		// End of Bastion of Endeavor Translation
 			if(isAI(usr))
 				var/mob/living/silicon/ai/AI = usr
 				AI.subsystem_crew_monitor()
 
+		/* Bastion of Endeavor Translation
 		if("Show Crew Manifest")
+		*/
+		if("Список экипажа")
+		// End of Bastion of Endeavor Translation
 			if(isAI(usr))
 				var/mob/living/silicon/ai/AI = usr
 				AI.subsystem_crew_manifest()
 
+		/* Bastion of Endeavor Translation
 		if("Show Alerts")
+		*/
+		if("Показать тревоги")
+		// End of Bastion of Endeavor Translation
 			if(isAI(usr))
 				var/mob/living/silicon/ai/AI = usr
 				AI.subsystem_alarm_monitor()
 
+		/* Bastion of Endeavor Translation
 		if("Announcement")
+		*/
+		if("Объявление")
+		// End of Bastion of Endeavor Translation
 			if(isAI(usr))
 				var/mob/living/silicon/ai/AI = usr
 				AI.ai_announcement()
 
+		/* Bastion of Endeavor Translation
 		if("Call Emergency Shuttle")
+		*/
+		if("Вызвать аварийный шаттл")
+		// End of Bastion of Endeavor Translation
 			if(isAI(usr))
 				var/mob/living/silicon/ai/AI = usr
 				AI.ai_call_shuttle()
 
+		/* Bastion of Endeavor Translation
 		if("State Laws")
+		*/
+		if("Перечислить законы")
+		// End of Bastion of Endeavor Translation
 			if(isAI(usr))
 				var/mob/living/silicon/ai/AI = usr
 				AI.ai_checklaws()
 
+		/* Bastion of Endeavor Translation
 		if("PDA - Send Message")
+		*/
+		if("КПК - Отправить сообщение")
+		// End of Bastion of Endeavor Translation
 			if(isAI(usr))
 				var/mob/living/silicon/ai/AI = usr
 				AI.aiPDA.start_program(AI.aiPDA.find_program(/datum/data/pda/app/messenger))
 				AI.aiPDA.cmd_pda_open_ui(usr)
 
+		/* Bastion of Endeavor Translation
 		if("PDA - Show Message Log")
+		*/
+		if("КПК - История сообщений")
+		// End of Bastion of Endeavor Translation
 			if(isAI(usr))
 				var/mob/living/silicon/ai/AI = usr
 				AI.aiPDA.start_program(AI.aiPDA.find_program(/datum/data/pda/app/messenger))
 				AI.aiPDA.cmd_pda_open_ui(usr)
 
+		/* Bastion of Endeavor Translation
 		if("Take Image")
+		*/
+		if("Сфотографировать")
+		// End of Bastion of Endeavor Translation
 			if(isAI(usr))
 				var/mob/living/silicon/ai/AI = usr
 				AI.take_image()
 
+		/* Bastion of Endeavor Translation
 		if("View Images")
+		*/
+		if("Смотреть фотографии")
+		// End of Bastion of Endeavor Translation
 			if(isAI(usr))
 				var/mob/living/silicon/ai/AI = usr
 				AI.view_images()
@@ -617,17 +865,33 @@
 	if (istype(usr.loc,/obj/mecha)) // stops inventory actions in a mech
 		return 1
 	switch(name)
+		/* Bastion of Endeavor Translation
 		if("r_hand")
+		*/
+		if("Правая рука")
+		// End of Bastion of Endeavor Translation
 			if(iscarbon(usr))
 				var/mob/living/carbon/C = usr
 				C.activate_hand("r")
+		/* Bastion of Endeavor Translation
 		if("l_hand")
+		*/
+		if("Левая рука")
+		// End of Bastion of Endeavor Translation
 			if(iscarbon(usr))
 				var/mob/living/carbon/C = usr
 				C.activate_hand("l")
+		/* Bastion of Endeavor Translation
 		if("swap")
+		*/
+		if("Сменить руку")
+		// End of Bastion of Endeavor Translation
 			usr:swap_hand()
+		/* Bastion of Endeavor Translation
 		if("hand")
+		*/
+		if("Рука")
+		// End of Bastion of Endeavor Translation
 			usr:swap_hand()
 		else
 			if(usr.attack_ui(slot_id))
@@ -740,7 +1004,11 @@
  * The markers use that technique, though, so at least there's that.
  */
 /obj/screen/movable/mapper_holder
+	/* Bastion of Endeavor Translation: Ehhh
 	name = "gps unit"
+	*/
+	name = "ГПС"
+	// End of Bastion of Endeavor Translation
 	icon = null
 	icon_state = ""
 	screen_loc = "CENTER,CENTER"
@@ -868,6 +1136,7 @@
 // If filters start supporting animated icons in the future (for the alpha mask filter),
 // you should definitely replace these with that technique instead.
 /obj/screen/mapper/mask_full
+	// Bastion of Endeavor TODO: Yeah no this is too much work at the moment, but eventually.
 	icon = 'icons/effects/64x64.dmi'
 	icon_state = "mapper_mask"
 
@@ -958,7 +1227,11 @@
 		return
 
 	if(!G)
+		/* Bastion of Endeavor Translation
 		CRASH("/obj/screen/ammo/proc/add_hud() has been called from [src] without the required param of G")
+		*/
+		CRASH("/obj/screen/ammo/proc/add_hud() вызван [icase_ru(src)] без аргумента G")
+		// End of Bastion of Endeavor Translation
 
 	if(!G.has_ammo_counter())
 		return

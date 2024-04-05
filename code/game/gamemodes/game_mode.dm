@@ -2,9 +2,15 @@ var/global/antag_add_failed // Used in antag type voting.
 var/global/list/additional_antag_types = list()
 
 /datum/game_mode
+	/* Bastion of Endeavor Translation
 	var/name = "invalid"
 	var/round_description = "How did you even vote this in?"
 	var/extended_round_description = "This roundtype should not be spawned, let alone votable. Someone contact a developer and tell them the game's broken again."
+	*/
+	var/name = "Недопустимый режим"
+	var/round_description = "Как вы вообще за это проголосовали?"
+	var/extended_round_description = "Этот игровой режим не должен быть активирован. Свистните разработчику и скажите, что что-то опять поломалось."
+	// End of Bastion of Endeavor Translation
 	var/config_tag = null
 	var/votable = 1
 	var/probability = 0
@@ -54,33 +60,57 @@ var/global/list/additional_antag_types = list()
 				auto_recall_shuttle = !auto_recall_shuttle
 			if("autotraitor")
 				round_autoantag = !round_autoantag
+		/* Bastion of Endeavor Translation
 		message_admins("Admin [key_name_admin(usr)] toggled game mode option '[href_list["toggle"]]'.")
+		*/
+		message_admins("[key_name_admin(usr)] переключил параметр игрового режима '[href_list["toggle"]]'")
+		// End of Bastion of Endeavor Translation
 	else if(href_list["set"])
 		var/choice = ""
 		switch(href_list["set"])
 			if("shuttle_delay")
+				/* Bastion of Endeavor Translation
 				choice = tgui_input_number(usr, "Enter a new shuttle delay multiplier", null, null, 20, 1)
+				*/
+				choice = tgui_input_number(usr, "Введите новый модификатор задержки шаттла.", null, null, 20, 1)
+				// End of Bastion of Endeavor Translation
 				if(!choice || choice < 1 || choice > 20)
 					return
 				shuttle_delay = choice
 			if("antag_scaling")
+				/* Bastion of Endeavor Translation
 				choice = tgui_input_number(usr, "Enter a new antagonist cap scaling coefficient.", null, null, 100, 0)
+				*/
+				choice = tgui_input_number(usr, "Введите новый множитель предела антагонистов.", null, null, 100, 0)
+				// End of Bastion of Endeavor Translation
 				if(isnull(choice) || choice < 0 || choice > 100)
 					return
 				antag_scaling_coeff = choice
 			if("event_modifier_moderate")
+				/* Bastion of Endeavor Translation
 				choice = tgui_input_number(usr, "Enter a new moderate event time modifier.", null, null, 100, 0)
+				*/
+				choice = tgui_input_number(usr, "Введите новый модификатор событий средней тяжести.", null, null, 100, 0)
+				// End of Bastion of Endeavor Translation
 				if(isnull(choice) || choice < 0 || choice > 100)
 					return
 				event_delay_mod_moderate = choice
 				refresh_event_modifiers()
 			if("event_modifier_severe")
+				/* Bastion of Endeavor Translation
 				choice = tgui_input_number(usr, "Enter a new moderate event time modifier.", null, null, 100, 0)
+				*/
+				choice = tgui_input_number(usr, "Введите новый модификатор событий сильной тяжести.", null, null, 100, 0)
+				// End of Bastion of Endeavor Translation
 				if(isnull(choice) || choice < 0 || choice > 100)
 					return
 				event_delay_mod_major = choice
 				refresh_event_modifiers()
+		/* Bastion of Endeavor Translation
 		message_admins("Admin [key_name_admin(usr)] set game mode option '[href_list["set"]]' to [choice].")
+		*/
+		message_admins("[key_name_admin(usr)] установил параметр игрового режима '[href_list["set"]]' = [choice].")
+		// End of Bastion of Endeavor Translation
 	else if(href_list["debug_antag"])
 		if(href_list["debug_antag"] == "self")
 			usr.client.debug_variables(src)
@@ -88,18 +118,34 @@ var/global/list/additional_antag_types = list()
 		var/datum/antagonist/antag = all_antag_types[href_list["debug_antag"]]
 		if(antag)
 			usr.client.debug_variables(antag)
+			/* Bastion of Endeavor Translation
 			message_admins("Admin [key_name_admin(usr)] is debugging the [antag.role_text] template.")
+			*/
+			message_admins("[key_name_admin(usr)] производит отладку шаблона роли [antag.role_text].")
+			// End of Bastion of Endeavor Translation
 	else if(href_list["remove_antag_type"])
 		if(antag_tags && (href_list["remove_antag_type"] in antag_tags))
+			/* Bastion of Endeavor Translation
 			to_chat(usr, "Cannot remove core mode antag type.")
+			*/
+			to_chat(usr, "Невозможно удалить основных антагонистов режима.")
+			// End of Bastion of Endeavor Translation
 			return
 		var/datum/antagonist/antag = all_antag_types[href_list["remove_antag_type"]]
 		if(antag_templates && antag_templates.len && antag && (antag in antag_templates) && (antag.id in additional_antag_types))
 			antag_templates -= antag
 			additional_antag_types -= antag.id
+			/* Bastion of Endeavor Translation: Doesn't look good with the roles in question but don't care
 			message_admins("Admin [key_name_admin(usr)] removed [antag.role_text] template from game mode.")
+			*/
+			message_admins("[key_name_admin(usr)] удалил шаблон '[antag.role_text]' из игрового режима.")
+			// End of Bastion of Endeavor Translation
 	else if(href_list["add_antag_type"])
+		/* Bastion of Endeavor Translation
 		var/choice = tgui_input_list(usr, "Which type do you wish to add?", "Select Antag Type", all_antag_types)
+		*/
+		var/choice = tgui_input_list(usr, "Какой тип вы хотели бы добавить?", "Выбор тип антагониста", all_antag_types)
+		// End of Bastion of Endeavor Translation
 		if(!choice)
 			return
 		var/datum/antagonist/antag = all_antag_types[choice]
@@ -107,7 +153,11 @@ var/global/list/additional_antag_types = list()
 			if(!islist(ticker.mode.antag_templates))
 				ticker.mode.antag_templates = list()
 			ticker.mode.antag_templates |= antag
+			/* Bastion of Endeavor Translation
 			message_admins("Admin [key_name_admin(usr)] added [antag.role_text] template to game mode.")
+			*/
+			message_admins("[key_name_admin(usr)] добавил шаблон '[antag.role_text]' в игровой режим.")
+			// End of Bastion of Endeavor Translation
 
 	// I am very sure there's a better way to do this, but I'm not sure what it might be. ~Z
 	spawn(1)
@@ -117,18 +167,34 @@ var/global/list/additional_antag_types = list()
 				return
 
 /datum/game_mode/proc/announce() //to be called when round starts
+	/* Bastion of Endeavor Translation
 	to_world("<B>The current game mode is [capitalize(name)]!</B>")
+	*/
+	to_world("<B>Текущий режим игры – [capitalize(name)]!</B>")
+	// End of Bastion of Endeavor Translation
 	if(round_description)
 		to_world("[round_description]")
 	if(round_autoantag)
+		/* Bastion of Endeavor Translation
 		to_world("Antagonists will be added to the round automagically as needed.")
+		*/
+		to_world("Антагонисты будут добавлены автомагически при необходимости.")
+		// End of Bastion of Endeavor Translation
 	if(antag_templates && antag_templates.len)
+		/* Bastion of Endeavor Translation
 		var/antag_summary = "<b>Possible antagonist types:</b> "
+		*/
+		var/antag_summary = "<b>Возможные антагонисты:</b> "
+		// End of Bastion of Endeavor Translation
 		var/i = 1
 		for(var/datum/antagonist/antag in antag_templates)
 			if(i > 1)
 				if(i == antag_templates.len)
+					/* Bastion of Endeavor Translation
 					antag_summary += " and "
+					*/
+					antag_summary += " и "
+					// End of Bastion of Endeavor Translation
 				else
 					antag_summary += ", "
 			antag_summary += "[antag.role_text_plural]"
@@ -232,6 +298,7 @@ var/global/list/additional_antag_types = list()
 	if(!ert_disabled)
 		return
 
+	/* Bastion of Endeavor Translation: ugh
 	var/list/reasons = list(
 		"political instability",
 		"quantum fluctuations",
@@ -265,6 +332,39 @@ var/global/list/additional_antag_types = list()
 		"classified security operations"
 		)
 	command_announcement.Announce("The presence of [pick(reasons)] in the region is tying up all available local emergency resources; emergency response teams cannot be called at this time, and post-evacuation recovery efforts will be substantially delayed.","Emergency Transmission")
+	*/
+	var/list/reasons = list(
+		"с политической нестабильностью",
+		"с квантовыми флюктуациями",
+		"с враждебными налетчиками",
+		"с руинами устаревшей станции на орбите",
+		"с (УДАЛЕНО)",
+		"с древней инопланетной артиллерией",
+		"с солнечными магнитными бурями",
+		"с путешествующими во времени роботами-киллерами",
+		"с гравитационными аномалиями",
+		"с червоточинами, ведущими в другое измерение",
+		"с телекоммуникационным инцидентом",
+		"с радиационными вспышками",
+		"с суперматериальной пылью",
+		"с утечками в анти-реальность",
+		"с облаками из анти-частиц",
+		"с остаточной синепространственной энергией",
+		"с преступной группировкой оперативников",
+		"с роем заглючивших зондов фон Нейманна",
+		"с тайными преступниками",
+		"со сбившимся с курсом инопланетным ковчегом",
+		"с восстанием роботов",
+		"с разбойными отшельными унати",
+		"с артефактами неописуемого ужаса",
+		"с нашествием мозговых пиявок",
+		"с жуками-убийцами, откладывающими яйца в трупах",
+		"со сбившимся с курса судном, везущем инопланетян",
+		"с восстанием таджарских рабов",
+		"с радикальными скрелльскими трансреволюционерами",
+		)
+	command_announcement.Announce("Отряд быстрого реагирования на данный момент не может ответить на ваш вызов, так как все ресурсы отряда на данный момент уходят на борьбу [pick(reasons)] in the region is tying up all available local emergency resources; emergency response teams cannot be called at this time, and post-evacuation recovery efforts will be substantially delayed.","Emergency Transmission")
+	// End of Bastion of Endeavor Translation
 
 /datum/game_mode/proc/check_finished()
 	if(emergency_shuttle.returned() || station_was_nuked)
@@ -357,10 +457,22 @@ var/global/list/additional_antag_types = list()
 
 	var/text = ""
 	if(surviving_total > 0)
+		/* Bastion of Endeavor Translation: rewriting a part of this for simplicity sake
 		text += "<br>There [surviving_total>1 ? "were <b>[surviving_total] survivors</b>" : "was <b>one survivor</b>"]"
 		text += " (<b>[escaped_total>0 ? escaped_total : "none"] [emergency_shuttle.evac ? "escaped" : "transferred"]</b>) and <b>[ghosts] ghosts</b>.<br>"
+		*/
+		text += "<br>[count_ru(surviving_total, "Остал;ся;ось;ось", TRUE)] <b>[count_ru(surviving_total, "выживш;ий;их;их")]</b>"
+		if(escaped_total == 0)
+			text += " (<b>никто не [emergency_shuttle.evac ? "сбежал" : "отправился на трансфер"]</b>)"
+		else text+= " (<b>[emergency_shuttle.evac ? count_ru(escaped_total, "сбежал;;и;и") : "[count_ru(escaped_total, "попал;;и;и")] на трансфер"])</b>"
+		text += " и <b>[count_ru(ghosts, "призрак;;а;ов")]</b>.<br>"
+		// End of Bastion of Endeavor Translation
 	else
+		/* Bastion of Endeavor Translation
 		text += "There were <b>no survivors</b> (<b>[ghosts] ghosts</b>)."
+		*/
+		text += "Выживших <b>нет</b> (<b>[count_ru(ghosts, "призрак;;а;ов")]</b>)."
+		// End of Bastion of Endeavor Translation
 	to_world(text)
 
 	if(clients > 0)
@@ -396,7 +508,11 @@ var/global/list/additional_antag_types = list()
 	if(escaped_on_cryopod > 0) //CHOMP Add
 		feedback_set("escaped_on_cryopod",escaped_on_cryopod)
 
+	/* Bastion of Endeavor Translation
 	send2mainirc("A round of [src.name] has ended - [surviving_total] survivors, [ghosts] ghosts.")
+	*/
+	send2mainirc("Закончился раунд в режиме '[src.name]' – [count_ru(surviving_total, "выживш;ий;их;их")], [count_ru(ghosts, "призрак;;а;ов")].")
+	// End of Bastion of Endeavor Translation
 	SSwebhooks.send(
 		WEBHOOK_ROUNDEND,
 		list(
@@ -430,7 +546,11 @@ var/global/list/additional_antag_types = list()
 			if(istype(player, /mob/observer/dead) && !ghosts_only)
 				continue
 			if(!role || (player.client.prefs.be_special & role))
+				/* Bastion of Endeavor Translation
 				log_debug("[player.key] had [antag_id] enabled, so we are drafting them.")
+				*/
+				log_debug("У игрока [player.key] включена кандидатура на роль [antag_id], выбираем его.")
+				// End of Bastion of Endeavor Translation
 				candidates |= player.mind
 	else
 		// Assemble a list of active players without jobbans.
@@ -441,7 +561,11 @@ var/global/list/additional_antag_types = list()
 		// Get a list of all the people who want to be the antagonist for this round
 		for(var/mob/new_player/player in players)
 			if(!role || (player.client.prefs.be_special & role))
+				/* Bastion of Endeavor Translation
 				log_debug("[player.key] had [antag_id] enabled, so we are drafting them.")
+				*/
+				log_debug("У игрока [player.key] включена кандидатура на роль [antag_id], выбираем его.")
+				// End of Bastion of Endeavor Translation
 				candidates += player.mind
 				players -= player
 
@@ -499,7 +623,12 @@ var/global/list/additional_antag_types = list()
 //Reports player logouts//
 //////////////////////////
 /proc/display_roundstart_logout_report()
+	/* Bastion of Endeavor Translation
 	var/msg = "<span class='notice'><b>Roundstart logout report</b>\n\n"
+	*/
+	// </span> -- have to add this or our linter will start whining
+	var/msg = "<span class='notice'><b>Отчёт об отключениях на старте раунда:</b>\n\n"
+	// End of Bastion of Endeavor Translation
 	for(var/mob/living/L in mob_list)
 
 		if(L.ckey)
@@ -509,21 +638,41 @@ var/global/list/additional_antag_types = list()
 					found = 1
 					break
 			if(!found)
+				/* Bastion of Endeavor Translation
 				msg += "<b>[L.name]</b> ([L.ckey]), the [L.job] ([span_yellow("<b>Disconnected</b>")])\n"
+				*/
+				msg += "<b>[L.name]</b> ([L.ckey]), [L.job] ([span_yellow("<b>[verb_ru(L, "Отключ;ён;ена;ено;ены;")]</b>")])\n"
+				// End of Bastion of Endeavor Translation
 
 		if(L.ckey && L.client)
 			if(L.client.inactivity >= (ROUNDSTART_LOGOUT_REPORT_TIME / 2))	//Connected, but inactive (alt+tabbed or something)
+				/* Bastion of Endeavor Translation
 				msg += "<b>[L.name]</b> ([L.ckey]), the [L.job] ([span_yellow("<b>Connected, Inactive</b>")])\n"
+				*/
+				msg += "<b>[L.name]</b> ([L.ckey]), [L.job] ([span_yellow("<b>[verb_ru(L, "Подключ;ён;ена;ено;ены;")], [verb_ru(L, "неактив;ен;на;но;ны;")]</b>")])\n"
+				// End of Bastion of Endeavor Translation
 				continue //AFK client
 			if(L.stat)
 				if(L.suiciding)	//Suicider
+					/* Bastion of Endeavor Translation
 					msg += "<b>[L.name]</b> ([L.ckey]), the [L.job] ([span_red("<b>Suicide</b>")])\n"
+					*/
+					msg += "<b>[L.name]</b> ([L.ckey]), [L.job] ([span_red("<b>[verb_ru(L, "Самоубил;ся;ась;ось;ись;")]</b>")])\n"
+					// End of Bastion of Endeavor Translation
 					continue //Disconnected client
 				if(L.stat == UNCONSCIOUS)
+					/* Bastion of Endeavor Translation
 					msg += "<b>[L.name]</b> ([L.ckey]), the [L.job] (Dying)\n"
+					*/
+					msg += "<b>[L.name]</b> ([L.ckey]), [L.job] ([verb_ru(L, "Умира;ет;ет;ет;ют;")])\n"
+					// End of Bastion of Endeavor Translation
 					continue //Unconscious
 				if(L.stat == DEAD)
+					/* Bastion of Endeavor Translation
 					msg += "<b>[L.name]</b> ([L.ckey]), the [L.job] (Dead)\n"
+					*/
+					msg += "<b>[L.name]</b> ([L.ckey]), [L.job] ([verb_ru(L, ";Мёртв;Мертва;Мертво;Мертвы;")])\n"
+					// End of Bastion of Endeavor Translation
 					continue //Dead
 
 			continue //Happy connected client
@@ -531,17 +680,33 @@ var/global/list/additional_antag_types = list()
 			if(D.mind && (D.mind.original == L || D.mind.current == L))
 				if(L.stat == DEAD)
 					if(L.suiciding)	//Suicider
+						/* Bastion of Endeavor Translation
 						msg += "<b>[L.name]</b> ([ckey(D.mind.key)]), the [L.job] ([span_red("<b>Suicide</b>")])\n"
+						*/
+						msg += "<b>[L.name]</b> ([ckey(D.mind.key)]), [L.job] ([span_red("<b>[verb_ru(L, "Самоубил;ся;ась;ось;ись;")]</b>")])\n"
+						// End of Bastion of Endeavor Translation
 						continue //Disconnected client
 					else
+						/* Bastion of Endeavor Translation
 						msg += "<b>[L.name]</b> ([ckey(D.mind.key)]), the [L.job] (Dead)\n"
+						*/
+						msg += "<b>[L.name]</b> ([ckey(D.mind.key)]), [L.job] ([verb_ru(L, ";Мёртв;Мертва;Мертво;Мертвы;")])\n"
+						// End of Bastion of Endeavor Translation
 						continue //Dead mob, ghost abandoned
 				else
 					if(D.can_reenter_corpse)
+						/* Bastion of Endeavor Translation
 						msg += "<b>[L.name]</b> ([ckey(D.mind.key)]), the [L.job] ([span_red("<b>Adminghosted</b>")])\n"
+						*/
+						msg += "<b>[L.name]</b> ([ckey(D.mind.key)]), [L.job] ([span_red("<b>В режиме админ-призрака</b>")])\n"
+						// End of Bastion of Endeavor Translation
 						continue //Lolwhat
 					else
+						/* Bastion of Endeavor Translation
 						msg += "<b>[L.name]</b> ([ckey(D.mind.key)]), the [L.job] ([span_red("<b>Ghosted</b>")])\n"
+						*/
+						msg += "<b>[L.name]</b> ([ckey(D.mind.key)]), [L.job] ([span_red("<b>В режиме призрака</b>")])\n"
+						// End of Bastion of Endeavor Translation
 						continue //Ghosted while alive
 
 			continue // CHOMPEdit: Escape infinite loop in case there's nobody connected. Shouldn't happen ever, but.
@@ -568,25 +733,49 @@ var/global/list/additional_antag_types = list()
 	if(!player || !player.current) return
 
 	var/obj_count = 1
+	/* Bastion of Endeavor Translation
 	to_chat(player.current, "<span class='notice'>Your current objectives:</span>")
+	*/
+	to_chat(player.current, "<span class='notice'>Ваши текущие цели:</span>")
+	// End of Bastion of Endeavor Translation
 	for(var/datum/objective/objective in player.objectives)
+		/* Bastion of Endeavor Translation
 		to_chat(player.current, "<B>Objective #[obj_count]</B>: [objective.explanation_text]")
+		*/
+		to_chat(player.current, "<B>Цель #[obj_count]</B>: [objective.explanation_text]")
+		// End of Bastion of Endeavor Translation
 		obj_count++
 
 /mob/verb/check_round_info()
+	/* Bastion of Endeavor Translation
 	set name = "Check Round Info"
+	*/
+	set name = "Информация о раунде"
+	// End of Bastion of Endeavor Translation
 	set category = "OOC"
 
 	if(!ticker || !ticker.mode)
+		/* Bastion of Endeavor Translation
 		to_chat(usr, "<span class='warning'>Something is terribly wrong; there is no gametype.</span>")
+		*/
+		to_chat(usr, "<span class='warning'>Что-то пошло совершенно наперекосяк; отсутствует тип игры.</span>")
+		// End of Bastion of Endeavor Translation
 		return
 
 	if(master_mode != "secret")
+		/* Bastion of Endeavor Translation
 		to_chat(usr, "<span class='notice'><b>The roundtype is [capitalize(ticker.mode.name)]</b></span>")
+		*/
+		to_chat(usr, "<span class='notice'><b>Игровой режим – [capitalize(ticker.mode.name)]</b></span>")
+		// End of Bastion of Endeavor Translation
 		if(ticker.mode.round_description)
 			to_chat(usr, "<span class='notice'><i>[ticker.mode.round_description]</i></span>")
 		if(ticker.mode.extended_round_description)
 			to_chat(usr, "<span class='notice'>[ticker.mode.extended_round_description]</span>")
 	else
+		/* Bastion of Endeavor Translation
 		to_chat(usr, "<span class='notice'><i>Shhhh</i>. It's a secret.</span>")
+		*/
+		to_chat(usr, "<span class='notice'><i>Тсссс</i>. Это секрет.</span>")
+		// End of Bastion of Endeavor Translation
 	return
