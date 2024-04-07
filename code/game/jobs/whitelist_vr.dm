@@ -42,3 +42,24 @@ GLOBAL_LIST_EMPTY(job_whitelist) // CHOMPEdit - Managed Globals
 			if(findtext_char(s,"[M.ckey] - Все"))
 			// End of Bastion of Endeavor Translation
 				return 1
+
+//ChompEDIT START - admin reload buttons
+/client/proc/reload_jobwhitelist()
+	/* Bastion of Endeavor Translation
+	set category = "Server.Config"
+	set name = "Reload Job whitelist"
+	*/
+	set category = "Сервер.Конфигурация"
+	set name = "Перезагрузить вайтлист работ"
+	// End of Bastion of Endeavor Translation
+
+	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG|R_EVENT))
+		return
+
+	load_jobwhitelist()
+	/* Bastion of Endeavor Translation
+	log_and_message_admins("reloaded the job whitelist")
+	*/
+	log_and_message_admins("Вайтлист работ перезагружен.")
+	// End of Bastion of Endeavor Translation
+//ChompEDIT End
