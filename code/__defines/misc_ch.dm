@@ -9,9 +9,11 @@
 /* Bastion of Endeavor Translation
 #define JOB_OUTSIDER            "Outsider"
 #define JOB_ANOMALY			"Anomaly"
+#define JOB_VR	"VR Avatar"
 */
 #define JOB_OUTSIDER            "Постороннее лицо"
 #define JOB_ANOMALY				"Аномалия"
+#define JOB_VR					"Виртуальный аватар"
 // End of Bastion of Endeavor Translation
 
 //Material defines
