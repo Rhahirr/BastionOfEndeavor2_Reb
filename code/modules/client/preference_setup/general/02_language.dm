@@ -187,10 +187,10 @@
 					var/datum/language/chosen_lang = GLOB.all_languages[new_lang]
 					if(istype(chosen_lang))
 						/* Bastion of Endeavor Translation
-						var/choice = tgui_alert(usr, "[chosen_lang.desc]",chosen_lang.name, list("Take","Cancel"))
+						var/choice = tgui_alert(user, "[chosen_lang.desc]",chosen_lang.name, list("Take","Cancel")) //ChompEDIT - usr removal
 						if(choice != "Cancel" && pref.alternate_languages.len < (S.num_alternate_languages + pref.extra_languages))
 						*/
-						var/choice = tgui_alert(usr, "[chosen_lang.desc]",chosen_lang.name, list("Взять","Отмена"))
+						var/choice = tgui_alert(user, "[chosen_lang.desc]",chosen_lang.name, list("Взять","Отмена"))
 						if(choice != "Отмена" && pref.alternate_languages.len < (S.num_alternate_languages + pref.extra_languages))
 						// End of Bastion of Endeavor Translation
 							pref.alternate_languages |= new_lang
@@ -201,9 +201,9 @@
 		var/keys[0]
 		do
 			/* Bastion of Endeavor Translation
-			char = tgui_input_text(usr, "Enter a single special character.\nYou may re-select the same characters.\nThe following characters are already in use by radio: ; : .\nThe following characters are already in use by special say commands: ! * ^", "Enter Character - [3 - keys.len] remaining")
+			char = tgui_input_text(user, "Enter a single special character.\nYou may re-select the same characters.\nThe following characters are already in use by radio: ; : .\nThe following characters are already in use by special say commands: ! * ^", "Enter Character - [3 - keys.len] remaining") //ChompEDIT - usr removal
 			*/
-			char = tgui_input_text(usr, "Введите один особый символ. Можно использовать один символ несколько раз. Символы, уже используемые для рации: ; : . Символы, уже используемые для глагола Сказать: ! * ^", "Клавиша языка – осталось ещё [3 - keys.len]")
+			char = tgui_input_text(user, "Введите один особый символ. Можно использовать один символ несколько раз. Символы, уже используемые для рации: ; : . Символы, уже используемые для глагола Сказать: ! * ^", "Клавиша языка – осталось ещё [3 - keys.len]")
 			// End of Bastion of Endeavor Translation
 			if(char)
 				/* Bastion of Endeavor Translation

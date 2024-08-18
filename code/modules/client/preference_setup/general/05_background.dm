@@ -249,10 +249,10 @@
 
 	else if(href_list["reset_medrecord"])
 		/* Bastion of Endeavor Translation
-		var/resetmed_choice = tgui_alert(usr, "Wipe your Medical Records? This cannot be reverted if you have not saved your character recently! You may wish to make a backup first.","Reset Records",list("Yes","No"))
+		var/resetmed_choice = tgui_alert(user, "Wipe your Medical Records? This cannot be reverted if you have not saved your character recently! You may wish to make a backup first.","Reset Records",list("Yes","No")) //ChompEDIT - usr removal
 		if(resetmed_choice == "Yes")
 		*/
-		var/resetmed_choice = tgui_alert(usr, "Удалить медицинские записи вашего персонажа? Это действие невозможно отменить, если вы предварительно не сохранили персонажа! Сделайте запасную копию.","Удалить записи",list("Да","Нет"))
+		var/resetmed_choice = tgui_alert(user, "Удалить медицинские записи вашего персонажа? Это действие невозможно отменить, если вы предварительно не сохранили персонажа! Сделайте запасную копию.","Удалить записи",list("Да","Нет"))
 		if(resetmed_choice == "Да")
 		// End of Bastion of Endeavor Translation
 			pref.med_record = null
@@ -260,10 +260,10 @@
 
 	else if(href_list["reset_emprecord"])
 		/* Bastion of Endeavor Translation
-		var/resetemp_choice = tgui_alert(usr, "Wipe your Employment Records? This cannot be reverted if you have not saved your character recently! You may wish to make a backup first.","Reset Records",list("Yes","No"))
+		var/resetemp_choice = tgui_alert(user, "Wipe your Employment Records? This cannot be reverted if you have not saved your character recently! You may wish to make a backup first.","Reset Records",list("Yes","No")) //ChompEDIT - usr removal
 		if(resetemp_choice == "Yes")
 		*/
-		var/resetemp_choice = tgui_alert(usr, "Удалить записи о трудоустройстве вашего персонажа? Это действие невозможно отменить, если вы предварительно не сохранили персонажа! Сделайте запасную копию.","Удалить записи",list("Да","Нет"))
+		var/resetemp_choice = tgui_alert(user, "Удалить записи о трудоустройстве вашего персонажа? Это действие невозможно отменить, если вы предварительно не сохранили персонажа! Сделайте запасную копию.","Удалить записи",list("Да","Нет"))
 		if(resetemp_choice == "Да")
 		// End of Bastion of Endeavor Translation
 			pref.gen_record = null
@@ -271,10 +271,10 @@
 
 	else if(href_list["reset_secrecord"])
 		/* Bastion of Endeavor Translation
-		var/resetsec_choice = tgui_alert(usr, "Wipe your Security Records? This cannot be reverted if you have not saved your character recently! You may wish to make a backup first.","Reset Records",list("Yes","No"))
+		var/resetsec_choice = tgui_alert(user, "Wipe your Security Records? This cannot be reverted if you have not saved your character recently! You may wish to make a backup first.","Reset Records",list("Yes","No")) //ChompEDIT - usr removal
 		if(resetsec_choice == "Yes")
 		*/
-		var/resetsec_choice = tgui_alert(usr, "Удалить записи службы безопасности о вашем персонаже? Это действие невозможно отменить, если вы предварительно не сохранили персонажа! Сделайте запасную копию.","Удалить записи",list("Да","Нет"))
+		var/resetsec_choice = tgui_alert(user, "Удалить записи службы безопасности о вашем персонаже? Это действие невозможно отменить, если вы предварительно не сохранили персонажа! Сделайте запасную копию.","Удалить записи",list("Да","Нет"))
 		if(resetsec_choice == "Да")
 		// End of Bastion of Endeavor Translation
 			pref.sec_record = null

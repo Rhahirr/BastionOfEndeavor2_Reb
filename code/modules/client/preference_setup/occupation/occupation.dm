@@ -344,9 +344,9 @@
 		if (job)
 			var/choices = list(job.title) + job.alt_titles
 			/* Bastion of Endeavor Translation
-			var/choice = tgui_input_list(usr, "Choose a title for [job.title].", "Choose Title", choices, pref.GetPlayerAltTitle(job))
+			var/choice = tgui_input_list(user, "Choose a title for [job.title].", "Choose Title", choices, pref.GetPlayerAltTitle(job)) //ChompEDIT - usr removal
 			*/
-			var/choice = tgui_input_list(usr, "Выберите желаемое название для своей профессии (вместо \"[job.title]\"):", "Выбор названия", choices, pref.GetPlayerAltTitle(job))
+			var/choice = tgui_input_list(user, "Выберите желаемое название для своей профессии (вместо \"[job.title]\"):", "Выбор названия", choices, pref.GetPlayerAltTitle(job))
 			// End of Bastion of Endeavor Translation
 			if(choice && CanUseTopic(user))
 				SetPlayerAltTitle(job, choice)

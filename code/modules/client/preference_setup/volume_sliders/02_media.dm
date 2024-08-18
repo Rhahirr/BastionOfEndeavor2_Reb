@@ -43,9 +43,9 @@
 	if(href_list["change_media_volume"])
 		if(CanUseTopic(user))
 			/* Bastion of Endeavor Translation
-			var/value = tgui_input_number(usr, "Choose your Jukebox volume (0-100%)", "Jukebox volume", round(pref.media_volume * 100), 100, 0)
+			var/value = tgui_input_number(user, "Choose your Jukebox volume (0-100%)", "Jukebox volume", round(pref.media_volume * 100), 100, 0) //ChompEDIT - usr removal
 			*/
-			var/value = tgui_input_number(usr, "Укажите громкость музыкального автомата (0-100%)", "Громкость музыкального автомата", round(pref.media_volume * 100), 100, 0)
+			var/value = tgui_input_number(user, "Укажите громкость музыкального автомата (0-100%)", "Громкость музыкального автомата", round(pref.media_volume * 100), 100, 0)
 			// End of Bastion of Endeavor Translation
 			if(isnum(value))
 				value = CLAMP(value, 0, 100)

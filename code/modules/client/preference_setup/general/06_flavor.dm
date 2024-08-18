@@ -78,17 +78,17 @@
 			if("open")
 			if("general")
 				/* Bastion of Endeavor Translation
-				var/msg = strip_html_simple(tgui_input_text(usr,"Give a general description of your character. This will be shown regardless of clothings. Put in a single space to make blank.","Flavor Text",html_decode(pref.flavor_texts[href_list["flavor_text"]]), multiline = TRUE, prevent_enter = TRUE))	//VOREStation Edit: separating out OOC notes
+				var/msg = strip_html_simple(tgui_input_text(user,"Give a general description of your character. This will be shown regardless of clothings. Put in a single space to make blank.","Flavor Text",html_decode(pref.flavor_texts[href_list["flavor_text"]]), multiline = TRUE, prevent_enter = TRUE))	//VOREStation Edit: separating out OOC notes //ChompEDIT - usr removal
 				*/
-				var/msg = strip_html_simple(tgui_input_text(usr,"Введите общее описание внешности вашего персонажа. Оно будет отображаться независимо от одежды.","Описание внешности",html_decode(pref.flavor_texts[href_list["flavor_text"]]), multiline = TRUE, prevent_enter = TRUE))
+				var/msg = strip_html_simple(tgui_input_text(user,"Введите общее описание внешности вашего персонажа. Оно будет отображаться независимо от одежды.","Описание внешности",html_decode(pref.flavor_texts[href_list["flavor_text"]]), multiline = TRUE, prevent_enter = TRUE))
 				// End of Bastion of Endeavor Translation
 				if(CanUseTopic(user) && msg)
 					pref.flavor_texts[href_list["flavor_text"]] = msg
 			else
 				/* Bastion of Endeavor Translation
-				var/msg = strip_html_simple(tgui_input_text(usr,"Set the flavor text for your [href_list["flavor_text"]]. Put in a single space to make blank.","Flavor Text",html_decode(pref.flavor_texts[href_list["flavor_text"]]), multiline = TRUE, prevent_enter = TRUE))
+				var/msg = strip_html_simple(tgui_input_text(user,"Set the flavor text for your [href_list["flavor_text"]]. Put in a single space to make blank.","Flavor Text",html_decode(pref.flavor_texts[href_list["flavor_text"]]), multiline = TRUE, prevent_enter = TRUE)) //ChompEDIT - usr removal
 				*/
-				var/msg = strip_html_simple(tgui_input_text(usr, "Введите описание [href_list["flavor_text"]] персонажа или пробел, чтобы удалить имеющееся.","Описание внешности",html_decode(pref.flavor_texts[href_list["flavor_text"]]), multiline = TRUE, prevent_enter = TRUE))
+				var/msg = strip_html_simple(tgui_input_text(user, "Введите описание [href_list["flavor_text"]] персонажа или пробел, чтобы удалить имеющееся.","Описание внешности",html_decode(pref.flavor_texts[href_list["flavor_text"]]), multiline = TRUE, prevent_enter = TRUE))
 				// End of Bastion of Endeavor Translation
 				if(CanUseTopic(user) && msg)
 					pref.flavor_texts[href_list["flavor_text"]] = msg
@@ -100,18 +100,18 @@
 			if("open")
 			/* Bastion of Endeavor Translation: Will leave the module untranslated until borgs are localized
 			if("Default")
-				var/msg = strip_html_simple(tgui_input_text(usr,"Set the default flavour text for your robot. It will be used for any module without individual setting. Put in a single space to make blank.","Flavour Text",html_decode(pref.flavour_texts_robot["Default"]), multiline = TRUE, prevent_enter = TRUE))
+				var/msg = strip_html_simple(tgui_input_text(user,"Set the default flavour text for your robot. It will be used for any module without individual setting. Put in a single space to make blank.","Flavour Text",html_decode(pref.flavour_texts_robot["Default"]), multiline = TRUE, prevent_enter = TRUE)) //ChompEDIT - usr removal
 			*/
 			if("Default")
-				var/msg = strip_html_simple(tgui_input_text(usr,"Введите общее описание внешности вашего робота. Оно будет использоваться для каждого модуля, не имеющего отдельного описания.","Описание внешности",html_decode(pref.flavour_texts_robot["Default"]), multiline = TRUE, prevent_enter = TRUE))
+				var/msg = strip_html_simple(tgui_input_text(user,"Введите общее описание внешности вашего робота. Оно будет использоваться для каждого модуля, не имеющего отдельного описания.","Описание внешности",html_decode(pref.flavour_texts_robot["Default"]), multiline = TRUE, prevent_enter = TRUE))
 			// End of Bastion of Endeavor Translation
 				if(CanUseTopic(user) && msg)
 					pref.flavour_texts_robot[href_list["flavour_text_robot"]] = msg
 			else
 				/* Bastion of Endeavor Translation
-				var/msg = strip_html_simple(tgui_input_text(usr,"Set the flavour text for your robot with [href_list["flavour_text_robot"]] module. If you leave this blank, default flavour text will be used for this module. Put in a single space to make blank.","Flavour Text",html_decode(pref.flavour_texts_robot[href_list["flavour_text_robot"]]), multiline = TRUE, prevent_enter = TRUE))
+				var/msg = strip_html_simple(tgui_input_text(user,"Set the flavour text for your robot with [href_list["flavour_text_robot"]] module. If you leave this blank, default flavour text will be used for this module. Put in a single space to make blank.","Flavour Text",html_decode(pref.flavour_texts_robot[href_list["flavour_text_robot"]]), multiline = TRUE, prevent_enter = TRUE)) //ChompEDIT - usr removal
 				*/
-				var/msg = strip_html_simple(tgui_input_text(usr,"Введите описание внешности вашего робота при модуле '[href_list["flavour_text_robot"]]'. Введите пробел, чтобы оставить поле пустым и использовать описание по умолчанию.","Описание внешности",html_decode(pref.flavour_texts_robot[href_list["flavour_text_robot"]]), multiline = TRUE, prevent_enter = TRUE))
+				var/msg = strip_html_simple(tgui_input_text(user,"Введите описание внешности вашего робота при модуле '[href_list["flavour_text_robot"]]'. Введите пробел, чтобы оставить поле пустым и использовать описание по умолчанию.","Описание внешности",html_decode(pref.flavour_texts_robot[href_list["flavour_text_robot"]]), multiline = TRUE, prevent_enter = TRUE))
 				// End of Bastion of Endeavor Translation
 				if(CanUseTopic(user) && msg)
 					pref.flavour_texts_robot[href_list["flavour_text_robot"]] = msg
@@ -119,23 +119,23 @@
 		return TOPIC_HANDLED
 	else if(href_list["custom_link"])
 		/* Bastion of Endeavor Translation
-		var/new_link = strip_html_simple(tgui_input_text(usr, "Enter a link to add on to your examine text! This should be a related image link/gallery, or things like your F-list. This is not the place for memes.", "Custom Link" , html_decode(pref.custom_link), max_length = 100, encode = TRUE,  prevent_enter = TRUE))
+		var/new_link = strip_html_simple(tgui_input_text(user, "Enter a link to add on to your examine text! This should be a related image link/gallery, or things like your F-list. This is not the place for memes.", "Custom Link" , html_decode(pref.custom_link), max_length = 100, encode = TRUE,  prevent_enter = TRUE)) //ChompEDIT - usr removal
 		*/
-		var/new_link = strip_html_simple(tgui_input_text(usr, "Введите ссылку, которая будет отображаться при осмотре вашего персонажа. Ссылка может иметь изображение/галерею с вашим персонажем, или вещи наподобие F-List. Сюда не положено загружать мемы.", "Ссылка" , html_decode(pref.custom_link), max_length = 100, encode = TRUE,  prevent_enter = TRUE))
+		var/new_link = strip_html_simple(tgui_input_text(user, "Введите ссылку, которая будет отображаться при осмотре вашего персонажа. Ссылка может иметь изображение/галерею с вашим персонажем, или вещи наподобие F-List. Сюда не положено загружать мемы.", "Ссылка" , html_decode(pref.custom_link), max_length = 100, encode = TRUE,  prevent_enter = TRUE))
 		// End of Bastion of Endeavor Translation
-		if(new_link && CanUseTopic(usr))
+		if(new_link && CanUseTopic(user)) //ChompEDIT - usr removal
 			if(length(new_link) > 100)
 				/* Bastion of Endeavor Translation
-				to_chat(usr, "<span class = 'warning'>Your entry is too long, it must be 100 characters or less.</span>")
+				to_chat(user, "<span class = 'warning'>Your entry is too long, it must be 100 characters or less.</span>") //ChompEDIT - usr removal
 				*/
-				to_chat(usr, "<span class = 'warning'>Вы ввели слишком длинную ссылку. Длина не может превышать 100 символов.</span>")
+				to_chat(user, "<span class = 'warning'>Вы ввели слишком длинную ссылку. Длина не может превышать 100 символов.</span>")
 				// End of Bastion of Endeavor Translation
 				return
 			pref.custom_link = new_link
 			/* Bastion of Endeavor Translation
-			log_admin("[usr]/[usr.ckey] set their custom link to [pref.custom_link]")
+			log_admin("[user]/[user.ckey] set their custom link to [pref.custom_link]") //ChompEDIT - usr removal
 			*/
-			log_admin("[usr]/[usr.ckey] установил для своего персонажа ссылку [pref.custom_link].")
+			log_admin("[user]/[user.ckey] установил для своего персонажа ссылку [pref.custom_link].")
 			// End of Bastion of Endeavor Translation
 
 	return ..()

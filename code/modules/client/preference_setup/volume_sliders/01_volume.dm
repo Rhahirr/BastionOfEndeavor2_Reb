@@ -52,9 +52,9 @@
 			if(!(channel in pref.volume_channels))
 				pref.volume_channels["[channel]"] = 1
 			/* Bastion of Endeavor Translation
-			var/value = tgui_input_number(usr, "Choose your volume for [channel] (0-200%)", "[channel] volume", (pref.volume_channels[channel] * 100), 200, 0)
+			var/value = tgui_input_number(user, "Choose your volume for [channel] (0-200%)", "[channel] volume", (pref.volume_channels[channel] * 100), 200, 0) //ChompEDIT - usr removal
 			*/
-			var/value = tgui_input_number(usr, "Укажите громкость (0-200%):", "[channel]", (pref.volume_channels[channel] * 100), 200, 0)
+			var/value = tgui_input_number(user, "Укажите громкость (0-200%):", "[channel]", (pref.volume_channels[channel] * 100), 200, 0)
 			// End of Bastion of Endeavor Translation
 			if(isnum(value))
 				value = CLAMP(value, 0, 200)
@@ -93,7 +93,7 @@
 /datum/volume_panel/tgui_data(mob/user)
 	if(!user.client || !user.client.prefs)
 		return list("error" = TRUE)
-	
+
 	var/list/data = ..()
 	data["volume_channels"] = user.client.prefs.volume_channels
 	return data
