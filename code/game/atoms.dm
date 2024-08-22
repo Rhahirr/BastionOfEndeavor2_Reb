@@ -43,7 +43,7 @@
 	//Detective Work, used for the duplicate data points kept in the scanners
 	var/list/original_atom
 	// Track if we are already had initialize() called to prevent double-initialization.
-	var/initialized = FALSE
+	//var/initialized = FALSE CHOMPEdit moved to flag
 
 	/// Last name used to calculate a color for the chatmessage overlays
 	var/chat_color_name
@@ -99,13 +99,13 @@
 		*/
 		stack_trace("Мусоросборщик: [type] вызвал initialize() после qdel().")
 		// End of Bastion of Endeavor Translation
-	if(initialized)
+	if(flags & ATOM_INITIALIZED) //CHOMPEdit moved initialized to flag
 		/* Bastion of Endeavor Translation
 		stack_trace("Warning: [src]([type]) initialized multiple times!")
 		*/
 		stack_trace("Внимание: [src] ([type]) инициализирован несколько раз!")
 		// End of Bastion of Endeavor Translation
-	initialized = TRUE
+	flags |= ATOM_INITIALIZED //CHOMPEdit moved initialized to flag
 	return INITIALIZE_HINT_NORMAL
 
 /atom/Destroy()
