@@ -54,11 +54,12 @@ Controlled by the player_tips subsystem under code/controllers/subsystems/player
 	/* Bastion of Endeavor Translation
 	set name = "Request Automated Advice"
 	set desc = "Sends you advice from a list of possibilities. You can choose to request a specific topic."
+	set category = "OOC.Game Settings" //CHOMPEdit
 	*/
 	set name = "Запросить периодическую подсказку"
 	set desc = "Показать подсказку на выбранную тему."
+	set category = "OOC.Настройки игры"
 	// End of Bastion of Endeavor Translation
-	set category = "OOC"
 
 	/* Bastion of Endeavor Translation
 	var/choice = tgui_input_list(src, "What topic would you like to receive advice on?", "Select Topic", list("none","general","gameplay","roleplay","lore","cancel"))

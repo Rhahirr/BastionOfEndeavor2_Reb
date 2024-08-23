@@ -10,11 +10,11 @@ var/silent_ert = 0
 /client/proc/response_team()
 	/* Bastion of Endeavor Translation
 	set name = "Dispatch Emergency Response Team"
-	set category = "Special Verbs"
+	set category = "Fun.Event Kit" //CHOMPEdit
 	set desc = "Send an emergency response team to the station"
 	*/
 	set name = "Отправить ОБР"
-	set category = "Особые глаголы"
+	set category = "Веселье.События"
 	set desc = "Отправить на станцию отряд быстрого реагирования."
 	// End of Bastion of Endeavor Translation
 
@@ -90,10 +90,10 @@ var/silent_ert = 0
 
 	/* Bastion of Endeavor Translation
 	set name = "Join Response Team"
-	set category = "IC"
+	set category = "IC.Event" //CHOMPEdit
 	*/
 	set name = "Присоединиться к ОБР"
-	set category = "IC"
+	set category = "IC.События"
 	// End of Bastion of Endeavor Translation
 
 	if(!MayRespawn(1))

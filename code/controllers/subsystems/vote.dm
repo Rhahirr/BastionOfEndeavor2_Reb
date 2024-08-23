@@ -648,10 +648,11 @@ SUBSYSTEM_DEF(vote)
 	usr.client.vote()
 
 /client/verb/vote()
-	set category = "OOC"
 	/* Bastion of Endeavor Translation
+	set category = "OOC.Game" //CHOMPEdit
 	set name = "Vote"
 	*/
+	set category = "OOC.Игра"
 	set name = "Голосование"
 	// End of Bastion of Endeavor Translation
 

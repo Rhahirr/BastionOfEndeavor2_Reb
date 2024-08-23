@@ -27,7 +27,7 @@
 /client/verb/toggle_eating_noises()
 	/* Bastion of Endeavor Translation
 	set name = "Toggle Eating Noises"
-	set category = "Preferences"
+	set category = "Preferences.Sounds" //CHOMPEdit
 	set desc = "Toggles hearing Vore Eating noises."
 	*/
 	set name = "Звуки поедания"
@@ -53,7 +53,7 @@
 /client/verb/toggle_digestion_noises()
 	/* Bastion of Endeavor Translation
 	set name = "Toggle Digestion Noises"
-	set category = "Preferences"
+	set category = "Preferences.Sounds" //CHOMPEdit
 	set desc = "Toggles hearing Vore Digestion noises."
 	*/
 	set name = "Звуки переваривания"
@@ -78,7 +78,7 @@
 /client/verb/toggle_belch_noises()
 	/* Bastion of Endeavor Translation
 	set name = "Toggle Audible Belching"
-	set category = "Preferences"
+	set category = "Preferences.Sounds" //CHOMPEdit
 	set desc = "Toggles hearing audible belches."
 	*/
 	set name = "Звуки отрыжек"
@@ -103,7 +103,7 @@
 /client/verb/toggle_emote_noises()
 	/* Bastion of Endeavor Translation
 	set name = "Toggle Emote Noises"
-	set category = "Preferences"
+	set category = "Preferences.Sounds" //CHOMPEdit
 	set desc = "Toggles hearing emote noises."
 	*/
 	set name = "Звуковые действия"
@@ -128,11 +128,11 @@
 /client/verb/toggle_ghost_quiets()
 	/* Bastion of Endeavor Translation
 	set name = "Toggle Ghost Privacy"
-	set category = "Preferences"
+	set category = "Preferences.Chat" //CHOMPEdit
 	set desc = "Toggles ghosts being able to see your subtles/whispers."
 	*/
 	set name = "Секретность от призраков"
-	set category = "Предпочтения"
+	set category = "Предпочтения.Чат"
 	set desc = "Переключить скрытность ваших шёпотов и скрытых действий от призраков."
 	// End of Bastion of Endeavor Translation
 
@@ -153,11 +153,11 @@
 /client/verb/toggle_ghost_privacyvision()
 	/* Bastion of Endeavor Translation
 	set name = "Toggle Ghost Private Eyes/ears"
-	set category = "Preferences"
+	set category = "Preferences.Admin" //CHOMPEdit
 	set desc = "Toggles your ability to see subtles/whispers. Overrides admin status. Respects Ghost Privacy"
 	*/
 	set name = "Призрачная внимательность"
-	set category = "Предпочтения.Режим призрака"
+	set category = "Предпочтения.Администратор"
 	set desc = "Переключить вашу возможность видеть чужие скрытые действия шёпот в случаях, когда это разрешено отправителями."
 	// End of Bastion of Endeavor Translation
 
@@ -178,11 +178,11 @@
 /client/verb/toggle_capture_crystal()
 	/* Bastion of Endeavor Translation
 	set name = "Toggle Catchable"
-	set category = "Preferences"
+	set category = "Preferences.Character" //CHOMPEdit
 	set desc = "Toggles being catchable with capture crystals."
 	*/
 	set name = "Отлавливаемость кристаллами"
-	set category = "Предпочтения"
+	set category = "Предпочтения.Персонаж"
 	set desc = "Разрешить или запретить заключение вашего персонажа в кристаллы."
 	// End of Bastion of Endeavor Translation
 
@@ -211,11 +211,11 @@
 /client/verb/toggle_mentorhelp_ping()
 	/* Bastion of Endeavor Translation
 	set name = "Toggle Mentorhelp Ping"
-	set category = "Preferences"
+	set category = "Preferences.Admin" //CHOMPEdit
 	set desc = "Toggles the mentorhelp ping"
 	*/
 	set name = "Звук Помощи ментора"
-	set category = "Предпочтения.Звуки"
+	set category = "Предпочтения.Администратор"
 	set desc = "Включить или выключить звуковое оповещение при получении сообщения в Помощи ментора."
 	// End of Bastion of Endeavor Translation
 
@@ -236,11 +236,11 @@
 /client/verb/toggle_player_tips()
 	/* Bastion of Endeavor Translation
 	set name = "Toggle Receiving Player Tips"
-	set category = "Preferences"
+	set category = "Preferences.Chat" //CHOMPEdit
 	set desc = "When toggled on, you receive tips periodically on roleplay and gameplay."
 	*/
 	set name = "Периодические подсказки"
-	set category = "Предпочтения"
+	set category = "Предпочтения.Чат"
 	set desc = "Если эта настройка включена, вы будете получать периодические советы об отыгрыше и игровых механиках."
 	// End of Bastion of Endeavor Translation
 
@@ -261,11 +261,11 @@
 /client/verb/toggle_pain_frequency()
 	/* Bastion of Endeavor Translation
 	set name = "Toggle Pain Frequency"
-	set category = "Preferences"
+	set category = "Preferences.Game" //CHOMPEdit
 	set desc = "When toggled on, increases the cooldown of pain messages sent to chat for minor injuries"
 	*/
 	set name = "Таймер болевых сообщений"
-	set category = "Предпочтения"
+	set category = "Предпочтения.Игра"
 	set desc = "Если эта настройка включена, болевые сообщения в чате будут отображаться реже."
 	// End of Bastion of Endeavor Translation
 

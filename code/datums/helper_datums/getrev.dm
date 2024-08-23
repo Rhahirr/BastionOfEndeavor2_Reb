@@ -74,11 +74,11 @@
 
 /client/verb/showrevinfo()
 	/* Bastion of Endeavor Translation
-	set category = "OOC"
+	set category = "OOC.Game" //CHOMPEdit
 	set name = "Show Server Revision"
 	set desc = "Check the current server code revision"
 	*/
-	set category = "OOC"
+	set category = "OOC.Игра"
 	set name = "Версия сервера"
 	set desc = "Проверить актуальную ревизию сервера"
 	// End of Bastion of Endeavor Translation

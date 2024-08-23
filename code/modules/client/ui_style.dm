@@ -62,11 +62,11 @@ var/global/list/all_tooltip_styles = list(
 /client/verb/change_ui()
 	/* Bastion of Endeavor Translation
 	set name = "Change UI"
-	set category = "Preferences"
+	set category = "Preferences.Game" //CHOMPEdit
 	set desc = "Configure your user interface"
 	*/
 	set name = "Интерфейс"
-	set category = "Предпочтения"
+	set category = "Предпочтения.Игра"
 	set desc = "Изменить оформление интерфейса"
 	// End of Bastion of Endeavor Translation
 

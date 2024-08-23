@@ -11,11 +11,12 @@
 	/* Bastion of Endeavor Translation: Bastion of Endeavor TODO: Wouldn't RIG be a better word?
 	set name = "Toggle Hardsuit Activation Mode"
 	set desc = "Switch between hardsuit activation modes."
+	set category = "OOC.Game Settings" //CHOMPEdit
 	*/
 	set name = "Режим активации скафандра"
 	set desc = "Переключить режим активации жёсткого скафандра."
+	set category = "OOC.Настройки игры"
 	// End of Bastion of Endeavor Translation
-	set category = "OOC"
 
 	hardsuit_click_mode++
 	if(hardsuit_click_mode > MAX_HARDSUIT_CLICK_MODE)

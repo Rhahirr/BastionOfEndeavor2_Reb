@@ -3,11 +3,11 @@ GLOBAL_DATUM(character_directory, /datum/character_directory)
 /client/verb/show_character_directory()
 	/* Bastion of Endeavor Translation
 	set name = "Character Directory"
-	set category = "OOC"
+	set category = "OOC.Game" //CHOMPEdit
 	set desc = "Shows a listing of all active characters, along with their associated OOC notes, flavor text, and more."
 	*/
 	set name = "Список персонажей"
-	set category = "OOC"
+	set category = "OOC.Игра"
 	set desc = "Показать список персонажей на станции вместе с их заметками ООС, описаниями внешности и т.д."
 	// End of Bastion of Endeavor Translation
 

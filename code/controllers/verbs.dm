@@ -63,12 +63,12 @@
 // Debug verbs.
 /* Bastion of Endeavor Translation
 /client/proc/restart_controller(controller in list("Master", "Failsafe"))
-	set category = "Debug"
+	set category = "Debug.Dangerous" //CHOMPEdit
 	set name = "Restart Controller"
 	set desc = "Restart one of the various periodic loop controllers for the game (be careful!)"
 */
 /client/proc/restart_controller(controller in list("Главный", "Проверочный"))
-	set category = "Отладка"
+	set category = "Отладка.Опасное"
 	set name = "Перезапустить контроллер"
 	set desc = "Перезапустить один из контроллеров цикла игры (будьте осторожны!)."
 // End of Bastion of Endeavor Translation
@@ -99,11 +99,11 @@
 
 /client/proc/debug_antagonist_template(antag_type in all_antag_types)
 	/* Bastion of Endeavor Translation
-	set category = "Debug"
+	set category = "Debug.Investigate" //CHOMPEdit
 	set name = "Debug Antagonist"
 	set desc = "Debug an antagonist template."
 	*/
-	set category = "Отладка"
+	set category = "Отладка.Мониторинг"
 	set name = "Отладка антагониста"
 	set desc = "Провести отладку шаблона антагониста."
 	// End of Bastion of Endeavor Translation
@@ -119,11 +119,11 @@
 
 /client/proc/debug_controller()
 	/* Bastion of Endeavor Translation
-	set category = "Debug"
+	set category = "Debug.Investigate" //CHOMPEdit
 	set name = "Debug Controller"
 	set desc = "Debug the various subsystems/controllers for the game (be careful!)"
 	*/
-	set category = "Отладка"
+	set category = "Отладка.Мониторинг"
 	set name = "Отладка контроллера"
 	set desc = "Провести отладку подсистем/контроллеров игры (будьте осторожны!)"
 	// End of Bastion of Endeavor Translation

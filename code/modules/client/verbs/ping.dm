@@ -13,8 +13,9 @@
 /client/verb/ping()
 	/* Bastion of Endeavor Translation
 	set name = "Ping"
+	set category = "OOC.Debug" //CHOMPEdit
 	*/
 	set name = "Пинг"
+	set category = "OOC.Отладка"
 	// End of Bastion of Endeavor Translation
-	set category = "OOC"
 	winset(src, null, "command=.display_ping+[world.time+world.tick_lag*world.tick_usage/100]") 

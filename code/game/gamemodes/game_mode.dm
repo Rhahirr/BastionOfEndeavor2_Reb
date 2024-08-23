@@ -749,10 +749,11 @@ var/global/list/additional_antag_types = list()
 /mob/verb/check_round_info()
 	/* Bastion of Endeavor Translation
 	set name = "Check Round Info"
+	set category = "OOC.Game" //CHOMPEdit
 	*/
 	set name = "Информация о раунде"
+	set category = "OOC.Игра"
 	// End of Bastion of Endeavor Translation
-	set category = "OOC"
 
 	if(!ticker || !ticker.mode)
 		/* Bastion of Endeavor Translation
