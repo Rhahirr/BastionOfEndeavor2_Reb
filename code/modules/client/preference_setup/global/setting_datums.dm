@@ -758,6 +758,21 @@ var/list/_client_preferences_by_type
 	// End of Bastion of Endeavor Translation
 // CHOMPAdd End
 
+/datum/client_preference/auto_afk
+	/* Bastion of Endeavor Translation
+	description = "Automatic AFK Status"
+	key = "AUTO_AFK"
+	enabled_by_default = TRUE
+	enabled_description = "Automatic"
+	disabled_description = "Manual Only"
+	*/
+	description = "Статус AFK при бездействии"
+	key = "AUTO_AFK"
+	enabled_by_default = TRUE
+	enabled_description = "Автоматический"
+	disabled_description = "Только ручной"
+	// End of Bastion of Endeavor Translation
+
 
 /********************
 * Staff Preferences *

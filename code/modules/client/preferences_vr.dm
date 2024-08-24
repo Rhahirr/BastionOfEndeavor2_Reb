@@ -278,3 +278,24 @@
 	*/
 	to_chat(src, "Таймер болевых сообщений теперь [ (is_preference_enabled(pref_path)) ? "длиннее" : "в нормальном режиме"] (не действует при ранении нескольких конечностей).")
 	// End of Bastion of Endeavor Translation
+
+/client/verb/toggle_automatic_afk()
+	/* Bastion of Endeavor Translation
+	set name = "Toggle Automatic AFK"
+	set category = "Preferences"
+	set desc = "When enabled, causes you to be automatically marked as AFK if you are idle for too long."
+	*/
+	set name = "Автоматический статус AFK"
+	set category = "Предпочтения.Игра"
+	set desc = "Если эта настройка включена, вы автоматически будете получать статус 'Отошёл' при длительном бездействии."
+	// End of Bastion of Endeavor Translation
+
+	var/pref_path = /datum/client_preference/auto_afk
+
+	toggle_preference(pref_path)
+
+	/* Bastion of Endeavor Translation
+	to_chat(src, "You will [ (is_preference_enabled(pref_path)) ? "now" : "not"] be automatically marked as AFK if you are idle for ten minutes or more.")
+	*/
+	to_chat(src, "Вы [ (is_preference_enabled(pref_path)) ? "теперь" : "больше не"] будете получать статус 'Отошёл' (AFK) при длительном бездействии.")
+	// End of Bastion of Endeavor Translation
