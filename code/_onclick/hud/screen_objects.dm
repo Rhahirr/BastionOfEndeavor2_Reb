@@ -1236,9 +1236,6 @@
 
 /obj/screen/ammo/proc/add_hud(var/mob/living/user, var/obj/item/weapon/gun/G)
 
-	if(G.hud_enabled == FALSE)
-		return
-
 	if(!user?.client)
 		return
 
@@ -1248,6 +1245,11 @@
 		*/
 		CRASH("/obj/screen/ammo/proc/add_hud() вызван [icase_ru(src)] без аргумента G")
 		// End of Bastion of Endeavor Translation
+
+	//CHOMPAdd start
+	if(!G.hud_enabled)
+		return
+	//CHOMPAdd End
 
 	if(!G.has_ammo_counter())
 		return
