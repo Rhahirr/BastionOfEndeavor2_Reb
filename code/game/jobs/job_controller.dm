@@ -591,6 +591,10 @@ var/global/datum/controller/occupations/job_master
 					//if(G.slot == slot_wear_mask || G.slot == slot_wear_suit || G.slot == slot_head)
 					//	custom_equip_leftovers += thing
 					//else
+					/* CHOMPRemove Start, remove RS No shoes
+					if(G.slot == slot_shoes && H.client?.prefs?.shoe_hater)	//RS ADD
+						continue
+					*///CHOMPRemove End, remove RS No shoes
 					if(H.equip_to_slot_or_del(G.spawn_item(H, metadata), G.slot))
 						/* Bastion of Endeavor Translation
 						to_chat(H, "<span class='notice'>Equipping you with \the [thing]!</span>")
@@ -625,6 +629,10 @@ var/global/datum/controller/occupations/job_master
 			if(ispath(G.path))
 				thing_obj = new G.path // in which we fetch the obj the datum is linked to
 			// End of Bastion of Endeavor Addition
+			/* CHOMPRemove Start, remove RS No shoes
+			if(G.slot == slot_shoes && H.client?.prefs?.shoe_hater)	//RS ADD
+				continue
+			*///CHOMPRemove End, remove RS No shoes
 			if(G.slot in custom_equip_slots)
 				spawn_in_storage += thing
 			else
