@@ -1,4 +1,5 @@
 #define FIRE_PRIORITY_REFLECTOR 20
+
 SUBSYSTEM_DEF(reflector)
 	/* Bastion of Endeavor Translation
 	name = "Reflectors"
@@ -64,3 +65,5 @@ SUBSYSTEM_DEF(reflector)
 			return
 
 	current_thing = null
+
+#undef FIRE_PRIORITY_REFLECTOR
