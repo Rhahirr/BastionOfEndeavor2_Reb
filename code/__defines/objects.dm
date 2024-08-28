@@ -68,3 +68,5 @@
 #define MECH_GAS		"Система жизнеобеспечения"
 #define MECH_ELECTRIC	"Программное обеспечение"
 // End of Bastion of Endeavor Translation
+
+#define DRINK_ICON_FILE 'icons/pdrink.dmi'

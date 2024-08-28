@@ -55,9 +55,9 @@ var/global/pipe_processing_killed = 0
 	// End of Bastion of Endeavor Translation
 
 // #if UNIT_TEST
-// #define CHECK_SLEEP_MASTER // For unit tests we don't care about a smooth lobby screen experience. We care about speed.
+// # define CHECK_SLEEP_MASTER // For unit tests we don't care about a smooth lobby screen experience. We care about speed.
 // #else
-// #define CHECK_SLEEP_MASTER if(++initialized_objects > 500) { initialized_objects=0;sleep(world.tick_lag); }
+// # define CHECK_SLEEP_MASTER if(++initialized_objects > 500) { initialized_objects=0;sleep(world.tick_lag); }
 // #endif
 
 /datum/controller/game_controller/proc/setup_objects()
