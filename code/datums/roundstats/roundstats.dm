@@ -51,9 +51,9 @@ var/global/list/security_printer_tickets = list()	//VOREStation Edit
 		// End of Bastion of Endeavor Translation
 	else if(GLOB.seed_planted_shift_roundstat > 20)
 		/* Bastion of Endeavor Translation
-		valid_stats_list.Add("[GLOB.seed_planted_shift_roundstat] were planted according to our sensors this shift.")
+		valid_stats_list.Add("[GLOB.seed_planted_shift_roundstat] seeds were planted according to our sensors this shift.")
 		*/
-		valid_stats_list.Add("[count_ru(GLOB.seed_planted_shift_roundstat, ";семя было посажено;семени было посажено;семян было посажено")] за эту смену согласно нашим датчикам.")
+		valid_stats_list.Add("[count_ru(GLOB.seed_planted_shift_roundstat, ";семя;семени;семян")] было посажено за эту смену согласно нашим датчикам.")
 		// End of Bastion of Endeavor Translation
 
 	if(GLOB.rocks_drilled_roundstat > 80)
