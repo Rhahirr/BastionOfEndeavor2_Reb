@@ -14,12 +14,20 @@ SUBSYSTEM_DEF(job)
 	var/list/department_datums = list()
 	var/debug_messages = FALSE
 
+	var/savepath = "data/job_camp_list.json"	// CHOMPadd
+	var/list/shift_keys = list()				// CHOMPadd
+	var/list/restricted_keys = list()			// CHOMPadd
+
 
 /datum/controller/subsystem/job/Initialize() // CHOMPEdit
 	if(!department_datums.len)
 		setup_departments()
 	if(!occupations.len)
 		setup_occupations()
+	//CHOMPadd begin
+	if(CONFIG_GET(number/job_camp_time_limit))
+		load_camp_lists()
+	//CHOMPadd end
 	return SS_INIT_SUCCESS // CHOMPEdit
 
 /* Bastion of Endeavor Translation
@@ -177,3 +185,24 @@ SUBSYSTEM_DEF(job)
 		*/
 		log_debug("ОТЛАДКА РАБОТ: [message]")
 		// End of Bastion of Endeavor Translation
+
+//CHOMPadd start
+/datum/controller/subsystem/job/proc/load_camp_lists()
+	if(fexists(savepath))
+		restricted_keys = json_decode(file2text(savepath))
+		fdel(savepath)
+
+/datum/controller/subsystem/job/Shutdown(Addr, Natural)
+	. = ..()
+	if(fexists(savepath))
+		fdel(savepath)
+	var/json_to_file = json_encode(shift_keys)
+	if(!json_to_file)
+		log_debug("Saving: [savepath] failed jsonencode")
+		return
+
+	//Write it out
+	rustg_file_write(json_to_file, savepath)
+	if(!fexists(savepath))
+		log_debug("Saving: failed to save [savepath]")
+//CHOMPadd end

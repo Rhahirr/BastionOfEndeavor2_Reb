@@ -43,6 +43,10 @@
 	var/job_description = "У этой работы нет описания! Сообщите об этом администраторам!"
 	// End of Bastion of Endeavor Translation
 
+	var/camp_protection = FALSE				//CHOMPadd
+	var/list/restricted_keys = list()		//CHOMPadd
+	var/list/shift_keys = list()			//CHOMPadd
+
 /datum/job/New()
 	. = ..()
 	department_accounts = department_accounts || departments_managed
@@ -206,6 +210,13 @@
 	if(brain_type in banned_job_species)
 		return TRUE
 	*/
+
+//CHOMPadd start
+/datum/job/proc/register_shift_key(key)
+	if(key)
+		var/list/keylist = list(key)
+		SSjob.shift_keys[title] += keylist
+//CHOMPadd end
 
 //CHOMPAdd Start
 /datum/job/proc/update_limit(var/comperator)
