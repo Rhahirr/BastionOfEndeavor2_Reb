@@ -354,3 +354,10 @@ var/global/list/vr_mob_spawner_options = list(
 	"Сток" = /mob/living/carbon/human/stok
 	// End of Bastion of Endeavor Translation
 	)
+
+var/global/list/selectable_footstep = list(
+	"Default" = FOOTSTEP_MOB_HUMAN,
+	"Claw" = FOOTSTEP_MOB_CLAW,
+	"Light Claw" = FOOTSTEP_MOB_TESHARI,
+	"Slither" = FOOTSTEP_MOB_SLITHER,
+)

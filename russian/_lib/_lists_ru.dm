@@ -155,3 +155,10 @@ var/global/list/orebox_types_ru = list(
 	"вердантия" = "verdantium",
 	"титановой руды" = "rutile"
 )
+
+var/global/list/selectable_footstep_ru = list(
+	"По умолчанию" = "footstep_human",
+	"Когтистые лапы" = "footstep_claw",
+	"Когтистые лапки" = "footstep_lightclaw",
+	"Ползучесть" = "footstep_slither"
+)
