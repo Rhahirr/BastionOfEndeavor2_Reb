@@ -69,7 +69,7 @@
 /obj/screen/nifsc/nme/Click()
 	..()
 	var/mob/living/carbon/brain/caught_soul/CS = usr
-	CS.nme()
+	CS.nme_brain() //CHOMPEdit
 
 /obj/screen/nifsc/nsay
 	/* Bastion of Endeavor Translation
@@ -84,7 +84,7 @@
 /obj/screen/nifsc/nsay/Click()
 	..()
 	var/mob/living/carbon/brain/caught_soul/CS = usr
-	CS.nsay()
+	CS.nsay_brain() //CHOMPEdit
 
 
 /mob/living/carbon/brain/caught_soul/create_mob_hud(datum/hud/HUD, apply_to_client = TRUE)
@@ -92,7 +92,7 @@
 
 	var/list/adding = list()
 	HUD.adding = adding
-	
+
 	var/obj/screen/using
 
 	using = new /obj/screen/nifsc/reenter()
