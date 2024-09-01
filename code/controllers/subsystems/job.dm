@@ -198,11 +198,19 @@ SUBSYSTEM_DEF(job)
 		fdel(savepath)
 	var/json_to_file = json_encode(shift_keys)
 	if(!json_to_file)
+		/* Bastion of Endeavor Translation
 		log_debug("Saving: [savepath] failed jsonencode")
+		*/
+		log_debug("Сохранение: Для [savepath] провалился jsonencode.")
+		// End of Bastion of Endeavor Translation
 		return
 
 	//Write it out
 	rustg_file_write(json_to_file, savepath)
 	if(!fexists(savepath))
+		/* Bastion of Endeavor Translation
 		log_debug("Saving: failed to save [savepath]")
+		*/
+		log_debug("Сохранение: Сохранение не удалось для [savepath].")
+		// End of Bastion of Endeavor Translation
 //CHOMPadd end
