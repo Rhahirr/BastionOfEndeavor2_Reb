@@ -5087,5 +5087,6 @@
 #include "modular_chomp\maps\submaps\surface_submaps\valleyend\valleyend_areas.dm"
 #include "modular_chomp\maps\submaps\surface_submaps\wilderness\wilderness.dm"
 #include "modular_chomp\maps\submaps\surface_submaps\wilderness\wilderness_areas.dm"
+#include "modular_chomp/code/modules/mob/living/silicon/robot/sprites/syndicate.dm"
 #include "russian\_includes_ru.dm"
 // END_INCLUDE
