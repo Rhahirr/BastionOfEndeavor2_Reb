@@ -177,6 +177,9 @@
 		asset_cache_preload_data(href_list["asset_cache_preload_data"])
 		return
 
+	if(href_list["commandbar_typing"])
+		handle_commandbar_typing(href_list)
+
 	switch(href_list["_src_"])
 		if("holder")	hsrc = holder
 		if("mentorholder")	hsrc = (check_rights(R_ADMIN, 0) ? holder : mentorholder)
@@ -261,6 +264,8 @@
 	stat_panel.subscribe(src, .proc/on_stat_panel_message)
 
 	// Instantiate tgui panel
+	tgui_say = new(src, "tgui_say")
+	initialize_commandbar_spy()
 	tgui_panel = new(src, "browseroutput")
 
 	GLOB.tickets.ClientLogin(src) // CHOMPedit - Tickets System
@@ -300,6 +305,7 @@
 	addtimer(CALLBACK(src, PROC_REF(check_panel_loaded)), 30 SECONDS)
 
 	// Initialize tgui panel
+	tgui_say.initialize()
 	tgui_panel.initialize()
 
 	connection_time = world.time

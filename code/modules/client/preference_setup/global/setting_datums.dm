@@ -411,7 +411,20 @@ var/list/_client_preferences_by_type
 
 /datum/client_preference/show_typing_indicator/toggled(var/mob/preference_mob, var/enabled)
 	if(!enabled)
-		preference_mob.set_typing_indicator(FALSE)
+		preference_mob.client?.stop_thinking()
+
+/datum/client_preference/show_typing_indicator_subtle
+	/* Bastion of Endeavor Translation
+	description ="Typing indicator (subtle)"
+	key = "SHOW_TYPING_SUBTLE"
+	enabled_description = "Show"
+	disabled_description = "Hide"
+	*/
+	description ="Индикатор набора (скрытый текст)"
+	key = "SHOW_TYPING_SUBTLE"
+	enabled_description = "Включен"
+	disabled_description = "Отключен"
+	// End of Bastion of Endeavor Translation
 
 /datum/client_preference/show_ooc
 	/* Bastion of Endeavor Translation
@@ -773,6 +786,35 @@ var/list/_client_preferences_by_type
 	disabled_description = "Только ручной"
 	// End of Bastion of Endeavor Translation
 
+/datum/client_preference/tgui_say
+	/* Bastion of Endeavor Translation
+	description = "TGUI Say: Use TGUI For Say Input"
+	key = "TGUI_SAY"
+	enabled_by_default = TRUE
+	enabled_description = "Yes"
+	disabled_description = "No"
+	*/
+	description = "Окно речи TGUI"
+	key = "TGUI_SAY"
+	enabled_by_default = TRUE
+	enabled_description = "Включено"
+	disabled_description = "Отключено"
+	// End of Bastion of Endeavor Translation
+
+/datum/client_preference/tgui_say_light
+	/* Bastion of Endeavor Translation
+	description = "TGUI Say: Use Light Mode"
+	key = "TGUI_SAY_LIGHT_MODE"
+	enabled_by_default = FALSE
+	enabled_description = "Yes"
+	disabled_description = "No"
+	*/
+	description = "Тема окна речи TGUI"
+	key = "TGUI_SAY_LIGHT_MODE"
+	enabled_by_default = FALSE
+	enabled_description = "Светлая"
+	disabled_description = "Темная"
+	// End of Bastion of Endeavor Translation
 
 /********************
 * Staff Preferences *
