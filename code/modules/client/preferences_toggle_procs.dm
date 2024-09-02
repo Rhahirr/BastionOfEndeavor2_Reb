@@ -663,26 +663,6 @@
 	to_chat(src, span_notice("Сообщения в чате [prefs.chat_timestamp ? "теперь" : "больше не"] будут подписаны отметками времени."))
 	// End of Bastion of Endeavor Translation
 
-/client/verb/toggle_throwmode_messages()
-	/* Bastion of Endeavor Translation
-	set name = "Toggle Throw Mode Messages"
-	set category = "Preferences.Chat" //CHOMPEdit
-	set desc = "Toggles whether or not activating throw mode (hotkey: R) will announce you're preparing to throw your current handheld item, or catch an incoming item if your hand is empty."
-	*/
-	set name = "Оповещения о метании"
-	set category = "Предпочтения.Чат"
-	set desc = "Переключить отображение предупреждений о вашей готовности метнуть предмет в вашей руке или поймать что-либо в пустую."
-	// End of Bastion of Endeavor Translation
-
-	prefs.throwmode_loud = !prefs.throwmode_loud	//There is no preference datum for tgui input lock, nor for any TGUI prefs.
-	SScharacter_setup.queue_preferences_save(prefs)
-
-	/* Bastion of Endeavor Translation
-	to_chat(src, span_notice("You have toggled throw mode messages: [prefs.throwmode_loud ? "ON" : "OFF"]."))
-	*/
-	to_chat(src, span_notice("Оповещения о метании [prefs.throwmode_loud ? "теперь" : "больше не"] будет отображаться для вашего персонажа."))
-	// End of Bastion of Endeavor Translation
-
 /client/verb/toggle_status_indicators()
 	/* Bastion of Endeavor Translation
 	set name = "Toggle Status Indicators"
