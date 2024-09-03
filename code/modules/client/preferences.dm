@@ -611,6 +611,14 @@ var/list/preferences_datums = list()
 		// End of Bastion of Endeavor Translation
 		return
 
-	overwrite_character(slotnum)
-	sanitize_preferences()
-	ShowChoices(user)
+	/* Bastion of Endeavor Translation
+	if(tgui_alert(user, "Are you sure you want to override slot [slotnum], [name][nickname ? " ([nickname])" : ""]'s savedata?", "Confirm Override", list("No", "Yes")) == "Yes")
+	*/
+	if(tgui_alert(user, "Вы действительно хотите перезаписать слот сохранения №[slotnum], [name][nickname ? " ([nickname])" : ""]?", "Подтверждение перезаписи", list("Нет", "Да")) == "Да")
+	// End of Bastion of Endeavor Translation
+		overwrite_character(slotnum)
+		sanitize_preferences()
+		save_preferences()
+		save_character()
+		attempt_vr(user.client?.prefs_vr,"load_vore","")
+		ShowChoices(user)
