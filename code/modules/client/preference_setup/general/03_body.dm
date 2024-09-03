@@ -1282,9 +1282,9 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		var/M = href_list["marking_color"]
 		if (isnull(pref.body_markings[M]["color"]))
 			/* Bastion of Endeavor Translation
-			if (tgui_alert(user, "You currently have customized marking colors. This will reset each bodypart's color. Are you sure you want to continue?","Reset Bodypart Colors",list("Yes","No")) == "No")
+			if (tgui_alert(user, "You currently have customized marking colors. This will reset each bodypart's color. Are you sure you want to continue?","Reset Bodypart Colors",list("Yes","No")) != "Yes")
 			*/
-			if (tgui_alert(user, "Ваша особенность тела настроена отдельно для разных частей тела. Смена цвета приведёт к сбросу этой настройки. Вы действительно хотите изменить цвет?","Сброс цвета части тела",list("Да","Нет")) == "No")
+			if (tgui_alert(user, "Ваша особенность тела настроена отдельно для разных частей тела. Смена цвета приведёт к сбросу этой настройки. Вы действительно хотите изменить цвет?","Сброс цвета части тела",list("Да","Нет")) != "Да")
 			// End of Bastion of Endeavor Translation
 				return TOPIC_NOACTION
 		/* Bastion of Endeavor Translation

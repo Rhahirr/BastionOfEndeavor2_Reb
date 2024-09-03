@@ -799,10 +799,10 @@ var/global/list/valid_bloodreagents = list("default","iron","copper","phoron","s
 				var/datum/trait/path = nicelist[trait_choice]
 				/* Bastion of Endeavor Translation
 				var/choice = tgui_alert(user, "\[Cost:[initial(path.cost)]\] [initial(path.desc)]",initial(path.name), list("Take Trait","Go Back")) //ChompEDIT - usr removal
-				if(choice != "Go Back")
+				if(choice == "Take Trait")
 				*/
 				var/choice = tgui_alert(user, "\[Стоимость: [initial(path.cost)]\] [initial(path.desc)]",initial(path.name), list("Взять черту","Назад"))
-				if(choice != "Назад")
+				if(choice == "Взять черту")
 				// End of Bastion of Endeavor Translation
 					done = TRUE
 
