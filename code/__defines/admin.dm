@@ -47,11 +47,13 @@
 #define SMITE_BLUESPACEARTILLERY	"Bluespace Artillery"
 #define SMITE_SPONTANEOUSCOMBUSTION	"Spontaneous Combustion"
 #define SMITE_LIGHTNINGBOLT			"Lightning Bolt"
+#define SMITE_TERROR				"Terrify"
 */
 #define SMITE_BREAKLEGS				"Переломать ноги"
 #define SMITE_BLUESPACEARTILLERY	"Синепространственная артиллерия"
 #define SMITE_SPONTANEOUSCOMBUSTION	"Спонтанное самовозгорание"
 #define SMITE_LIGHTNINGBOLT			"Удар молнией"
+#define SMITE_TERROR				"Запугать"
 // End of Bastion of Endeavor Translation
 
 /* Bastion of Endeavor Translation
