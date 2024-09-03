@@ -336,7 +336,7 @@
 		/* Bastion of Endeavor Translation
 		message_admins("Staff login: [key_name(src)]") // CHOMPEdit: Admin Login Notice //Edit2: This logs more than just admins so why not change it
 		*/
-		message_admins("Подключился администратор [key_name(src)]") // CHOMPEdit: Admin Login Notice //Edit2: This logs more than just admins so why not change it
+		message_admins("Подключился администратор [key_name(src)].") // CHOMPEdit: Admin Login Notice //Edit2: This logs more than just admins so why not change it
 		// End of Bastion of Endeavor Translation
 
 	// Forcibly enable hardware-accelerated graphics, as we need them for the lighting overlays.

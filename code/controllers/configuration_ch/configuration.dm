@@ -202,7 +202,7 @@
 	/* Bastion of Endeavor Translation
 	log_config("Loading config file [filename]...")
 	*/
-	log_config("Загрузка файл конфигурации [filename]...")
+	log_config("Загрузка файла конфигурации [filename]...")
 	// End of Bastion of Endeavor Translation
 	var/list/lines = world.file2list("[directory]/[filename]")
 	var/list/_entries = entries

@@ -69,7 +69,7 @@ var/global/list/valid_ringtones = list(
 		"Уведомление",
 		"Стук ящика",
 		"Бз-з-з!",
-		"Гудок",
+		"Динь",
 		"Прррб!",
 		"Гав!",
 		"Тяф!",
@@ -136,17 +136,10 @@ var/global/list/valid_ringtones = list(
 
 /datum/category_item/player_setup_item/general/equipment/content()
 	. = list()
-	/* Bastion of Endeavor Translation
+	/* Bastion of Endeavor Translation: Massive comment block but I want this rearranged
 	. += "<b>Equipment:</b><br>"
-	*/
-	. += "<b>Вещи</b><br>"
-	// End of Bastion of Endeavor Translation
 	for(var/datum/category_group/underwear/UWC in global_underwear.categories)
-		/* Bastion of Endeavor Translation
 		var/item_name = pref.all_underwear[UWC.name] ? pref.all_underwear[UWC.name] : "None"
-		*/
-		var/item_name = pref.all_underwear[UWC.name] ? pref.all_underwear[UWC.name] : "Нет"
-		// End of Bastion of Endeavor Translation
 		. += "[UWC.name]: <a href='?src=\ref[src];change_underwear=[UWC.name]'><b>[item_name]</b></a>"
 		var/datum/category_item/underwear/UWI = UWC.items_by_name[item_name]
 		if(UWI)
@@ -154,16 +147,25 @@ var/global/list/valid_ringtones = list(
 				. += " <a href='?src=\ref[src];underwear=[UWC.name];tweak=\ref[gt]'>[gt.get_contents(get_metadata(UWC.name, gt))]</a>"
 
 		. += "<br>"
-	/* Bastion of Endeavor Translation
 	. += "Backpack Type: <a href='?src=\ref[src];change_backpack=1'><b>[backbaglist[pref.backbag]]</b></a><br>"
 	. += "PDA Type: <a href='?src=\ref[src];change_pda=1'><b>[pdachoicelist[pref.pdachoice]]</b></a><br>"
 	. += "Communicator Visibility: <a href='?src=\ref[src];toggle_comm_visibility=1'><b>[(pref.communicator_visibility) ? "Yes" : "No"]</b></a><br>"
 	. += "Ringtone (leave blank for job default): <a href='?src=\ref[src];set_ringtone=1'><b>[pref.ringtone]</b></a><br>"
 	*/
+	. += "<b>Вещи</b><br>"
 	. += "Вид сумки: <a href='?src=\ref[src];change_backpack=1'><b>[backbaglist[pref.backbag]]</b></a><br>"
 	. += "Модель КПК: <a href='?src=\ref[src];change_pda=1'><b>[pdachoicelist[pref.pdachoice]]</b></a><br>"
 	. += "Рингтон КПК: <a href='?src=\ref[src];set_ringtone=1'><b>[pref.ringtone]</b></a><br>"
 	. += "Отображаться в коммуникаторах: <a href='?src=\ref[src];toggle_comm_visibility=1'><b>[(pref.communicator_visibility) ? "Да" : "Нет"]</b></a><br>"
+	. += "<b>Нижнее бельё</b><br>"
+	for(var/datum/category_group/underwear/UWC in global_underwear.categories)
+		var/item_name = pref.all_underwear[UWC.name] ? pref.all_underwear[UWC.name] : "Нет"
+		. += "[UWC.name]: <a href='?src=\ref[src];change_underwear=[UWC.name]'><b>[item_name]</b></a>"
+		var/datum/category_item/underwear/UWI = UWC.items_by_name[item_name]
+		if(UWI)
+			for(var/datum/gear_tweak/gt in UWI.tweaks)
+				. += " <a href='?src=\ref[src];underwear=[UWC.name];tweak=\ref[gt]'>[gt.get_contents(get_metadata(UWC.name, gt))]</a>"
+		. += "<br>"
 	// End of Bastion of Endeavor Translation
 	//. += "Spawn With Shoes:<a href='?src=\ref[src];toggle_shoes=1'><b>[(pref.shoe_hater) ? "No" : "Yes"]</b></a><br>" //RS Addition //CHOMPRemove, remove RS No shoes
 

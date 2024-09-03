@@ -161,7 +161,7 @@
 	if(CONFIG_GET(flag/allow_metadata)) // CHOMPEdit
 		//CHOMPEdit Start
 		. += "<b>Примечания OOC: <a href='?src=\ref[src];edit_ooc_notes=1'>Изменить</a><a href='?src=\ref[src];edit_ooc_note_favs=1'>Любимое</a><a href='?src=\ref[src];edit_ooc_note_likes=1'>Нравится</a><a href='?src=\ref[src];edit_ooc_note_maybes=1'>Неоднозначно</a><a href='?src=\ref[src];edit_ooc_note_dislikes=1'>Не нравится</a></b><br>"
-		. += "Примечания в формате <a href='?src=\ref[src];edit_ooc_note_style=1'>[pref.matadata_ooc_style ? "столбцов" : "вертикальных граф"]</a>.<br><br>"
+		. += "Формат примечаний OOC: <a href='?src=\ref[src];edit_ooc_note_style=1'>[pref.matadata_ooc_style ? "Ряд столбцов" : "Вертикальные графы"]</a><br>"
 		//CHOMPEdit End
 	. = jointext(.,null)
 

@@ -1445,7 +1445,11 @@ window "prefs_markings_subwindow"
 		background-color = none
 		is-visible = false
 		saved-params = "pos;size;is-minimized;is-maximized"
+		/* Bastion of Endeavor Translation
 		title = "Marking Selection Editing"
+		*/
+		title = "Редактор особенности тела"
+		// End of Bastion of Endeavor Translation
 		statusbar = false
 		can-minimize = false
 		outer-size = 416x439

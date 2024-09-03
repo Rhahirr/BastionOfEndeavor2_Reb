@@ -89,13 +89,13 @@
 	else
 		. += "Медицинские записи:<br>"
 		. += "<a href='?src=\ref[src];set_medical_records=1'>[TextPreview(pref.med_record,40)]</a><br>"
-		. += "<a href='?src=\ref[src];reset_medrecord=1'>(Удалить)</A><br><br>"
+		. += "<a href='?src=\ref[src];reset_medrecord=1'>Удалить</A><br><br>"
 		. += "Записи о трудоустройстве:<br>"
 		. += "<a href='?src=\ref[src];set_general_records=1'>[TextPreview(pref.gen_record,40)]</a><br>"
-		. += "<a href='?src=\ref[src];reset_emprecord=1'>(Удалить)</A><br><br>"
+		. += "<a href='?src=\ref[src];reset_emprecord=1'>Удалить</A><br><br>"
 		. += "Записи службы безопасности:<br>"
 		. += "<a href='?src=\ref[src];set_security_records=1'>[TextPreview(pref.sec_record,40)]</a><br>"
-		. += "<a href='?src=\ref[src];reset_secrecord=1'>(Удалить)</A>"
+		. += "<a href='?src=\ref[src];reset_secrecord=1'>Удалить</A>"
 	// End of Bastion of Endeavor Translation
 
 /datum/category_item/player_setup_item/general/background/OnTopic(var/href,var/list/href_list, var/mob/user)
