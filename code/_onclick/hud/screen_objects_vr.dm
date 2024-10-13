@@ -48,6 +48,18 @@
 				to_chat(usr,"<span class='notice'><b>Энергия:</b> [H.shadekin_get_energy(H)]</span>")
 				// End of Bastion of Endeavor Translation
 		/* Bastion of Endeavor Translation
+		if("glamour")
+		*/
+		if("Гламур")
+		// End of Bastion of Endeavor Translation
+			var/mob/living/carbon/human/H = usr
+			if(istype(H))
+				/* Bastion of Endeavor Translation
+				to_chat(usr,"<span class='notice'><b>Energy:</b> [H.species.lleill_energy]/[H.species.lleill_energy_max]</span>")
+				*/
+				to_chat(usr,"<span class='notice'><b>Энергия:</b> [H.species.lleill_energy]/[H.species.lleill_energy_max]</span>")
+				// End of Bastion of Endeavor Translation
+		/* Bastion of Endeavor Translation
 		if("danger level")
 		*/
 		if("Уровень опасности")
@@ -148,7 +160,7 @@
 					*/
 					to_chat(usr, "<span class='warning'>Возрождение должно сопровождаться уведомлением и иконкой! Доложите об этом баге!</span>")
 					// End of Bastion of Endeavor Translation
-					
+
 		/* Bastion of Endeavor Translation
 		if("Ready to Hatch") // Allow Viewing Reconstruction Timer + Hatching for 'chimera
 		*/
