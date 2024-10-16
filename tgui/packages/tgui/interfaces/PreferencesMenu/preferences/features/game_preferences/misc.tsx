@@ -137,3 +137,18 @@ export const AUTO_AFK: FeatureToggle = {
   // End of Bastion of Endeavor Translation
   component: CheckboxInput,
 };
+
+export const MessengerEmbeds: FeatureToggle = {
+  /* Bastion of Endeavor Translation
+  name: 'Messenger Embeds',
+  category: 'UI',
+  description:
+    'When enabled, PDAs and Communicators will attempt to embed links from discord & imgur.',
+  */
+  name: 'Вложения в мессенджерах',
+  category: 'ИНТЕРФЕЙС',
+  description:
+    'Отображать вложения из ссылок на Discord и Imgur в коммуникаторах и КПК.',
+  // End of Bastion of Endeavor Translation
+  component: CheckboxInput,
+};
