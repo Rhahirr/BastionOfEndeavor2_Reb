@@ -1,23 +1,42 @@
+/* Bastion of Endeavor Removal: We don't want this as a separate tab
 /datum/category_group/player_setup_category/volume_sliders
-	/* Bastion of Endeavor Translation
 	name = "Sound"
-	*/
-	name = "Звук"
-	// End of Bastion of Endeavor Translation
 	sort_order = 7
 	category_item_type = /datum/category_item/player_setup_item/volume_sliders
+*/
+// End of Bastion of Endeavor Removal
 
+/* Bastion of Endeavor Edit: We don't want a separate tab for this
 /datum/category_item/player_setup_item/volume_sliders/volume
+*/
+/datum/category_item/player_setup_item/player_global/volume
+// End of Bastion of Endeavor Edit
 	name = "General Volume"
+	/* Bastion of Endeavor Edit: 
 	sort_order = 1
+	*/
+	sort_order = 3
+	// End of Bastion of Endeavor Edit
 
-/datum/category_item/player_setup_item/volume_sliders/volume/load_preferences(var/savefile/S)
-	S["volume_channels"] >> pref.volume_channels
+/* Bastion of Endeavor Edit: 
+/datum/category_item/player_setup_item/volume_sliders/volume/load_preferences(datum/json_savefile/savefile)
+*/
+/datum/category_item/player_setup_item/player_global/volume/load_preferences(datum/json_savefile/savefile)
+// End of Bastion of Endeavor Edit
+	pref.volume_channels = savefile.get_entry("volume_channels")
 
-/datum/category_item/player_setup_item/volume_sliders/volume/save_preferences(var/savefile/S)
-	S["volume_channels"] << pref.volume_channels
+/* Bastion of Endeavor Edit: 
+/datum/category_item/player_setup_item/volume_sliders/volume/save_preferences(datum/json_savefile/savefile)
+*/
+/datum/category_item/player_setup_item/player_global/volume/save_preferences(datum/json_savefile/savefile)
+// End of Bastion of Endeavor Edit
+	savefile.set_entry("volume_channels", pref.volume_channels)
 
+/* Bastion of Endeavor Edit: 
 /datum/category_item/player_setup_item/volume_sliders/volume/sanitize_preferences()
+*/
+/datum/category_item/player_setup_item/player_global/volume/sanitize_preferences()
+// End of Bastion of Endeavor Edit
 	if(isnull(pref.volume_channels))
 		pref.volume_channels = list()
 
@@ -32,7 +51,11 @@
 		else
 			pref.volume_channels["[channel]"] = clamp(pref.volume_channels["[channel]"], 0, 2)
 
+/* Bastion of Endeavor Edit: 
 /datum/category_item/player_setup_item/volume_sliders/volume/content(var/mob/user)
+*/
+/datum/category_item/player_setup_item/player_global/volume/content(var/mob/user)
+// End of Bastion of Endeavor Edit
 	/* Bastion of Endeavor Translation
 	. += "<b>Volume Settings</b><br>"
 	for(var/channel in pref.volume_channels)
@@ -45,7 +68,11 @@
 	. += "</table><br>"
 	// End of Bastion of Endeavor Translation
 
+/* Bastion of Endeavor Edit: 
 /datum/category_item/player_setup_item/volume_sliders/volume/OnTopic(var/href, var/list/href_list, var/mob/user)
+*/
+/datum/category_item/player_setup_item/player_global/volume/OnTopic(var/href, var/list/href_list, var/mob/user)
+// End of Bastion of Endeavor Edit
 	if(href_list["change_volume"])
 		if(CanUseTopic(user))
 			var/channel = href_list["change_volume"]
@@ -121,7 +148,7 @@
 	set desc = "Allows you to adjust volume levels on the fly."
 	*/
 	set name = "Микшер"
-	set category = "Предпочтения.Звуки"
+	set category = "Предпочтения.Игра"
 	set desc = "Позволяет регулировать громкость игры."
 	// End of Bastion of Endeavor Translation
 

@@ -2,23 +2,45 @@
 	var/media_volume = 1
 	var/media_player = 2	// 0 = VLC, 1 = WMP, 2 = HTML5, 3+ = unassigned
 
+/* Bastion of Endeavor Edit: We don't want this in a separate tab
 /datum/category_item/player_setup_item/volume_sliders/media
 	name = "Media"
 	sort_order = 2
+*/
+/datum/category_item/player_setup_item/player_global/media
+	name = "Media"
+	sort_order = 2
+// End of Bastion of Endeavor Edit
 
-/datum/category_item/player_setup_item/volume_sliders/media/load_preferences(var/savefile/S)
-	S["media_volume"]	>> pref.media_volume
-	S["media_player"]	>> pref.media_player
+/* Bastion of Endeavor Edit: 
+/datum/category_item/player_setup_item/volume_sliders/media/load_preferences(datum/json_savefile/savefile)
+*/
+/datum/category_item/player_setup_item/player_global/media/load_preferences(datum/json_savefile/savefile)
+// End of Bastion of Endeavor Edit
+	pref.media_volume = savefile.get_entry("media_volume")
+	pref.media_player = savefile.get_entry("media_player")
 
-/datum/category_item/player_setup_item/volume_sliders/media/save_preferences(var/savefile/S)
-	S["media_volume"]	<< pref.media_volume
-	S["media_player"]	<< pref.media_player
+/* Bastion of Endeavor Edit: 
+/datum/category_item/player_setup_item/volume_sliders/media/save_preferences(datum/json_savefile/savefile)
+*/
+/datum/category_item/player_setup_item/player_global/media/save_preferences(datum/json_savefile/savefile)
+// End of Bastion of Endeavor Edit
+	savefile.set_entry("media_volume", pref.media_volume)
+	savefile.set_entry("media_player", pref.media_player)
 
+/* Bastion of Endeavor Edit: 
 /datum/category_item/player_setup_item/volume_sliders/media/sanitize_preferences()
+*/
+/datum/category_item/player_setup_item/player_global/media/sanitize_preferences()
+// End of Bastion of Endeavor Edit
 	pref.media_volume = isnum(pref.media_volume) ? CLAMP(pref.media_volume, 0, 1) : initial(pref.media_volume)
 	pref.media_player = sanitize_inlist(pref.media_player, list(0, 1, 2), initial(pref.media_player))
 
+/* Bastion of Endeavor Edit: 
 /datum/category_item/player_setup_item/volume_sliders/media/content(var/mob/user)
+*/
+/datum/category_item/player_setup_item/player_global/media/content(var/mob/user)
+// End of Bastion of Endeavor Edit
 	/* Bastion of Endeavor Translation
 	. += "<b>Jukebox Volume:</b>"
 	. += "<a href='?src=\ref[src];change_media_volume=1'><b>[round(pref.media_volume * 100)]%</b></a><br>"
@@ -39,7 +61,11 @@
 	. += (pref.media_player == 0) ? "<span class='linkOn'><b>VLC</b></span> " : "<a href='?src=\ref[src];set_media_player=0'>VLC</a> "
 	. += "<br>"
 
+/* Bastion of Endeavor Edit: 
 /datum/category_item/player_setup_item/volume_sliders/media/OnTopic(var/href, var/list/href_list, var/mob/user)
+*/
+/datum/category_item/player_setup_item/player_global/media/OnTopic(var/href, var/list/href_list, var/mob/user)
+// End of Bastion of Endeavor Edit
 	if(href_list["change_media_volume"])
 		if(CanUseTopic(user))
 			/* Bastion of Endeavor Translation

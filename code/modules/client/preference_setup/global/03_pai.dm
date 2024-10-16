@@ -11,9 +11,9 @@
 	var/datum/paiCandidate/candidate
 
 /* Bastion of Endeavor Edit
-/datum/category_item/player_setup_item/player_global/pai/load_preferences(var/savefile/S)
+/datum/category_item/player_setup_item/player_global/pai/load_preferences(datum/json_savefile/savefile)
 */
-/datum/category_item/player_setup_item/antagonism/pai/load_preferences(var/savefile/S)
+/datum/category_item/player_setup_item/antagonism/pai/load_preferences(datum/json_savefile/savefile)
 // End of Bastion of Endeavor Edit
 	if(!candidate)
 		candidate = new()
@@ -28,11 +28,11 @@
 
 	candidate.savefile_load(preference_mob)
 
-/* Bastion of Endeavor Edit
-/datum/category_item/player_setup_item/player_global/pai/save_preferences(var/savefile/S)
+/* Bastion of Endeavor Translation
+/datum/category_item/player_setup_item/player_global/pai/save_preferences(datum/json_savefile/savefile)
 */
-/datum/category_item/player_setup_item/antagonism/pai/save_preferences(var/savefile/S)
-// End of Bastion of Endeavor Edit
+/datum/category_item/player_setup_item/antagonism/pai/save_preferences(datum/json_savefile/savefile)
+// End of Bastion of Endeavor Translation
 	if(!candidate)
 		return
 

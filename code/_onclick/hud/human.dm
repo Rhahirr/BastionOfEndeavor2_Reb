@@ -508,6 +508,7 @@
 	HUD.inventory_shown = 0
 
 /mob/living/carbon/human/verb/toggle_hotkey_verbs()
+	/* Bastion of Endeavor Removal: Handled in TGUI prefs now
 	/* Bastion of Endeavor Translation
 	set category = "OOC.Client Settings" //CHOMPEdit
 	set name = "Toggle hotkey buttons"
@@ -517,6 +518,8 @@
 	set name = "Отображение хоткейных клавиш"
 	set desc = "Скрыть/отобразить на интерфейсе кнопки, используемые через хоткеи."
 	// End of Bastion of Endeavor Translation
+	*/
+	// End of Bastion of Endeavor Removal
 
 	if(hud_used.hotkey_ui_hidden)
 		client.screen += hud_used.hotkeybuttons

@@ -225,7 +225,7 @@ export const SettingsGeneral = (props) => {
             /* Bastion of Endeavor Translation
             tooltip="Enabling this will prepend timestamps to all messages."
            */
-            tooltip="При включенной настройке перед сообщениями будет отображаться отметка времени отправки."
+            tooltip="При включенной настройке перед сообщениями будет отображаться отметка времени отправления."
             mr="5px"
             onClick={() =>
               dispatch(

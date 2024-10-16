@@ -8,56 +8,6 @@
 	var/job_other_med = 0
 	var/job_other_high = 0
 
-/client/verb/toggle_random_emote_pitch()
-	/* Bastion of Endeavor Translation: I hate this
-	set name = "Toggle Random Emote Pitch"
-	set category = "Preferences.Character"
-	set desc = "Toggles whether or not emotes with sound you make will have random pitch."
-	*/
-	set name = "Случайный тон озвученных действий"
-	set category = "Предпочтения.Персонаж"
-	set desc = "Переключить случайное изменение высоты голоса при озвученных действиях."
-	// End of Bastion of Endeavor Translation
-
-	var/pref_path = /datum/client_preference/random_emote_pitch
-
-	toggle_preference(pref_path)
-
-	/* Bastion of Endeavor Translation
-	to_chat(src, "Audible emotes you make will [ (is_preference_enabled(pref_path)) ? "now" : "no longer"] have a random pitch applied to them.")
-	*/
-	to_chat(src, "Озвученные действия [ (is_preference_enabled(pref_path)) ? "теперь" : "больше не"] будут случайно изменять высоту голоса.")
-	// End of Bastion of Endeavor Translation
-
-	SScharacter_setup.queue_preferences_save(prefs)
-
-	feedback_add_details("admin_verb","TRandomEmotePitch") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
-/client/verb/toggle_autotranscore()
-	/* Bastion of Endeavor Translation
-	set name = "Toggle Automatic Transcore Notification"
-	set category = "Preferences.Character"
-	set desc = "Toggles whether or not your death with a backup implant will automatically trigger a transcore notification after a few minutes."
-	*/
-	set name = "Автоматическое уведомление трансядра"
-	set category = "Предпочтения.Персонаж"
-	set desc = "Переключить автоматическое уведомление трансядра в случае вашей смерти с имплантатом резервного копирования."
-	// End of Bastion of Endeavor Translation
-
-	var/pref_path = /datum/client_preference/autotranscore
-
-	toggle_preference(pref_path)
-
-	/* Bastion of Endeavor Translation
-	to_chat(src, "Your death with a backup implant will [ (is_preference_enabled(pref_path)) ? "now" : "no longer"] trigger an automatic transcore notification.")
-	*/
-	to_chat(src, "Ваша смерть [ (is_preference_enabled(pref_path)) ? "теперь" : "больше не"] будет автоматически уведомлять трансядро.")
-	// End of Bastion of Endeavor Translation
-
-	SScharacter_setup.queue_preferences_save(prefs)
-
-	feedback_add_details("admin_verb","TAutoTranscore") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
 /datum/preferences/proc/vanity_copy_to(var/mob/living/carbon/human/character, var/copy_name, var/copy_flavour = TRUE, var/copy_ooc_notes = FALSE, var/convert_to_prosthetics = FALSE)
 	//snowflake copy_to, does not copy anything but the vanity things
 	//does not check if the name is the same, do that in any proc that calls this proc

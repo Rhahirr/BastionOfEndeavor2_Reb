@@ -15,7 +15,7 @@
 	*/
 	set name = "Режим активации скафандра"
 	set desc = "Переключить режим активации жёсткого скафандра."
-	set category = "OOC.Настройки игры"
+	set category = "Предпочтения.Игра"
 	// End of Bastion of Endeavor Translation
 
 	hardsuit_click_mode++
