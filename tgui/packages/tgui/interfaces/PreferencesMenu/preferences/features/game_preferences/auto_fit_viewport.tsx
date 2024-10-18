@@ -8,7 +8,7 @@ export const auto_fit_viewport: FeatureToggle = {
     'Automatically adjust vertical split to make map perfectly scaled.',
   */
   name: 'Автоматическое выравнивание ширины',
-  category: 'Интерфейс',
+  category: 'ИНТЕРФЕЙС',
   description:
     'Автоматически выравнивать ширину окна игры и чата в правильном соотношении.',
   // End of Bastion of Endeavor Translation
