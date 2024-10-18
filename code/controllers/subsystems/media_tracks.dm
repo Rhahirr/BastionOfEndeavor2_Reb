@@ -316,9 +316,9 @@ SUBSYSTEM_DEF(media_tracks)
 			return
 
 	/* Bastion of Endeavor Translation
-	to_chat(C, "<span class='warning>Couldn't find a track matching the specified parameters.</span>")
+	to_chat(C, "<span class='warning'>Couldn't find a track matching the specified parameters.</span>")
 	*/
-	to_chat(C, "<span class='warning>Не удалось найти соответствующий заданным параметрам трек.</span>")
+	to_chat(C, "<span class='warning'>Не удалось найти соответствующий заданным параметрам трек.</span>")
 	// End of Bastion of Endeavor Translation
 
 /datum/controller/subsystem/media_tracks/proc/add_track(var/mob/user, var/new_url, var/new_title, var/new_duration, var/new_artist, var/new_genre, var/new_secret, var/new_lobby)
