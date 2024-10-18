@@ -655,7 +655,7 @@
 /client/verb/game_options()
 	/* Bastion of Endeavor Translation
 	set name = "Game Options"
-	set category = "Preferences"
+	set category = "Preferences.Game" //CHOMPEdit
 	*/
 	set name = "Настройки игры"
 	set category = "Предпочтения.Игра"
