@@ -5,7 +5,6 @@
 	*/
 	var/preferred_language = "Общий" // VOREStation Edit: Allow selecting a preferred language
 	// End of Bastion of Endeavor Translation
->>>>>>> 7dc3a70376 ([MIRROR] Allow choosing your own runechat color (#9082))
 
 /datum/category_item/player_setup_item/general/language
 	name = "Language"
