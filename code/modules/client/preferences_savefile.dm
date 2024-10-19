@@ -81,13 +81,23 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	// Migration for nifs, again, to get rid of the /device path
 	if(current_version < 15)
+		/* Bastion of Endeavor Translation
 		log_debug("[client_ckey] preferences migrating from [current_version] to v15....")
 		to_chat(client, span_danger("Migrating savefile from version [current_version] to v15..."))
+		*/
+		log_debug("Производится перенос предпочтений [client_ckey] с v[current_version] на v15...")
+		to_chat(client, span_danger("Производится перенос файла сохранения с v[current_version] на v15..."))
+		// End of Bastion of Endeavor Translation
 
 		migration_15_nif_path(S)
 
+		/* Bastion of Endeavor Translation
 		log_debug("[client_ckey] preferences successfully migrated from [current_version] to v15.")
 		to_chat(client, span_danger("v15 savefile migration complete."))
+		*/
+		log_debug("Успешно завершен перенос предпочтений [client_ckey] с v[current_version] на v15.")
+		to_chat(client, span_danger("Завершен перенос файла сохранения на v15."))
+		// End of Bastion of Endeavor Translation
 
 
 /datum/preferences/proc/update_character(current_version, list/save_data)
