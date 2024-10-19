@@ -35,9 +35,9 @@ SUBSYSTEM_DEF(job)
 	var/list/all_jobs = subtypesof(/datum/job)
 	if(!all_jobs.len)
 		/* Bastion of Endeavor Translation
-		to_chat(world, span("warning", "Error setting up jobs, no job datums found"))
+		to_chat(world, span_warning("Error setting up jobs, no job datums found"))
 		*/
-		to_chat(world, span("warning", "Ошибка при инициализации работ: не найдены датумы работ."))
+		to_chat(world, span_warning("Ошибка при инициализации работ: не найдены датумы работ."))
 		// End of Bastion of Endeavor Translation
 		return FALSE
 

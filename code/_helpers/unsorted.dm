@@ -1438,54 +1438,54 @@ var/mob/dview/dview_mob = new
 	if (NOT_FLAG(USE_ALLOW_NON_ADJACENT) && !Adjacent(user))
 		if (show_messages)
 			/* Bastion of Endeavor Translation
-			to_chat(user, span("notice","You're too far away from [src] to do that."))
+			to_chat(user, span_notice("You're too far away from [src] to do that."))
 			*/
-			to_chat(user, span("notice","Вы находитесь слишком далеко от [gcase_ru(src)], чтобы выполнить это действие."))
+			to_chat(user, span_notice("Вы находитесь слишком далеко от [gcase_ru(src)], чтобы выполнить это действие."))
 			// End of Bastion of Endeavor Translation
 		return USE_FAIL_NON_ADJACENT
 
 	if (NOT_FLAG(USE_ALLOW_DEAD) && user.stat == DEAD)
 		if (show_messages)
 			/* Bastion of Endeavor Translation
-			to_chat(user, span("notice","You can't do that when you're dead."))
+			to_chat(user, span_notice("You can't do that when you're dead."))
 			*/
-			to_chat(user, span("notice","Вы не можете выполнить это действие будучи [verb_ru(user, "мёртв;ым;ой;ым;ыми;")]."))
+			to_chat(user, span_notice("Вы не можете выполнить это действие будучи [verb_ru(user, "мёртв;ым;ой;ым;ыми;")]."))
 			// End of Bastion of Endeavor Translation
 		return USE_FAIL_DEAD
 
 	if (NOT_FLAG(USE_ALLOW_INCAPACITATED) && (user.incapacitated()))
 		if (show_messages)
 			/* Bastion of Endeavor Translation
-			to_chat(user, span("notice","You cannot do that in your current state."))
+			to_chat(user, span_notice("You cannot do that in your current state."))
 			*/
-			to_chat(user, span("notice","Вы не можете выполнить это действие в своём текущем состоянии."))
+			to_chat(user, span_notice("Вы не можете выполнить это действие в своём текущем состоянии."))
 			// End of Bastion of Endeavor Translation
 		return USE_FAIL_INCAPACITATED
 
 	if (NOT_FLAG(USE_ALLOW_NON_ADV_TOOL_USR) && !user.IsAdvancedToolUser())
 		if (show_messages)
 			/* Bastion of Endeavor Translation
-			to_chat(user, span("notice","You don't know how to operate [src]."))
+			to_chat(user, span_notice("You don't know how to operate [src]."))
 			*/
-			to_chat(user, span("notice","Вы не умеете пользоваться [icase_ru(src)]."))
+			to_chat(user, span_notice("Вы не умеете пользоваться [icase_ru(src)]."))
 			// End of Bastion of Endeavor Translation
 		return USE_FAIL_NON_ADV_TOOL_USR
 
 	if (HAS_FLAG(USE_DISALLOW_SILICONS) && issilicon(user))
 		if (show_messages)
 			/* Bastion of Endeavor Translation
-			to_chat(user, span("notice","You need hands for that."))
+			to_chat(user, span_notice("You need hands for that."))
 			*/
-			to_chat(user, span("notice","Для выполнения этого действия вам необходимы руки."))
+			to_chat(user, span_notice("Для выполнения этого действия вам необходимы руки."))
 			// End of Bastion of Endeavor Translation
 		return USE_FAIL_IS_SILICON
 
 	if (HAS_FLAG(USE_FORCE_SRC_IN_USER) && !(src in user))
 		if (show_messages)
 			/* Bastion of Endeavor Translation
-			to_chat(user, span("notice","You need to be holding [src] to do that."))
+			to_chat(user, span_notice("You need to be holding [src] to do that."))
 			*/
-			to_chat(user, span("notice","Для выполнения этого действия необходимо держать [acase_ru(src)]."))
+			to_chat(user, span_notice("Для выполнения этого действия необходимо держать [acase_ru(src)]."))
 			// End of Bastion of Endeavor Translation
 		return USE_FAIL_NOT_IN_USER
 
