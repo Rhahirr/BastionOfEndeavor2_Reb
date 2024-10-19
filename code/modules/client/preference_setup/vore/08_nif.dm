@@ -1,6 +1,6 @@
 //Pretty small file, mostly just for storage.
 /datum/preferences
-	var/obj/item/device/nif/nif_path
+	var/obj/item/nif/nif_path
 	var/nif_durability
 	var/list/nif_savedata
 
@@ -45,7 +45,7 @@
 			WARNING("Загружен НИФ с недопустимым путём, [pref.real_name]")
 			// End of Bastion of Endeavor Translation
 
-	if (ispath(pref.nif_path, /obj/item/device/nif/protean) && pref.species != SPECIES_PROTEAN) //no free nifs
+	if (ispath(pref.nif_path, /obj/item/nif/protean) && pref.species != SPECIES_PROTEAN) //no free nifs
 		pref.nif_path = null
 
 	if(ispath(pref.nif_path) && isnull(pref.nif_durability))		//How'd you lose this?

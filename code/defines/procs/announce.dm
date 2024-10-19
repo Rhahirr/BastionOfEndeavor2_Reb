@@ -169,7 +169,7 @@
 		message_admins("[key_name_admin(usr)] сделал: [announcement_type].", 1)
 		// End of Bastion of Endeavor Translation
 
-/proc/GetNameAndAssignmentFromId(var/obj/item/weapon/card/id/I)
+/proc/GetNameAndAssignmentFromId(var/obj/item/card/id/I)
 	// Format currently matches that of newscaster feeds: Registered Name (Assigned Rank)
 	return I.assignment ? "[I.registered_name] ([I.assignment])" : I.registered_name
 

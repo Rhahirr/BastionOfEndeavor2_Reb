@@ -145,7 +145,7 @@
 
 // I'm on a
 /datum/riding/boat
-	keytype = /obj/item/weapon/oar
+	keytype = /obj/item/oar
 	/* Bastion of Endeavor Translation
 	key_name = "an oar"
 	*/

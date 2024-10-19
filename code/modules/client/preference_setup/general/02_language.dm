@@ -5,6 +5,7 @@
 	*/
 	var/preferred_language = "Общий" // VOREStation Edit: Allow selecting a preferred language
 	// End of Bastion of Endeavor Translation
+	var/runechat_color = COLOR_BLACK
 
 /datum/category_item/player_setup_item/general/language
 	name = "Language"

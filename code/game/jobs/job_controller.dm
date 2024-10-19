@@ -581,7 +581,7 @@ var/global/datum/controller/occupations/job_master
 
 				// Implants get special treatment
 				if(G.slot == "implant")
-					var/obj/item/weapon/implant/I = G.spawn_item(H, H.client.prefs.gear[G.display_name])
+					var/obj/item/implant/I = G.spawn_item(H, H.client.prefs.gear[G.display_name])
 					I.invisibility = 100
 					I.implant_loadout(H)
 					continue
@@ -703,8 +703,8 @@ var/global/datum/controller/occupations/job_master
 
 		//Deferred item spawning.
 		if(spawn_in_storage && spawn_in_storage.len)
-			var/obj/item/weapon/storage/B
-			for(var/obj/item/weapon/storage/S in H.contents)
+			var/obj/item/storage/B
+			for(var/obj/item/storage/S in H.contents)
 				B = S
 				break
 
@@ -731,7 +731,7 @@ var/global/datum/controller/occupations/job_master
 	if(istype(H)) //give humans wheelchairs, if they need them.
 		var/obj/item/organ/external/l_foot = H.get_organ("l_foot")
 		var/obj/item/organ/external/r_foot = H.get_organ("r_foot")
-		var/obj/item/weapon/storage/S = locate() in H.contents
+		var/obj/item/storage/S = locate() in H.contents
 		var/obj/item/wheelchair/R
 		if(S)
 			R = locate() in S.contents
@@ -759,7 +759,7 @@ var/global/datum/controller/occupations/job_master
 		to_chat(H, "<span class='filter_notice'><b>[job.supervisors]<br>Особые обстоятельства могут это изменить.</b></span>")
 		// End of Bastion of Endeavor Translation
 	if(job.has_headset)
-		H.equip_to_slot_or_del(new /obj/item/device/radio/headset(H), slot_l_ear)
+		H.equip_to_slot_or_del(new /obj/item/radio/headset(H), slot_l_ear)
 		/* Bastion of Endeavor Translation: Oddly, I am removing a bit of clarity here, since say code isn't localized at the time of doing this
 		to_chat(H, "<span class='filter_notice'><b>To speak on your department's radio channel use :h. For the use of other channels, examine your headset.</b></span>")
 		*/
