@@ -958,7 +958,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 				var/gore_sound = "[(robotic >= ORGAN_ROBOT) ? "tortured metal" : "ripping tendons and flesh"]"
 				owner.visible_message(
 					span_danger("\The [owner]'s [src.name] flies off in an arc!"),\
-					span_moderate("<b>Your [src.name] goes flying off!</b>"),\
+					span_bolddanger("Your [src.name] goes flying off!"),\
 					span_danger("You hear a terrible sound of [gore_sound]."))
 				*/
 				var/gore_sound = "[(robotic >= ORGAN_ROBOT) ? "Вы слышите ужасающий скрежет металла" : "Вы слышите, как рвутся сухожилия и плоть"]"
@@ -974,7 +974,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			var/gore = "[(robotic >= ORGAN_ROBOT) ? "": " of burning flesh"]"
 			owner.visible_message(
 				span_danger("\The [owner]'s [src.name] flashes away into ashes!"),\
-				span_moderate("<b>Your [src.name] flashes away into ashes!</b>"),\
+				span_bolddanger("Your [src.name] flashes away into ashes!"),\
 				span_danger("You hear a crackling sound[gore]."))
 			*/
 			var/gore = "[(robotic >= ORGAN_ROBOT) ? "": " горящей плоти"]"
@@ -991,7 +991,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			var/gore_sound = "[(status >= ORGAN_ROBOT) ? "rending sound of tortured metal" : "sickening splatter of gore"]"
 			owner.visible_message(
 				span_danger("\The [owner]'s [src.name] explodes[gore]!"),\
-				span_moderate("<b>Your [src.name] explodes[gore]!</b>"),\
+				span_bolddanger("Your [src.name] explodes[gore]!"),\
 				span_danger("You hear the [gore_sound]."))
 			*/
 			var/gore = "[(robotic >= ORGAN_ROBOT) ? "": ", разметав повсюду кровь и мясо"]"
