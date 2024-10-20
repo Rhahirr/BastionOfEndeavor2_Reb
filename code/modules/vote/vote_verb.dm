@@ -1,6 +1,6 @@
 /client/verb/vote()
 	/* Bastion of Endeavor Translation
-	set category = "OOC"
+	set category = "OOC.Game" // CHOMPedit
 	set name = "Vote"
 	*/
 	set category = "OOC.Игра"
@@ -18,7 +18,7 @@
 
 /client/proc/start_vote()
 	/* Bastion of Endeavor Translation
-	set category = "Admin"
+	set category = "Admin.Game" // CHOMPEdit
 	set name = "Start Vote"
 	set desc = "Start a vote on the server"
 	*/
