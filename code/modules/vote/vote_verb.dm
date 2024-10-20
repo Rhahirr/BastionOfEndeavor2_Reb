@@ -11,9 +11,9 @@
 		SSvote.active_vote.tgui_interact(usr)
 	else
 		/* Bastion of Endeavor Translation
-		to_chat(usr, "There is no active vote")
+		to_chat(usr, span_warning("There is no active vote"))
 		*/
-		to_chat(usr, "На данный момент не проводится голосование.")
+		to_chat(usr, span_warning("На данный момент не проводится голосование."))
 		// End of Bastion of Endeavor Translation
 
 /client/proc/start_vote()
@@ -32,9 +32,9 @@
 
 	if(SSvote.active_vote)
 		/* Bastion of Endeavor Translation
-		to_chat(usr, "A vote is already in progress")
+		to_chat(usr, span_warning("A vote is already in progress"))
 		*/
-		to_chat(usr, "На данный момент уже проводится голосование.")
+		to_chat(usr, span_warning("На данный момент уже проводится голосование."))
 		// End of Bastion of Endeavor Translation
 		return
 
