@@ -195,7 +195,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 				BadBoy.critfail()
 		if(msg)
 			log_game(msg)
-			message_admins("<span class='boldannounce'>[msg]</span>")
+			message_admins(span_boldannounce("[msg]"))
 			log_world(msg)
 
 	if (istype(Master.subsystems))
@@ -207,9 +207,9 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 		StartProcessing(10)
 	else
 		/* Bastion of Endeavor Translation
-		to_world("<span class='boldannounce'>The Master Controller is having some issues, we will need to re-initialize EVERYTHING</span>")
+		to_world(span_boldannounce("The Master Controller is having some issues, we will need to re-initialize EVERYTHING"))
 		*/
-		to_chat(world, "<span class='boldannounce'>Главный контроллер не справляется, придётся реинициализировать ВСЁ.</span>")
+		to_chat(world, span_boldannounce("Главный контроллер не справляется, придётся реинициализировать ВСЁ."))
 		// End of Bastion of Endeavor Translation
 		Initialize(20, TRUE)
 
@@ -229,9 +229,9 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 		init_subtypes(/datum/controller/subsystem, subsystems)
 
 	/* Bastion of Endeavor Translation
-	to_chat(world, "<span class='boldannounce'>MC: Initializing subsystems...</span>")
+	to_chat(world, span_boldannounce("MC: Initializing subsystems..."))
 	*/
-	to_chat(world, "<span class='boldannounce'>Инициализация подсистем...</span>")
+	to_chat(world, span_boldannounce("Инициализация подсистем..."))
 	// End of Bastion of Endeavor Translation
 
 	// Sort subsystems by init_order, so they initialize in the correct order.
@@ -255,7 +255,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	*/
 	var/msg = "Инициализация завершена за [count_ru(time, "секунд;у;ы;")]!"
 	// End of Bastion of Endeavor Translation
-	to_chat(world, "<span class='boldannounce'>[msg]</span>")
+	to_chat(world, span_boldannounce("[msg]"))
 	log_world(msg)
 
 
@@ -856,15 +856,15 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 /datum/controller/master/StartLoadingMap(var/quiet = TRUE)
 	if(map_loading)
 		/* Bastion of Endeavor Translation
-		admin_notice("<span class='danger'>Another map is attempting to be loaded before first map released lock.  Delaying.</span>", R_DEBUG)
+		admin_notice(span_danger("Another map is attempting to be loaded before first map released lock.  Delaying."), R_DEBUG)
 		*/
-		admin_notice("<span class='danger'>Ещё одна карта пытается загрузиться до снятия блокировки первой картой. Откладываем.</span>", R_DEBUG)
+		admin_notice(span_danger("Ещё одна карта пытается загрузиться до снятия блокировки первой картой. Откладываем."), R_DEBUG)
 		// End of Bastion of Endeavor Translation
 	else if(!quiet)
 		/* Bastion of Endeavor Translation
-		admin_notice("<span class='danger'>Map is now being built.  Locking.</span>", R_DEBUG)
+		admin_notice(span_danger("Map is now being built.  Locking."), R_DEBUG)
 		*/
-		admin_notice("<span class='danger'>Строится карта. Производим блокировку.</span>", R_DEBUG)
+		admin_notice(span_danger("Строится карта. Производим блокировку."), R_DEBUG)
 		// End of Bastion of Endeavor Translation
 
 	//disallow more than one map to load at once, multithreading it will just cause race conditions
@@ -878,9 +878,9 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 /datum/controller/master/StopLoadingMap(var/quiet = TRUE)
 	if(!quiet)
 		/* Bastion of Endeavor Translation
-		admin_notice("<span class='danger'>Map is finished.  Unlocking.</span>", R_DEBUG)
+		admin_notice(span_danger("Map is finished.  Unlocking."), R_DEBUG)
 		*/
-		admin_notice("<span class='danger'>Карта готова. Производим разблокировку.</span>", R_DEBUG)
+		admin_notice(span_danger("Карта готова. Производим разблокировку."), R_DEBUG)
 		// End of Bastion of Endeavor Translation
 	map_loading = FALSE
 	for(var/datum/controller/subsystem/SS as anything in subsystems)

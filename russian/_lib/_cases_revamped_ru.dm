@@ -135,7 +135,7 @@ var/global/list/successful_cases_ru = list()
 /proc/log_grammar_ru(text)
 	WRITE_LOG(grammar_log_ru, "ПАДЕЖИ: [text]")
 	for(var/client/C in GLOB.admins)
-		to_chat(C, "<span class='filter_debuglog'>ПАДЕЖИ: [text]</span>")
+		to_chat(C, span_filter_debuglogs("ПАДЕЖИ: [text]"))
 
 /datum/proc/update_blueprint_ru(var/left, var/right, var/separator_left = "", var/separator_right = "", var/index = "basic", var/gender)
 	

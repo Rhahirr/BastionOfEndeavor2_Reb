@@ -303,9 +303,9 @@
 		return // Paranoid.
 	if(isnull(slot) || !isnum(slot))
 		/* Bastion of Endeavor Translation
-		to_chat(src, "<span class='warning'>.activate_ability requires a number as input, corrisponding to the slot you wish to use.</span>")
+		to_chat(src, span_warning(".activate_ability requires a number as input, corrisponding to the slot you wish to use."))
 		*/
-		to_chat(src, "<span class='warning'>Глагол .activate_ability требует число, соответствующее нужному вам слоту.</span>")
+		to_chat(src, span_warning("Глагол .activate_ability требует число, соответствующее нужному вам слоту."))
 		// End of Bastion of Endeavor Translation
 		return // Bad input.
 	if(!mob.ability_master)

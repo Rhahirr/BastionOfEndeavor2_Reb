@@ -94,9 +94,9 @@
 	..()
 	if(is_broken() && !oldbroken && owner && !owner.stat)
 		/* Bastion of Endeavor Translation
-		to_chat(owner, "<span class='danger'>You go blind!</span>")
+		to_chat(owner, span_danger("You go blind!"))
 		*/
-		to_chat(owner, "<span class='danger'>Вы ослепли!</span>")
+		to_chat(owner, span_danger("Вы ослепли!"))
 		// End of Bastion of Endeavor Translation
 
 /obj/item/organ/internal/eyes/process() //Eye damage replaces the old eye_stat var.

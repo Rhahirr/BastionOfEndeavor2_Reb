@@ -380,17 +380,17 @@ var/obj/screen/robot_inventory
 
 		if(!r.module)
 			/* Bastion of Endeavor Translation
-			to_chat(usr, "<span class='danger'>No module selected</span>")
+			to_chat(usr, span_danger("No module selected"))
 			*/
-			to_chat(usr, "<span class='danger'>Не выбран модуль.</span>")
+			to_chat(usr, span_danger("Не выбран модуль."))
 			// End of Bastion of Endeavor Translation
 			return
 
 		if(!r.module.modules)
 			/* Bastion of Endeavor Translation: sorry what 
-			to_chat(usr, "<span class='danger'>Selected module has no modules to select</span>")
+			to_chat(usr, span_danger("Selected module has no modules to select"))
 			*/
-			to_chat(usr, "<span class='danger'>В данном модуле отсутствуют модули.</span>")
+			to_chat(usr, span_danger("В данном модуле отсутствуют модули."))
 			// End of Bastion of Endeavor Translation
 			return
 

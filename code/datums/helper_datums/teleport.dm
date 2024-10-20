@@ -188,18 +188,18 @@ var/bluespace_item_types = newlist(/obj/item/storage/backpack/holding,
 		if(istype(teleatom, /mob/living))
 			var/mob/living/MM = teleatom
 			/* Bastion of Endeavor Translation
-			to_chat(MM, "<span class='danger'>The Bluespace interface on your [teleatom] interferes with the teleport!</span>")
+			to_chat(MM, span_danger("The Bluespace interface on your [teleatom] interferes with the teleport!"))
 			*/
-			to_chat(MM, "<span class='danger'>Синепространственный интерфейс на [concat_ru("ваш;ем;ей;ем;их;;", teleatom, PCASE)] вмешался в процесс телепортации!</span>")
+			to_chat(MM, span_danger("Синепространственный интерфейс на [concat_ru("ваш;ем;ей;ем;их;;", teleatom, PCASE)] вмешался в процесс телепортации!"))
 			// End of Bastion of Endeavor Translation
 	return 1
 
 /datum/teleport/instant/science/teleportChecks()
 	if(istype(teleatom, /obj/item/disk/nuclear)) // Don't let nuke disks get teleported --NeoFite
 		/* Bastion of Endeavor Translation
-		teleatom.visible_message("<span class='danger'>\The [teleatom] bounces off of the portal!</span>")
+		teleatom.visible_message(span_danger("\The [teleatom] bounces off of the portal!"))
 		*/
-		teleatom.visible_message("<span class='danger'>[interact_ru(teleatom, "отскочил")] от портала!</span>")
+		teleatom.visible_message(span_danger("[interact_ru(teleatom, "отскочил")] от портала!"))
 		// End of Bastion of Endeavor Translation
 		return 0
 
@@ -207,25 +207,25 @@ var/bluespace_item_types = newlist(/obj/item/storage/backpack/holding,
 		if(istype(teleatom, /mob/living))
 			var/mob/living/MM = teleatom
 			/* Bastion of Endeavor Translation
-			MM.visible_message("<span class='danger'>\The [MM] bounces off of the portal!</span>","<span class='warning'>Something you are carrying seems to be unable to pass through the portal. Better drop it if you want to go through.</span>")
+			MM.visible_message(span_danger("\The [MM] bounces off of the portal!"),span_warning("Something you are carrying seems to be unable to pass through the portal. Better drop it if you want to go through."))
 			*/
-			MM.visible_message("<span class='danger'>[interact_ru(MM, "отскочил")] от портала!</span>","<span class='warning'>Какая-то из ваших вещей не может войти в портал. Чтобы пройти, вам необходимо избавиться от этой вещи.</span>")
+			MM.visible_message(span_danger("[interact_ru(MM, "отскочил")] от портала!"),span_warning("Какая-то из ваших вещей не может войти в портал. Чтобы пройти, вам необходимо избавиться от этой вещи."))
 			// End of Bastion of Endeavor Translation
 		else
 			/* Bastion of Endeavor Translation
-			teleatom.visible_message("<span class='danger'>\The [teleatom] bounces off of the portal!</span>")
+			teleatom.visible_message(span_danger("\The [teleatom] bounces off of the portal!"))
 			*/
-			teleatom.visible_message("<span class='danger'>[interact_ru(teleatom, "отскочил")] от портала!</span>")
+			teleatom.visible_message(span_danger("[interact_ru(teleatom, "отскочил")] от портала!"))
 			// End of Bastion of Endeavor Translation
 		return 0
 	/* VOREStation Removal
 	if(destination.z in using_map.admin_levels) //CentCom z-level
 		if(istype(teleatom, /obj/mecha))
 			var/obj/mecha/MM = teleatom
-			to_chat(MM.occupant, "<span class='danger'>\The [MM] would not survive the jump to a location so far away!</span>")
+			to_chat(MM.occupant, span_danger("\The [MM] would not survive the jump to a location so far away!"))
 			return 0
 		if(!isemptylist(teleatom.search_contents_for(/obj/item/storage/backpack/holding)))
-			teleatom.visible_message("<span class='danger'>\The [teleatom] bounces off of the portal!</span>")
+			teleatom.visible_message(span_danger("\The [teleatom] bounces off of the portal!"))
 			return 0
 	*/ //VOREStation Removal End
 	//VOREStation Edit Start
@@ -234,9 +234,9 @@ var/bluespace_item_types = newlist(/obj/item/storage/backpack/holding,
 	if(local && !(dest_turf.z in using_map.player_levels))
 		if(istype(teleatom, /mob/living))
 			/* Bastion of Endeavor Translation
-			to_chat(teleatom, "<span class='warning'>The portal refuses to carry you that far away!</span>")
+			to_chat(teleatom, span_warning("The portal refuses to carry you that far away!"))
 			*/
-			to_chat(teleatom, "<span class='warning'>Портал не может переместить вас настолько далеко!</span>")
+			to_chat(teleatom, span_warning("Портал не может переместить вас настолько далеко!"))
 			// End of Bastion of Endeavor Translation
 		return 0
 	else if(istype(destination.loc, /obj/belly))
@@ -255,9 +255,9 @@ var/bluespace_item_types = newlist(/obj/item/storage/backpack/holding,
 	else if(!((isturf(destination) && !destination.density) || (isturf(destination.loc) && !destination.loc.density)) || !destination.x || !destination.y || !destination.z)	//If we're inside something or outside universe
 		obstructed = 1
 		/* Bastion of Endeavor Translation
-		to_chat(teleatom, "<span class='warning'>Something is blocking way on the other side!</span>")
+		to_chat(teleatom, span_warning("Something is blocking way on the other side!"))
 		*/
-		to_chat(teleatom, "<span class='warning'>Что-то блокирует выход на другой стороне!</span>")
+		to_chat(teleatom, span_warning("Что-то блокирует выход на другой стороне!"))
 		// End of Bastion of Endeavor Translation
 	if(obstructed)
 		return 0

@@ -257,9 +257,9 @@
 			// End of Bastion of Endeavor Translation
 		if(blood_color != SYNTH_BLOOD_COLOUR)
 			/* Bastion of Endeavor Translation
-			f_name += "<span class='danger'>blood-stained</span> [name][infix]!"
+			f_name += "[span_danger("blood-stained")] [name][infix]!"
 			*/
-			f_name += "<span class='danger'>[verb_ru(src, "окровавленн;ый;ая;ое;ые;")]</span> [ncase_ru(src)][infix]!"
+			f_name += "[span_danger(verb_ru(src, "окровавленн;ый;ая;ое;ые;"))] [ncase_ru(src)][infix]!"
 			// End of Bastion of Endeavor Translation
 		else
 			/* Bastion of Endeavor Translation
@@ -748,9 +748,9 @@
 	var/list/speech_bubble_hearers = list()
 	for(var/mob/M in get_mobs_in_view(7, src))
 		/* Bastion of Endeavor Translation: Bastion of Endeavor Note: Changing to ncase, kinda experimental
-		M.show_message("<span class='npcsay'><span class='name'>[src]</span> [atom_say_verb], \"[message]\"</span>", 2, null, 1)
+		M.show_message(span_npcsay("<span class='name'>[src]</span> [atom_say_verb], \"[message]\""), 2, null, 1)
 		*/
-		M.show_message("<span class='npcsay'><span class='name'>[cap_ru(src)]</span> [verb_ru(src, atom_say_verb)], \"[message]\"</span>", 2, null, 1)
+		M.show_message(span_npcsay("<span class='name'>[cap_ru(src)]</span> [verb_ru(src, atom_say_verb)], \"[message]\""), 2, null, 1)
 		// End of Bastion of Endeavor Translation
 		if(M.client)
 			speech_bubble_hearers += M.client

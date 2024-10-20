@@ -141,9 +141,9 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 
 	/* Bastion of Endeavor Translation
 	// Bastion of Endeavor TODO (MOB Realname / Initial): Again initial and real_name stuff is fucky so I'm not sure if this is ok
-	to_chat(brainmob, "<span class='notice'>You feel slightly disoriented. That's normal when you're just \a [initial(src.name)].</span>")
+	to_chat(brainmob, span_notice("You feel slightly disoriented. That's normal when you're just \a [initial(src.name)]."))
 	*/
-	to_chat(brainmob, "<span class='notice'>Вы чувствуете себя слегка [verb_ru(H, "дезориентированн;ым;ой;ым;ыми;")]. Это не удивительно, когда от вас [verb_ru(src, "остал;ся;ась;ось;ись;")] всего лишь [ncase_ru(src)].</span>")
+	to_chat(brainmob, span_notice("Вы чувствуете себя слегка [verb_ru(H, "дезориентированн;ым;ой;ым;ыми;")]. Это не удивительно, когда от вас [verb_ru(src, "остал;ся;ась;ось;ись;")] всего лишь [ncase_ru(src)]."))
 	// End of Bastion of Endeavor Translation
 	callHook("debrain", list(brainmob))
 
@@ -351,15 +351,15 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 	var/obj/item/organ/internal/brain/slime/brain = holder.my_atom
 	if(brain.reviveBody())
 		/* Bastion of Endeavor Translation
-		brain.visible_message("<span class='notice'>[brain] bubbles, surrounding itself with a rapidly expanding mass of slime!</span>")
+		brain.visible_message(span_notice("[brain] bubbles, surrounding itself with a rapidly expanding mass of slime!"))
 		*/
-		brain.visible_message("<span class='notice'>[cap_ru(brain)] [verb_ru(brain, "пузыр;ится;ится;ится;ятся;")], утопая в стремительно расширяющейся глыбе слизи!</span>")
+		brain.visible_message(span_notice("[cap_ru(brain)] [verb_ru(brain, "пузыр;ится;ится;ится;ятся;")], утопая в стремительно расширяющейся глыбе слизи!"))
 		// End of Bastion of Endeavor Translation
 	else
 		/* Bastion of Endeavor Translation
-		brain.visible_message("<span class='warning'>[brain] shifts strangely, but falls still.</span>")
+		brain.visible_message(span_warning("[brain] shifts strangely, but falls still."))
 		*/
-		brain.visible_message("<span class='warning'>[cap_ru(brain)] странно [verb_ru(brain, "дёрга;ется;ется;ется;ются;")], но быстро [verb_ru(brain, "успокаива;ется;ется;ется;ются;")].</span>")
+		brain.visible_message(span_warning("[cap_ru(brain)] странно [verb_ru(brain, "дёрга;ется;ется;ется;ются;")], но быстро [verb_ru(brain, "успокаива;ется;ется;ется;ются;")]."))
 		// End of Bastion of Endeavor Translation
 
 /obj/item/organ/internal/brain/golem

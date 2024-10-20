@@ -28,19 +28,19 @@
 	if(inflamed == 1)
 		if(prob(5))
 			/* Bastion of Endeavor Translation
-			to_chat(owner, "<span class='warning'>You feel a stinging pain in your abdomen!</span>")
+			to_chat(owner, span_warning("You feel a stinging pain in your abdomen!"))
 			owner.custom_emote(VISIBLE_MESSAGE, "winces slightly.")
 			*/
-			to_chat(owner, "<span class='warning'>Вы чувствуете покалывание в своём животе!</span>")
+			to_chat(owner, span_warning("Вы чувствуете покалывание в своём животе!"))
 			owner.custom_emote(VISIBLE_MESSAGE, "[verb_ru(owner, "слегка дёрнул;ся;ась;ось;ись;")].")
 			// End of Bastion of Endeavor Translation
 	if(inflamed > 1)
 		if(prob(3))
 			/* Bastion of Endeavor Translation
-			to_chat(owner, "<span class='warning'>You feel a stabbing pain in your abdomen!</span>")
+			to_chat(owner, span_warning("You feel a stabbing pain in your abdomen!"))
 			owner.custom_emote(VISIBLE_MESSAGE, "winces painfully.")
 			*/
-			to_chat(owner, "<span class='warning'>Вы чувствуете колющую боль в своём животе!</span>")
+			to_chat(owner, span_warning("Вы чувствуете колющую боль в своём животе!"))
 			owner.custom_emote(VISIBLE_MESSAGE, "[verb_ru(owner, "корч;ится;ится;ится;атся;")] от боли.")
 			// End of Bastion of Endeavor Translation
 			owner.adjustToxLoss(1)
@@ -50,9 +50,9 @@
 	if(inflamed > 3)
 		if(prob(1))
 			/* Bastion of Endeavor Translation
-			to_chat(owner, "<span class='danger'>Your abdomen is a world of pain!</span>")
+			to_chat(owner, span_danger("Your abdomen is a world of pain!"))
 			*/
-			to_chat(owner, "<span class='danger'>Ваш живот невыносимо болит!</span>")
+			to_chat(owner, span_danger("Ваш живот невыносимо болит!"))
 			// End of Bastion of Endeavor Translation
 			owner.Weaken(10)
 

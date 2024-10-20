@@ -16,9 +16,9 @@ var/global/datum/controller/occupations/job_master
 	var/list/all_jobs = list(/datum/job/assistant) | using_map.allowed_jobs
 	if(!all_jobs.len)
 		/* Bastion of Endeavor Translation
-		to_world("<span class='warning'>Error setting up jobs, no job datums found!</span>")
+		to_world(span_warning("Error setting up jobs, no job datums found!"))
 		*/
-		to_world("<span class='warning'>Ошибка при инициализации работ: не найдены датумы работ!</span>")
+		to_world(span_warning("Ошибка при инициализации работ: не найдены датумы работ!"))
 		// End of Bastion of Endeavor Translation
 		return 0
 	for(var/J in all_jobs)
@@ -528,9 +528,9 @@ var/global/datum/controller/occupations/job_master
 			var/turf/T = spawn_props["turf"]
 			if(!T)
 				/* Bastion of Endeavor Translation
-				to_chat(H, "<span class='critical'>You were unable to be spawned at your chosen late-join spawnpoint. Please verify your job/spawn point combination makes sense, and try another one.</span>")
+				to_chat(H, span_critical("You were unable to be spawned at your chosen late-join spawnpoint. Please verify your job/spawn point combination makes sense, and try another one."))
 				*/
-				to_chat(H, "<span class='critical'>Вам не удалось появиться в выбранной точке позднего появления. Убедитесь в соответствии точки появления вашей профессии и попробуйте другую.</span>")
+				to_chat(H, span_critical("Вам не удалось появиться в выбранной точке позднего появления. Убедитесь в соответствии точки появления вашей профессии и попробуйте другую."))
 				// End of Bastion of Endeavor Translation
 				return
 			else
@@ -573,9 +573,9 @@ var/global/datum/controller/occupations/job_master
 				// If they aren't, tell them
 				if(!permitted)
 					/* Bastion of Endeavor Translation
-					to_chat(H, "<span class='warning'>Your current species, job or whitelist status does not permit you to spawn with [thing]!</span>")
+					to_chat(H, span_warning("Your current species, job or whitelist status does not permit you to spawn with [thing]!"))
 					*/
-					to_chat(H, "<span class='warning'>Ваша раса, должность или запись в вайтлисте не позволяют вам надеть [acase_ru(thing_obj)]!</span>")
+					to_chat(H, span_warning("Ваша раса, должность или запись в вайтлисте не позволяют вам надеть [acase_ru(thing_obj)]!"))
 					// End of Bastion of Endeavor Translation
 					continue
 
@@ -598,9 +598,9 @@ var/global/datum/controller/occupations/job_master
 					*///CHOMPRemove End, remove RS No shoes
 					if(H.equip_to_slot_or_del(G.spawn_item(H, metadata), G.slot))
 						/* Bastion of Endeavor Translation
-						to_chat(H, "<span class='notice'>Equipping you with \the [thing]!</span>")
+						to_chat(H, span_notice("Equipping you with \the [thing]!"))
 						*/
-						to_chat(H, "<span class='notice'>На вас [verb_ru(thing_obj, "надет;;а;о;ы;")] [ncase_ru(thing_obj)]!</span>")
+						to_chat(H, span_notice("На вас [verb_ru(thing_obj, "надет;;а;о;ы;")] [ncase_ru(thing_obj)]!"))
 						// End of Bastion of Endeavor Translation
 						if(G.slot != slot_tie)
 							custom_equip_slots.Add(G.slot)
@@ -640,18 +640,18 @@ var/global/datum/controller/occupations/job_master
 				var/metadata = H.client.prefs.gear[G.display_name]
 				if(H.equip_to_slot_or_del(G.spawn_item(H, metadata), G.slot))
 					/* Bastion of Endeavor Translation
-					to_chat(H, "<span class='notice'>Equipping you with \the [thing]!</span>")
+					to_chat(H, span_notice("Equipping you with \the [thing]!"))
 					*/
-					to_chat(H, "<span class='notice'>На вас [verb_ru(thing_obj, "надет;;а;о;ы;")] [ncase_ru(thing_obj)]!</span>")
+					to_chat(H, span_notice("На вас [verb_ru(thing_obj, "надет;;а;о;ы;")] [ncase_ru(thing_obj)]!"))
 					// End of Bastion of Endeavor Translation
 					custom_equip_slots.Add(G.slot)
 				else
 					spawn_in_storage += thing
 	else
 		/* Bastion of Endeavor Translation
-		to_chat(H, "<span class='filter_notice'>Your job is [rank] and the game just can't handle it! Please report this bug to an administrator.</span>")
+		to_chat(H, span_filter_notice("Your job is [rank] and the game just can't handle it! Please report this bug to an administrator."))
 		*/
-		to_chat(H, "<span class='filter_notice'>Ваша должность – [rank], и игра к этому не была готова! Доложите об этом администратору.</span>")
+		to_chat(H, span_filter_notice("Ваша должность – [rank], и игра к этому не была готова! Доложите об этом администратору."))
 		// End of Bastion of Endeavor Translation
 
 	H.job = rank
@@ -711,21 +711,21 @@ var/global/datum/controller/occupations/job_master
 			if(!isnull(B))
 				for(var/thing in spawn_in_storage)
 					/* Bastion of Endeavor Edit: Reordered stuff basically
-					to_chat(H, "<span class='notice'>Placing \the [thing] in your [B.name]!</span>")
+					to_chat(H, span_notice("Placing \the [thing] in your [B.name]!"))
 					var/datum/gear/G = gear_datums[thing]
 					*/
 					var/datum/gear/G = gear_datums[thing]
 					var/thing_obj
 					if(ispath(G.path))
 						thing_obj = new G.path
-					to_chat(H, "<span class='notice'>[cap_ru(thing_obj)] [verb_ru(thing, "был")] [verb_ru(thing, "помещ;ён;ена;ено;ены;")] в [concat_ru("ваш;;у;е;и;", B, ACASE)]!</span>")
+					to_chat(H, span_notice("[cap_ru(thing_obj)] [verb_ru(thing, "был")] [verb_ru(thing, "помещ;ён;ена;ено;ены;")] в [concat_ru("ваш;;у;е;и;", B, ACASE)]!"))
 					var/metadata = H.client.prefs.gear[G.display_name]
 					G.spawn_item(B, metadata)
 			else
 				/* Bastion of Endeavor Translation
-				to_chat(H, "<span class='danger'>Failed to locate a storage object on your mob, either you spawned with no arms and no backpack or this is a bug.</span>")
+				to_chat(H, span_danger("Failed to locate a storage object on your mob, either you spawned with no arms and no backpack or this is a bug."))
 				*/
-				to_chat(H, "<span class='danger'>Не удалось найти свободное место на вашем существе; либо вы заспавнились без рук и рюкзака, либо это баг.</span>")
+				to_chat(H, span_danger("Не удалось найти свободное место на вашем существе; либо вы заспавнились без рук и рюкзака, либо это баг."))
 				// End of Bastion of Endeavor Translation
 
 	if(istype(H)) //give humans wheelchairs, if they need them.
@@ -747,30 +747,30 @@ var/global/datum/controller/occupations/job_master
 				qdel(R)
 
 	/* Bastion of Endeavor Translation
-	to_chat(H, "<span class='filter_notice'><B>You are [job.total_positions == 1 ? "the" : "a"] [alt_title ? alt_title : rank].</B></span>")
+	to_chat(H, span_filter_notice("<B>You are [job.total_positions == 1 ? "the" : "a"] [alt_title ? alt_title : rank].</B>"))
 	*/
-	to_chat(H, "<span class='filter_notice'><B>Ваша должность – [uncapitalize_ru("[alt_title ? alt_title : rank]")].</B></span>")
+	to_chat(H, span_filter_notice("<B>Ваша должность – [uncapitalize_ru("[alt_title ? alt_title : rank]")].</B>"))
 	// End of Bastion of Endeavor Translation
 
 	if(job.supervisors)
 		/* Bastion of Endeavor Translation: supervisors var has more text so yeah
-		to_chat(H, "<span class='filter_notice'><b>As the [alt_title ? alt_title : rank] you answer directly to [job.supervisors]. Special circumstances may change this.</b></span>")
+		to_chat(H, span_filter_notice("<b>As the [alt_title ? alt_title : rank] you answer directly to [job.supervisors]. Special circumstances may change this.</b>"))
 		*/
-		to_chat(H, "<span class='filter_notice'><b>[job.supervisors]<br>Особые обстоятельства могут это изменить.</b></span>")
+		to_chat(H, span_filter_notice("<b>[job.supervisors]<br>Особые обстоятельства могут это изменить.</b>"))
 		// End of Bastion of Endeavor Translation
 	if(job.has_headset)
 		H.equip_to_slot_or_del(new /obj/item/radio/headset(H), slot_l_ear)
 		/* Bastion of Endeavor Translation: Oddly, I am removing a bit of clarity here, since say code isn't localized at the time of doing this
-		to_chat(H, "<span class='filter_notice'><b>To speak on your department's radio channel use :h. For the use of other channels, examine your headset.</b></span>")
+		to_chat(H, span_filter_notice("<b>To speak on your department's radio channel use :h. For the use of other channels, examine your headset.</b>"))
 		*/
-		to_chat(H, "<span class='filter_notice'><b>Осмотрите свою гарнитуру, чтобы увидеть список доступных вам каналов рации.</b></span>")
+		to_chat(H, span_filter_notice("<b>Осмотрите свою гарнитуру, чтобы увидеть список доступных вам каналов рации.</b>"))
 		// End of Bastion of Endeavor Translation
 
 	if(job.req_admin_notify)
 		/* Bastion of Endeavor Translation
-		to_chat(H, "<span class='filter_notice'><b>You are playing a job that is important for Game Progression. If you have to disconnect, please notify the admins via adminhelp.</b></span>")
+		to_chat(H, span_filter_notice("<b>You are playing a job that is important for Game Progression. If you have to disconnect, please notify the admins via adminhelp.</b>"))
 		*/
-		to_chat(H, "<span class='filter_notice'><b>Ваша должность важна для развития раунда. Если вам необходимо резко отключиться, просьба предварительно сообщить администраторам через глагол Помощь администратора (F1).</b></span>")
+		to_chat(H, span_filter_notice("<b>Ваша должность важна для развития раунда. Если вам необходимо резко отключиться, просьба предварительно сообщить администраторам через глагол Помощь администратора (F1).</b>"))
 		// End of Bastion of Endeavor Translation
 
 	// EMAIL GENERATION
@@ -797,10 +797,10 @@ var/global/datum/controller/occupations/job_master
 	// If even fallback login generation failed, just don't give them an email. The chance of this happening is astronomically low.
 	if(ntnet_global.does_email_exist(complete_login))
 		/* Bastion of Endeavor Translation
-		to_chat(H, "<span class='filter_notice'>You were not assigned an email address.</span>")
+		to_chat(H, span_filter_notice("You were not assigned an email address."))
 		H.mind.store_memory("You were not assigned an email address.")
 		*/
-		to_chat(H, "<span class='filter_notice'>За вами не закреплён адрес электронной почты.</span>")
+		to_chat(H, span_filter_notice("За вами не закреплён адрес электронной почты."))
 		H.mind.store_memory("За вами не закреплён адрес электронной почты.")
 		// End of Bastion of Endeavor Translation
 	else
@@ -808,10 +808,10 @@ var/global/datum/controller/occupations/job_master
 		EA.password = GenerateKey()
 		EA.login = 	complete_login
 		/* Bastion of Endeavor Translation
-		to_chat(H, "<span class='filter_notice'>Your email account address is <b>[EA.login]</b> and the password is <b>[EA.password]</b>. This information has also been placed into your notes.</span>")
+		to_chat(H, span_filter_notice("Your email account address is <b>[EA.login]</b> and the password is <b>[EA.password]</b>. This information has also been placed into your notes."))
 		H.mind.store_memory("Your email account address is [EA.login] and the password is [EA.password].")
 		*/
-		to_chat(H, "<span class='filter_notice'>Ваш адрес электронной почты – <b>[EA.login]</b>, пароль – <b>[EA.password]</b>. Эта информация размещена в Заметках.</span>")
+		to_chat(H, span_filter_notice("Ваш адрес электронной почты – <b>[EA.login]</b>, пароль – <b>[EA.password]</b>. Эта информация размещена в Заметках."))
 		H.mind.store_memory("Ваш адрес электронной почты – [EA.login], пароль – [EA.password].")
 		// End of Bastion of Endeavor Translation
 	// END EMAIL GENERATION
@@ -997,7 +997,7 @@ var/global/datum/controller/occupations/job_master
 						return
 				//CHOMPAdd End
 				/* Bastion of Endeavor Translation
-				to_chat(C, "<b><span class='warning'>[pred] has received your spawn request. Please wait.</span></b>")
+				to_chat(C, span_boldwarning("[pred] has received your spawn request. Please wait."))
 				log_admin("[key_name(C)] has requested to vore spawn into [key_name(pred)]")
 				message_admins("[key_name(C)] has requested to vore spawn into [key_name(pred)]")
 				*/
@@ -1038,45 +1038,45 @@ var/global/datum/controller/occupations/job_master
 						confirm = alert(pred, "[C.prefs.real_name] is attempting to spawn into your [vore_spawn_gut]. Let them?", "Confirm", "No", "Yes")
 					//CHOMPEdit End
 				if(confirm != "Yes")
-					to_chat(C, "<span class='warning'>[pred] has declined your spawn request.</span>")
+					to_chat(C, span_warning("[pred] has declined your spawn request."))
 					var/message = sanitizeSafe(input(pred,"Do you want to leave them a message?")as text|null)
 					if(message)
-						to_chat(C, "<span class='notice'>[pred] message : [message]</span>")
+						to_chat(C, span_notice("[pred] message : [message]"))
 				*/
 					if(absorb_choice)
 						confirm = tgui_alert(pred, "[C.prefs.real_name] [C.prefs.identifying_gender == PLURAL ? "желают" : "желает"] появиться впитанным в [concat_ru("ваш;;ей;е;и;", vore_spawn_gut, PCASE)]. Разрешить?", "Подтверждение", list("Нет", "Да"), pred.no_latejoin_vore_warning_time SECONDS)
 					else
 						confirm = alert(pred, "[C.prefs.real_name] [C.prefs.identifying_gender == PLURAL ? "желают" : "желает"] появиться в [concat_ru("ваш;ем;ей;ем;их;", vore_spawn_gut, PCASE)]. Разрешить?", "Подтверждение", "Нет", "Да")
 				if(confirm != "Да")
-					to_chat(C, "<span class='warning'>[interact_ru(pred, "отклонил")] ваш запрос на появление.</span>")
+					to_chat(C, span_warning("[interact_ru(pred, "отклонил")] ваш запрос на появление."))
 					var/message = sanitizeSafe(input(pred,"Хотите ли вы оставить этому игроку сообщение?")as text|null)
 					if(message)
-						to_chat(C, "<span class='notice'>Сообщение от [gcase_ru(pred)]: [message]</span>")
+						to_chat(C, span_notice("Сообщение от [gcase_ru(pred)]: [message]"))
 				// End of Bastion of Endeavor Translation
 					return
 				if(!vore_spawn_gut || QDELETED(vore_spawn_gut))
 					/* Bastion of Endeavor Translation
-					to_chat(C, "<span class='warning'>Somehow, the belly you were trying to enter no longer exists.</span>")
+					to_chat(C, span_warning("Somehow, the belly you were trying to enter no longer exists."))
 					*/
-					to_chat(C, "<span class='warning'>Каким-то образом, орган, в который вы пытаетесь проникнуть, больше не существует.</span>")
+					to_chat(C, span_warning("Каким-то образом, орган, в который вы пытаетесь проникнуть, больше не существует."))
 					// End of Bastion of Endeavor Translation
 					return
 				if(pred.stat == UNCONSCIOUS || pred.stat == DEAD)
 					/* Bastion of Endeavor Translation
-					to_chat(C, "<span class='warning'>[pred] is not conscious.</span>")
-					to_chat(pred, "<span class='warning'>You must be conscious to accept.</span>")
+					to_chat(C, span_warning("[pred] is not conscious."))
+					to_chat(pred, span_warning("You must be conscious to accept."))
 					*/
-					to_chat(C, "<span class='warning'>[cap_ru(pred)] не в сознании.</span>")
-					to_chat(pred, "<span class='warning'>Чтобы принять запрос, вы должны быть в сознании.</span>")
+					to_chat(C, span_warning("[cap_ru(pred)] не в сознании."))
+					to_chat(pred, span_warning("Чтобы принять запрос, вы должны быть в сознании."))
 					// End of Bastion of Endeavor Translation
 					return
 				if(!(pred.z in using_map.vorespawn_levels))
 					/* Bastion of Endeavor Translation
-					to_chat(C, "<span class='warning'>[pred] is no longer in station grounds.</span>")
-					to_chat(pred, "<span class='warning'>You must be within station grounds to accept.</span>")
+					to_chat(C, span_warning("[pred] is no longer in station grounds."))
+					to_chat(pred, span_warning("You must be within station grounds to accept."))
 					*/
-					to_chat(C, "<span class='warning'>[interact_ru(pred, "больше не наход;ит;ит;ит;ят;ся")] на территории станции.</span>")
-					to_chat(pred, "<span class='warning'>Чтобы принять запрос, вы должны быть на территории станции.</span>")
+					to_chat(C, span_warning("[interact_ru(pred, "больше не наход;ит;ит;ит;ят;ся")] на территории станции."))
+					to_chat(pred, span_warning("Чтобы принять запрос, вы должны быть на территории станции."))
 					// End of Bastion of Endeavor Translation
 					return
 				if(backup)
@@ -1084,21 +1084,21 @@ var/global/datum/controller/occupations/job_master
 				/* Bastion of Endeavor Translation
 				log_admin("[key_name(C)] has vore spawned into [key_name(pred)]")
 				message_admins("[key_name(C)] has vore spawned into [key_name(pred)]")
-				to_chat(C, "<span class='notice'>You have been spawned via vore. You are free to roleplay how you got there as you please, such as teleportation or having had already been there.</span>")
+				to_chat(C, span_notice("You have been spawned via vore. You are free to roleplay how you got there as you please, such as teleportation or having had already been there."))
 				if(vore_spawn_gut.entrance_logs) //CHOMPEdit
-					to_chat(pred, "<span class='notice'>Your prey has spawned via vore. You are free to roleplay this how you please, such as teleportation or having had already been there.</span>")
+					to_chat(pred, span_notice("Your prey has spawned via vore. You are free to roleplay this how you please, such as teleportation or having had already been there."))
 				*/
 				log_admin("[key_name(C)] появился внутри [key_name(pred)]")
 				message_admins("[key_name(C)] появился внутри [key_name(pred)]")
-				to_chat(C, "<span class='notice'>Вы появились с помощью Vore. Вы можете отыграть это любым способом, например – вы телепортировались туда, либо там были всё это время.</span>")
+				to_chat(C, span_notice("Вы появились с помощью Vore. Вы можете отыграть это любым способом, например – вы телепортировались туда, либо там были всё это время."))
 				if(vore_spawn_gut.entrance_logs) //CHOMPEdit
-					to_chat(pred, "<span class='notice'>Ваша жертва появилась с помощью Vore. Вы можете отыграть это любым способом, например – она телепортировалась туда, либо там была всё это время.</span>")
+					to_chat(pred, span_notice("Ваша жертва появилась с помощью Vore. Вы можете отыграть это любым способом, например – она телепортировалась туда, либо там была всё это время."))
 				// End of Bastion of Endeavor Translation
 			else
 				/* Bastion of Endeavor Translation
-				to_chat(C, "<span class='warning'>No predators were available to accept you.</span>")
+				to_chat(C, span_warning("No predators were available to accept you."))
 				*/
-				to_chat(C, "<span class='warning'>Не найдены доступные хищники.</span>")
+				to_chat(C, span_warning("Не найдены доступные хищники."))
 				// End of Bastion of Endeavor Translation
 				return
 			spawnpos = spawntypes[C.prefs.spawnpoint]
@@ -1199,34 +1199,34 @@ var/global/datum/controller/occupations/job_master
 					//CHOMPEdit End
 				/* Bastion of Endeavor Translation
 				if(confirm != "Yes")
-					to_chat(C, "<span class='warning'>[prey] has declined your spawn request.</span>")
+					to_chat(C, span_warning("[prey] has declined your spawn request."))
 					var/message = sanitizeSafe(input(prey,"Do you want to leave them a message?")as text|null)
 					if(message)
-						to_chat(C, "<span class='notice'>[prey] message : [message]</span>")
+						to_chat(C, span_notice("[prey] message : [message]"))
 				*/
 				if(confirm != "Да")
-					to_chat(C, "<span class='warning'>[interact_ru(prey, "отклонил")] ваш запрос на появление.</span>")
+					to_chat(C, span_warning("[interact_ru(prey, "отклонил")] ваш запрос на появление."))
 					var/message = sanitizeSafe(input(prey,"Хотите ли вы оставить этому игроку сообщение?")as text|null)
 					if(message)
-						to_chat(C, "<span class='notice'>Сообщение от [gcase_ru(prey)]: [message]</span>")
+						to_chat(C, span_notice("Сообщение от [gcase_ru(prey)]: [message]"))
 				// End of Bastion of Endeavor Translation
 					return
 				if(prey.stat == UNCONSCIOUS || prey.stat == DEAD)
 					/* Bastion of Endeavor Translation
-					to_chat(C, "<span class='warning'>[prey] is not conscious.</span>")
-					to_chat(prey, "<span class='warning'>You must be conscious to accept.</span>")
+					to_chat(C, span_warning("[prey] is not conscious."))
+					to_chat(prey, span_warning("You must be conscious to accept."))
 					*/
-					to_chat(C, "<span class='warning'>[cap_ru(prey)] не в сознании.</span>")
-					to_chat(prey, "<span class='warning'>Чтобы принять запрос, вы должны быть в сознании.</span>")
+					to_chat(C, span_warning("[cap_ru(prey)] не в сознании."))
+					to_chat(prey, span_warning("Чтобы принять запрос, вы должны быть в сознании."))
 					// End of Bastion of Endeavor Translation
 					return
 				if(!(prey.z in using_map.vorespawn_levels))
 					/* Bastion of Endeavor Translation
-					to_chat(C, "<span class='warning'>[prey] is no longer in station grounds.</span>")
-					to_chat(prey, "<span class='warning'>You must be within station grounds to accept.</span>")
+					to_chat(C, span_warning("[prey] is no longer in station grounds."))
+					to_chat(prey, span_warning("You must be within station grounds to accept."))
 					*/
-					to_chat(C, "<span class='warning'>[interact_ru(prey, "больше не наход;ит;ит;ит;ят;ся")] на территории станции.</span>")
-					to_chat(prey, "<span class='warning'>Чтобы принять запрос, вы должны быть на территории станции.</span>")
+					to_chat(C, span_warning("[interact_ru(prey, "больше не наход;ит;ит;ит;ят;ся")] на территории станции."))
+					to_chat(prey, span_warning("Чтобы принять запрос, вы должны быть на территории станции."))
 					// End of Bastion of Endeavor Translation
 					return
 				/* Bastion of Endeavor Translation
@@ -1239,9 +1239,9 @@ var/global/datum/controller/occupations/job_master
 				prey_to_nomph = prey
 			else
 				/* Bastion of Endeavor Translation
-				to_chat(C, "<span class='warning'>No prey were available to accept you.</span>")
+				to_chat(C, span_warning("No prey were available to accept you."))
 				*/
-				to_chat(C, "<span class='warning'>Не найдены доступные жертвы.</span>")
+				to_chat(C, span_warning("Не найдены доступные жертвы."))
 				// End of Bastion of Endeavor Translation
 				return
 		//CHOMPEdit - Item TF spawnpoints!
@@ -1345,7 +1345,7 @@ var/global/datum/controller/occupations/job_master
 
 					var/confirm = alert(carrier, "[C.prefs.real_name] is attempting to join as the [item_name] in your possession.", "Confirm", "No", "Yes")
 					if(confirm != "Yes")
-						to_chat(C, "<span class='warning'>[carrier] has declined your spawn request.</span>")
+						to_chat(C, span_warning("[carrier] has declined your spawn request."))
 						var/message = sanitizeSafe(input(carrier,"Do you want to leave them a message?")as text|null)
 					*/
 					to_chat(C, "<b><span class='warning'>[interact_ru(carrier, "получил")] ваш запрос. Пожалуйста, подождите.</span></b>")
@@ -1353,32 +1353,32 @@ var/global/datum/controller/occupations/job_master
 
 					var/confirm = alert(carrier, "[C.prefs.real_name] [C.prefs.identifying_gender == PLURAL ? "желают" : "желает"] появиться в качестве вашего предмета – [item_name]. Разрешить?", "Подтверждение", "Нет", "Да")
 					if(confirm != "Да")
-						to_chat(C, "<span class='warning'>[interact_ru(carrier, "отклонил")] ваш запрос на появление.</span>")
+						to_chat(C, span_warning("[interact_ru(carrier, "отклонил")] ваш запрос на появление."))
 						var/message = sanitizeSafe(input(carrier,"Хотите ли вы оставить этому игроку сообщение?")as text|null)
 					// End of Bastion of Endeavor Translation
 						if(message)
 							/* Bastion of Endeavor Translation
-							to_chat(C, "<span class='notice'>[carrier] message : [message]</span>")
+							to_chat(C, span_notice("[carrier] message : [message]"))
 							*/
-							to_chat(C, "<span class='notice'>Сообщение от [gcase_ru(carrier)]: [message]</span>")
+							to_chat(C, span_notice("Сообщение от [gcase_ru(carrier)]: [message]"))
 							// End of Bastion of Endeavor Translation
 						return
 					if(carrier.stat == UNCONSCIOUS || carrier.stat == DEAD)
 						/* Bastion of Endeavor Translation
-						to_chat(C, "<span class='warning'>[carrier] is not conscious.</span>")
-						to_chat(carrier, "<span class='warning'>You must be conscious to accept.</span>")
+						to_chat(C, span_warning("[carrier] is not conscious."))
+						to_chat(carrier, span_warning("You must be conscious to accept."))
 						*/
-						to_chat(C, "<span class='warning'>[cap_ru(carrier)] не в сознании.</span>")
-						to_chat(carrier, "<span class='warning'>Чтобы принять запрос, вы должны быть в сознании.</span>")
+						to_chat(C, span_warning("[cap_ru(carrier)] не в сознании."))
+						to_chat(carrier, span_warning("Чтобы принять запрос, вы должны быть в сознании."))
 						// End of Bastion of Endeavor Translation
 						return
 					if(!(carrier.z in using_map.vorespawn_levels))
 						/* Bastion of Endeavor Translation
-						to_chat(C, "<span class='warning'>[carrier] is no longer in station grounds.</span>")
-						to_chat(carrier, "<span class='warning'>You must be within station grounds to accept.</span>")
+						to_chat(C, span_warning("[carrier] is no longer in station grounds."))
+						to_chat(carrier, span_warning("You must be within station grounds to accept."))
 						*/
-						to_chat(C, "<span class='warning'>[interact_ru(carrier, "больше не наход;ит;ит;ит;ят;ся")] на территории станции.</span>")
-						to_chat(carrier, "<span class='warning'>Чтобы принять запрос, вы должны быть на территории станции.</span>")
+						to_chat(C, span_warning("[interact_ru(carrier, "больше не наход;ит;ит;ит;ят;ся")] на территории станции."))
+						to_chat(carrier, span_warning("Чтобы принять запрос, вы должны быть на территории станции."))
 						// End of Bastion of Endeavor Translation
 						return
 					/* Bastion of Endeavor Translation
@@ -1418,9 +1418,9 @@ var/global/datum/controller/occupations/job_master
 							vorgans = TRUE
 			else
 				/* Bastion of Endeavor Translation
-				to_chat(C, "<span class='warning'>No items were available to accept you.</span>")
+				to_chat(C, span_warning("No items were available to accept you."))
 				*/
-				to_chat(C, "<span class='warning'>Не найдены доступные предметы для появления.</span>")
+				to_chat(C, span_warning("Не найдены доступные предметы для появления."))
 				// End of Bastion of Endeavor Translation
 				return
 		//CHOMPEdit End
@@ -1428,16 +1428,16 @@ var/global/datum/controller/occupations/job_master
 			if(!(C.prefs.spawnpoint in using_map.allowed_spawns))
 				if(fail_deadly)
 					/* Bastion of Endeavor Translation
-					to_chat(C, "<span class='warning'>Your chosen spawnpoint is unavailable for this map and your job requires a specific spawnpoint. Please correct your spawn point choice.</span>")
+					to_chat(C, span_warning("Your chosen spawnpoint is unavailable for this map and your job requires a specific spawnpoint. Please correct your spawn point choice."))
 					*/
-					to_chat(C, "<span class='warning'>Выбранная вами и требуемая для вашей должности точка появления недоступна. Пожалуйста, исправьте свой выбор.</span>")
+					to_chat(C, span_warning("Выбранная вами и требуемая для вашей должности точка появления недоступна. Пожалуйста, исправьте свой выбор."))
 					// End of Bastion of Endeavor Translation
 					return
 				else
 					/* Bastion of Endeavor Translation
-					to_chat(C, "<span class='warning'>Your chosen spawnpoint ([C.prefs.spawnpoint]) is unavailable for the current map. Spawning you at one of the enabled spawn points instead.</span>")
+					to_chat(C, span_warning("Your chosen spawnpoint ([C.prefs.spawnpoint]) is unavailable for the current map. Spawning you at one of the enabled spawn points instead."))
 					*/
-					to_chat(C, "<span class='warning'>Выбранная вами точка появления ([uncapitalize_ru(C.prefs.spawnpoint)]) недоступна на текущей карте. Вы появитесь на одной из доступных точек.</span>")
+					to_chat(C, span_warning("Выбранная вами точка появления ([uncapitalize_ru(C.prefs.spawnpoint)]) недоступна на текущей карте. Вы появитесь на одной из доступных точек."))
 					// End of Bastion of Endeavor Translation
 					spawnpos = null
 			else
@@ -1465,15 +1465,15 @@ var/global/datum/controller/occupations/job_master
 			var/datum/job/J = SSjob.get_job(rank)
 			if(fail_deadly || J?.offmap_spawn)
 				/* Bastion of Endeavor Translation
-				to_chat(C, "<span class='warning'>Your chosen spawnpoint ([spawnpos.display_name]) is unavailable for your chosen job. Please correct your spawn point choice.</span>")
+				to_chat(C, span_warning("Your chosen spawnpoint ([spawnpos.display_name]) is unavailable for your chosen job. Please correct your spawn point choice."))
 				*/
-				to_chat(C, "<span class='warning'>Выбранная вами точка появления ([spawnpos.display_name]) недоступна для вашей должности. Пожалуйста, исправьте свой выбор.</span>")
+				to_chat(C, span_warning("Выбранная вами точка появления ([spawnpos.display_name]) недоступна для вашей должности. Пожалуйста, исправьте свой выбор."))
 				// End of Bastion of Endeavor Translation
 				return
 			/* Bastion of Endeavor Translation
-			to_chat(C, "<span class='filter_warning'>Your chosen spawnpoint ([spawnpos.display_name]) is unavailable for your chosen job. Spawning you at the Arrivals shuttle instead.</span>")
+			to_chat(C, span_filter_warning("Your chosen spawnpoint ([spawnpos.display_name]) is unavailable for your chosen job. Spawning you at the Arrivals shuttle instead."))
 			*/
-			to_chat(C, "<span class='filter_warning'>Выбранная вами точка появления ([spawnpos.display_name]) недоступна для вашей должности. Вы появитесь у шаттла у прибытия.</span>")
+			to_chat(C, span_filter_warning("Выбранная вами точка появления ([spawnpos.display_name]) недоступна для вашей должности. Вы появитесь у шаттла у прибытия."))
 			// End of Bastion of Endeavor Translation
 			var/spawning = pick(latejoin)
 			.["turf"] = get_turf(spawning)

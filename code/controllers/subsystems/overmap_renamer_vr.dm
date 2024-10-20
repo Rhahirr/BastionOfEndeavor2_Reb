@@ -32,15 +32,15 @@ if we end up with multiple renamable lateload overmap objects.*/
 				/* Bastion of Endeavor Translation
 				if(V.known)
 					to_world_log("##Overmap Renamer: Renamed Debris Field as: [V.name]")
-					admin_notice("<span class='danger'>Debris Field name chosen as [V.name]</span>", R_DEBUG)
+					admin_notice(span_danger("Debris Field name chosen as [V.name]"), R_DEBUG)
 				else
 					to_world_log("##Overmap Renamer: Renamed Debris Field as: [V.real_name]")
-					admin_notice("<span class='danger'>Debris Field name chosen as [V.real_name]</span>", R_DEBUG)
+					admin_notice(span_danger("Debris Field name chosen as [V.real_name]"), R_DEBUG)
 				*/
 				if(V.known)
 					to_world_log("## Переименование надкарт: скопление космического мусора: [V.name]")
-					admin_notice("<span class='danger'>Выбранное название для скопления космического мусора – [V.name]</span>", R_DEBUG)
+					admin_notice(span_danger("Выбранное название для скопления космического мусора – [V.name]"), R_DEBUG)
 				else
 					to_world_log("## Переименование надкарт: скопление космического мусора: [V.real_name]")
-					admin_notice("<span class='danger'>Выбранное название для скопления космического мусора – [V.real_name]</span>", R_DEBUG)
+					admin_notice(span_danger("Выбранное название для скопления космического мусора – [V.real_name]"), R_DEBUG)
 				// End of Bastion of Endeavor Translation

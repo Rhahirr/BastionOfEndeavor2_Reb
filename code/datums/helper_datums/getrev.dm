@@ -85,9 +85,9 @@
 
 	if(!GLOB.revdata)
 		/* Bastion of Endeavor Translation
-		to_chat(src, "<span class='warning'>Please wait until server initializations are complete.</span>")
+		to_chat(src, span_warning("Please wait until server initializations are complete."))
 		*/
-		to_chat(src, "<span class='warning'>Пожалуйста, сперва дождитесь окончания инициализации.</span>")
+		to_chat(src, span_warning("Пожалуйста, сперва дождитесь окончания инициализации."))
 		// End of Bastion of Endeavor Translation
 		return
 

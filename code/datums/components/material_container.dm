@@ -103,9 +103,9 @@
 		var/amt = materials[M]
 		if(amt)
 			/* Bastion of Endeavor Translation: I can't tell if it's supposed to be source or parent but oh well
-			examine_texts += "<span class='notice'>It has [amt] units of [lowertext(M.name)] stored.</span>"
+			examine_texts += span_notice("It has [amt] units of [lowertext(M.name)] stored.")
 			*/
-			examine_texts += "<span class='notice'>[prep_adv_ru("В", parent, PCASE)] [count_ru(amt, "единиц;а;ы;;")] [gcase_ru(M)].</span>"
+			examine_texts += span_notice("[prep_adv_ru("В", parent, PCASE)] [count_ru(amt, "единиц;а;ы;;")] [gcase_ru(M)].")
 			// End of Bastion of Endeavor Translation
 
 /// Proc that allows players to fill the parent with mats
@@ -118,9 +118,9 @@
 	if(tc && !is_type_in_typecache(I, tc))
 		if(!(mat_container_flags & MATCONTAINER_SILENT))
 			/* Bastion of Endeavor Translation
-			to_chat(user, "<span class='warning'>[parent] won't accept [I]!</span>")
+			to_chat(user, span_warning("[parent] won't accept [I]!"))
 			*/
-			to_chat(user, "<span class='warning'>[interact_ru(parent, "не принима;ет;ет;ет;ют;", I)]!</span>")
+			to_chat(user, span_warning("[interact_ru(parent, "не принима;ет;ет;ет;ют;", I)]!"))
 			// End of Bastion of Endeavor Translation
 		return
 	. = COMPONENT_CANCEL_ATTACK_CHAIN
@@ -134,16 +134,16 @@
 	var/material_amount = get_item_material_amount(I, mat_container_flags)
 	if(!material_amount)
 		/* Bastion of Endeavor Translation
-		to_chat(user, "<span class='warning'>[I] does not contain sufficient materials to be accepted by [parent].</span>")
+		to_chat(user, span_warning("[I] does not contain sufficient materials to be accepted by [parent]."))
 		*/
-		to_chat(user, "<span class='warning'>[interact_ru(I, "не содерж;ит;ит;ит;ат; достаточно материала, чтобы [verb_ru(I, ";его;её;его;их;")] можно было вставить [prep_adv_ru("в", I, ACASE)]", I)].</span>")
+		to_chat(user, span_warning("[interact_ru(I, "не содерж;ит;ит;ит;ат; достаточно материала, чтобы [verb_ru(I, ";его;её;его;их;")] можно было вставить [prep_adv_ru("в", I, ACASE)]", I)]."))
 		// End of Bastion of Endeavor Translation
 		return
 	if(!has_space(material_amount))
 		/* Bastion of Endeavor Translation
-		to_chat(user, "<span class='warning'>[parent] is full. Please remove materials from [parent] in order to insert more.</span>")
+		to_chat(user, span_warning("[parent] is full. Please remove materials from [parent] in order to insert more."))
 		*/
-		to_chat(user, "<span class='warning'>[interact_ru(parent, "переполнен;;а;о;ы;")]. Пожалуйста, сперва извлеките из [verb_ru(parent, ";него;неё;него;них")] что-нибудь, чтобы поместить что-либо ещё.</span>")
+		to_chat(user, span_warning("[interact_ru(parent, "переполнен;;а;о;ы;")]. Пожалуйста, сперва извлеките из [verb_ru(parent, ";него;неё;него;них")] что-нибудь, чтобы поместить что-либо ещё."))
 		// End of Bastion of Endeavor Translation
 		return
 	user_insert(I, user, mat_container_flags)
@@ -153,9 +153,9 @@
 	var/sheets = S.get_amount()
 	if(sheets < 1)
 		/* Bastion of Endeavor Translation
-		to_chat(user, "<span class='warning'>[S] does not contain sufficient materials to be accepted by [parent].</span>")
+		to_chat(user, span_warning("[S] does not contain sufficient materials to be accepted by [parent]."))
 		*/
-		to_chat(user, "<span class='warning'>[interact_ru(S, "не содерж;ит;ит;ит;ат; достаточно материала, чтобы [verb_ru(S, ";его;её;его;их;")] можно было вставить [prep_adv_ru("в", S, ACASE)]", S)].</span>")
+		to_chat(user, span_warning("[interact_ru(S, "не содерж;ит;ит;ит;ат; достаточно материала, чтобы [verb_ru(S, ";его;её;его;их;")] можно было вставить [prep_adv_ru("в", S, ACASE)]", S)]."))
 		// End of Bastion of Endeavor Translation
 		return
 
@@ -170,27 +170,27 @@
 		// If any part of a sheet can't go in us, the whole sheet is invalid
 		if(!can_hold_material(GET_MATERIAL_REF(material)))
 			/* Bastion of Endeavor Translation
-			to_chat(user, "<span class='warning'>[parent] cannot contain [material].</span>")
+			to_chat(user, span_warning("[parent] cannot contain [material]."))
 			*/
-			to_chat(user, "<span class='warning'>[interact_ru(parent, "не мо;жет;жет;жет;гут; содержать", material)].</span>")
+			to_chat(user, span_warning("[interact_ru(parent, "не мо;жет;жет;жет;гут; содержать", material)]."))
 			// End of Bastion of Endeavor Translation
 			return
 
 	// Our sheet had no material. Whoops.
 	if(!matter_per_sheet)
 		/* Bastion of Endeavor Translation
-		to_chat(user, "<span class='warning'>[S] does not contain any matter acceptable by [parent].</span>")
+		to_chat(user, span_warning("[S] does not contain any matter acceptable by [parent]."))
 		*/
-		to_chat(user, "<span class='warning'>[interact_ru(S, "не содерж;ит;ит;ит;ат;")] ничего, что [concat_ru("мог;;ла;ло;ли; бы принять", parent)].</span>")
+		to_chat(user, span_warning("[interact_ru(S, "не содерж;ит;ит;ит;ат;")] ничего, что [concat_ru("мог;;ла;ло;ли; бы принять", parent)]."))
 		// End of Bastion of Endeavor Translation
 		return
 
 	// If we can't fit the material for one sheet, we're full.
 	if(!has_space(matter_per_sheet))
 		/* Bastion of Endeavor Translation
-		to_chat(user, "<span class='warning'>[parent] is full. Please remove materials from [parent] in order to insert more.</span>")
+		to_chat(user, span_warning("[parent] is full. Please remove materials from [parent] in order to insert more."))
 		*/
-		to_chat(user, "<span class='warning'>[interact_ru(parent, "переполнен;;а;о;ы;")]. Пожалуйста, сперва извлеките из [verb_ru(parent, ";него;неё;него;них")] что-нибудь, чтобы поместить что-либо ещё.</span>")
+		to_chat(user, span_warning("[interact_ru(parent, "переполнен;;а;о;ы;")]. Пожалуйста, сперва извлеките из [verb_ru(parent, ";него;неё;него;них")] что-нибудь, чтобы поместить что-либо ещё."))
 		// End of Bastion of Endeavor Translation
 		return
 
@@ -198,9 +198,9 @@
 	var/max_sheets = round((max_amount - total_amount) / matter_per_sheet)
 	if(max_sheets <= 0)
 		/* Bastion of Endeavor Translation
-		to_chat(user, "<span class='warning'>[parent] is full. Please remove materials from [parent] in order to insert more.</span>")
+		to_chat(user, span_warning("[parent] is full. Please remove materials from [parent] in order to insert more."))
 		*/
-		to_chat(user, "<span class='warning'>[interact_ru(parent, "переполнен;;а;о;ы;")]. Пожалуйста, сперва извлеките из [verb_ru(parent, ";него;неё;него;них")] что-нибудь, чтобы поместить что-либо ещё.</span>")
+		to_chat(user, span_warning("[interact_ru(parent, "переполнен;;а;о;ы;")]. Пожалуйста, сперва извлеките из [verb_ru(parent, ";него;неё;него;них")] что-нибудь, чтобы поместить что-либо ещё."))
 		// End of Bastion of Endeavor Translation
 		return
 
@@ -213,9 +213,9 @@
 	// Use the amount of sheets from the stack
 	if(!S.use(sheets_to_use))
 		/* Bastion of Endeavor Translation
-		to_chat(user, "<span class='warning'>Something went wrong with your stack. Split it manually and try again.</span>")
+		to_chat(user, span_warning("Something went wrong with your stack. Split it manually and try again."))
 		*/
-		to_chat(user, "<span class='warning'>С вашей стопкой материалов что-то не так. Разделите её вручную и попробуйте ещё раз.</span>")
+		to_chat(user, span_warning("С вашей стопкой материалов что-то не так. Разделите её вручную и попробуйте ещё раз."))
 		// End of Bastion of Endeavor Translation
 		return
 
@@ -228,9 +228,9 @@
 
 	// Tell the user and wrap up.
 	/* Bastion of Endeavor Translation: might need testing? but I want the clarity of it
-	to_chat(user, "<span class='notice'>You insert a material total of [inserted] into [parent].</span>")
+	to_chat(user, span_notice("You insert a material total of [inserted] into [parent]."))
 	*/
-	to_chat(user, "<span class='notice'>Вы вставили [count_ru(inserted, "единиц;у;ы;")] материала [prep_adv_ru("в", parent, ACASE)].</span>")
+	to_chat(user, span_notice("Вы вставили [count_ru(inserted, "единиц;у;ы;")] материала [prep_adv_ru("в", parent, ACASE)]."))
 	// End of Bastion of Endeavor Translation
 	if(after_insert)
 		after_insert.Invoke(S, last_inserted_id, inserted)
@@ -241,17 +241,17 @@
 	var/active_held = user.get_active_hand()  // differs from I when using TK
 	if(!user.unEquip(I))
 		/* Bastion of Endeavor Translation
-		to_chat(user, "<span class='warning'>[I] is stuck to you and cannot be placed into [parent].</span>")
+		to_chat(user, span_warning("[I] is stuck to you and cannot be placed into [parent]."))
 		*/
-		to_chat(user, "<span class='warning'>Вы не можете отпустить [acase_ru(I)], чтобы поместить [verb_ru(parent, ";его;её;его;их;")] [prep_adv_ru("в", parent, ACASE)].</span>")
+		to_chat(user, span_warning("Вы не можете отпустить [acase_ru(I)], чтобы поместить [verb_ru(parent, ";его;её;его;их;")] [prep_adv_ru("в", parent, ACASE)]."))
 		// End of Bastion of Endeavor Translation
 		return
 	var/inserted = insert_item(I, breakdown_flags = mat_container_flags)
 	if(inserted)
 		/* Bastion of Endeavor Translation: might need testing?
-		to_chat(user, "<span class='notice'>You insert a material total of [inserted] into [parent].</span>")
+		to_chat(user, span_notice("You insert a material total of [inserted] into [parent]."))
 		*/
-		to_chat(user, "<span class='notice'>Вы вставили [count_ru(inserted, "единиц;у;ы;")] материала [prep_adv_ru("в", parent, ACASE)].</span>")
+		to_chat(user, span_notice("Вы вставили [count_ru(inserted, "единиц;у;ы;")] материала [prep_adv_ru("в", parent, ACASE)]."))
 		// End of Bastion of Endeavor Translation
 		qdel(I)
 		if(after_insert)

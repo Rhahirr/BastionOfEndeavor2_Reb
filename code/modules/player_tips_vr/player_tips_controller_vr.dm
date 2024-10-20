@@ -43,7 +43,7 @@ Controlled by the player_tips subsystem under code/controllers/subsystems/player
 					to_chat(M, span_warning("У вас включена рассылка периодических подсказок. Её можно выключить с помощью глагола Периодические подсказки во вкладке Предпочтения или в Редакторе персонажа!\n Подсказки появляются каждые 45-75 минут."))
 					// End of Bastion of Endeavor Translation
 					HasReceived.Add(M.key)
-				tip = GLOB.is_valid_url.Replace(tip,"<span class='linkify'>$1</span>")
+				tip = GLOB.is_valid_url.Replace(tip,span_linkify("$1"))
 				to_chat(M, span_notice("[tip]"))
 
 
@@ -70,4 +70,4 @@ Controlled by the player_tips subsystem under code/controllers/subsystems/player
 	// End of Bastion of Endeavor Translation
 		return
 	var/static/datum/player_tips/player_tips = new
-	to_chat(src, span_notice("[GLOB.is_valid_url.Replace(player_tips.pick_tip(choice),"<span class='linkify'>$1</span>")]"))
+	to_chat(src, span_notice("[GLOB.is_valid_url.Replace(player_tips.pick_tip(choice),span_linkify("$1"))]"))

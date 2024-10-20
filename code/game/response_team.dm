@@ -20,30 +20,30 @@ var/silent_ert = 0
 
 	if(!holder)
 		/* Bastion of Endeavor Translation
-		to_chat(usr, "<span class='danger'>Only administrators may use this command.</span>")
+		to_chat(usr, span_danger("Only administrators may use this command."))
 		*/
-		to_chat(usr, "<span class='danger'>Эта команда доступна только администраторам.</span>")
+		to_chat(usr, span_danger("Эта команда доступна только администраторам."))
 		// End of Bastion of Endeavor Translation
 		return
 	if(!ticker)
 		/* Bastion of Endeavor Translation
-		to_chat(usr, "<span class='danger'>The game hasn't started yet!</span>")
+		to_chat(usr, span_danger("The game hasn't started yet!"))
 		*/
-		to_chat(usr, "<span class='danger'>Игра ещё не началась!</span>")
+		to_chat(usr, span_danger("Игра ещё не началась!"))
 		// End of Bastion of Endeavor Translation
 		return
 	if(ticker.current_state == 1)
 		/* Bastion of Endeavor Translation
-		to_chat(usr, "<span class='danger'>The round hasn't started yet!</span>")
+		to_chat(usr, span_danger("The round hasn't started yet!"))
 		*/
-		to_chat(usr, "<span class='danger'>Раунд ещё не начался!</span>")
+		to_chat(usr, span_danger("Раунд ещё не начался!"))
 		// End of Bastion of Endeavor Translation
 		return
 	if(send_emergency_team)
 		/* Bastion of Endeavor Translation
-		to_chat(usr, "<span class='danger'>[using_map.boss_name] has already dispatched an emergency response team!</span>")
+		to_chat(usr, span_danger("[using_map.boss_name] has already dispatched an emergency response team!"))
 		*/
-		to_chat(usr, "<span class='danger'>Отряд быстрого реагирования уже отправлен!</span>")
+		to_chat(usr, span_danger("Отряд быстрого реагирования уже отправлен!"))
 		// End of Bastion of Endeavor Translation
 		return
 	/* Bastion of Endeavor Translation
@@ -67,9 +67,9 @@ var/silent_ert = 0
 			return
 	if(send_emergency_team)
 		/* Bastion of Endeavor Translation
-		to_chat(usr, "<span class='danger'>Looks like somebody beat you to it!</span>")
+		to_chat(usr, span_danger("Looks like somebody beat you to it!"))
 		*/
-		to_chat(usr, "<span class='danger'>Вас кто-то опередил!</span>")
+		to_chat(usr, span_danger("Вас кто-то опередил!"))
 		// End of Bastion of Endeavor Translation
 		return
 
@@ -96,9 +96,9 @@ var/silent_ert = 0
 
 	if(!MayRespawn(1))
 		/* Bastion of Endeavor Translation
-		to_chat(usr, "<span class='warning'>You cannot join the response team at this time.</span>")
+		to_chat(usr, span_warning("You cannot join the response team at this time."))
 		*/
-		to_chat(usr, "<span class='warning'>Вы не можете сейчас присоединиться к ОБР.</span>")
+		to_chat(usr, span_warning("Вы не можете сейчас присоединиться к ОБР."))
 		// End of Bastion of Endeavor Translation
 		return
 
@@ -112,9 +112,9 @@ var/silent_ert = 0
 			return
 		if(jobban_isbanned(usr, JOB_SYNDICATE) || jobban_isbanned(usr, JOB_EMERGENCY_RESPONSE_TEAM) || jobban_isbanned(usr, JOB_SECURITY_OFFICER))
 			/* Bastion of Endeavor Translation
-			to_chat(usr, "<span class='danger'>You are jobbanned from the emergency reponse team!</span>")
+			to_chat(usr, span_danger("You are jobbanned from the emergency reponse team!"))
 			*/
-			to_chat(usr, "<span class='danger'>Вам запрещено состоять в отряде быстрого реагирования!</span>")
+			to_chat(usr, span_danger("Вам запрещено состоять в отряде быстрого реагирования!"))
 			// End of Bastion of Endeavor Translation
 			return
 		if(ert.current_antagonists.len >= ert.hard_cap)

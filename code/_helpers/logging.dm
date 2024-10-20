@@ -87,9 +87,9 @@
 			to_chat(C,
 					type = MESSAGE_TYPE_DEBUG,
 					/* Bastion of Endeavor Translation
-					html = "<span class='filter_debuglog'>DEBUG: [text]</span>")
+					html = span_filter_debuglogs("DEBUG: [text]"))
 					*/
-					html = "<span class='filter_debuglog'>ОТЛАДКА: [text]</span>")
+					html = span_filter_debuglogs("ОТЛАДКА: [text]"))
 					// End of Bastion of Endeavor Translation
 
 /proc/log_game(text)
@@ -441,7 +441,7 @@
 	// End of Bastion of Endeavor Translation
 
 /proc/report_progress(var/progress_message)
-	admin_notice("<span class='boldannounce'>[progress_message]</span>", R_DEBUG)
+	admin_notice(span_boldannounce("[progress_message]"), R_DEBUG)
 	to_world_log(progress_message)
 
 //pretty print a direction bitflag, can be useful for debugging.

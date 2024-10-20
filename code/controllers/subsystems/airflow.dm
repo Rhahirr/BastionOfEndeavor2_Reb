@@ -126,9 +126,9 @@ SUBSYSTEM_DEF(airflow)
 
 	if (ismob(src))
 		/* Bastion of Endeavor Translation
-		to_chat(src,"<span class='danger'>You are pushed away by airflow!</span>")
+		to_chat(src,span_danger("You are pushed away by airflow!"))
 		*/
-		to_chat(src,"<span class='danger'>Вас уносит потоком воздуха!</span>")
+		to_chat(src,span_danger("Вас уносит потоком воздуха!"))
 		// End of Bastion of Endeavor Translation
 
 	last_airflow = world.time

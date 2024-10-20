@@ -118,10 +118,10 @@
 	if(isnull(window_id))	//null check because this can potentially nuke goonchat
 		/* Bastion of Endeavor Translation
 		WARNING("Browser [title] tried to open with a null ID")
-		to_chat(user, "<span class='userdanger'>The [title] browser you tried to open failed a sanity check! Please report this on github!</span>")
+		to_chat(user, span_userdanger("The [title] browser you tried to open failed a sanity check! Please report this on github!"))
 		*/
 		WARNING("Браузер '[title]' попытался открыться без ID")
-		to_chat(user, "<span class='userdanger'>Вы попытались открыть браузер '[title]', но он не имеет ID! Доложите об этом разработчикам!</span>")
+		to_chat(user, span_userdanger("Вы попытались открыть браузер '[title]', но он не имеет ID! Доложите об этом разработчикам!"))
 		// End of Bastion of Endeavor Translation
 		return
 	var/window_size = ""

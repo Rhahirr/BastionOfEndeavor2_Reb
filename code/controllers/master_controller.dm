@@ -33,9 +33,9 @@ var/global/pipe_processing_killed = 0
 		job_master.SetupOccupations()
 		job_master.LoadJobs("config/jobs.txt")
 		/* Bastion of Endeavor Translation
-		admin_notice("<span class='danger'>Job setup complete</span>", R_DEBUG)
+		admin_notice(span_danger("Job setup complete"), R_DEBUG)
 		*/
-		admin_notice("<span class='danger'>Подготовка работ завершена.</span>", R_DEBUG)
+		admin_notice(span_danger("Подготовка работ завершена."), R_DEBUG)
 		// End of Bastion of Endeavor Translation
 
 	if(!syndicate_code_phrase)		syndicate_code_phrase	= generate_code_phrase()
@@ -49,9 +49,9 @@ var/global/pipe_processing_killed = 0
 
 	transfer_controller = new
 	/* Bastion of Endeavor Translation
-	admin_notice("<span class='danger'>Initializations complete.</span>", R_DEBUG)
+	admin_notice(span_danger("Initializations complete."), R_DEBUG)
 	*/
-	admin_notice("<span class='danger'>Инициализации завершены.</span>", R_DEBUG)
+	admin_notice(span_danger("Инициализации завершены."), R_DEBUG)
 	// End of Bastion of Endeavor Translation
 
 // #if UNIT_TEST

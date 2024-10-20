@@ -89,10 +89,10 @@
 
 	/* Bastion of Endeavor Translation
 	msg += "<b>Total Players: [length(Lines)]</b>"
-	msg = "<span class='filter_notice'>[jointext(msg, "<br>")]</span>"
+	msg = span_filter_notice("[jointext(msg, "<br>")]")
 	*/
 	msg += "<b>Всего игроков: [length(Lines)]</b>"
-	msg = "<span class='filter_notice'>[jointext(msg, "<br>")]</span>"
+	msg = span_filter_notice("[jointext(msg, "<br>")]")
 	// End of Bastion of Endeavor Translation
 	to_chat(src,msg)
 
@@ -255,4 +255,4 @@
 	msg += "\n<span class='info'>Запросы в Помощь администратора дублируются в Discord. Если в сети нет администраторов, вы можете все равно оставить запрос, и кто-то из администраторов может увидеть его в Discord и ответить при первой же возможности.</span>"
 	// End of Bastion of Endeavor Translation
 
-	to_chat(src,"<span class='filter_notice'>[jointext(msg, "<br>")]</span>")
+	to_chat(src,span_filter_notice("[jointext(msg, "<br>")]"))

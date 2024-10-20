@@ -187,9 +187,9 @@
 				return TOPIC_REFRESH
 			else
 				/* Bastion of Endeavor Translation
-				to_chat(user, "<span class='warning'>Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and .</span>")
+				to_chat(user, span_warning("Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and ."))
 				*/
-				to_chat(user, "<span class='warning'>Недопустимое имя. В имени должно быть от 2 до [count_ru(MAX_NAME_LEN, "символ;а;ов;ов")]. Оно может содержать только буквы от А-Я, а-я, -, ', и .</span>")
+				to_chat(user, span_warning("Недопустимое имя. В имени должно быть от 2 до [count_ru(MAX_NAME_LEN, "символ;а;ов;ов")]. Оно может содержать только буквы от А-Я, а-я, -, ', и ."))
 				// End of Bastion of Endeavor Translation
 				return TOPIC_NOACTION
 
@@ -235,9 +235,9 @@
 				return TOPIC_REFRESH
 			else
 				/* Bastion of Endeavor Translation
-				to_chat(user, "<span class='warning'>Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and .</span>")
+				to_chat(user, span_warning("Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and ."))
 				*/
-				to_chat(user, "<span class='warning'>Недопустимое имя. В имени должно быть от 2 до [MAX_NAME_LEN] символов. Оно может содержать только буквы от А-Я, а-я, -, ', и .</span>")
+				to_chat(user, span_warning("Недопустимое имя. В имени должно быть от 2 до [MAX_NAME_LEN] символов. Оно может содержать только буквы от А-Я, а-я, -, ', и ."))
 				// End of Bastion of Endeavor Translation
 				return TOPIC_NOACTION
 

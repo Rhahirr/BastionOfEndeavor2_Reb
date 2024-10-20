@@ -37,9 +37,9 @@ SUBSYSTEM_DEF(machines)
 /datum/controller/subsystem/machines/Initialize() // CHOMPEdit
 	makepowernets()
 	/* Bastion of Endeavor Translation
-	admin_notice("<span class='danger'>Initializing atmos machinery.</span>", R_DEBUG)
+	admin_notice(span_danger("Initializing atmos machinery."), R_DEBUG)
 	*/
-	admin_notice("<span class='danger'>Инициализация атмосферной аппаратуры.</span>", R_DEBUG)
+	admin_notice(span_danger("Инициализация атмосферной аппаратуры."), R_DEBUG)
 	// End of Bastion of Endeavor Translation
 	setup_atmos_machinery(all_machines)
 	fire()

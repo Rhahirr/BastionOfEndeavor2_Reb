@@ -41,9 +41,9 @@
 				parent_organ_ru = "левую руку"
 				// End of Bastion of Endeavor Addition
 		/* Bastion of Endeavor Translation
-		to_chat(user, "<span class='notice'>You swap \the [src]'s servos to install neatly into \the lower [parent_organ] mount.</span>")
+		to_chat(user, span_notice("You swap \the [src]'s servos to install neatly into \the lower [parent_organ] mount."))
 		*/
-		to_chat(user, "<span class='notice'>Вы переключили cервоприводы [gcase_ru(src)] в режим установки в [parent_organ_ru].</span>")
+		to_chat(user, span_notice("Вы переключили cервоприводы [gcase_ru(src)] в режим установки в [parent_organ_ru]."))
 		// End of Bastion of Endeavor Translation
 		return
 
@@ -99,9 +99,9 @@
 				// End of Bastion of Endeavor Addition
 				target_slot = slot_l_hand
 		/* Bastion of Endeavor Translation
-		to_chat(user, "<span class='notice'>You swap \the [src]'s servos to install neatly into \the upper [parent_organ] mount.</span>")
+		to_chat(user, span_notice("You swap \the [src]'s servos to install neatly into \the upper [parent_organ] mount."))
 		*/
-		to_chat(user, "<span class='notice'>Вы переключили cервоприводы [gcase_ru(src)] в режим установки в [parent_organ_ru].</span>")
+		to_chat(user, span_notice("Вы переключили cервоприводы [gcase_ru(src)] в режим установки в [parent_organ_ru]."))
 		// End of Bastion of Endeavor Translation
 		return
 
@@ -156,9 +156,9 @@
 				parent_organ_ru = "левую руку"
 				// End of Bastion of Endeavor Addition
 		/* Bastion of Endeavor Translation
-		to_chat(user, "<span class='notice'>You swap \the [src]'s servos to install neatly into \the upper [parent_organ] mount.</span>")
+		to_chat(user, span_notice("You swap \the [src]'s servos to install neatly into \the upper [parent_organ] mount."))
 		*/
-		to_chat(user, "<span class='notice'>Вы переключили cервоприводы [gcase_ru(src)] в режим установки в [parent_organ_ru].</span>")
+		to_chat(user, span_notice("Вы переключили cервоприводы [gcase_ru(src)] в режим установки в [parent_organ_ru]."))
 		// End of Bastion of Endeavor Translation
 		return
 

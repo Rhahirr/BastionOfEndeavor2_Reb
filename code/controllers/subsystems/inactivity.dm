@@ -21,9 +21,9 @@ SUBSYSTEM_DEF(inactivity)
 		client_list.len--
 		if(C.is_afk(CONFIG_GET(number/kick_inactive) MINUTES) && can_kick(C)) // CHOMPEdit
 			/* Bastion of Endeavor Translation
-			to_chat_immediate(C, world.time, "<span class='warning'>You have been inactive for more than [CONFIG_GET(number/kick_inactive)] minute\s and have been disconnected.</span>") // CHOMPEdit
+			to_chat_immediate(C, world.time, span_warning("You have been inactive for more than [CONFIG_GET(number/kick_inactive)] minute\s and have been disconnected.")) // CHOMPEdit
 			*/
-			to_chat_immediate(C, world.time, "<span class='warning'>Вы были неактивны в течение [count_ru(CONFIG_GET(number/kick_inactive), "минут;у;ы;")], поэтому были отключены.</span>")
+			to_chat_immediate(C, world.time, span_warning("Вы были неактивны в течение [count_ru(CONFIG_GET(number/kick_inactive), "минут;у;ы;")], поэтому были отключены."))
 			// End of Bastion of Endeavor Translation
 
 			var/information

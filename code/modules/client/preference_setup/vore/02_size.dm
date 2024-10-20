@@ -198,9 +198,9 @@
 		if (!ISINRANGE(new_size,25,200))
 			pref.size_multiplier = 1
 			/* Bastion of Endeavor Translation
-			to_chat(user, "<span class='notice'>Invalid size.</span>")
+			to_chat(user, span_notice("Invalid size."))
 			*/
-			to_chat(user, "<span class='notice'>Недопустимый размер.</span>")
+			to_chat(user, span_notice("Недопустимый размер."))
 			// End of Bastion of Endeavor Translation
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 		else if(new_size)

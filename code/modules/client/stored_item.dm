@@ -93,9 +93,9 @@
 	if(istype(user) && Adjacent(user))
 		if(inoperable() || panel_open)
 			/* Bastion of Endeavor Translation
-			to_chat(user, "<span class='warning'>\The [src] seems to be nonfunctional...</span>")
+			to_chat(user, span_warning("\The [src] seems to be nonfunctional..."))
 			*/
-			to_chat(user, "<span class='warning'>Похоже, [interact_ru(src, "не работа;ет;ет;ет;ют;", capital = FALSE)]...</span>")
+			to_chat(user, span_warning("Похоже, [interact_ru(src, "не работа;ет;ет;ет;ют;", capital = FALSE)]..."))
 			// End of Bastion of Endeavor Translation
 		else
 			start_using(user)
@@ -105,9 +105,9 @@
 		return
 	if(busy_bank)
 		/* Bastion of Endeavor Translation
-		to_chat(user, "<span class='warning'>\The [src] is already in use.</span>")
+		to_chat(user, span_warning("\The [src] is already in use."))
 		*/
-		to_chat(user, "<span class='warning'>[interact_ru(src, "уже кем-то использу;ет;ет;ет;ют;ся.")]</span>")
+		to_chat(user, span_warning("[interact_ru(src, "уже кем-то использу;ет;ет;ет;ют;ся.")]"))
 		// End of Bastion of Endeavor Translation
 		return
 	busy_bank = TRUE
@@ -127,10 +127,10 @@
 		return
 	/* Bastion of Endeavor Translation
 	else if(choice == "Check contents" && I)
-		to_chat(user, "<span class='notice'>\The [src] has \the [Iname] for you!</span>")
+		to_chat(user, span_notice("\The [src] has \the [Iname] for you!"))
 	*/
 	else if(choice == "Проверить содержимое" && I)
-		to_chat(user, "<span class='notice'>В [concat_ru("ваш;ем;ей;ем;их;", src, PCASE)] – [Iname]!</span>")
+		to_chat(user, span_notice("В [concat_ru("ваш;ем;ей;ем;их;", src, PCASE)] – [Iname]!"))
 	// End of Bastion of Endeavor Translation
 		busy_bank = FALSE
 	/* Bastion of Endeavor Translation
@@ -140,17 +140,17 @@
 	// End of Bastion of Endeavor Translation
 		if(user.hands_are_full())
 			/* Bastion of Endeavor Translation
-			to_chat(user,"<span class='notice'>Your hands are full!</span>")
+			to_chat(user,span_notice("Your hands are full!"))
 			*/
-			to_chat(user,"<span class='notice'>Ваши руки заняты!</span>")
+			to_chat(user,span_notice("Ваши руки заняты!"))
 			// End of Bastion of Endeavor Translation
 			busy_bank = FALSE
 			return
 		if(user.ckey in item_takers)
 			/* Bastion of Endeavor Translation
-			to_chat(user, "<span class='warning'>You have already taken something out of \the [src] this shift.</span>")
+			to_chat(user, span_warning("You have already taken something out of \the [src] this shift."))
 			*/
-			to_chat(user, "<span class='warning'>Вы уже извлекали что-то из [gcase_ru(src)] за эту смену.</span>")
+			to_chat(user, span_warning("Вы уже извлекали что-то из [gcase_ru(src)] за эту смену."))
 			// End of Bastion of Endeavor Translation
 			busy_bank = FALSE
 			return
@@ -175,7 +175,7 @@
 		var/obj/N = new I(get_turf(src))
 		/* Bastion of Endeavor Translation: I don't know if its intended that the name does not persist, i'll remove it if it becomes an issue
 		log_admin("[key_name_admin(user)] retrieved [N] from the item bank.")
-		visible_message("<span class='notice'>\The [src] dispenses the [N] to \the [user].</span>")
+		visible_message(span_notice("\The [src] dispenses the [N] to \the [user]."))
 		*/
 		N.name = Iname
 		N.case_blueprint_ru = Icase_blueprint_ru
@@ -183,7 +183,7 @@
 		N.number_lock_ru = Inumber_lock_ru
 		N.construct_cases_ru()
 		log_admin("[key_name_admin(user)] извлёк [acase_ru(N)] из персонального сейфа.")
-		visible_message("<span class='notice'>[interact_ru(src, "выдал", user, case_target = DCASE)] [acase_ru(N)].</span>")
+		visible_message(span_notice("[interact_ru(src, "выдал", user, case_target = DCASE)] [acase_ru(N)]."))
 		// End of Bastion of Endeavor Translation
 		user.put_in_hands(N)
 		N.persist_storable = FALSE
@@ -202,18 +202,18 @@
 		icon_state = "item_bank"
 	/* Bastion of Endeavor Translation
 	else if(choice == "Info")
-		to_chat(user, "<span class='notice'>\The [src] can store a single item for you between shifts! Anything that has been retrieved from the bank cannot be stored again in the same shift. Anyone can withdraw from the bank one time per shift. Some items are not able to be accepted by the bank.</span>")
+		to_chat(user, span_notice("\The [src] can store a single item for you between shifts! Anything that has been retrieved from the bank cannot be stored again in the same shift. Anyone can withdraw from the bank one time per shift. Some items are not able to be accepted by the bank."))
 	*/
 	else if(choice == "Информация")
-		to_chat(user, "<span class='notice'>[prep_adv_ru("В", src)] можно сохранить один предмет на будущую смену! Извлечь его можно лишь один раз за смену и нельзя сложить внутрь повторно. Хранилище откажется принимать некоторые предметы.</span>")
+		to_chat(user, span_notice("[prep_adv_ru("В", src)] можно сохранить один предмет на будущую смену! Извлечь его можно лишь один раз за смену и нельзя сложить внутрь повторно. Хранилище откажется принимать некоторые предметы."))
 	// End of Bastion of Endeavor Translation
 		busy_bank = FALSE
 		return
 	else if(!I)
 		/* Bastion of Endeavor Translation
-		to_chat(user, "<span class='warning'>\The [src] doesn't seem to have anything for you...</span>")
+		to_chat(user, span_warning("\The [src] doesn't seem to have anything for you..."))
 		*/
-		to_chat(user, "<span class='warning'>[prep_adv_ru("В", src)] ничего для вас нет...</span>")
+		to_chat(user, span_warning("[prep_adv_ru("В", src)] ничего для вас нет..."))
 		// End of Bastion of Endeavor Translation
 		busy_bank = FALSE
 
@@ -222,9 +222,9 @@
 		return
 	if(busy_bank)
 		/* Bastion of Endeavor Translation
-		to_chat(user, "<span class='warning'>\The [src] is already in use.</span>")
+		to_chat(user, span_warning("\The [src] is already in use."))
 		*/
-		to_chat(user, "<span class='warning'>[interact_ru(src, "уже кем-то использу;ет;ет;ет;ют;ся.")]</span>")
+		to_chat(user, span_warning("[interact_ru(src, "уже кем-то использу;ет;ет;ет;ют;ся.")]"))
 		// End of Bastion of Endeavor Translation
 		return
 	busy_bank = TRUE
@@ -232,9 +232,9 @@
 	if(!istool(O) && O.persist_storable)
 		if(ispath(I))
 			/* Bastion of Endeavor Translation
-			to_chat(user, "<span class='warning'>You cannot store \the [O]. You already have something stored.</span>")
+			to_chat(user, span_warning("You cannot store \the [O]. You already have something stored."))
 			*/
-			to_chat(user, "<span class='warning'>Вы не можете поместить [acase_ru(O)] в хранилище, так как в нём уже что-то есть.</span>")
+			to_chat(user, span_warning("Вы не можете поместить [acase_ru(O)] в хранилище, так как в нём уже что-то есть."))
 			// End of Bastion of Endeavor Translation
 			busy_bank = FALSE
 			return
@@ -250,16 +250,16 @@
 		for(var/obj/check in O.contents)
 			if(!check.persist_storable)
 				/* Bastion of Endeavor Translation
-				to_chat(user, "<span class='warning'>\The [src] buzzes. \The [O] contains [check], which cannot be stored. Please remove this item before attempting to store \the [O]. As a reminder, any contents of \the [O] will be lost if you store it with contents.</span>")
+				to_chat(user, span_warning("\The [src] buzzes. \The [O] contains [check], which cannot be stored. Please remove this item before attempting to store \the [O]. As a reminder, any contents of \the [O] will be lost if you store it with contents."))
 				*/
-				to_chat(user, "<span class='warning'>[interact_ru(src, "гуд;ит;ит;ит;ят;")]. [interact_ru(O, "содерж;ит;ит;ит;ат;", check)], [verb_ru(check, "котор;ый;ую;ое;ые;")] нельзя поместить в хранилище. Пожалуйста, уберите [verb_ru(check, ";его;её;его;их;")] из [verb_ru(O, ";него;неё;него;них;")] перед тем, как помещать в хранилище. В качестве напоминания, всё содержимое [gcase_ru(O)] будет удалено после помещения в хранилище.</span>")
+				to_chat(user, span_warning("[interact_ru(src, "гуд;ит;ит;ит;ят;")]. [interact_ru(O, "содерж;ит;ит;ит;ат;", check)], [verb_ru(check, "котор;ый;ую;ое;ые;")] нельзя поместить в хранилище. Пожалуйста, уберите [verb_ru(check, ";его;её;его;их;")] из [verb_ru(O, ";него;неё;него;них;")] перед тем, как помещать в хранилище. В качестве напоминания, всё содержимое [gcase_ru(O)] будет удалено после помещения в хранилище."))
 				// End of Bastion of Endeavor Translation
 				busy_bank = FALSE
 				return
 		/* Bastion of Endeavor Translation
-		user.visible_message("<span class='notice'>\The [user] begins storing \the [O] in \the [src].</span>","<span class='notice'>You begin storing \the [O] in \the [src].</span>")
+		user.visible_message(span_notice("\The [user] begins storing \the [O] in \the [src]."),span_notice("You begin storing \the [O] in \the [src]."))
 		*/
-		user.visible_message("<span class='notice'>[interact_ru(user, "начина;ет;ет;ет;ют; помещать", O)] [prep_adv_ru("в", src, ACASE)].</span>","<span class='notice'>Вы начинаете помещать [acase_ru(O)] [prep_adv_ru("в", src, ACASE)].</span>")
+		user.visible_message(span_notice("[interact_ru(user, "начина;ет;ет;ет;ют; помещать", O)] [prep_adv_ru("в", src, ACASE)]."),span_notice("Вы начинаете помещать [acase_ru(O)] [prep_adv_ru("в", src, ACASE)]."))
 		// End of Bastion of Endeavor Translation
 		icon_state = "item_bank_o"
 		if(!do_after(user, 10 SECONDS, src, exclusive = TASK_ALL_EXCLUSIVE) || inoperable())
@@ -268,10 +268,10 @@
 			return
 		src.persist_item_savefile_save(user, O)
 		/* Bastion of Endeavor Translation
-		user.visible_message("<span class='notice'>\The [user] stores \the [O] in \the [src].</span>","<span class='notice'>You stored \the [O] in \the [src].</span>")
+		user.visible_message(span_notice("\The [user] stores \the [O] in \the [src]."),span_notice("You stored \the [O] in \the [src]."))
 		log_admin("[key_name_admin(user)] stored [O] in the item bank.")
 		*/
-		user.visible_message("<span class='notice'>[interact_ru(user, "поместил", O)] [prep_adv_ru("в", src, ACASE)].</span>","<span class='notice'>Вы поместили [acase_ru(O)] [prep_adv_ru("в", src, ACASE)].</span>")
+		user.visible_message(span_notice("[interact_ru(user, "поместил", O)] [prep_adv_ru("в", src, ACASE)]."),span_notice("Вы поместили [acase_ru(O)] [prep_adv_ru("в", src, ACASE)]."))
 		log_admin("[key_name_admin(user)] поместил [acase_ru(O)] в персональный сейф.")
 		// End of Bastion of Endeavor Translation
 		qdel(O)
@@ -279,9 +279,9 @@
 		icon_state = "item_bank"
 	else
 		/* Bastion of Endeavor Translation
-		to_chat(user, "<span class='warning'>You cannot store \the [O]. \The [src] either does not accept that, or it has already been retrieved from storage this shift.</span>")
+		to_chat(user, span_warning("You cannot store \the [O]. \The [src] either does not accept that, or it has already been retrieved from storage this shift."))
 		*/
-		to_chat(user, "<span class='warning'>Вы не можете поместить [acase_ru(O)] в хранилище. Этот предмет либо не допускается к хранению, либо уже был извлечён из хранилища за эту смену.</span>")
+		to_chat(user, span_warning("Вы не можете поместить [acase_ru(O)] в хранилище. Этот предмет либо не допускается к хранению, либо уже был извлечён из хранилища за эту смену."))
 		// End of Bastion of Endeavor Translation
 		busy_bank = FALSE
 

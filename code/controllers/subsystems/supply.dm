@@ -225,9 +225,9 @@ SUBSYSTEM_DEF(supply)
 					LAZYCLEARLIST(A.req_one_access)
 				else
 					/* Bastion of Endeavor Translation
-					log_debug("<span class='danger'>Supply pack with invalid access restriction [SP.access] encountered!</span>")
+					log_debug(span_danger("Supply pack with invalid access restriction [SP.access] encountered!"))
 					*/
-					log_debug("<span class='danger'>Обнаружен комплект снабжения с неправильным доступом [SP.access]!</span>")
+					log_debug(span_danger("Обнаружен комплект снабжения с неправильным доступом [SP.access]!"))
 					// End of Bastion of Endeavor Translation
 
 		//supply manifest generation begin

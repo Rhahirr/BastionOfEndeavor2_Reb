@@ -147,9 +147,9 @@
 		var/datum/track/T = pick(SSmedia_tracks.lobby_tracks)
 		media.push_music(T.url, world.time, 0.85)
 		/* Bastion of Endeavor Translation
-		to_chat(src,"<span class='notice'>Lobby music: <b>[T.title]</b> by <b>[T.artist]</b>.</span>")
+		to_chat(src,span_notice("Lobby music: <b>[T.title]</b> by <b>[T.artist]</b>."))
 		*/
-		to_chat(src,"<span class='notice'>Музыка в лобби: <b>[T.artist]</b> - <b>[T.title]</b>.</span>")
+		to_chat(src,span_notice("Музыка в лобби: <b>[T.artist]</b> - <b>[T.title]</b>."))
 		// End of Bastion of Endeavor Translation
 
 /proc/get_sfx(soundin)

@@ -16,30 +16,30 @@ var/can_call_traders = 1
 
 	if(!holder)
 		/* Bastion of Endeavor Translation
-		to_chat(usr, "<span class='danger'>Only administrators may use this command.</span>")
+		to_chat(usr, span_danger("Only administrators may use this command."))
 		*/
-		to_chat(usr, "<span class='danger'>Эта команда доступна только администраторам.</span>")
+		to_chat(usr, span_danger("Эта команда доступна только администраторам."))
 		// End of Bastion of Endeavor Translation
 		return
 	if(!ticker)
 		/* Bastion of Endeavor Translation
-		to_chat(usr, "<span class='danger'>The game hasn't started yet!</span>")
+		to_chat(usr, span_danger("The game hasn't started yet!"))
 		*/
-		to_chat(usr, "<span class='danger'>Игра ещё не началась!</span>")
+		to_chat(usr, span_danger("Игра ещё не началась!"))
 		// End of Bastion of Endeavor Translation
 		return
 	if(ticker.current_state == 1)
 		/* Bastion of Endeavor Translation
-		to_chat(usr, "<span class='danger'>The round hasn't started yet!</span>")
+		to_chat(usr, span_danger("The round hasn't started yet!"))
 		*/
-		to_chat(usr, "<span class='danger'>Раунд ещё не начался!</span>")
+		to_chat(usr, span_danger("Раунд ещё не начался!"))
 		// End of Bastion of Endeavor Translation
 		return
 	if(send_beruang)
 		/* Bastion of Endeavor Translation
-		to_chat(usr, "<span class='danger'>The Beruang has already been sent this round!</span>")
+		to_chat(usr, span_danger("The Beruang has already been sent this round!"))
 		*/
-		to_chat(usr, "<span class='danger'>Беруанг уже был отправлен в этом раунде!</span>")
+		to_chat(usr, span_danger("Беруанг уже был отправлен в этом раунде!"))
 		// End of Bastion of Endeavor Translation
 		return
 	/* Bastion of Endeavor Translation
@@ -57,9 +57,9 @@ var/can_call_traders = 1
 			return
 	if(send_beruang)
 		/* Bastion of Endeavor Translation
-		to_chat(usr, "<span class='danger'>Looks like somebody beat you to it!</span>")
+		to_chat(usr, span_danger("Looks like somebody beat you to it!"))
 		*/
-		to_chat(usr, "<span class='danger'>Вас кто-то опередил!</span>")
+		to_chat(usr, span_danger("Вас кто-то опередил!"))
 		// End of Bastion of Endeavor Translation
 		return
 
@@ -84,9 +84,9 @@ var/can_call_traders = 1
 
 	if(!MayRespawn(1))
 		/* Bastion of Endeavor Translation
-		to_chat(usr, "<span class='warning'>You cannot join the traders.</span>")
+		to_chat(usr, span_warning("You cannot join the traders."))
 		*/
-		to_chat(usr, "<span class='warning'>Вы не можете сейчас присоединиться к торговцам.</span>")
+		to_chat(usr, span_warning("Вы не можете сейчас присоединиться к торговцам."))
 		// End of Bastion of Endeavor Translation
 		return
 

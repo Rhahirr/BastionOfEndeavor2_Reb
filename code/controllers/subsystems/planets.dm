@@ -20,9 +20,9 @@ SUBSYSTEM_DEF(planets)
 
 /datum/controller/subsystem/planets/Initialize() // CHOMPEdit
 	/* Bastion of Endeavor Translation
-	admin_notice("<span class='danger'>Initializing planetary weather.</span>", R_DEBUG)
+	admin_notice(span_danger("Initializing planetary weather."), R_DEBUG)
 	*/
-	admin_notice("<span class='danger'>Инициализация планетарной погоды.</span>", R_DEBUG)
+	admin_notice(span_danger("Инициализация планетарной погоды."), R_DEBUG)
 	// End of Bastion of Endeavor Translation
 	createPlanets()
 	return SS_INIT_SUCCESS // CHOMPEdit
@@ -37,9 +37,9 @@ SUBSYSTEM_DEF(planets)
 				z_to_planet.len = Z
 			if(z_to_planet[Z])
 				/* Bastion of Endeavor Translation
-				admin_notice("<span class='danger'>Z[Z] is shared by more than one planet!</span>", R_DEBUG)
+				admin_notice(span_danger("Z[Z] is shared by more than one planet!"), R_DEBUG)
 				*/
-				admin_notice("<span class='danger'>Z-уровень [Z] используется более чем одной планетой!</span>", R_DEBUG)
+				admin_notice(span_danger("Z-уровень [Z] используется более чем одной планетой!"), R_DEBUG)
 				// End of Bastion of Endeavor Translation
 				continue
 			z_to_planet[Z] = NP

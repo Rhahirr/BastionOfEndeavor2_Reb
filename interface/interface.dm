@@ -20,17 +20,17 @@
 				src << link(output)
 			else
 				/* Bastion of Endeavor Translation
-				to_chat(src, "<span class='warning'> The wiki search URL is not set in the server configuration.</span>")
+				to_chat(src, span_warning(" The wiki search URL is not set in the server configuration."))
 				*/
-				to_chat(src, "<span class='warning'>URL вики не задан в конфигурации сервера.</span>")
+				to_chat(src, span_warning("URL вики не задан в конфигурации сервера."))
 				// End of Bastion of Endeavor Translation
 		else
 			src << link(CONFIG_GET(string/wikiurl)) // CHOMPEdit
 	else
 		/* Bastion of Endeavor Translation
-		to_chat(src, "<span class='warning'>The wiki URL is not set in the server configuration.</span>")
+		to_chat(src, span_warning("The wiki URL is not set in the server configuration."))
 		*/
-		to_chat(src, "<span class='warning'>URL вики не задан в конфигурации сервера.</span>")
+		to_chat(src, span_warning("URL вики не задан в конфигурации сервера."))
 		// End of Bastion of Endeavor Translation
 		return
 
@@ -53,9 +53,9 @@
 		src << link(CONFIG_GET(string/forumurl)) // CHOMPEdit
 	else
 		/* Bastion of Endeavor Translation
-		to_chat(src, "<span class='warning'>The forum URL is not set in the server configuration.</span>")
+		to_chat(src, span_warning("The forum URL is not set in the server configuration."))
 		*/
-		to_chat(src, "<span class='warning'>URL форума не задан в конфигурации сервера.</span>")
+		to_chat(src, span_warning("URL форума не задан в конфигурации сервера."))
 		// End of Bastion of Endeavor Translation
 		return
 
@@ -79,9 +79,9 @@
 		src << link(CONFIG_GET(string/rulesurl)) // CHOMPEdit
 	else
 		/* Bastion of Endeavor Translation
-		to_chat(src, "<span class='danger'>The rules URL is not set in the server configuration.</span>")
+		to_chat(src, span_danger("The rules URL is not set in the server configuration."))
 		*/
-		to_chat(src, "<span class='warning'>URL правил сервера не задан в конфигурации сервера.</span>")
+		to_chat(src, span_warning("URL правил сервера не задан в конфигурации сервера."))
 		// End of Bastion of Endeavor Translation
 	return
 
@@ -105,9 +105,9 @@
 		src << link(CONFIG_GET(string/mapurl)) // CHOMPEdit
 	else
 		/* Bastion of Endeavor Translation
-		to_chat(src, "<span class='danger'>The map URL is not set in the server configuration.</span>")
+		to_chat(src, span_danger("The map URL is not set in the server configuration."))
 		*/
-		to_chat(src, "<span class='warning'>URL карты станции не задан в конфигурации сервера.</span>")
+		to_chat(src, span_warning("URL карты станции не задан в конфигурации сервера."))
 		// End of Bastion of Endeavor Translation
 	return
 
@@ -131,9 +131,9 @@
 		src << link(CONFIG_GET(string/githuburl)) // CHOMPEdit
 	else
 		/* Bastion of Endeavor Translation
-		to_chat(src, "<span class='danger'>The GitHub URL is not set in the server configuration.</span>")
+		to_chat(src, span_danger("The GitHub URL is not set in the server configuration."))
 		*/
-		to_chat(src, "<span class='warning'>GitHub сервера не задан в конфигурации сервера.</span>")
+		to_chat(src, span_warning("GitHub сервера не задан в конфигурации сервера."))
 		// End of Bastion of Endeavor Translation
 	return
 
@@ -157,9 +157,9 @@
 		src << link(CONFIG_GET(string/discordurl)) // CHOMPEdit
 	else
 		/* Bastion of Endeavor Translation
-		to_chat(src, "<span class='danger'>The Discord URL is not set in the server configuration.</span>")
+		to_chat(src, span_danger("The Discord URL is not set in the server configuration."))
 		*/
-		to_chat(src, "<span class='warning'>Discord сервера не задан в конфигурации сервера.</span>")
+		to_chat(src, span_warning("Discord сервера не задан в конфигурации сервера."))
 		// End of Bastion of Endeavor Translation
 	return
 
@@ -183,9 +183,9 @@
 		src << link(CONFIG_GET(string/patreonurl)) // CHOMPEdit
 	else
 		/* Bastion of Endeavor Translation
-		to_chat(src, "<span class='danger'>The Patreon URL is not set in the server configuration.</span>")
+		to_chat(src, span_danger("The Patreon URL is not set in the server configuration."))
 		*/
-		to_chat(src, "<span class='warning'>Patreon сервера не задан в конфигурации сервера.</span>")
+		to_chat(src, span_warning("Patreon сервера не задан в конфигурации сервера."))
 		// End of Bastion of Endeavor Translation
 	return
 
@@ -450,14 +450,13 @@ Any-Mode: (hotkey doesn't need to be on)
 		to_chat(src,admin)
 	*/
 	if(isrobot(src.mob))
-	
-		to_chat(src,"<span class='chatexport'>[robot_hotkey_mode]</span>")
-		to_chat(src,"<span class='chatexport'>[robot_other]</span>")
+		to_chat(src,span_chatexport("[robot_hotkey_mode]"))
+		to_chat(src,span_chatexport("[robot_other]"))
 	else
-		to_chat(src,"<span class='chatexport'>[hotkey_mode]</span>")
-		to_chat(src,"<span class='chatexport'>[other]</span>")
+		to_chat(src,span_chatexport("[hotkey_mode]"))
+		to_chat(src,span_chatexport("[other]"))
 	if(holder)
-		to_chat(src,"<span class='chatexport'>[admin]</span>")
+		to_chat(src,span_chatexport("[admin]"))
 	// End of Bastion of Endeavor Edit
 
 // Set the DreamSeeker input macro to the type appropriate for its mob

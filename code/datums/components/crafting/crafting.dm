@@ -489,16 +489,16 @@
 				else
 					result.forceMove(user.drop_location())
 				/* Bastion of Endeavor Translation
-				to_chat(user, "<span class='notice'>[TR.name] constructed.</span>")
+				to_chat(user, span_notice("[TR.name] constructed."))
 				*/
-				to_chat(user, "<span class='notice'>Вы изготовили [TR.result_name_ru].</span>")
+				to_chat(user, span_notice("Вы изготовили [TR.result_name_ru]."))
 				// End of Bastion of Endeavor Translation
 				TR.on_craft_completion(user, result)
 			else
 				/* Bastion of Endeavor Translation
-				to_chat(user, "<span class='warning'>Construction failed[result]</span>")
+				to_chat(user, span_warning("Construction failed[result]"))
 				*/
-				to_chat(user, "<span class='warning'>Не удалось изготовить [TR.result_name_ru][result]</span>")
+				to_chat(user, span_warning("Не удалось изготовить [TR.result_name_ru][result]"))
 				// End of Bastion of Endeavor Translation
 			busy = FALSE
 		if("toggle_recipes")

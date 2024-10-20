@@ -27,9 +27,9 @@
 	if(owner && owner.stat == DEAD)
 		owner.set_stat(CONSCIOUS)
 		/* Bastion of Endeavor Translation
-		owner.visible_message("<span class='danger'>\The [owner] twitches visibly!</span>")
+		owner.visible_message(span_danger("\The [owner] twitches visibly!"))
 		*/
-		owner.visible_message("<span class='danger'>[interact_ru(owner, "резко вздрогнул")]!</span>")
+		owner.visible_message(span_danger("[interact_ru(owner, "резко вздрогнул")]!"))
 		// End of Bastion of Endeavor Translation
 
 /obj/item/organ/internal/cell/emp_act(severity)
@@ -105,9 +105,9 @@
 		dead_mob_list -= owner
 		living_mob_list |= owner
 		/* Bastion of Endeavor Translation
-		owner.visible_message("<span class='danger'>\The [owner] twitches visibly!</span>")
+		owner.visible_message(span_danger("\The [owner] twitches visibly!"))
 		*/
-		owner.visible_message("<span class='danger'>[interact_ru(owner, "резко вздрогнул")]!</span>")
+		owner.visible_message(span_danger("[interact_ru(owner, "резко вздрогнул")]!"))
 		// End of Bastion of Endeavor Translation
 
 /obj/item/organ/internal/mmi_holder/removed(var/mob/living/user)

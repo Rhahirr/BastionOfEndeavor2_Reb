@@ -5,9 +5,9 @@
 	set instant = TRUE
 	set name = ".display_ping"
 	/* Bastion of Endeavor Translation
-	to_chat(src, "<span class='notice'>Round trip ping took [round(pingfromtime(time),1)]ms</span>")
+	to_chat(src, span_notice("Round trip ping took [round(pingfromtime(time),1)]ms"))
 	*/
-	to_chat(src, "<span class='notice'>Пинг составляет [round(pingfromtime(time),1)] мс.</span>")
+	to_chat(src, span_notice("Пинг составляет [round(pingfromtime(time),1)] мс."))
 	// End of Bastion of Endeavor Translation
 
 /client/verb/ping()

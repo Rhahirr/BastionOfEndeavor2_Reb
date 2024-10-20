@@ -107,9 +107,9 @@
 		H.mind.initial_account = M
 
 	/* Bastion of Endeavor Translation
-	to_chat(H, "<span class='notice'><b>Your account number is: [M.account_number], your account pin is: [M.remote_access_pin]</b></span>")
+	to_chat(H, span_notice("<b>Your account number is: [M.account_number], your account pin is: [M.remote_access_pin]</b>"))
 	*/
-	to_chat(H, "<span class='notice'><b>Номер вашего счёта – [M.account_number], пароль – [M.remote_access_pin].</b></span>")
+	to_chat(H, span_notice("<b>Номер вашего счёта – [M.account_number], пароль – [M.remote_access_pin].</b>"))
 	// End of Bastion of Endeavor Translation
 
 // overrideable separately so AIs/borgs can have cardborg hats without unneccessary new()/qdel()

@@ -11,9 +11,9 @@
 
 	if(say_disabled)	//This is here to try to identify lag problems
 		/* Bastion of Endeavor Translation
-		to_chat(usr, "<span class='warning'>Speech is currently admin-disabled.</span>")
+		to_chat(usr, span_warning("Speech is currently admin-disabled."))
 		*/
-		to_chat(usr, "<span class='warning'>Речь на данный момент отключена администраторами.</span>")
+		to_chat(usr, span_warning("Речь на данный момент отключена администраторами."))
 		// End of Bastion of Endeavor Translation
 		return
 
@@ -31,22 +31,22 @@
 
 	if(!prefs?.read_preference(/datum/preference/toggle/show_ooc))
 		/* Bastion of Endeavor Translation
-		to_chat(src, "<span class='warning'>You have OOC muted.</span>")
+		to_chat(src, span_warning("You have OOC muted."))
 		*/
-		to_chat(src, "<span class='warning'>У вас на данный момент отключён чат OOC.</span>")
+		to_chat(src, span_warning("У вас на данный момент отключён чат OOC."))
 		// End of Bastion of Endeavor Translation
 		return
 
 	if(!holder)
 		/* Bastion of Endeavor Translation
 		if(!CONFIG_GET(flag/ooc_allowed)) // CHOMPEdit
-			to_chat(src, "<span class='danger'>OOC is globally muted.</span>")
+			to_chat(src, span_danger("OOC is globally muted."))
 			return
 		if(!CONFIG_GET(flag/dooc_allowed) && (mob.stat == DEAD)) // CHOMPEdit
-			to_chat(usr, "<span class='danger'>OOC for dead mobs has been turned off.</span>")
+			to_chat(usr, span_danger("OOC for dead mobs has been turned off."))
 			return
 		if(prefs.muted & MUTE_OOC)
-			to_chat(src, "<span class='danger'>You cannot use OOC (muted).</span>")
+			to_chat(src, span_danger("You cannot use OOC (muted)."))
 			return
 		if(findtext(msg, "byond://") && !CONFIG_GET(flag/allow_byond_links)) // CHOMPEdit
 			to_chat(src, "<B>Advertising other servers is not allowed.</B>")
@@ -65,13 +65,13 @@
 			return
 		*/
 		if(!CONFIG_GET(flag/ooc_allowed)) // CHOMPEdit
-			to_chat(src, "<span class='danger'>Чат OOC отключён администраторами.</span>")
+			to_chat(src, span_danger("Чат OOC отключён администраторами."))
 			return
 		if(!CONFIG_GET(flag/dooc_allowed) && (mob.stat == DEAD)) // CHOMPEdit
-			to_chat(usr, "<span class='danger'>Чат OOC отключён для мёртвых существ.</span>")
+			to_chat(usr, span_danger("Чат OOC отключён для мёртвых существ."))
 			return
 		if(prefs.muted & MUTE_OOC)
-			to_chat(src, "<span class='danger'>Вам запрещено использовать чат OOC.</span>")
+			to_chat(src, span_danger("Вам запрещено использовать чат OOC."))
 			return
 		if(findtext_char(msg, "byond://") && !CONFIG_GET(flag/allow_byond_links)) // CHOMPEdit
 			to_chat(src, "<B>Рекламировать другие сервера запрещено.</B>")
@@ -108,7 +108,7 @@
 		if(holder.rights & R_ADMIN && holder.rights & R_BAN) //Admins
 			ooc_style = "admin"
 
-	msg = GLOB.is_valid_url.Replace(msg,"<span class='linkify'>$1</span>")
+	msg = GLOB.is_valid_url.Replace(msg,span_linkify("$1"))
 
 	for(var/client/target in GLOB.clients)
 		if(target.prefs?.read_preference(/datum/preference/toggle/show_ooc))
@@ -123,15 +123,15 @@
 						display_name = holder.fakekey
 			if(holder && !holder.fakekey && (holder.rights & R_ADMIN|R_FUN|R_EVENT) && CONFIG_GET(flag/allow_admin_ooccolor) && (src.prefs.ooccolor != initial(src.prefs.ooccolor))) // keeping this for the badmins // CHOMPEdit
 				/* Bastion of Endeavor Translation
-				to_chat(target, "<span class='ooc'><font color='[src.prefs.ooccolor]'>" + create_text_tag("ooc", "OOC:", target) + " <EM>[display_name]:</EM> <span class='message'>[msg]</span></font></span>")
+				to_chat(target, span_ooc("<font color='[src.prefs.ooccolor]'>" + create_text_tag("ooc", "OOC:", target) + " <EM>[display_name]:</EM> [span_message(msg)]</font>"))
 				*/
-				to_chat(target, "<span class='ooc'><font color='[src.prefs.ooccolor]'>" + create_text_tag("ooc", "Чат OOC:", target) + " <EM>[display_name]:</EM> <span class='message'>[msg]</span></span></font>")
+				to_chat(target, span_ooc("<font color='[src.prefs.ooccolor]'>" + create_text_tag("ooc", "Чат OOC:", target) + " <EM>[display_name]:</EM> [span_message(msg)]</font>"))
 				// End of Bastion of Endeavor Translation
 			else
 				/* Bastion of Endeavor Translation
-				to_chat(target, "<span class='ooc'><span class='[ooc_style]'>" + create_text_tag("ooc", "OOC:", target) + " <EM>[display_name]:</EM> <span class='message'>[msg]</span></span></span>")
+				to_chat(target, span_ooc("<font color='[src.prefs.ooccolor]'>" + create_text_tag("ooc", "OOC:", target) + " <EM>[display_name]:</EM> [span_message(msg)]</font>"))
 				*/
-				to_chat(target, "<span class='ooc'><span class='[ooc_style]'>" + create_text_tag("ooc", "Чат OOC:", target) + " <EM>[display_name]:</EM> <span class='message'>[msg]</span></span></span>")
+				to_chat(target, span_ooc("<span class='[ooc_style]'>" + create_text_tag("ooc", "Чат OOC:", target) + " <EM>[display_name]:</EM> " + span_message(msg)) + "</span>")
 				// End of Bastion of Endeavor Translation
 
 /client/verb/looc(msg as text)
@@ -147,9 +147,9 @@
 
 	if(say_disabled)	//This is here to try to identify lag problems
 		/* Bastion of Endeavor Translation
-		to_chat(usr, "<span class='danger'>Speech is currently admin-disabled.</span>")
+		to_chat(usr, span_danger("Speech is currently admin-disabled."))
 		*/
-		to_chat(usr, "<span class='danger'>Речь на данный момент отключена администраторами.</span>")
+		to_chat(usr, span_danger("Речь на данный момент отключена администраторами."))
 		// End of Bastion of Endeavor Translation
 		return
 
@@ -170,22 +170,22 @@
 
 	if(!prefs?.read_preference(/datum/preference/toggle/show_looc))
 		/* Bastion of Endeavor Translation: for some reason it uses a different span, dunno why
-		to_chat(src, "<span class='danger'>You have LOOC muted.</span>")
+		to_chat(src, span_danger("You have LOOC muted."))
 		*/
-		to_chat(src, "<span class='warning'>У вас на данный момент отключён чат LOOC.</span>")
+		to_chat(src, span_warning("У вас на данный момент отключён чат LOOC."))
 		// End of Bastion of Endeavor Translation
 		return
 
 	if(!holder)
 		/* Bastion of Endeavor Translation
 		if(!CONFIG_GET(flag/looc_allowed)) // CHOMPEdit
-			to_chat(src, "<span class='danger'>LOOC is globally muted.</span>")
+			to_chat(src, span_danger("LOOC is globally muted."))
 			return
 		if(!CONFIG_GET(flag/dooc_allowed) && (mob.stat == DEAD)) // CHOMPEdit
-			to_chat(usr, "<span class='danger'>OOC for dead mobs has been turned off.</span>")
+			to_chat(usr, span_danger("OOC for dead mobs has been turned off."))
 			return
 		if(prefs.muted & MUTE_LOOC)
-			to_chat(src, "<span class='danger'>You cannot use OOC (muted).</span>")
+			to_chat(src, span_danger("You cannot use OOC (muted)."))
 			return
 		if(findtext(msg, "byond://") && !CONFIG_GET(flag/allow_byond_links)) // CHOMPEdit
 			to_chat(src, "<B>Advertising other servers is not allowed.</B>")
@@ -204,13 +204,13 @@
 			return
 		*/
 		if(!CONFIG_GET(flag/looc_allowed)) // CHOMPEdit
-			to_chat(src, "<span class='danger'>Чат LOOC отключён администраторами.</span>")
+			to_chat(src, span_danger("Чат LOOC отключён администраторами."))
 			return
 		if(!CONFIG_GET(flag/dooc_allowed) && (mob.stat == DEAD)) // CHOMPEdit
-			to_chat(usr, "<span class='danger'>Чат LOOC отключён для мёртвых существ.</span>")
+			to_chat(usr, span_danger("Чат LOOC отключён для мёртвых существ."))
 			return
 		if(prefs.muted & MUTE_OOC)
-			to_chat(src, "<span class='danger'>Вам запрещено использовать чаты OOC.</span>")
+			to_chat(src, span_danger("Вам запрещено использовать чаты OOC."))
 			return
 		if(findtext_char(msg, "byond://") && !CONFIG_GET(flag/allow_byond_links)) // CHOMPEdit
 			to_chat(src, "<B>Рекламировать другие сервера запрещено.</B>")
@@ -274,7 +274,7 @@
 			if(check_rights(R_ADMIN|R_SERVER, FALSE, admin)) //Stop rLOOC showing for retired staff //CHOMPEdit, admins should see LOOC
 				r_receivers |= admin
 
-	msg = GLOB.is_valid_url.Replace(msg,"<span class='linkify'>$1</span>")
+	msg = GLOB.is_valid_url.Replace(msg,span_linkify("$1"))
 
 	// Send a message
 	for(var/client/target in receivers)
@@ -284,18 +284,18 @@
 			admin_stuff += "/([key])"
 
 		/* Bastion of Endeavor Translation
-		to_chat(target, "<span class='looc'>" + create_text_tag("looc", "LOOC:", target) + " <EM>[display_name][admin_stuff]:</EM> <span class='message'>[msg]</span></span>")
+		to_chat(target, span_looc("" + create_text_tag("looc", "LOOC:", target) + " <EM>[display_name][admin_stuff]:</EM> <span class='message'>[msg]</span>"))
 		*/
-		to_chat(target, "<span class='looc'>" + create_text_tag("looc", "Чат LOOC:", target) + " <EM>[display_name][admin_stuff]:</EM> <span class='message'>[msg]</span></span>")
+		to_chat(target, span_looc("" + create_text_tag("looc", "Чат LOOC:", target) + " <EM>[display_name][admin_stuff]:</EM> <span class='message'>[msg]</span>"))
 		// End of Bastion of Endeavor Translation
 
 	for(var/client/target in r_receivers)
 		var/admin_stuff = "/([key])([admin_jump_link(mob, target.holder)])"
 
 		/* Bastion of Endeavor Translation
-		to_chat(target, "<span class='rlooc'>" + create_text_tag("rlooc", "RLOOC:", target) + " <span class='prefix'>(R)</span><EM>[display_name][admin_stuff]:</EM> <span class='message'>[msg]</span></span>")
+		to_chat(target, span_rlooc("" + create_text_tag("rlooc", "RLOOC:", target) + " <span class='prefix'>(R)</span><EM>[display_name][admin_stuff]:</EM> <span class='message'>[msg]</span>"))
 		*/
-		to_chat(target, "<span class='rlooc'>" + create_text_tag("rlooc", "Чат RLOOC:", target) + " <span class='prefix'>(Д)</span><EM>[display_name][admin_stuff]:</EM> <span class='message'>[msg]</span></span>")
+		to_chat(target, span_rlooc("" + create_text_tag("rlooc", "Чат RLOOC:", target) + " <span class='prefix'>(Д)</span><EM>[display_name][admin_stuff]:</EM> <span class='message'>[msg]</span>"))
 		// End of Bastion of Endeavor Translation
 
 /mob/proc/get_looc_source()

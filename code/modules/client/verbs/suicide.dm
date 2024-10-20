@@ -20,10 +20,10 @@
 		return
 	
 	/* Bastion of Endeavor Translation
-	to_chat(src, "<span class='warning'>No. Adminhelp if there is a legitimate reason, and please review our server rules.</span>")
+	to_chat(src, span_warning("No. Adminhelp if there is a legitimate reason, and please review our server rules."))
 	message_admins("[ckey] has tried to trigger the suicide verb as human, but it is currently disabled.")
 	*/
-	to_chat(src, "<span class='warning'>Нет уж. Обратитесь в Помощь администратора, если у вас действительно есть на это причина, и перечитайте заодно правила.</span>")
+	to_chat(src, span_warning("Нет уж. Обратитесь в Помощь администратора, если у вас действительно есть на это причина, и перечитайте заодно правила."))
 	message_admins("[ckey] попытался использовать глагол Самоубийства будучи человеком. Этот глагол отключён.")
 	// End of Bastion of Endeavor Translation
 
@@ -63,14 +63,14 @@
 	/* Bastion of Endeavor Translation
 	if(confirm == "Yes")
 		suiciding = 1
-		to_chat(viewers(loc),"<span class='danger'>[src]'s brain is growing dull and lifeless. It looks like it's lost the will to live.</span>")
+		to_chat(viewers(loc),span_danger("[src]'s brain is growing dull and lifeless. It looks like it's lost the will to live."))
 	*/
 	if(confirm == "Да")
 		suiciding = 1
 		/* Bastion of Endeavor Translation
-		to_chat(viewers(loc),"<span class='danger'>[src]'s brain is growing dull and lifeless. It looks like it's lost the will to live.</span>")
+		to_chat(viewers(loc),span_danger("[src]'s brain is growing dull and lifeless. It looks like it's lost the will to live."))
 		*/
-		to_chat(viewers(loc),"<span class='danger'>Похоже, [acase_ru(src)] оставили все силы. На ваших глазах [verb_ru(src, "он")] [verb_ru(src, "потерял")] всякое желание жить.</span>")
+		to_chat(viewers(loc),span_danger("Похоже, [acase_ru(src)] оставили все силы. На ваших глазах [verb_ru(src, "он")] [verb_ru(src, "потерял")] всякое желание жить."))
 		// End of Bastion of Endeavor Translation
 	// End of Bastion of Endeavor Translation
 		spawn(50)
@@ -105,11 +105,11 @@
 	/* Bastion of Endeavor Translation
 	if(confirm == "Yes")
 		suiciding = 1
-		to_chat(viewers(src),"<span class='danger'>[src] is powering down. It looks like they're trying to commit suicide.</span>")
+		to_chat(viewers(src),span_danger("[src] is powering down. It looks like they're trying to commit suicide."))
 	*/
 	if(confirm == "Да")
 		suiciding = 1
-		to_chat(viewers(src),"<span class='danger'>[cap_ru(src)] [verb_ru(src, "начина;ет;ет;ет;ют;")] отключаться. Похоже, навсегда.</span>")
+		to_chat(viewers(src),span_danger("[cap_ru(src)] [verb_ru(src, "начина;ет;ет;ет;ют;")] отключаться. Похоже, навсегда."))
 	// End of Bastion of Endeavor Translation
 		//put em at -175
 		adjustOxyLoss(max(getMaxHealth() * 2 - getToxLoss() - getFireLoss() - getBruteLoss() - getOxyLoss(), 0))
@@ -143,11 +143,11 @@
 	/* Bastion of Endeavor Translation
 	if(confirm == "Yes")
 		suiciding = 1
-		to_chat(viewers(src),"<span class='danger'>[src] is powering down. It looks like they're trying to commit suicide.</span>")
+		to_chat(viewers(src),span_danger("[src] is powering down. It looks like they're trying to commit suicide."))
 	*/
 	if(confirm == "Да")
 		suiciding = 1
-		to_chat(viewers(src),"<span class='danger'>[cap_ru(src)] [verb_ru(src, "начина;ет;ет;ет;ют;")] отключаться. Похоже, навсегда.</span>")
+		to_chat(viewers(src),span_danger("[cap_ru(src)] [verb_ru(src, "начина;ет;ет;ет;ют;")] отключаться. Похоже, навсегда."))
 	// End of Bastion of Endeavor Translation
 		//put em at -175
 		adjustOxyLoss(max(getMaxHealth() * 2 - getToxLoss() - getFireLoss() - getBruteLoss() - getOxyLoss(), 0))
@@ -164,7 +164,7 @@
 		card.removePersonality()
 		var/turf/T = get_turf_or_move(card.loc)
 		for (var/mob/M in viewers(T))
-			M.show_message("<span class='notice'>[src] flashes a message across its screen, \"Wiping core files. Please acquire a new personality to continue using pAI device functions.\"</span>", 3, "<span class='notice'>[src] bleeps electronically.</span>", 2)
+			M.show_message(span_notice("[src] flashes a message across its screen, \"Wiping core files. Please acquire a new personality to continue using pAI device functions.\""), 3, span_notice("[src] bleeps electronically."), 2)
 		death(0)
 	else
 		to_chat(src, "Aborting suicide attempt.")

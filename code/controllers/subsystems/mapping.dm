@@ -78,10 +78,10 @@ SUBSYSTEM_DEF(mapping)
 		chosen_type = pick(engine_types)
 	/* Bastion of Endeavor Translation
 	to_world_log("Chose Engine Map: [chosen_type.name]")
-	admin_notice("<span class='danger'>Chose Engine Map: [chosen_type.name]</span>", R_DEBUG)
+	admin_notice(span_danger("Chose Engine Map: [chosen_type.name]"), R_DEBUG)
 	*/
 	to_world_log("Выбранная карта генератора: [chosen_type.name].")
-	admin_notice("<span class='danger'>Выбранная карта генератора: [chosen_type.name].</span>", R_DEBUG)
+	admin_notice(span_danger("Выбранная карта генератора: [chosen_type.name]."), R_DEBUG)
 	// End of Bastion of Endeavor Translation
 
 	// Annihilate movable atoms
