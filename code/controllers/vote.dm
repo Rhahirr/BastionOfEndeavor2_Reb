@@ -1,3 +1,4 @@
+/*
 SUBSYSTEM_DEF(vote)
 	/* Bastion of Endeavor Translation
 	name = "Vote"
@@ -626,3 +627,4 @@ SUBSYSTEM_DEF(vote)
 
 	if(SSvote)
 		src << browse(SSvote.interface(src), "window=vote;size=500x[300 + SSvote.choices.len * 25]")
+*/
