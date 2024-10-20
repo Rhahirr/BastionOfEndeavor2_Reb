@@ -274,11 +274,13 @@ var/global/datum/controller/subsystem/ticker/ticker
 		end_game_state = END_GAME_MODE_FINISHED // Only do this cleanup once!
 		mode.cleanup()
 		//call a transfer shuttle vote
-		new /datum/vote/crew_transfer
 		/* Bastion of Endeavor Translation
 		to_world(span_danger("The round has ended!"))
+		SSvote.start_vote(new /datum/vote/crew_transfer)
+		to_world("<span class='danger'>The round has ended!</span>")
 		*/
 		to_world(span_danger("Раунд завершён!"))
+		SSvote.start_vote(new /datum/vote/crew_transfer)
 		// End of Bastion of Endeavor Translation
 
 // Called during GAME_STATE_FINISHED (RUNLEVEL_POSTGAME)
