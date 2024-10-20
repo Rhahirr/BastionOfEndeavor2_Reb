@@ -35,17 +35,18 @@ export const ReconnectButton = (props) => {
       </Button>
       <Button
         color="white"
+        icon="power-off"
+        /* Bastion of Endeavor Translation
+        tooltip="Relaunch game"
+        */
+        tooltip="Перезапустить игру"
+        // End of Bastion of Endeavor Translation
+        tooltipPosition="bottom-end"
         onClick={() => {
           location.href = `byond://${url}`;
           Byond.command('.quit');
         }}
-      >
-        {/* Bastion of Endeavor Translation
-        Relaunch game
-        */}
-        Перезапустить игру
-        {/* End of Bastion of Endeavor Translation */}
-      </Button>
+      />
       <Button
         color="white"
         onClick={() => {
