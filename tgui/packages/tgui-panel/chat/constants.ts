@@ -163,7 +163,7 @@ export const MESSAGE_TYPES = [
     description: 'Информативные сообщения о взаимодействиях',
     /* End of Bastion of Endeavor Translation */
     selector:
-      '.notice:not(.pm), .adminnotice:not(.pm), .info, .sinister, .cult, .infoplain, .announce, .hear, .smallnotice, .holoparasite, .boldnotice',
+      '.notice:not(.pm):not(.mentor), .adminnotice:not(.pm), .info, .sinister, .cult, .infoplain, .announce, .hear, .smallnotice, .holoparasite, .boldnotice',
   },
   {
     type: MESSAGE_TYPE_WARNING,
@@ -175,7 +175,7 @@ export const MESSAGE_TYPES = [
     description: 'Важные сообщения о взаимодействиях',
     /* End of Bastion of Endeavor Translation */
     selector:
-      '.warning:not(.pm), .critical, .userdanger, .italics, .alertsyndie, .warningplain',
+      '.warning:not(.pm):not(.mentor), .critical, .userdanger, .alertsyndie, .warningplain',
   },
   {
     type: MESSAGE_TYPE_DEADCHAT,
