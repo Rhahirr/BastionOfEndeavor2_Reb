@@ -83,7 +83,6 @@
 
 	if(href_list["irc_msg"])
 		if(!holder && received_irc_pm < world.time - 6000) //Worse they can do is spam IRC for 10 minutes
-<<<<<<< HEAD
 			/* Bastion of Endeavor Translation
 			to_chat(usr, span_warning("You are no longer able to use this, it's been more than 10 minutes since an admin on IRC has responded to you"))
 			*/
@@ -96,12 +95,6 @@
 			*/
 			to_chat(src, span_warning("Вы не можете использовать это, так как вашему клиенту запрещено отправлять сообщения в IRC администраторам."))
 			// End of Bastion of Endeavor Translation
-=======
-			to_chat(src, span_warning("You are no longer able to use this, it's been more than 10 minutes since an admin on IRC has responded to you"))
-			return
-		if(mute_irc)
-			to_chat(src, "<span class='warning'You cannot use this as your client has been muted from sending messages to the admins on IRC</span>")
->>>>>>> ff43a3be9f ([MIRROR] adds a verb to print playtime (#9213))
 			return
 		send2adminirc(href_list["irc_msg"])
 		return

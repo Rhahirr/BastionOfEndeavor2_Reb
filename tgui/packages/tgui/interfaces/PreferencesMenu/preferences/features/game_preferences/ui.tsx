@@ -1,4 +1,9 @@
-import { CheckboxInput, FeatureToggle } from '../base';
+import {
+  CheckboxInput,
+  FeatureNumeric,
+  FeatureSliderInput,
+  FeatureToggle,
+} from '../base';
 
 export const BROWSER_STYLED: FeatureToggle = {
   /* Bastion of Endeavor Translation
@@ -33,9 +38,9 @@ export const TGUI_SAY: FeatureToggle = {
   category: 'UI',
   description: 'Use TGUI for Say input.',
   */
-  name: 'Речь вслух: TGUI',
+  name: 'Речь вслух: Использовать TGUI для речи',
   category: 'ИНТЕРФЕЙС',
-  description: 'Использовать TGUI для ввода Речи вслух.',
+  description: 'Использовать окно TGUI для ввода Речи вслух.',
   // End of Bastion of Endeavor Translation
   component: CheckboxInput,
 };
@@ -51,4 +56,30 @@ export const TGUI_SAY_LIGHT_MODE: FeatureToggle = {
   description: 'Использовать светлую тему TGUI при Речи вслух.',
   // End of Bastion of Endeavor Translation
   component: CheckboxInput,
+};
+
+export const tgui_say_emotes: FeatureToggle = {
+  /* Bastion of Endeavor Translation
+  name: 'Say: Use TGUI For Emotes',
+  category: 'UI',
+  description: 'Sets whether to use TGUI Say for emotes.',
+  */
+  name: 'Речь вслух: Использовать TGUI для Действий',
+  category: 'ИНТЕРФЕЙС',
+  description: 'Использовать окно TGUI для ввода Действий.',
+  // End of Bastion of Endeavor Translation
+  component: CheckboxInput,
+};
+
+export const tgui_say_height: FeatureNumeric = {
+  /* Bastion of Endeavor Translation
+  name: 'Say: TGUI Height (Lines)',
+  category: 'UI',
+  description: 'Amount of lines to show in the tgui say input.',
+  */
+  name: 'Речь вслух: Количество строк окна TGUI',
+  category: 'ИНТЕРРФЕЙС',
+  description: 'Количество строк, отображаемое в окне ввода Речи вслух TGUI.',
+  // End of Bastion of Endeavor Translation
+  component: FeatureSliderInput,
 };
