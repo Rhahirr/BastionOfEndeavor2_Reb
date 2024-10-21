@@ -964,7 +964,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 				var/gore_sound = "[(robotic >= ORGAN_ROBOT) ? "Вы слышите ужасающий скрежет металла" : "Вы слышите, как рвутся сухожилия и плоть"]"
 				owner.visible_message(
 					span_danger("[cap_ru(src)] [gcase_ru(owner)] [verb_ru(src, "отлетел")] по дуге!"),\
-					span_moderate("<b>[verb_ru(src, "ваш;;а;е;и;")] [ncase_ru(src)] [verb_ru(src, "отлетел")] от вас!</b>"),\
+					span_bolddanger("<b>[verb_ru(src, "ваш;;а;е;и;")] [ncase_ru(src)] [verb_ru(src, "отлетел")] от вас!</b>"),\
 					span_danger("[gore_sound]."))
 				// End of Bastion of Endeavor Translation
 		if(DROPLIMB_BURN)
@@ -980,7 +980,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			var/gore = "[(robotic >= ORGAN_ROBOT) ? "": " горящей плоти"]"
 			owner.visible_message(
 				span_danger("[cap_ru(src)] [gcase_ru(owner)] [verb_ru(src, "превратил;ся;ась;ось;ись;")] в пепел!"),\
-				span_moderate("<b>[verb_ru(src, "ваш;;а;е;и;")] [ncase_ru(src)] [verb_ru(src, "превратил;ся;ась;ось;ись;")] в пепел!</b>"),\
+				span_bolddanger("<b>[verb_ru(src, "ваш;;а;е;и;")] [ncase_ru(src)] [verb_ru(src, "превратил;ся;ась;ось;ись;")] в пепел!</b>"),\
 				span_danger("Вы слышите треск[gore]."))
 			// End of Bastion of Endeavor Translation
 		if(DROPLIMB_BLUNT)
@@ -998,7 +998,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			var/gore_sound = "[(status >= ORGAN_ROBOT) ? "невыносимый скрежет металла" : "мерзкий плеск крови и плоти"]"
 			owner.visible_message(
 				span_danger("[cap_ru(src)] [gcase_ru(owner)] [verb_ru(src, "разорвал;ся;ась;ось;ись;")] на кусочки[gore]!"),\
-				span_moderate("<b>[verb_ru(src, "ваш;;а;е;и;")] [ncase_ru(src)] [verb_ru(src, "разорвал;ся;ась;ось;ись;")] на кусочки[gore]!</b>"),\
+				span_bolddanger("<b>[verb_ru(src, "ваш;;а;е;и;")] [ncase_ru(src)] [verb_ru(src, "разорвал;ся;ась;ось;ись;")] на кусочки[gore]!</b>"),\
 				span_danger("Вы слышите [gore_sound]."))
 			// End of Bastion of Endeavor Translation
 

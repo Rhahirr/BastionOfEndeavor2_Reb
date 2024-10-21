@@ -748,9 +748,9 @@
 	var/list/speech_bubble_hearers = list()
 	for(var/mob/M in get_mobs_in_view(7, src))
 		/* Bastion of Endeavor Translation: Bastion of Endeavor Note: Changing to ncase, kinda experimental
-		M.show_message(span_npcsay("<span class='name'>[src]</span> [atom_say_verb], \"[message]\""), 2, null, 1)
+		M.show_message(span_npc_say(span_name("[src]") + " [atom_say_verb], \"[message]\""), 2, null, 1)
 		*/
-		M.show_message(span_npcsay("<span class='name'>[cap_ru(src)]</span> [verb_ru(src, atom_say_verb)], \"[message]\""), 2, null, 1)
+		M.show_message(span_npc_say(span_name("[cap_ru(src)]") + " [verb_ru(src, atom_say_verb)], \"[message]\""), 2, null, 1)
 		// End of Bastion of Endeavor Translation
 		if(M.client)
 			speech_bubble_hearers += M.client

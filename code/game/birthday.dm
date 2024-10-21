@@ -45,9 +45,9 @@
 			var/howmuch = GLOB.world_time_year - lastyear // CHOMPEdit - Managed Globals
 			age += howmuch
 		/* Bastion of Endeavor Translation
-		to_chat(src, "<span class = 'notice'>You are now [age]! Happy birthday!</span>")
+		to_chat(src, span_notice("You are now [age]! Happy birthday!"))
 		*/
-		to_chat(src, "<span class = 'notice'>Вам теперь [count_ru(age, ";год;года;лет")]! С Днём рождения!</span>")
+		to_chat(src, span_notice("Вам теперь [count_ru(age, ";год;года;лет")]! С Днём рождения!"))
 		// End of Bastion of Endeavor Translation
 		client.prefs.age = age	//Set the age on the character sheet
 

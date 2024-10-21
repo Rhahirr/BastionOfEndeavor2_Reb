@@ -56,9 +56,9 @@
 	. += "и для его работы требуется наличие на компьютере клиента VLC. "
 	. += "Не изменяйте эту настройку, если нет на то необходимости.<br>"
 	// End of Bastion of Endeavor Translation
-	. += (pref.media_player == 2) ? "<span class='linkOn'><b>HTML5</b></span> " : "<a href='?src=\ref[src];set_media_player=2'>HTML5</a> "
-	. += (pref.media_player == 1) ? "<span class='linkOn'><b>WMP</b></span> " : "<a href='?src=\ref[src];set_media_player=1'>WMP</a> "
-	. += (pref.media_player == 0) ? "<span class='linkOn'><b>VLC</b></span> " : "<a href='?src=\ref[src];set_media_player=0'>VLC</a> "
+	. += (pref.media_player == 2) ? (span_linkOn(span_bold("HTML5")) + " ") : "<a href='?src=\ref[src];set_media_player=2'>HTML5</a> "
+	. += (pref.media_player == 1) ? (span_linkOn(span_bold("WMP")) + " ") : "<a href='?src=\ref[src];set_media_player=1'>WMP</a> "
+	. += (pref.media_player == 0) ? (span_linkOn(span_bold("VLC")) + " ") : "<a href='?src=\ref[src];set_media_player=0'>VLC</a> "
 	. += "<br>"
 
 /* Bastion of Endeavor Edit: 

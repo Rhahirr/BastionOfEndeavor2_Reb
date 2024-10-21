@@ -163,7 +163,7 @@ export const MESSAGE_TYPES = [
     description: 'Информативные сообщения о взаимодействиях',
     /* End of Bastion of Endeavor Translation */
     selector:
-      '.notice:not(.pm):not(.mentor), .adminnotice:not(.pm), .info, .sinister, .cult, .infoplain, .announce, .hear, .smallnotice, .holoparasite, .boldnotice',
+      '.notice:not(.pm):not(.mentor), .adminnotice:not(.pm), .info, .sinister, .cult, .alium, .infoplain, .announce, .hear, .smallnotice, .holoparasite, .boldnotice, .suicide, .unconscious',
   },
   {
     type: MESSAGE_TYPE_WARNING,
@@ -175,7 +175,7 @@ export const MESSAGE_TYPES = [
     description: 'Важные сообщения о взаимодействиях',
     /* End of Bastion of Endeavor Translation */
     selector:
-      '.warning:not(.pm):not(.mentor), .critical, .userdanger, .alertsyndie, .warningplain',
+      '.warning:not(.pm):not(.mentor), .boldwarning:not(.pm):not(.mentor), .critical, .userdanger, .alertsyndie, .warningplain, .sinister',
   },
   {
     type: MESSAGE_TYPE_DEADCHAT,
@@ -197,7 +197,7 @@ export const MESSAGE_TYPES = [
     name: 'OOC',
     description: 'Глобальные неролевые сообщения в чате OOC',
     /* End of Bastion of Endeavor Translation */
-    selector: '.ooc, .adminooc, .adminobserverooc, .oocplain',
+    selector: '.ooc, .adminooc, .adminobserverooc, .oocplain, .aooc',
   },
   {
     type: MESSAGE_TYPE_LOOC,
@@ -242,7 +242,7 @@ export const MESSAGE_TYPES = [
     name: 'Боевые сообщения',
     description: 'Антагонист МакПредатель проткнул вас ножом!',
     /* End of Bastion of Endeavor Translation */
-    selector: '.danger',
+    selector: '.danger, .attack, .disarm, .passive, .bolddanger',
   },
   {
     type: MESSAGE_TYPE_CHATPRINT,
