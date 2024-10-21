@@ -60,7 +60,7 @@ export const MESSAGE_TYPES = [
     name: 'Системные сообщения',
     description: 'Сообщения клиента (всегда активно)',
     /* End of Bastion of Endeavor Translation */
-    selector: '.boldannounce',
+    selector: '.boldannounce, .world, .span_filter_system, .sinister',
     important: true,
   },
   // Basic types
@@ -95,7 +95,7 @@ export const MESSAGE_TYPES = [
     name: 'Сообщения поблизости',
     description: 'Ролевые сообщения поблизости (речь, действия и т.п)',
     /* End of Bastion of Endeavor Translation */
-    selector: '.say, .emote, .emotesubtle',
+    selector: '.say, .emote, .emotesubtle, .pnarrate, .filter_say',
   },
   {
     type: MESSAGE_TYPE_PLOCALCHAT,
@@ -163,7 +163,7 @@ export const MESSAGE_TYPES = [
     description: 'Информативные сообщения о взаимодействиях',
     /* End of Bastion of Endeavor Translation */
     selector:
-      '.notice:not(.pm):not(.mentor), .adminnotice:not(.pm), .info, .sinister, .cult, .alium, .infoplain, .announce, .hear, .smallnotice, .holoparasite, .boldnotice, .suicide, .unconscious',
+      '.notice:not(.pm):not(.mentor), .adminnotice:not(.pm), .info, .cult, .alium, .infoplain, .announce, .hear, .smallnotice, .holoparasite, .boldnotice, .suicide, .unconscious, .filter_notice',
   },
   {
     type: MESSAGE_TYPE_WARNING,
@@ -175,7 +175,7 @@ export const MESSAGE_TYPES = [
     description: 'Важные сообщения о взаимодействиях',
     /* End of Bastion of Endeavor Translation */
     selector:
-      '.warning:not(.pm):not(.mentor), .boldwarning:not(.pm):not(.mentor), .critical, .userdanger, .alertsyndie, .warningplain, .sinister',
+      '.warning:not(.pm):not(.mentor), .boldwarning:not(.pm):not(.mentor), .critical, .userdanger, .alertsyndie, .warningplain, .sinister, .filter_warning',
   },
   {
     type: MESSAGE_TYPE_DEADCHAT,
@@ -220,7 +220,7 @@ export const MESSAGE_TYPES = [
     name: 'Сообщения администрации',
     description: 'Сообщения администраторов в Помощи администратора',
     /* End of Bastion of Endeavor Translation */
-    selector: '.pm, .adminhelp',
+    selector: '.pm, .adminhelp, .filter_pm',
   },
   {
     type: MESSAGE_TYPE_MENTORPM,
@@ -242,7 +242,8 @@ export const MESSAGE_TYPES = [
     name: 'Боевые сообщения',
     description: 'Антагонист МакПредатель проткнул вас ножом!',
     /* End of Bastion of Endeavor Translation */
-    selector: '.danger, .attack, .disarm, .passive, .bolddanger',
+    selector:
+      '.danger, .attack, .disarm, .passive, .bolddanger, .filter_combat',
   },
   {
     type: MESSAGE_TYPE_CHATPRINT,
@@ -334,7 +335,6 @@ export const MESSAGE_TYPES = [
     name: 'Лог администраторов',
     description: 'АДМИН-ЛОГ: Админ МакПедаль прыгнул на координаты X, Y, Z',
     /* End of Bastion of Endeavor Translation */
-    selector: '.log_message, .filter_adminlog',
     admin: true,
   },
   {
@@ -357,7 +357,6 @@ export const MESSAGE_TYPES = [
     name: 'Лог отладки',
     description: 'ОТЛАДКА: Recover() подсистемы SSPlanets.',
     /* End of Bastion of Endeavor Translation */
-    selector: '.filter_debuglogs',
     admin: true,
   },
 ];
