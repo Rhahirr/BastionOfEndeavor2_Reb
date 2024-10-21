@@ -1005,7 +1005,8 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			var/list/valid_hairstyles = pref.get_valid_hairstyles()
 
 			if(valid_hairstyles.len)
-				pref.h_style = pick(valid_hairstyles)
+				if(!(pref.h_style in valid_hairstyles))
+					pref.h_style = pick(valid_hairstyles)
 			else
 				//this shouldn't happen
 				/* Bastion of Endeavor Translation: I sure hope the above comment is true
@@ -1018,7 +1019,8 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			var/list/valid_facialhairstyles = pref.get_valid_facialhairstyles()
 
 			if(valid_facialhairstyles.len)
-				pref.f_style = pick(valid_facialhairstyles)
+				if(!(pref.f_style in valid_facialhairstyles))
+					pref.f_style = pick(valid_facialhairstyles)
 			else
 				//this shouldn't happen
 				/* Bastion of Endeavor Translation
