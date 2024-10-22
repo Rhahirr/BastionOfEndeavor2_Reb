@@ -48,7 +48,7 @@ GLOBAL_REAL(GLOB, /datum/controller/global_vars)
 
 	return ..()
 
-/datum/controller/global_vars/stat_entry(msg) //CHOMPEdit
+/datum/controller/global_vars/stat_entry(msg)
 	if(!statclick)
 		/* Bastion of Endeavor Translation
 		statclick = new/obj/effect/statclick/debug(null, "Initializing...", src)
@@ -57,9 +57,9 @@ GLOBAL_REAL(GLOB, /datum/controller/global_vars)
 		// End of Bastion of Endeavor Translation
 
 	/* Bastion of Endeavor Translation
-	msg = "GLOB: [statclick.update("Edit")]" //CHOMPEdit
+	msg = "GLOB: [statclick.update("Edit")]"
 	*/
-	msg = "[statclick.update("Редактировать")]" //CHOMPEdit
+	msg = "[statclick.update("Редактировать")]"
 	// End of Bastion of Endeavor Translation
 	return msg //CHOMPEdit
 

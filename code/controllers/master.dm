@@ -837,18 +837,18 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 
 
 
-/datum/controller/master/stat_entry(msg) //CHOMPEdit
+/datum/controller/master/stat_entry(msg)
 	/* Bastion of Endeavor Translation: Removing SOME of these due to repetition elsewhere
 	if(!statclick)
 		statclick = new/obj/effect/statclick/debug(null, "Initializing...", src)
 
-	msg = "Byond: (FPS:[world.fps]) (TickCount:[world.time/world.tick_lag]) (TickDrift:[round(Master.tickdrift,1)]([round((Master.tickdrift/(world.time/world.tick_lag))*100,0.1)]%))" //CHOMPedit
-	msg += "Master Controller: [statclick.update("(TickRate:[Master.processing]) (Iteration:[Master.iteration])")]" //CHOMPEdit
+	msg = "Byond: (FPS:[world.fps]) (TickCount:[world.time/world.tick_lag]) (TickDrift:[round(Master.tickdrift,1)]([round((Master.tickdrift/(world.time/world.tick_lag))*100,0.1)]%))"
+	msg += "Master Controller: [statclick.update("(TickRate:[Master.processing]) (Iteration:[Master.iteration])")]"
 	*/
 	if(!statclick)
 		statclick = new/obj/effect/statclick/debug(null, "Инициализация...", src)
 
-	msg += "Главный контроллер: [statclick.update("Тикрейт: [Master.processing] | Итерация:[Master.iteration]")]" //CHOMPEdit
+	msg += "Главный контроллер: [statclick.update("Тикрейт: [Master.processing] | Итерация:[Master.iteration]")]"
 	// End of Bastion of Endeavor Translation
 
 	return msg
