@@ -61,12 +61,12 @@
 
 /datum/category_item/player_setup_item/general/flavor/content(var/mob/user)
 	/* Bastion of Endeavor Translation
-	. += "<b>Flavor:</b><br>"
+	. += span_bold("Flavor:") + "<br>"
 	. += "<a href='?src=\ref[src];flavor_text=open'>Set Flavor Text</a><br/>"
 	. += "<a href='?src=\ref[src];flavour_text_robot=open'>Set Robot Flavor Text</a><br/>"
 	. += "<a href='?src=\ref[src];custom_link=1'>Set Custom Link</a><br/>"
 	*/
-	. += "<br><b>Описание внешности</b><br>"
+	. += "<br>" + span_bold("Описание внешности") + "<br>"
 	. += "<a href='?src=\ref[src];flavor_text=open'>Установить для персонажа</a><br/>"
 	. += "<a href='?src=\ref[src];flavour_text_robot=open'>Установить для робота</a><br/>"
 	. += "<a href='?src=\ref[src];custom_link=1'>Установить ссылку</a><br/>"
@@ -124,12 +124,13 @@
 		var/new_link = strip_html_simple(tgui_input_text(user, "Введите ссылку, которая будет отображаться при осмотре вашего персонажа. Ссылка может иметь изображение/галерею с вашим персонажем, или вещи наподобие F-List. Сюда не положено загружать мемы.", "Ссылка" , html_decode(pref.custom_link), max_length = 100, encode = TRUE,  prevent_enter = TRUE))
 		// End of Bastion of Endeavor Translation
 		if(new_link && CanUseTopic(user)) //ChompEDIT - usr removal
+			/* Bastion of Endeavor Translation
 			if(length(new_link) > 100)
-				/* Bastion of Endeavor Translation
-				to_chat(user, "<span class = 'warning'>Your entry is too long, it must be 100 characters or less.</span>") //ChompEDIT - usr removal
-				*/
-				to_chat(user, "<span class = 'warning'>Вы ввели слишком длинную ссылку. Длина не может превышать 100 символов.</span>")
-				// End of Bastion of Endeavor Translation
+				to_chat(user, span_warning("Your entry is too long, it must be 100 characters or less.")) //ChompEDIT - usr removal
+			*/
+			if(length_char(new_link) > 100)
+				to_chat(user, span_warning("Вы ввели слишком длинную ссылку. Длина не может превышать 100 символов.")) //ChompEDIT - usr removal
+			// End of Bastion of Endeavor Translation
 				return
 			pref.custom_link = new_link
 			/* Bastion of Endeavor Translation
@@ -144,11 +145,11 @@
 	var/HTML = "<body>"
 	HTML += "<tt><center>"
 	/* Bastion of Endeavor Translation
-	HTML += "<b>Set Flavor Text</b> <hr />"
+	HTML += span_bold("Set Flavor Text") + " <hr />"
 	HTML += "Note: This is not *literal* flavor of your character. This is visual description of what they look like. <hr />"
 	*/
 	HTML += "<meta charset='utf-8'>"
-	HTML += "<b>Описание внешности</b> <hr />"
+	HTML += span_bold("Описание внешности") + " <hr />"
 	HTML += "Введите описание внешности вашего персонажа. Скрытые одеждой части тела не будут отображать описание при осмотре вашего персонажа. Общее описание показывается вне зависимости от одежды. <hr />"
 	// End of Bastion of Endeavor Translation
 	HTML += "<br></center>"
@@ -224,10 +225,10 @@
 	var/HTML = "<body>"
 	HTML += "<tt><center>"
 	/* Bastion of Endeavor Translation
-	HTML += "<b>Set Robot Flavour Text</b> <hr />"
+	HTML += span_bold("Set Robot Flavour Text") + " <hr />"
 	*/
 	HTML += "<meta charset='utf-8'>"
-	HTML += "<b>Описание внешности робота</b> <hr />"
+	HTML += span_bold("Описание внешности робота") + " <hr />"
 	// End of Bastion of Endeavor Translation
 	HTML += "<br></center>"
 	/* Bastion of Endeavor Translation: Bastion of Endeavor TODO: Leaving the rest untranslated until borgs get localization

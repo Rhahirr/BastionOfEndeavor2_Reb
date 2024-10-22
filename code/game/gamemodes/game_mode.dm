@@ -168,17 +168,17 @@ var/global/list/additional_antag_types = list()
 
 /datum/game_mode/proc/announce() //to be called when round starts
 	/* Bastion of Endeavor Translation
-	to_world(span_bold("The current game mode is [capitalize(name)]!"))
+	to_world(span_world("The current game mode is [capitalize(name)]!"))
 	*/
-	to_world(span_bold("Текущий режим игры – [capitalize(name)]!"))
+	to_world(span_world("Текущий режим игры – [capitalize(name)]!"))
 	// End of Bastion of Endeavor Translation
 	if(round_description)
-		to_world("[round_description]")
+		to_world(span_filter_system("[round_description]"))
 	if(round_autoantag)
 		/* Bastion of Endeavor Translation
-		to_world("Antagonists will be added to the round automagically as needed.")
+		to_world(span_filter_system("Antagonists will be added to the round automagically as needed."))
 		*/
-		to_world("Антагонисты будут добавлены автомагически при необходимости.")
+		to_world(span_filter_system("Антагонисты будут добавлены автомагически при необходимости."))
 		// End of Bastion of Endeavor Translation
 	if(antag_templates && antag_templates.len)
 		/* Bastion of Endeavor Translation
@@ -201,7 +201,7 @@ var/global/list/additional_antag_types = list()
 			i++
 		antag_summary += "."
 		if(antag_templates.len > 1 && master_mode != "secret")
-			to_world("[antag_summary]")
+			to_world(span_filter_system("[antag_summary]"))
 		else
 			message_admins("[antag_summary]")
 
@@ -459,22 +459,22 @@ var/global/list/additional_antag_types = list()
 	if(surviving_total > 0)
 		/* Bastion of Endeavor Translation: rewriting a part of this for simplicity sake
 		text += "<br>There [surviving_total>1 ? ("were " + span_bold("[surviving_total] survivors")) : ("was " + span_bold("one survivor"))] ("
-		text += span_bold("[escaped_total>0 ? escaped_total : "none"] [emergency_shuttle.evac ? "escaped" : "transferred"]</b>) and <b>[ghosts] ghosts")
+		text += span_bold("[escaped_total>0 ? escaped_total : "none"] [emergency_shuttle.evac ? "escaped" : "transferred"]") + ") and " + span_bold("[ghosts] ghosts")
 		text += ".<br>"
 		*/
-		text += "<br>[count_ru(surviving_total, "Остал;ся;ось;ось", TRUE)] <b>[count_ru(surviving_total, "выживш;ий;их;их")]</b>"
+		text += "<br>[count_ru(surviving_total, "Остал;ся;ось;ось", TRUE)] " + span_bold("[count_ru(surviving_total, "выживш;ий;их;их")]")
 		if(escaped_total == 0)
-			text += " (<b>никто не [emergency_shuttle.evac ? "сбежал" : "отправился на трансфер"]</b>)"
-		else text+= " (<b>[emergency_shuttle.evac ? count_ru(escaped_total, "сбежал;;и;и") : "[count_ru(escaped_total, "попал;;и;и")] на трансфер"])</b>"
+			text += " (" + span_bold("никто не [emergency_shuttle.evac ? "сбежал" : "отправился на трансфер"]") + ")"
+		else text+= " (" + span_bold("[emergency_shuttle.evac ? count_ru(escaped_total, "сбежал;;и;и") : "[count_ru(escaped_total, "попал;;и;и")] на трансфер"])")
 		text += " и <b>[count_ru(ghosts, "призрак;;а;ов")]</b>.<br>"
 		// End of Bastion of Endeavor Translation
 	else
 		/* Bastion of Endeavor Translation
-		text += "There were <b>no survivors</b> (<b>[ghosts] ghosts</b>)."
+		text += "There were " + span_bold("no survivors") + " (" + span_bold("[ghosts] ghosts") + ")."
 		*/
-		text += "Выживших <b>нет</b> (<b>[count_ru(ghosts, "призрак;;а;ов")]</b>)."
+		text += "Выживших " + span_bold("нет") + " (" + span_bold("[count_ru(ghosts, "призрак;;а;ов")]") + ")."
 		// End of Bastion of Endeavor Translation
-	to_world(text)
+	to_world(span_filter_system(text))
 
 	if(clients > 0)
 		feedback_set("round_end_clients",clients)
@@ -766,9 +766,9 @@ var/global/list/additional_antag_types = list()
 
 	if(master_mode != "secret")
 		/* Bastion of Endeavor Translation
-		to_chat(usr, span_notice(span_bold("The roundtype is [capitalize(ticker.mode.name)]")))
+		to_chat(usr, span_boldnotice(span_bold("The roundtype is [capitalize(ticker.mode.name)]")))
 		*/
-		to_chat(usr, span_notice(span_bold("Игровой режим – [capitalize(ticker.mode.name)]")))
+		to_chat(usr, span_boldnotice(span_bold("Игровой режим – [capitalize(ticker.mode.name)]")))
 		// End of Bastion of Endeavor Translation
 		if(ticker.mode.round_description)
 			to_chat(usr, span_notice(span_italics("[ticker.mode.round_description]")))

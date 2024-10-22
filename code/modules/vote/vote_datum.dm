@@ -127,9 +127,9 @@
                 var/res = winning_options[1]
                 if(res in choices)
                     /* Bastion of Endeavor Translation
-                    to_chat(world, span_interface("<b><code>[res]</code> won the vote!</b>"))
+                    to_chat(world, span_interface(span_bold("<code>[res]</code> won the vote!")))
                     */
-                    to_chat(world, span_interface("<b>В голосовании победил вариант \"<code>[res]</code>!\"</b>"))
+                    to_chat(world, span_interface(span_bold("В голосовании победил вариант \"<code>[res]</code>!\"")))
                     // End of Bastion of Endeavor Translation
                     return res
                 else
@@ -143,9 +143,9 @@
                     return null
 
             /* Bastion of Endeavor Translation
-            to_chat(world, span_interface("<b>No clear winner. The vote did not pass.</b>"))
+            to_chat(world, span_interface(span_bold("No clear winner. The vote did not pass.")))
             */
-            to_chat(world, span_interface("<b>Голосование завершилось без победителя.</b>"))
+            to_chat(world, span_interface(span_bold("Голосование завершилось без победителя.")))
             // End of Bastion of Endeavor Translation
             return null
 
@@ -155,9 +155,9 @@
                 var/res = winning_options[1]
                 if(res in choices)
                     /* Bastion of Endeavor Translation
-                    to_chat(world, span_interface("<b><code>[res]</code> won the vote with a 70% majority!</b>"))
+                    to_chat(world, span_interface(span_bold("<code>[res]</code> won the vote with a 70% majority!")))
                     */
-                    to_chat(world, span_interface("<b>В голосовании победил вариант \"<code>[res]</code>\", собрав 70% и более голосов!</b>"))
+                    to_chat(world, span_interface(span_bold("В голосовании победил вариант \"<code>[res]</code>\", собрав 70% и более голосов!")))
                     // End of Bastion of Endeavor Translation
                     return res
                 else
@@ -171,9 +171,9 @@
                     return null
 
             /* Bastion of Endeavor Translation
-            to_chat(world, span_interface("<b>No option received 70% of the votes. The vote did not pass.</b>"))
+            to_chat(world, span_interface(span_bold("No option received 70% of the votes. The vote did not pass.")))
             */
-            to_chat(world, span_interface("<b>Ни один вариант ответа голосования не собрал 70% голосов. Голосование завершено.</b>"))
+            to_chat(world, span_interface(span_bold("Ни один вариант ответа голосования не собрал 70% голосов. Голосование завершено.")))
             // End of Bastion of Endeavor Translation
             return null
 

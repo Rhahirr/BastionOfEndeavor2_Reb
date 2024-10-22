@@ -78,9 +78,9 @@
 
 /datum/category_item/player_setup_item/general/language/content()
 	/* Bastion of Endeavor Translation
-	. += "<b>Languages</b><br>"
+	. += span_bold("Languages") + "<br>"
 	*/
-	. += "<b>Языки</b><br>"
+	. += span_bold("Языки") + "<br>"
 	// End of Bastion of Endeavor Translation
 	var/datum/species/S = GLOB.all_species[pref.species]
 	if(pref.alternate_languages.len > (S.num_alternate_languages + pref.extra_languages))
@@ -126,15 +126,15 @@
 		// End of Bastion of Endeavor Translation
 
 	/* Bastion of Endeavor Translation
-	. += "<b>Language Keys</b><br>"
+	. += span_bold("Language Keys") + "<br>"
 	. += " [jointext(pref.language_prefixes, " ")] <a href='?src=\ref[src];change_prefix=1'>Change</a> <a href='?src=\ref[src];reset_prefix=1'>Reset</a><br>"
-	. += "<b>Preferred Language</b> <a href='?src=\ref[src];pref_lang=1'>[pref.preferred_language]</a><br>" // VOREStation Add
-	. += "<b>Runechat Color</b> <a href='?src=\ref[src];pref_runechat_color=1'>Change Runechat Color</a> [color_square(hex = pref.runechat_color)]"
+	. += span_bold("Preferred Language") + " <a href='?src=\ref[src];pref_lang=1'>[pref.preferred_language]</a><br>" // VOREStation Add
+	. += span_bold("Runechat Color") + " <a href='?src=\ref[src];pref_runechat_color=1'>Change Runechat Color</a> [color_square(hex = pref.runechat_color)]"
 	*/
-	. += "<b>Клавиши языков</b><br>"
+	. += span_bold("Клавиши языков") + "<br>"
 	. += " [jointext(pref.language_prefixes, " ")] <a href='?src=\ref[src];change_prefix=1'>Изменить</a> <a href='?src=\ref[src];reset_prefix=1'>Сбросить</a><br>"
-	. += "<b>Предпочитаемый язык:</b> <a href='?src=\ref[src];pref_lang=1'>[pref.preferred_language]</a><br>" // VOREStation Add
-	. += "<b>Цвет сообщений Runechat</b> <a href='?src=\ref[src];pref_runechat_color=1'>Изменить</a> [color_square(hex = pref.runechat_color)]"
+	. += span_bold("Предпочитаемый язык:") + " <a href='?src=\ref[src];pref_lang=1'>[pref.preferred_language]</a><br>" // VOREStation Add
+	. += span_bold("Цвет сообщений Runechat") + " <a href='?src=\ref[src];pref_runechat_color=1'>Изменить</a> [color_square(hex = pref.runechat_color)]"
 	// End of Bastion of Endeavor Translation
 
 /datum/category_item/player_setup_item/general/language/OnTopic(var/href,var/list/href_list, var/mob/user)

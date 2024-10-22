@@ -30,9 +30,9 @@ SUBSYSTEM_DEF(vote)
 		time_remaining = round((started_time + duration - world.time)/10)
 		if(mode == VOTE_GAMEMODE && ticker.current_state >= GAME_STATE_SETTING_UP)
 			/* Bastion of Endeavor Translation
-			to_chat(world, "<b>Gamemode vote aborted: Game has already started.</b>")
+			to_chat(world, span_bold("Gamemode vote aborted: Game has already started."))
 			*/
-			to_chat(world, "<b>Голосование за режим игры отменено: игра уже началась.</b>")
+			to_chat(world, span_bold("Голосование за режим игры отменено: игра уже началась."))
 			// End of Bastion of Endeavor Translation
 			reset()
 			return
@@ -159,7 +159,7 @@ SUBSYSTEM_DEF(vote)
 						factor = 1.4
 				/* Bastion of Endeavor Translation
 				choices["Initiate Crew Transfer"] = round(choices["Initiate Crew Transfer"] * factor)
-				to_world(span_purple("Crew Transfer Factor: [factor]"))
+				to_world(span_filter_system(span_purple("Crew Transfer Factor: [factor]")))
 				greatest_votes = max(choices["Initiate Crew Transfer"], choices["Extend the Shift"]) //VOREStation Edit
 				*/
 				choices["Начать трансфер экипажа"] = round(choices["Начать трансфер экипажа"] * factor)
@@ -182,11 +182,11 @@ SUBSYSTEM_DEF(vote)
 		if(winners.len > 1)
 			if(mode != VOTE_GAMEMODE || ticker.hide_mode == 0) // Here we are making sure we don't announce potential game modes
 				/* Bastion of Endeavor Translation
-				text = "<b>Vote Tied Between:</b>\n"
+				text = span_bold("Vote Tied Between:") + "\n"
 				*/
-				text = "<b>Голосование завершилось ничьёй между:</b>\n"
+				text = span_bold("Голосование завершилось ничьёй между:") + "\n"
 				// End of Bastion of Endeavor Translation
-				for(var/option in winners)
+=======
 					text += "\t[option]\n"
 		. = pick(winners)
 
@@ -199,24 +199,24 @@ SUBSYSTEM_DEF(vote)
 		if(mode != VOTE_GAMEMODE || . == "Длительный" || ticker.hide_mode == 0)
 		// End of Bastion of Endeavor Translation
 			/* Bastion of Endeavor Translation
-			text += "<b>Vote Result: [mode == VOTE_GAMEMODE ? gamemode_names[.] : .]</b>"
+			text += span_bold("Vote Result: [mode == VOTE_GAMEMODE ? gamemode_names[.] : .]")
 			*/
-			text += "<b>Результат голосования: [mode == VOTE_GAMEMODE ? gamemode_names[.] : .].</b>"
+			text += span_bold("Результат голосования: [mode == VOTE_GAMEMODE ? gamemode_names[.] : .]")
 			// End of Bastion of Endeavor Translation
 		else
 			/* Bastion of Endeavor Translation
-			text += "<b>The vote has ended.</b>"
+			text += span_bold("The vote has ended.")
 			*/
-			text += "<b>Голосование завершено.</b>"
+			text += span_bold("Голосование завершено.")
 			// End of Bastion of Endeavor Translation
 
 	else
 		/* Bastion of Endeavor Translation
-		text += "<b>Vote Result: Inconclusive - No Votes!</b>"
+		text += span_bold("Vote Result: Inconclusive - No Votes!")
 		*/
-		text += "<b>Результат голосования не определён – нет голосов!</b>"
+		text += span_bold("Результат голосования не определён – нет голосов!")
 		// End of Bastion of Endeavor Translation
-		if(mode == VOTE_ADD_ANTAGONIST)
+=======
 			antag_add_failed = 1
 	log_vote(text)
 	to_chat(world, span_purple("[text]"))
@@ -261,16 +261,16 @@ SUBSYSTEM_DEF(vote)
 		if(!round_progressing)
 			round_progressing = 1
 			/* Bastion of Endeavor Translation
-			to_world(span_red("<b>The round will start soon.</b>"))
+			to_world(span_boldannounce("The round will start soon."))
 			*/
-			to_world(span_red("<b>Раунд начнётся в ближайшее время.</b>"))
+			to_world(span_boldannounce("Раунд начнётся в ближайшее время."))
 			// End of Bastion of Endeavor Translation
 
 	if(restart)
 		/* Bastion of Endeavor Translation
-		to_world("World restarting due to vote...")
+		to_world(span_filter_system("World restarting due to vote..."))
 		*/
-		to_world("Перезапуск мира на основе голосования...")
+		to_world(span_filter_system("Перезапуск мира на основе голосования..."))
 		// End of Bastion of Endeavor Translation
 		/* Bastion of Endeavor Translation
 		feedback_set_details("end_error", "restart vote")
@@ -400,9 +400,9 @@ SUBSYSTEM_DEF(vote)
 		log_vote(text)
 
 		/* Bastion of Endeavor Translation
-		to_world(span_purple("<b>[text]</b>\nType <b>vote</b> or click <a href='?src=\ref[src]'>here</a> to place your votes.\nYou have [CONFIG_GET(number/vote_period) / 10] seconds to vote.")) // CHOMPEdit
+		to_world(span_filter_system(span_purple(span_bold("[text]") + "\nType " + span_bold("vote") + " or click <a href='?src=\ref[src]'>here</a> to place your votes.\nYou have [CONFIG_GET(number/vote_period) / 10] seconds to vote."))) // CHOMPEdit
 		*/
-		to_world(span_purple("<b>[text]</b>\nВведите <b>Голосовать</b> или нажмите <a href='?src=\ref[src]'>здесь</a>, чтобы участвовать в голосовании.\nНа голосование отводится [count_ru(CONFIG_GET(number/vote_period) / 10, "секунд;а;ы;")]."))
+		to_world(span_filter_system(span_purple(span_bold("[text]") + "\nВведите " + span_bold("Голосовать") + " или нажмите <a href='?src=\ref[src]'>здесь</a>, чтобы участвовать в голосовании.\nНа голосование отводится [count_ru(CONFIG_GET(number/vote_period) / 10, "секунд;а;ы;")]."))) // CHOMPEdit
 		// End of Bastion of Endeavor Translation
 		if(vote_type == VOTE_CREW_TRANSFER || vote_type == VOTE_GAMEMODE || vote_type == VOTE_CUSTOM)
 			world << sound('sound/ambience/alarm4.ogg', repeat = 0, wait = 0, volume = 50, channel = 3) //CHOMPStation Edit TFF 10/5/20 - revert to old soundtrack contrary to YW
@@ -411,9 +411,9 @@ SUBSYSTEM_DEF(vote)
 			gamemode_vote_called = TRUE
 			round_progressing = 0
 			/* Bastion of Endeavor Translation
-			to_world(span_red("<b>Round start has been delayed.</b>"))
+			to_world(span_boldannounce("Round start has been delayed."))
 			*/
-			to_world(span_red("<b>Начало раунда было отложено.</b>"))
+			to_world(span_boldannounce("Начало раунда было отложено."))
 			// End of Bastion of Endeavor Translation
 
 		time_remaining = round(CONFIG_GET(number/vote_period) / 10) // CHOMPEdit

@@ -86,30 +86,30 @@
 	if(H.mind)
 		var/remembered_info = ""
 		/* Bastion of Endeavor Translation
-		remembered_info += "<b>Your account number is:</b> #[M.account_number]<br>"
-		remembered_info += "<b>Your account pin is:</b> [M.remote_access_pin]<br>"
-		remembered_info += "<b>Your account funds are:</b> $[M.money]<br>"
+		remembered_info += span_bold("Your account number is:") + " #[M.account_number]<br>"
+		remembered_info += span_bold("Your account pin is:") + " [M.remote_access_pin]<br>"
+		remembered_info += span_bold("Your account funds are:") + " $[M.money]<br>"
 		*/
-		remembered_info += "<b>Номер вашего счёта:</b> #[M.account_number]<br>"
-		remembered_info += "<b>Пароль вашего счёта:</b> [M.remote_access_pin]<br>"
-		remembered_info += "<b>Баланс вашего счёта:</b> $[M.money]<br>"
+		remembered_info += span_bold("Номер вашего счёта:") + " #[M.account_number]<br>"
+		remembered_info += span_bold("Пароль вашего счёта:") + " [M.remote_access_pin]<br>"
+		remembered_info += span_bold("Баланс вашего счёта:") + " $[M.money]<br>"
 		// End of Bastion of Endeavor Translation
 
 		if(M.transaction_log.len)
 			var/datum/transaction/T = M.transaction_log[1]
 			/* Bastion of Endeavor Translation
-			remembered_info += "<b>Your account was created:</b> [T.time], [T.date] at [T.source_terminal]<br>"
+			remembered_info += span_bold("Your account was created:") + " [T.time], [T.date] at [T.source_terminal]<br>"
 			*/
-			remembered_info += "<b>Ваш счёт создан в</b> [T.time], [T.date] ([T.source_terminal])<br>"
+			remembered_info += span_bold("Ваш счёт создан в") + " [T.time], [T.date] at [T.source_terminal]<br>"
 			// End of Bastion of Endeavor Translation
 		H.mind.store_memory(remembered_info)
 
 		H.mind.initial_account = M
 
 	/* Bastion of Endeavor Translation
-	to_chat(H, span_notice("<b>Your account number is: [M.account_number], your account pin is: [M.remote_access_pin]</b>"))
+	to_chat(H, span_boldnotice("Your account number is: [M.account_number], your account pin is: [M.remote_access_pin]"))
 	*/
-	to_chat(H, span_notice("<b>Номер вашего счёта – [M.account_number], пароль – [M.remote_access_pin].</b>"))
+	to_chat(H, span_boldnotice("Номер вашего счёта – [M.account_number], пароль – [M.remote_access_pin]"))
 	// End of Bastion of Endeavor Translation
 
 // overrideable separately so AIs/borgs can have cardborg hats without unneccessary new()/qdel()

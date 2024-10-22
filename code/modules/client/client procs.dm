@@ -84,16 +84,16 @@
 	if(href_list["irc_msg"])
 		if(!holder && received_irc_pm < world.time - 6000) //Worse they can do is spam IRC for 10 minutes
 			/* Bastion of Endeavor Translation
-			to_chat(usr, span_warning("You are no longer able to use this, it's been more than 10 minutes since an admin on IRC has responded to you"))
+			to_chat(src, span_warning("You are no longer able to use this, it's been more than 10 minutes since an admin on IRC has responded to you"))
 			*/
 			to_chat(src, span_warning("Вы больше не можете использовать это, так как прошло 10 минут с ответа администратора."))
 			// End of Bastion of Endeavor Translation
 			return
 		if(mute_irc)
 			/* Bastion of Endeavor Translation
-			to_chat(usr, "<span class='warning'You cannot use this as your client has been muted from sending messages to the admins on IRC</span>")
+			to_chat(usr, span_warning("You cannot use this as your client has been muted from sending messages to the admins on IRC"))
 			*/
-			to_chat(src, span_warning("Вы не можете использовать это, так как вашему клиенту запрещено отправлять сообщения в IRC администраторам."))
+			to_chat(usr, span_warning("Вы не можете использовать это, так как вашему клиенту запрещено отправлять сообщения в IRC администраторам."))
 			// End of Bastion of Endeavor Translation
 			return
 		send2adminirc(href_list["irc_msg"])

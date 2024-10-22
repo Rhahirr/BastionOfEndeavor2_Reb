@@ -53,7 +53,7 @@
 
 /datum/category_item/player_setup_item/general/background/content(var/mob/user)
 	/* Bastion of Endeavor Translation: Bastion of Endeavor TODO: Job bans
-	. += "<b>Background Information</b><br>"
+	. += span_bold("Background Information") + "<br>"
 	. += "Economic Status: <a href='?src=\ref[src];econ_status=1'>[pref.economic_status]</a><br/>"
 	. += "Home: <a href='?src=\ref[src];home_system=1'>[pref.home_system]</a><br/>"
 	. += "Birthplace: <a href='?src=\ref[src];birthplace=1'>[pref.birthplace]</a><br/>"
@@ -63,7 +63,7 @@
 
 	. += "<br/><b>Records</b>:<br/>"
 	if(jobban_isbanned(user, "Records"))
-		. += "<span class='danger'>You are banned from using character records.</span><br>"
+		. += span_danger("You are banned from using character records.") + "<br>"
 	else
 		. += "Medical Records:<br>"
 		. += "<a href='?src=\ref[src];set_medical_records=1'>[TextPreview(pref.med_record,40)]</a><br>"
@@ -75,7 +75,7 @@
 		. += "<a href='?src=\ref[src];set_security_records=1'>[TextPreview(pref.sec_record,40)]</a><br>"
 		. += "(<a href='?src=\ref[src];reset_secrecord=1'>Reset</A>)"
 	*/
-	. += "<b>Происхождение персонажа</b><br>"
+	. += span_bold("Происхождение персонажа") + "<br>"
 	. += "Финансовое положение: <a href='?src=\ref[src];econ_status=1'>[pref.economic_status]</a><br/>"
 	. += "Место жительства: <a href='?src=\ref[src];home_system=1'>[pref.home_system]</a><br/>"
 	. += "Место рождения: <a href='?src=\ref[src];birthplace=1'>[pref.birthplace]</a><br/>"
@@ -84,7 +84,7 @@
 	. += "Вероисповедание: <a href='?src=\ref[src];religion=1'>[pref.religion]</a><br/>"
 	. += "<br/><b>Записи</b><br/>"
 	if(jobban_isbanned(user, "Records"))
-		. += "<span class='danger'>Вам запрещено использовать записи персонажа.</span><br>"
+		. += span_danger("Вам запрещено использовать записи персонажа.") + "<br>"
 	else
 		. += "Медицинские записи:<br>"
 		. += "<a href='?src=\ref[src];set_medical_records=1'>[TextPreview(pref.med_record,40)]</a><br>"

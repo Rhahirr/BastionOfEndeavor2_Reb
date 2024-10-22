@@ -142,9 +142,9 @@ var/global/datum/controller/subsystem/ticker/ticker
 	if((master_mode == "random") || (master_mode == "secret"))
 		if(!runnable_modes.len)
 			/* Bastion of Endeavor Translation
-			to_world(span_danger(span_bold("Unable to choose playable game mode.") + " Reverting to pregame lobby."))
+			to_world(span_filter_system(span_bold("Unable to choose playable game mode.") + " Reverting to pregame lobby."))
 			*/
-			to_world(span_danger(span_bold("Не удалось выбрать играбельный режим игры.") + " Возвращаемся в предыгровое лобби."))
+			to_world(span_filter_system(span_bold("Не удалось выбрать играбельный режим игры.") + " Возвращаемся в предыгровое лобби."))
 			// End of Bastion of Endeavor Translation
 			return 0
 		if(secret_force_mode != "secret")
@@ -159,9 +159,9 @@ var/global/datum/controller/subsystem/ticker/ticker
 
 	if(!src.mode)
 		/* Bastion of Endeavor Translation
-		to_world(span_danger("Serious error in mode setup! Reverting to pregame lobby.")) //Uses setup instead of set up due to computational context.
+		to_world(span_boldannounce("Serious error in mode setup! Reverting to pregame lobby.")) //Uses setup instead of set up due to computational context.
 		*/
-		to_world(span_danger("Серьёзная ошибка в подготовке режима игры! Возвращаемся в предыгровое лобби."))
+		to_world(span_boldannounce("Серьёзная ошибка в подготовке режима игры! Возвращаемся в предыгровое лобби."))
 		// End of Bastion of Endeavor Translation
 		return 0
 
@@ -183,9 +183,9 @@ var/global/datum/controller/subsystem/ticker/ticker
 
 	if(hide_mode)
 		/* Bastion of Endeavor Translation
-		to_world(span_notice(span_bold("The current game mode is - Secret!")))
+		to_world(span_world(span_notice("The current game mode is - Secret!")))
 		*/
-		to_world(span_notice(span_bold("Текущий режим игры – секретный!")))
+		to_world(span_world(span_notice("Текущий режим игры – секретный!")))
 		// End of Bastion of Endeavor Translation
 		if(runnable_modes.len)
 			var/list/tmpmodes = new
@@ -194,9 +194,9 @@ var/global/datum/controller/subsystem/ticker/ticker
 			tmpmodes = sortList(tmpmodes)
 			if(tmpmodes.len)
 				/* Bastion of Endeavor Translation
-				to_world(span_info(span_bold("Possibilities:") + " [english_list(tmpmodes, and_text= "; ", comma_text = "; ")]"))
+				to_world(span_filter_system(span_bold("Possibilities:") + " [english_list(tmpmodes, and_text= "; ", comma_text = "; ")]"))
 				*/
-				to_world(span_info(span_bold("Возможны:") + " [english_list(tmpmodes, and_text= "; ", comma_text = "; ")]"))
+				to_world(span_filter_system(span_bold("Возможны:") + " [english_list(tmpmodes, and_text= "; ", comma_text = "; ")]"))
 				// End of Bastion of Endeavor Translation
 	else
 		src.mode.announce()
@@ -277,10 +277,10 @@ var/global/datum/controller/subsystem/ticker/ticker
 		mode.cleanup()
 		//call a transfer shuttle vote
 		/* Bastion of Endeavor Translation
-		to_world(span_danger("The round has ended!"))
+		to_world(span_boldannounce("The round has ended!"))
 		SSvote.start_vote(new /datum/vote/crew_transfer)
 		*/
-		to_world(span_danger("Раунд завершён!"))
+		to_world(span_boldannounce("Раунд завершён!"))
 		SSvote.start_vote(new /datum/vote/crew_transfer)
 		// End of Bastion of Endeavor Translation
 
@@ -299,9 +299,9 @@ var/global/datum/controller/subsystem/ticker/ticker
 				restart_timeleft = 1 MINUTE // No point waiting five minutes if everyone's dead.
 				if(!delay_end)
 					/* Bastion of Endeavor Translation
-					to_world(span_notice(span_bold("Rebooting due to destruction of [station_name()] in [round(restart_timeleft/600)] minute\s.")))
+					to_world(span_boldannounce("Rebooting due to destruction of [station_name()] in [round(restart_timeleft/600)] minute\s.")))
 					*/
-					to_world(span_notice(span_bold("Перезагрузка в связи с уничтожением [station_name_ru(GCASE)] через [count_ru(round(restart_timeleft/600), "минут;у;ы;")].")))
+					to_world(span_boldannounce("Перезагрузка в связи с уничтожением [station_name_ru(GCASE)] через [count_ru(round(restart_timeleft/600), "минут;у;ы;")]."))
 					// End of Bastion of Endeavor Translation
 					last_restart_notify = world.time
 			else
@@ -321,24 +321,24 @@ var/global/datum/controller/subsystem/ticker/ticker
 			restart_timeleft -= (world.time - last_fire)
 			if(delay_end)
 				/* Bastion of Endeavor Translation
-				to_world(span_notice(span_bold("An admin has delayed the round end.")))
+				to_world(span_boldannounce("An admin has delayed the round end."))
 				*/
-				to_world(span_notice(span_bold("Администратор отложил завершение раунда.")))
+				to_world(span_boldannounce("Администратор отложил завершение раунда."))
 				// End of Bastion of Endeavor Translation
 				end_game_state = END_GAME_DELAYED
 			else if(restart_timeleft <= 0)
 				/* Bastion of Endeavor Translation
-				to_world(span_warning(span_bold("Restarting world!")))
+				to_world(span_boldannounce("Restarting world!"))
 				*/
-				to_world(span_warning(span_bold("Производится перезапуск мира!")))
+				to_world(span_boldannounce("Производится перезапуск мира!"))
 				// End of Bastion of Endeavor Translation
 				sleep(5)
 				world.Reboot()
 			else if (world.time - last_restart_notify >= 1 MINUTE)
 				/* Bastion of Endeavor Translation
-				to_world(span_notice(span_bold("Restarting in [round(restart_timeleft/600, 1)] minute\s.")))
+				to_world(span_boldannounce("Restarting in [round(restart_timeleft/600, 1)] minute\s."))
 				*/
-				to_world(span_notice(span_bold("Перезапуск мира через [count_ru(round(restart_timeleft/600, 1), "минут;у;ы;")].")))
+				to_world(span_boldannounce("Перезапуск мира через [count_ru(round(restart_timeleft/600, 1), "минут;у;ы;")]."))
 				// End of Bastion of Endeavor Translation
 				last_restart_notify = world.time
 			return
@@ -600,7 +600,7 @@ var/global/datum/controller/subsystem/ticker/ticker
 					*/
 					to_chat(Player, span_filter_system(span_red(span_bold("[Player.real_name] не [verb_ru(Player, "пережил")] события, произошедшие на [station_name_ru(PCASE)]..."))))
 					// End of Bastion of Endeavor Translation
-	to_world("<br>")
+	to_world(span_filter_system("<br>"))
 
 	for (var/mob/living/silicon/ai/aiPlayer in mob_list)
 		if (aiPlayer.stat != 2)

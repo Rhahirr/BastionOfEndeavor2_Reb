@@ -56,13 +56,13 @@
 	// VOREStation Add
 
 /datum/category_item/player_setup_item/vore/egg/content(var/mob/user)
-	/* Bastion of Endeavor Translation
 	. += "<br>"
+	/* Bastion of Endeavor Translation
 	. += " Egg Type: <a href='?src=\ref[src];vore_egg_type=1'>[pref.vore_egg_type]</a><br>"
-	. += "<b>Autohiss Default Setting:</b> <a href='?src=\ref[src];autohiss=1'>[pref.autohiss]</a><br>" // VOREStation Add
+	. += span_bold("Autohiss Default Setting:") + " <a href='?src=\ref[src];autohiss=1'>[pref.autohiss]</a><br>" // VOREStation Add
 	*/
-	. += "<b>Вид откладываемого яйца:</b> <a href='?src=\ref[src];vore_egg_type=1'>[pref.vore_egg_type]</a><br>"
-	. += "<b>Режим авто-шипения по умолчанию:</b> <a href='?src=\ref[src];autohiss=1'>[pref.autohiss]</a><br>" // VOREStation Add
+	. += span_bold("Вид откладываемого яйца:") + " <a href='?src=\ref[src];vore_egg_type=1'>[pref.vore_egg_type]</a><br>"
+	. += span_bold("Режим авто-шипения по умолчанию:") + " <a href='?src=\ref[src];autohiss=1'>[pref.autohiss]</a><br>" // VOREStation Add
 	// End of Bastion of Endeavor Translation
 
 /datum/category_item/player_setup_item/vore/egg/OnTopic(var/href, var/list/href_list, var/mob/user)

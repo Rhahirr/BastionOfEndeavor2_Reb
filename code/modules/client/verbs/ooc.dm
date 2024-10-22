@@ -49,17 +49,17 @@
 			to_chat(src, span_danger("You cannot use OOC (muted)."))
 			return
 		if(findtext(msg, "byond://") && !CONFIG_GET(flag/allow_byond_links)) // CHOMPEdit
-			to_chat(src, "<B>Advertising other servers is not allowed.</B>")
+			to_chat(src, span_bold("Advertising other servers is not allowed."))
 			log_admin("[key_name(src)] has attempted to advertise in OOC: [msg]")
 			message_admins("[key_name_admin(src)] has attempted to advertise in OOC: [msg]")
 			return
 		if(findtext(msg, "discord.gg") && !CONFIG_GET(flag/allow_discord_links)) // CHOMPEdit
-			to_chat(src, "<B>Advertising discords is not allowed.</B>")
+			to_chat(src, span_bold("Advertising discords is not allowed."))
 			log_admin("[key_name(src)] has attempted to advertise a discord server in OOC: [msg]")
 			message_admins("[key_name_admin(src)] has attempted to advertise a discord server in OOC: [msg]")
 			return
 		if((findtext(msg, "http://") || findtext(msg, "https://")) && !CONFIG_GET(flag/allow_url_links)) // CHOMPEdit
-			to_chat(src, "<B>Posting external links is not allowed.</B>")
+			to_chat(src, span_bold("Posting external links is not allowed."))
 			log_admin("[key_name(src)] has attempted to post a link in OOC: [msg]")
 			message_admins("[key_name_admin(src)] has attempted to post a link in OOC: [msg]")
 			return
@@ -74,17 +74,17 @@
 			to_chat(src, span_danger("Вам запрещено использовать чат OOC."))
 			return
 		if(findtext_char(msg, "byond://") && !CONFIG_GET(flag/allow_byond_links)) // CHOMPEdit
-			to_chat(src, "<B>Рекламировать другие сервера запрещено.</B>")
+			to_chat(src, span_bold("Рекламировать другие сервера запрещено.") + "")
 			log_admin("[key_name(src)] попытался прорекламировать в OOC: [msg]")
 			message_admins("[key_name_admin(src)] попытался прорекламировать в OOC: [msg]")
 			return
 		if(findtext_char(msg, "discord.gg") && !CONFIG_GET(flag/allow_discord_links)) // CHOMPEdit
-			to_chat(src, "<B>Рекламировать сервера Discord запрещено.</B>")
+			to_chat(src, span_bold("Рекламировать сервера Discord запрещено.") + "")
 			log_admin("[key_name(src)] попытался прорекламировать в OOC: [msg]")
 			message_admins("[key_name_admin(src)] попытался прорекламировать в OOC: [msg]")
 			return
 		if((findtext_char(msg, "http://") || findtext(msg, "https://")) && !CONFIG_GET(flag/allow_url_links)) // CHOMPEdit
-			to_chat(src, "<B>Отправлять внешние ссылки запрещено.</B>")
+			to_chat(src, span_bold("Отправлять внешние ссылки запрещено.") + "")
 			log_admin("[key_name(src)] попытался отправить ссылку в OOC: [msg]")
 			message_admins("[key_name_admin(src)] попытался отправить ссылку в OOC: [msg]")
 			return
@@ -188,17 +188,17 @@
 			to_chat(src, span_danger("You cannot use OOC (muted)."))
 			return
 		if(findtext(msg, "byond://") && !CONFIG_GET(flag/allow_byond_links)) // CHOMPEdit
-			to_chat(src, "<B>Advertising other servers is not allowed.</B>")
+			to_chat(src, span_bold("Advertising other servers is not allowed."))
 			log_admin("[key_name(src)] has attempted to advertise in OOC: [msg]")
 			message_admins("[key_name_admin(src)] has attempted to advertise in OOC: [msg]")
 			return
 		if(findtext(msg, "discord.gg") && !CONFIG_GET(flag/allow_discord_links)) // CHOMPEdit
-			to_chat(src, "<B>Advertising discords is not allowed.</B>")
+			to_chat(src, span_bold("Advertising discords is not allowed."))
 			log_admin("[key_name(src)] has attempted to advertise a discord server in OOC: [msg]")
 			message_admins("[key_name_admin(src)] has attempted to advertise a discord server in OOC: [msg]")
 			return
 		if((findtext(msg, "http://") || findtext(msg, "https://")) && !CONFIG_GET(flag/allow_url_links)) // CHOMPEdit
-			to_chat(src, "<B>Posting external links is not allowed.</B>")
+			to_chat(src, span_bold("Posting external links is not allowed."))
 			log_admin("[key_name(src)] has attempted to post a link in OOC: [msg]")
 			message_admins("[key_name_admin(src)] has attempted to post a link in OOC: [msg]")
 			return
@@ -213,17 +213,17 @@
 			to_chat(src, span_danger("Вам запрещено использовать чаты OOC."))
 			return
 		if(findtext_char(msg, "byond://") && !CONFIG_GET(flag/allow_byond_links)) // CHOMPEdit
-			to_chat(src, "<B>Рекламировать другие сервера запрещено.</B>")
+			to_chat(src, span_bold("Рекламировать другие сервера запрещено.") + "")
 			log_admin("[key_name(src)] попытался прорекламировать в OOC: [msg]")
 			message_admins("[key_name_admin(src)] попытался прорекламировать в OOC: [msg]")
 			return
 		if(findtext_char(msg, "discord.gg") && !CONFIG_GET(flag/allow_discord_links)) // CHOMPEdit
-			to_chat(src, "<B>Рекламировать сервера Discord запрещено.</B>")
+			to_chat(src, span_bold("Рекламировать сервера Discord запрещено.") + "")
 			log_admin("[key_name(src)] попытался прорекламировать в OOC: [msg]")
 			message_admins("[key_name_admin(src)] попытался прорекламировать в OOC: [msg]")
 			return
 		if((findtext_char(msg, "http://") || findtext(msg, "https://")) && !CONFIG_GET(flag/allow_url_links)) // CHOMPEdit
-			to_chat(src, "<B>Отправлять внешние ссылки запрещено.</B>")
+			to_chat(src, span_bold("Отправлять внешние ссылки запрещено.") + "")
 			log_admin("[key_name(src)] попытался отправить ссылку в OOC: [msg]")
 			message_admins("[key_name_admin(src)] попытался отправить ссылку в OOC: [msg]")
 			return
@@ -284,18 +284,18 @@
 			admin_stuff += "/([key])"
 
 		/* Bastion of Endeavor Translation
-		to_chat(target, span_looc("" + create_text_tag("looc", "LOOC:", target) + " <EM>[display_name][admin_stuff]:</EM> <span class='message'>[msg]</span>"))
+		to_chat(target, span_looc(create_text_tag("looc", "LOOC:", target) + " <EM>[display_name][admin_stuff]:</EM> " + span_message("[msg]")))
 		*/
-		to_chat(target, span_looc("" + create_text_tag("looc", "Чат LOOC:", target) + " <EM>[display_name][admin_stuff]:</EM> <span class='message'>[msg]</span>"))
+		to_chat(target, span_looc(create_text_tag("looc", "Чат LOOC:", target) + " <EM>[display_name][admin_stuff]:</EM> " + span_message("[msg]")))
 		// End of Bastion of Endeavor Translation
 
 	for(var/client/target in r_receivers)
 		var/admin_stuff = "/([key])([admin_jump_link(mob, target.holder)])"
 
 		/* Bastion of Endeavor Translation
-		to_chat(target, span_rlooc("" + create_text_tag("rlooc", "RLOOC:", target) + " <span class='prefix'>(R)</span><EM>[display_name][admin_stuff]:</EM> <span class='message'>[msg]</span>"))
+		to_chat(target, span_rlooc(create_text_tag("rlooc", "RLOOC:", target) + " " + span_prefix("(R)") + "<EM>[display_name][admin_stuff]:</EM> " + span_message("[msg]")))
 		*/
-		to_chat(target, span_rlooc("" + create_text_tag("rlooc", "Чат RLOOC:", target) + " <span class='prefix'>(Д)</span><EM>[display_name][admin_stuff]:</EM> <span class='message'>[msg]</span>"))
+		to_chat(target, span_rlooc(create_text_tag("rlooc", "Чат RLOOC:", target) + " " + span_prefix("(R)") + "<EM>[display_name][admin_stuff]:</EM> " + span_message("[msg]")))
 		// End of Bastion of Endeavor Translation
 
 /mob/proc/get_looc_source()

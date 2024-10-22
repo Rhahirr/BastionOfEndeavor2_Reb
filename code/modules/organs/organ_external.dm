@@ -182,18 +182,18 @@
 		if(0)
 			if(istype(W,/obj/item/surgical/scalpel))
 				/* Bastion of Endeavor Translation
-				user.visible_message(span_danger("<b>[user]</b> cuts [src] open with [W]!"))
+				user.visible_message(span_danger(span_bold("[user]") + " cuts [src] open with [W]!"))
 				*/
-				user.visible_message(span_danger("<b>[cap_ru(user)]</b> [verb_ru(user, "сделал")] разрез на [acase_ru(src)] с помощью [gcase_ru(W)]!"))
+				user.visible_message(span_danger(span_bold("[cap_ru(user)]") + " [verb_ru(user, "сделал")] разрез на [acase_ru(src)] с помощью [gcase_ru(W)]!"))
 				// End of Bastion of Endeavor Translation
 				stage++
 				return
 		if(1)
 			if(istype(W,/obj/item/surgical/retractor))
 				/* Bastion of Endeavor Translation: WHat the hell even is this interaction
-				user.visible_message(span_danger("<b>[user]</b> cracks [src] open like an egg with [W]!"))
+				user.visible_message(span_danger(span_bold("[user]") + " cracks [src] open like an egg with [W]!"))
 				*/
-				user.visible_message(span_danger("<b>[cap_ru(user)]</b> [verb_ru(user, "вскрыл")] [acase_ru(src)] как яйцо с помощью [gcase_ru(W)]!"))
+				user.visible_message(span_danger(span_bold("[cap_ru(user)]") + " [verb_ru(user, "вскрыл")] [acase_ru(src)] как яйцо с помощью [gcase_ru(W)]!"))
 				// End of Bastion of Endeavor Translation
 				stage++
 				return
@@ -204,15 +204,15 @@
 					removing.loc = get_turf(user.loc)
 					user.put_in_hands(removing)
 					/* Bastion of Endeavor Translation
-					user.visible_message(span_danger("<b>[user]</b> extracts [removing] from [src] with [W]!"))
+					user.visible_message(span_danger(span_bold("[user]") + " extracts [removing] from [src] with [W]!"))
 					*/
-					user.visible_message(span_danger("<b>[cap_ru(user)]</b> [verb_ru(user, "извл;ёк;екла;екло;екли;")] [acase_ru(removing)] из [gcase_ru(src)] с помощью [gcase_ru(W)]!"))
+					user.visible_message(span_danger(span_bold("[cap_ru(user)]") + " [verb_ru(user, "извл;ёк;екла;екло;екли;")] [acase_ru(removing)] из [gcase_ru(src)] с помощью [gcase_ru(W)]!"))
 					// End of Bastion of Endeavor Translation
 				else
 					/* Bastion of Endeavor Translation
-					user.visible_message(span_danger("<b>[user]</b> fishes around fruitlessly in [src] with [W]."))
+					user.visible_message(span_danger(span_bold("[user]") + " fishes around fruitlessly in [src] with [W]."))
 					*/
-					user.visible_message(span_danger("<b>[cap_ru(user)]</b> безрезультатно [verb_ru(user, "покопал;ся;ась;ось;ись;")] [prep_ru(src, "в")] [pcase_ru(src)] с помощью [gcase_ru(W)]."))
+					user.visible_message(span_danger(span_bold("[cap_ru(user)]") + " безрезультатно [verb_ru(user, "покопал;ся;ась;ось;ись;")] [prep_ru(src, "в")] [pcase_ru(src)] с помощью [gcase_ru(W)]."))
 					// End of Bastion of Endeavor Translation
 				return
 	..()
@@ -518,15 +518,15 @@
 		var/fix_verb = (damage_amount > repair_amount) ? "patches" : "finishes patching"
 		if(user == src.owner)
 			var/datum/gender/T = gender_datums[user.get_visible_gender()]
-			user.visible_message("<b>\The [user]</b> [fix_verb] [damage_desc] on [T.his] [src.name] with [tool].")
+			user.visible_message(span_infoplain(span_bold("\The [user]") + " [fix_verb] [damage_desc] on [T.his] [src.name] with [tool]."))
 		else
 			user.visible_message("<b>\The [user]</b> [fix_verb] [damage_desc] on [owner]'s [src.name] with [tool].")
 		*/
 		var/fix_verb = (damage_amount > repair_amount) ? "[verb_ru(user, "ремонтиру;ет;ет;ет;ют;")]" : "[verb_ru(user, "закончил")] ремонтировать"
 		if(user == src.owner)
-			user.visible_message("<b>[cap_ru(user)]</b> [fix_verb] [damage_desc] на [concat_ru("сво;ём;ей;ём;их;", src, PCASE)] с помощью [gcase_ru(tool)].") // a bit iffy about cables being ON something but sure
+			user.visible_message(span_infoplain(span_bold("[cap_ru(user)]") + " [fix_verb] [damage_desc] на [concat_ru("сво;ём;ей;ём;их;", src, PCASE)] с помощью [gcase_ru(tool)].")) // a bit iffy about cables being ON something but sure
 		else
-			user.visible_message("<b>[cap_ru(user)]</b> [fix_verb] [damage_desc] на [pcase_ru(src)] [gcase_ru(owner)] с помощью [gcase_ru(tool)].")
+			user.visible_message(span_infoplain(span_bold("[cap_ru(user)]") + " [fix_verb] [damage_desc] на [pcase_ru(src)] [gcase_ru(owner)] с помощью [gcase_ru(tool)]."))
 		// End of Bastion of Endeavor Translation
 
 	return 1

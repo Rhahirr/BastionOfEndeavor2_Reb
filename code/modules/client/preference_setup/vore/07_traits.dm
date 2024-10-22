@@ -328,20 +328,20 @@ var/global/list/valid_bloodreagents = list("default","iron","copper","phoron","s
 
 /datum/category_item/player_setup_item/vore/traits/content(var/mob/user)
 	/* Bastion of Endeavor Translation
-	. += "<b>Custom Species Name:</b> "
+	. += span_bold("Custom Species Name:") + " "
 	. += "<a href='?src=\ref[src];custom_species=1'>[pref.custom_species ? pref.custom_species : "-Input Name-"]</a><br>"
 	*/
-	. += "<b>Особое название расы:</b> "
+	. += span_bold("Особое название расы:") + " "
 	. += "<a href='?src=\ref[src];custom_species=1'>[pref.custom_species ? pref.custom_species : "-Введите название-"]</a><br>"
 	// End of Bastion of Endeavor Translation
 
 	var/datum/species/selected_species = GLOB.all_species[pref.species]
 	if(selected_species.selects_bodytype)
 		/* Bastion of Endeavor Translation: Bastion of Endeavor TODO: Needs to get looked at, at some point
-		. += "<b>Icon Base: </b> "
+		. += span_bold("Icon Base:") + " "
 		. += "<a href='?src=\ref[src];custom_base=1'>[pref.custom_base ? pref.custom_base : "Human"]</a><br>"
 		*/
-		. += "<b>Тип туловища: </b> "
+		. += span_bold("Тип телосложения:") + " "
 		. += "<a href='?src=\ref[src];custom_base=1'>[pref.custom_base ? pref.custom_base : SPECIES_HUMAN]</a><br>"
 		// End of Bastion of Endeavor Translation
 
@@ -356,17 +356,17 @@ var/global/list/valid_bloodreagents = list("default","iron","copper","phoron","s
 		if(T in pref.pos_traits)
 			traits_left--
 	/* Bastion of Endeavor Translation
-	. += "<b>Traits Left:</b> [traits_left]<br>"
-	. += "<b>Points Left:</b> [points_left]<br>"
+	. += span_bold("Traits Left:") + " [traits_left]<br>"
+	. += span_bold("Points Left:") + " [points_left]<br>"
 	*/
-	. += "<b>Осталось черт:</b> [traits_left]<br>"
-	. += "<b>Осталось очков:</b> [points_left]<br>"
+	. += span_bold("Осталось черт:") + " [traits_left]<br>"
+	. += span_bold("Осталось очков:") + " [points_left]<br>"
 	// End of Bastion of Endeavor Translation
 	if(points_left < 0 || traits_left < 0 || (!pref.custom_species && pref.species == SPECIES_CUSTOM))
 		/* Bastion of Endeavor Translation
-		. += "<span style='color:red;'><b>^ Fix things! ^</b></span><br>"
+		. += span_red(span_bold("^ Fix things! ^")) + "<br>"
 		*/
-		. += "<span style='color:red;'><b>^ Исправьте! ^</b></span><br>"
+		. += span_red(span_bold("^ Исправьте! ^")) + "<br>"
 		// End of Bastion of Endeavor Translation
 
 	/* Bastion of Endeavor Translation
@@ -403,42 +403,42 @@ var/global/list/valid_bloodreagents = list("default","iron","copper","phoron","s
 	. += "</ul>"
 
 	/* Bastion of Endeavor Translation: Augh
-	. += "<b>Blood Color: </b>" //People that want to use a certain species to have that species traits (xenochimera/promethean/spider) should be able to set their own blood color.
+	. += span_bold("Blood Color: ") //People that want to use a certain species to have that species traits (xenochimera/promethean/spider) should be able to set their own blood color.
 	. += "<a href='?src=\ref[src];blood_color=1'>Set Color <font color='[pref.blood_color]'>&#9899;</font></a>"
 	. += "<a href='?src=\ref[src];blood_reset=1'>R</a><br>"
-	. += "<b>Blood Reagent: </b>"	//Wanna be copper-based? Go ahead.
+	. += span_bold("Blood Reagent: ")	//Wanna be copper-based? Go ahead.
 	. += "<a href='?src=\ref[src];blood_reagents=1'>[pref.blood_reagents]</a><br>"
 	. += "<br>"
 
-	. += "<b>Custom Say: </b>"
+	. += span_bold("Custom Say: ")
 	. += "<a href='?src=\ref[src];custom_say=1'>Set Say Verb</a>"
 	. += "(<a href='?src=\ref[src];reset_say=1'>Reset</A>)"
 	. += "<br>"
-	. += "<b>Custom Whisper: </b>"
+	. += span_bold("Custom Whisper: ")
 	. += "<a href='?src=\ref[src];custom_whisper=1'>Set Whisper Verb</a>"
 	. += "(<a href='?src=\ref[src];reset_whisper=1'>Reset</A>)"
 	. += "<br>"
-	. += "<b>Custom Ask: </b>"
+	. += span_bold("Custom Ask: ")
 	. += "<a href='?src=\ref[src];custom_ask=1'>Set Ask Verb</a>"
 	. += "(<a href='?src=\ref[src];reset_ask=1'>Reset</A>)"
 	. += "<br>"
-	. += "<b>Custom Exclaim: </b>"
+	. += span_bold("Custom Exclaim: ")
 	. += "<a href='?src=\ref[src];custom_exclaim=1'>Set Exclaim Verb</a>"
 	. += "(<a href='?src=\ref[src];reset_exclaim=1'>Reset</A>)"
 	. += "<br>"
-	. += "<b>Custom Heat Discomfort: </b>"
+	. += span_bold("Custom Heat Discomfort: ")
 	. += "<a href='?src=\ref[src];custom_heat=1'>Set Heat Messages</a>"
 	. += "(<a href='?src=\ref[src];reset_heat=1'>Reset</A>)"
 	. += "<br>"
-	. += "<b>Custom Cold Discomfort: </b>"
+	. += span_bold("Custom Cold Discomfort: ")
 	. += "<a href='?src=\ref[src];custom_cold=1'>Set Cold Messages</a>"
 	. += "(<a href='?src=\ref[src];reset_cold=1'>Reset</A>)"
 	. += "<br>"
 	*/
-	. += "<b>Цвет крови: </b>"
+	. += span_bold("Цвет крови: ")
 	. += "<a href='?src=\ref[src];blood_color=1'>Выбрать <font color='[pref.blood_color]'>&#9899;</font></a>"
 	. += "<a href='?src=\ref[src];blood_reset=1'>Сбросить</a><br>"
-	. += "<b>Кроветворное вещество: </b>" // sounds a lil silly but okay
+	. += span_bold("Кроветворное вещество: ") // sounds a lil silly but okay
 	. += "<a href='?src=\ref[src];blood_reagents=1'>[pref.blood_reagents]</a><br>"
 	. += "<br><table><tr>" // no reason why this shouldn't be a table
 	. += "<td><b>Глаголы речи</b></td></tr><tr>"

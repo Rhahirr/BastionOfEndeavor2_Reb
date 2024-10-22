@@ -8,8 +8,7 @@
 	set name = "Кто онлайн"
 	set category = "OOC.Информация"
 	set desc = "Показать, кто сейчас подключён к серверу."
-	var/msg = "<b>Игроки онлайн:</b>\n"
-	// End of Bastion of Endeavor Translation
+	var/msg = span_bold("Игроки онлайн:") + "\n"
 
 	var/list/Lines = list()
 
@@ -20,18 +19,18 @@
 		var/entry = "\t[C.key]"
 		if(C.holder?.fakekey)
 		/* Bastion of Endeavor Translation: Bastion of Endeavor TODO: Risky but we'll see
-			entry += " <i>(as [C.holder.fakekey])</i>"
+			entry += " " + span_italics("as [C.holder.fakekey])")
 		entry += " - Playing as [C.mob.real_name]"
 		*/
-			entry += " <i>(как [C.holder.fakekey])</i>"
+			entry += " " + span_italics("как [C.holder.fakekey])")
 		entry += " – Играет за [acase_ru(C.mob, secondary = "real_name")]"
 		// End of Bastion of Endeavor Translation
 		switch(C.mob.stat)
 			if(UNCONSCIOUS)
 				/* Bastion of Endeavor Translation
-				entry += " - [span_darkgray("<b>Unconscious</b>")]"
+				entry += " - [span_darkgray(span_bold("Unconscious"))]"
 				*/
-				entry += " - [span_darkgray("<b>Без сознания</b>")]"
+				entry += " - [span_darkgray(span_bold("Без сознания"))]"
 				// End of Bastion of Endeavor Translation
 			if(DEAD)
 				if(isobserver(C.mob))
@@ -40,16 +39,16 @@
 					if(O.started_as_observer)
 						entry += " - [span_gray("Observing")]"
 					else
-						entry += " - [span_black("<b>DEAD</b>")]"
+						entry += " - [span_black(span_bold("DEAD"))]"
 				else
-					entry += " - [span_black("<b>DEAD</b>")]"
+					entry += " - [span_black(span_bold("DEAD"))]"
 				*/
 					if(O.started_as_observer)
 						entry += " – [span_gray("Наблюдает")]"
 					else
-						entry += " – [span_black("<b>[verb_ru(C.mob, ";Мёртв;Мертва;Мертво;Мертвы;", index_v = "real_name")]</b>")]"
+						entry += " – [span_black(span_bold("[verb_ru(C.mob, ";Мёртв;Мертва;Мертво;Мертвы;", index_v = "real_name")]"))]"
 				else
-					entry += " – [span_black("<b>[verb_ru(C.mob, ";Мёртв;Мертва;Мертво;Мертвы;", index_v = "real_name")]</b>")]"
+					entry += " – [span_black(span_bold("[verb_ru(C.mob, ";Мёртв;Мертва;Мертво;Мертвы;", index_v = "real_name")]"))]"
 				// End of Bastion of Endeavor Translation
 
 		if(C.player_age != initial(C.player_age) && isnum(C.player_age)) // database is on
@@ -57,9 +56,9 @@
 			/* Bastion of Endeavor Translation
 			switch(age)
 				if(0 to 1)
-					age = span_red("<b>[age] days old</b>")
+					age = span_red(span_bold("[age] days old"))
 				if(1 to 10)
-					age = span_orange("<b>[age] days old</b>")
+					age = span_orange(span_bold("[age] days old"))
 				else
 					entry += " - [age] days old"
 				*/
@@ -68,9 +67,9 @@
 
 		if(is_special_character(C.mob))
 			/* Bastion of Endeavor Translation
-			entry += " - [span_red("<b>Antagonist</b>")]"
+			entry += " - [span_red(span_bold("Antagonist"))]"
 			*/
-			entry += " - [span_red("<b>Антагонист</b>")]"
+			entry += " - [span_red(span_bold("Антагонист"))]"
 			// End of Bastion of Endeavor Translation
 
 		if(C.is_afk())
@@ -88,10 +87,10 @@
 		msg += "[line]\n"
 
 	/* Bastion of Endeavor Translation
-	msg += "<b>Total Players: [length(Lines)]</b>"
+	msg += span_bold("Total Players: [length(Lines)]")
 	msg = span_filter_notice("[jointext(msg, "<br>")]")
 	*/
-	msg += "<b>Всего игроков: [length(Lines)]</b>"
+	msg += span_bold("Всего игроков: [length(Lines)]")
 	msg = span_filter_notice("[jointext(msg, "<br>")]")
 	// End of Bastion of Endeavor Translation
 	to_chat(src,msg)
@@ -140,9 +139,9 @@
 		if(holder)
 			if(C.holder.fakekey)
 				/* Bastion of Endeavor Translation
-				temp += " <i>(as [C.holder.fakekey])</i>"
+				temp += " " + span_italics("(as [C.holder.fakekey])")
 				*/
-				temp += " <i>(под именем [C.holder.fakekey])</i>"
+				temp += " " + span_italics("(под именем [C.holder.fakekey])")
 				// End of Bastion of Endeavor Translation
 
 			/* Bastion of Endeavor Translation
@@ -180,30 +179,30 @@
 				eventMmsg += temp
 
 	/* Bastion of Endeavor Translation
-	msg = "<b>Current Admins ([num_admins_online]):</b>\n" + msg
+	msg = span_bold("Current Admins ([num_admins_online]):") + "\n" + msg
 	*/
-	msg = "<b>Администраторы в сети ([num_admins_online]):</b>\n" + msg
+	msg = span_bold("Администраторы в сети ([num_admins_online]):") + "\n" + msg
 	// End of Bastion of Endeavor Translation
 
 	if(CONFIG_GET(flag/show_mods)) // CHOMPEdit
 		/* Bastion of Endeavor Translation
-		msg += "\n<b> Current Moderators ([num_mods_online]):</b>\n" + modmsg	//YW EDIT
+		msg += "\n" + span_bold(" Current Moderators ([num_mods_online]):") + "\n" + modmsg	//YW EDIT
 		*/
-		msg += "\n<b> Модераторы ([num_mods_online]):</b>\n" + modmsg	//YW EDIT
+		msg += "\n" + span_bold(" Модераторы ([num_mods_online]):") + "\n" + modmsg	//YW EDIT
 		// End of Bastion of Endeavor Translation
 
 	if(CONFIG_GET(flag/show_devs)) // CHOMPEdit
 		/* Bastion of Endeavor Translation
-		msg += "\n<b> Current Developers ([num_devs_online]):</b>\n" + devmsg
+		msg += "\n" + span_bold(" Current Developers ([num_devs_online]):") + "\n" + devmsg
 		*/
-		msg += "\n<b> Разработчики ([num_devs_online]):</b>\n" + devmsg
+		msg += "\n" + span_bold(" Разработчики ([num_devs_online]):") + "\n" + devmsg
 		// End of Bastion of Endeavor Translation
 
 	if(CONFIG_GET(flag/show_event_managers)) // CHOMPEdit
 		/* Bastion of Endeavor Translation
-		msg += "\n<b> Current Miscellaneous ([num_event_managers_online]):</b>\n" + eventMmsg
+		msg += "\n" + span_bold(" Current Miscellaneous ([num_event_managers_online]):") + "\n" + eventMmsg
 		*/
-		msg += "\n<b> Прочий персонал ([num_event_managers_online]):</b>\n" + eventMmsg
+		msg += "\n" + span_bold(" Прочий персонал ([num_event_managers_online]):") + "\n" + eventMmsg
 		// End of Bastion of Endeavor Translation
 
 	var/num_mentors_online = 0
@@ -244,15 +243,15 @@
 
 	if(CONFIG_GET(flag/show_mentors)) // CHOMPEdit
 		/* Bastion of Endeavor Translation
-		msg += "\n<b> Current Mentors ([num_mentors_online]):</b>\n" + mmsg
+		msg += "\n" + span_bold(" Current Mentors ([num_mentors_online]):") + "\n" + mmsg
 		*/
-		msg += "\n<b> Менторы в сети ([num_mentors_online]):</b>\n" + mmsg
+		msg += "\n" + span_bold(" Менторы в сети ([num_mentors_online]):") + "\n" + mmsg
 		// End of Bastion of Endeavor Translation
 
 	/* Bastion of Endeavor Translation
-	msg += "\n<span class='info'>Adminhelps are also sent to Discord. If no admins are available in game try anyway and an admin on Discord may see it and respond.</span>"
+	msg += "\n" + span_info("Adminhelps are also sent to Discord. If no admins are available in game try anyway and an admin on Discord may see it and respond.")
 	*/
-	msg += "\n<span class='info'>Запросы в Помощь администратора дублируются в Discord. Если в сети нет администраторов, вы можете все равно оставить запрос, и кто-то из администраторов может увидеть его в Discord и ответить при первой же возможности.</span>"
+	msg += "\n" + span_info("Запросы в Помощь администратора дублируются в Discord. Если в сети нет администраторов, вы можете все равно оставить запрос, и кто-то из администраторов может увидеть его в Discord и ответить при первой же возможности.")
 	// End of Bastion of Endeavor Translation
 
 	to_chat(src,span_filter_notice("[jointext(msg, "<br>")]"))

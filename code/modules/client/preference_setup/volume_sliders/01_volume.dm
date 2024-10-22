@@ -57,12 +57,12 @@
 /datum/category_item/player_setup_item/player_global/volume/content(var/mob/user)
 // End of Bastion of Endeavor Edit
 	/* Bastion of Endeavor Translation
-	. += "<b>Volume Settings</b><br>"
+	. += span_bold("Volume Settings") + "<br>"
 	for(var/channel in pref.volume_channels)
 		. += "[channel]: <a href='?src=\ref[src];change_volume=[channel];'><b>[pref.volume_channels[channel] * 100]%</b></a><br>"
 	. += "<br>"
 	*/
-	. += "<b>Настройки звука</b><br><table>"
+	. += span_bold("Настройки звука") + "<br><table>"
 	for(var/channel in pref.volume_channels)
 		. += "<tr><td>[channel]:</td><td><a href='?src=\ref[src];change_volume=[channel];'><b>[pref.volume_channels[channel] * 100]%</b></a></td></tr>"
 	. += "</table><br>"

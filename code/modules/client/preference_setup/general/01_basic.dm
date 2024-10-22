@@ -127,41 +127,41 @@
 /datum/category_item/player_setup_item/general/basic/content()
 	. = list()
 	/* Bastion of Endeavor Translation: Added the cases setup
-	. += "<b>Name:</b> "
+	. += span_bold("Name:") + " "
 	. += "<a href='?src=\ref[src];rename=1'><b>[pref.real_name]</b></a><br>"
 	. += "<a href='?src=\ref[src];random_name=1'>Randomize Name</A><br>"
 	. += "<a href='?src=\ref[src];always_random_name=1'>Always Random Name: [pref.be_random_name ? "Yes" : "No"]</a><br>"
-	. += "<b>Nickname:</b> "
+	. += span_bold("Nickname:") + " "
 	. += "<a href='?src=\ref[src];nickname=1'><b>[pref.nickname]</b></a>"
 	. += "(<a href='?src=\ref[src];reset_nickname=1'>Clear</A>)"
 	. += "<br>"
-	. += "<b>Biological Sex:</b> <a href='?src=\ref[src];bio_gender=1'><b>[gender2text(pref.biological_gender)]</b></a><br>"
-	. += "<b>Pronouns:</b> <a href='?src=\ref[src];id_gender=1'><b>[gender2text(pref.identifying_gender)]</b></a><br>"
-	. += "<b>Age:</b> <a href='?src=\ref[src];age=1'>[pref.age]</a> <b>Birthday:</b> <a href='?src=\ref[src];bday_month=1'>[pref.bday_month]</a><b>/</b><a href='?src=\ref[src];bday_day=1'>[pref.bday_day]</a> - <b>Announce?:</b> <a href='?src=\ref[src];bday_announce=1'>[pref.bday_announce ? "Yes" : "Disabled"]</a><br>" //ChompEDIT - DISABLE the announcement
-	. += "<b>Spawn Point</b>: <a href='?src=\ref[src];spawnpoint=1'>[pref.spawnpoint]</a><br>"
+	. += span_bold("Biological Sex:") + " <a href='?src=\ref[src];bio_gender=1'><b>[gender2text(pref.biological_gender)]</b></a><br>"
+	. += span_bold("Pronouns:") + " <a href='?src=\ref[src];id_gender=1'><b>[gender2text(pref.identifying_gender)]</b></a><br>"
+	. += span_bold("Age:") + " <a href='?src=\ref[src];age=1'>[pref.age]</a> <b>Birthday:</b> <a href='?src=\ref[src];bday_month=1'>[pref.bday_month]</a><b>/</b><a href='?src=\ref[src];bday_day=1'>[pref.bday_day]</a> - <b>Announce?:</b> <a href='?src=\ref[src];bday_announce=1'>[pref.bday_announce ? "Yes" : "Disabled"]</a><br>" //ChompEDIT - DISABLE the announcement
+	. += span_bold("Spawn Point") + ": <a href='?src=\ref[src];spawnpoint=1'>[pref.spawnpoint]</a><br>"
 	if(CONFIG_GET(flag/allow_metadata)) // CHOMPEdit
 		//CHOMPEdit Start
-		. += "<b>OOC Notes: <a href='?src=\ref[src];edit_ooc_notes=1'>Edit</a><a href='?src=\ref[src];edit_ooc_note_favs=1'>Favs</a><a href='?src=\ref[src];edit_ooc_note_likes=1'>Likes</a><a href='?src=\ref[src];edit_ooc_note_maybes=1'>Maybes</a><a href='?src=\ref[src];edit_ooc_note_dislikes=1'>Dislikes</a></b><br>"
+		. += span_bold("OOC Notes: <a href='?src=\ref[src];edit_ooc_notes=1'>Edit</a><a href='?src=\ref[src];edit_ooc_note_favs=1'>Favs</a><a href='?src=\ref[src];edit_ooc_note_likes=1'>Likes</a><a href='?src=\ref[src];edit_ooc_note_maybes=1'>Maybes</a><a href='?src=\ref[src];edit_ooc_note_dislikes=1'>Dislikes</a>") + "<br>"
 		. += "Detailed field or short list system? <a href='?src=\ref[src];edit_ooc_note_style=1'>[pref.matadata_ooc_style ? "Lists" : "Fields"]</a><br><br>"
 		//CHOMPEdit End
 	*/
-	. += "<b>Имя:</b> "
+	. += span_bold("Имя:") + " "
 	. += "<a href='?src=\ref[src];rename=1'><b>[pref.real_name]</b></a>"
 	. += "<a href='?src=\ref[src];random_name=1'>Сгенерировать имя</A>"
 	. += "<a href='?src=\ref[src];cases_window=open'>Установить склонение имени</a><br>"
 	// . += "<a href='?src=\ref[src];always_random_name=1'>Каждый раз случайное: [pref.be_random_name ? "Да" : "Нет"]</a><br>" // I don't see any reason for us to have this
-	. += "<b>Прозвище:</b> "
+	. += span_bold("Прозвище:") + " "
 	. += "<a href='?src=\ref[src];nickname=1'><b>[pref.nickname]</b></a>"
 	. += " <a href='?src=\ref[src];reset_nickname=1'>Сбросить</A>"
 	. += "<br>"
-	. += "<b>Биологический пол:</b> <a href='?src=\ref[src];bio_gender=1'>[get_key_by_value(all_genders_define_list_ru, pref.biological_gender)]</a><br>"
-	. += "<b>Местоимения:</b> <a href='?src=\ref[src];id_gender=1'>[get_key_by_value(all_id_genders_define_list_ru, pref.identifying_gender)]</a><br>"
-	. += "<b>Возраст:</b> <a href='?src=\ref[src];age=1'>[pref.age]</a><b>, дата рождения:</b> <a href='?src=\ref[src];bday_day=1'>[pref.bday_day]</a><b>.</b><a href='?src=\ref[src];bday_month=1'>[pref.bday_month]</a><br>"
-	. += "<b>Точка прибытия</b>: <a href='?src=\ref[src];spawnpoint=1'>[pref.spawnpoint]</a><br>"
+	. += span_bold("Биологический пол:") + " <a href='?src=\ref[src];bio_gender=1'>[get_key_by_value(all_genders_define_list_ru, pref.biological_gender)]</a><br>"
+	. += span_bold("Местоимения:") + " <a href='?src=\ref[src];id_gender=1'>[get_key_by_value(all_id_genders_define_list_ru, pref.identifying_gender)]</a><br>"
+	. += span_bold("Возраст:") + " <a href='?src=\ref[src];age=1'>[pref.age]</a>" + span_bold("дата рождения:") + " <a href='?src=\ref[src];bday_day=1'>[pref.bday_day]</a><b>.</b><a href='?src=\ref[src];bday_month=1'>[pref.bday_month]</a><br>"
+	. += span_bold("Точка прибытия:") + " <a href='?src=\ref[src];spawnpoint=1'>[pref.spawnpoint]</a><br>"
 	if(CONFIG_GET(flag/allow_metadata)) // CHOMPEdit
 		//CHOMPEdit Start
-		. += "<b>Примечания OOC: <a href='?src=\ref[src];edit_ooc_notes=1'>Изменить</a><a href='?src=\ref[src];edit_ooc_note_favs=1'>Любимое</a><a href='?src=\ref[src];edit_ooc_note_likes=1'>Нравится</a><a href='?src=\ref[src];edit_ooc_note_maybes=1'>Неоднозначно</a><a href='?src=\ref[src];edit_ooc_note_dislikes=1'>Не нравится</a></b><br>"
-		. += "Формат примечаний OOC: <a href='?src=\ref[src];edit_ooc_note_style=1'>[pref.matadata_ooc_style ? "Ряд столбцов" : "Вертикальные графы"]</a><br>"
+		. += span_bold("Примечания OOC: <a href='?src=\ref[src];edit_ooc_notes=1'>Изменить</a><a href='?src=\ref[src];edit_ooc_note_favs=1'>Любимое</a><a href='?src=\ref[src];edit_ooc_note_likes=1'>Нравится</a><a href='?src=\ref[src];edit_ooc_note_maybes=1'>Неоднозначно</a><a href='?src=\ref[src];edit_ooc_note_dislikes=1'>Не нравится</a>") + "<br>"
+		. += span_bold("Формат примечаний OOC: <a href='?src=\ref[src];edit_ooc_note_style=1'>[pref.matadata_ooc_style ? "Ряд столбцов" : "Вертикальные графы"]</a><br>")
 		//CHOMPEdit End
 	. = jointext(.,null)
 

@@ -753,7 +753,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	. += "<br><a href='?src=\ref[src];toggle_animations=1'>[pref.animations_toggle ? "Stop animations" : "Show animations"]</a>"
 	. += "</td></tr></table>"
 
-	. += "<b>Hair</b><br>"
+	. += span_bold("Hair") + "<br>"
 	*/
 	. += "</td><td><b>Предпросмотр</b><br>"
 	. += "<br><a href='?src=\ref[src];cycle_bg=1'>Сменить фон</a>"
@@ -761,14 +761,14 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	. += "<br><a href='?src=\ref[src];toggle_preview_value=[EQUIP_PREVIEW_JOB]'>[pref.equip_preview_mob & EQUIP_PREVIEW_JOB ? "Скрыть униформу" : "Показать униформу"]</a>"
 	. += "<br><a href='?src=\ref[src];toggle_animations=1'>[pref.animations_toggle ? "Выключить анимации" : "Включить анимации"]</a>"
 	. += "</td></tr></table>"
-	. += "<b>Причёска</b><br>"
+	. += span_bold("Причёска") + "<br>"
 	// End of Bastion of Endeavor Translation
 	if(has_flag(mob_species, HAS_HAIR_COLOR))
 	/* Bastion of Endeavor Translation
 		. += "<a href='?src=\ref[src];hair_color=1'>Change Color</a> [color_square(pref.r_hair, pref.g_hair, pref.b_hair)] "
 	. += " Style: <a href='?src=\ref[src];hair_style_left=[pref.h_style]'><</a> <a href='?src=\ref[src];hair_style_right=[pref.h_style]''>></a> <a href='?src=\ref[src];hair_style=1'>[pref.h_style]</a><br>" //The <</a> & ></a> in this line is correct-- those extra characters are the arrows you click to switch between styles.
 
-	. += "<b>Gradient</b><br>"
+	. += span_bold("Gradient") + "<br>"
 	. += "<a href='?src=\ref[src];grad_color=1'>Change Color</a> [color_square(pref.r_grad, pref.g_grad, pref.b_grad)] "
 	. += " Style: <a href='?src=\ref[src];grad_style_left=[pref.grad_style]'><</a> <a href='?src=\ref[src];grad_style_right=[pref.grad_style]''>></a> <a href='?src=\ref[src];grad_style=1'>[pref.grad_style]</a><br>"
 
@@ -776,7 +776,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	*/
 		. += "<a href='?src=\ref[src];hair_color=1'>Выбрать цвет</a> [color_square(pref.r_hair, pref.g_hair, pref.b_hair)] "
 	. += " Вид: <a href='?src=\ref[src];hair_style_left=[pref.h_style]'><</a> <a href='?src=\ref[src];hair_style_right=[pref.h_style]''>></a> <a href='?src=\ref[src];hair_style=1'>[pref.h_style]</a><br>"
-	. += "<b>Градиент</b><br>"
+	. += span_bold("Градиент") + "<br>"
 	. += "<a href='?src=\ref[src];grad_color=1'>Выбрать цвет</a> [color_square(pref.r_grad, pref.g_grad, pref.b_grad)] "
 	. += " Вид: <a href='?src=\ref[src];grad_style_left=[pref.grad_style]'><</a> <a href='?src=\ref[src];grad_style_right=[pref.grad_style]''>></a> <a href='?src=\ref[src];grad_style=1'>[pref.grad_style]</a><br>"
 	. += "<br><b>Лицевая растительность</b><br>"
@@ -824,7 +824,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	var/list/ear_styles = pref.get_available_styles(global.ear_styles_list)
 	var/datum/sprite_accessory/ears/ear = ear_styles[pref.ear_style]
 	/* Bastion of Endeavor Translation
-	. += "<b>Ears</b><br>"
+	. += span_bold("Ears") + "<br>"
 	if(istype(ear))
 		. += " Style: <a href='?src=\ref[src];ear_style=1'>[ear.name]</a><br>"
 		if(ear.do_colouration)
@@ -836,7 +836,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	else
 		. += " Style: <a href='?src=\ref[src];ear_style=1'>Select</a><br>"
 	*/
-	. += "<b>Голова (уши, рога, усики)</b><br>"
+	. += span_bold("Голова (уши, рога, усики)") + "<br>"
 	if(istype(ear))
 		. += " Вид: <a href='?src=\ref[src];ear_left=[pref.ear_style]'><</a> <a href='?src=\ref[src];ear_right=[pref.ear_style]''>></a> <a href='?src=\ref[src];ear_style=1'>[ear.name]</a><br>"
 		if(ear.do_colouration)
@@ -852,7 +852,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	var/list/tail_styles = pref.get_available_styles(global.tail_styles_list)
 	var/datum/sprite_accessory/tail/tail = tail_styles[pref.tail_style]
 	/* Bastion of Endeavor Translation
-	. += "<b>Tail</b><br>"
+	. += span_bold("Tail") + "<br>"
 	if(istype(tail))
 		. += " Style: <a href='?src=\ref[src];tail_style=1'>[tail.name]</a><br>"
 		if(tail.do_colouration)
@@ -864,7 +864,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	else
 		. += " Style: <a href='?src=\ref[src];tail_style=1'>Select</a><br>"
 	*/
-	. += "<b>Нижняя часть тела (хвосты, тавровые туловища)</b><br>"
+	. += span_bold("Нижняя часть тела (хвосты, тавровые туловища)") + "<br>"
 	if(istype(tail))
 		. += " Вид: <a href='?src=\ref[src];tail_left=[pref.tail_style]'><</a> <a href='?src=\ref[src];tail_right=[pref.tail_style]''>></a> <a href='?src=\ref[src];tail_style=1'>[tail.name]</a><br>"
 		if(tail.do_colouration)
@@ -880,7 +880,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	var/list/wing_styles = pref.get_available_styles(global.wing_styles_list)
 	var/datum/sprite_accessory/wing/wings = wing_styles[pref.wing_style]
 	/* Bastion of Endeavor Translation: might as well just grab all of it
-	. += "<b>Wing</b><br>"
+	. += span_bold("Wing") + "<br>"
 	if(istype(wings))
 		. += " Style: <a href='?src=\ref[src];wing_style=1'>[wings.name]</a><br>"
 		if(wings.do_colouration)
@@ -899,12 +899,12 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 	. += "</table>"
 	. += "<br>"
-	. += "<b>Allow Synth markings:</b> <a href='?src=\ref[src];synth_markings=1'><b>[pref.synth_markings ? "Yes" : "No"]</b></a><br>"
-	. += "<b>Allow Synth color:</b> <a href='?src=\ref[src];synth_color=1'><b>[pref.synth_color ? "Yes" : "No"]</b></a><br>"
+	. += span_bold("Allow Synth markings:") + " <a href='?src=\ref[src];synth_markings=1'><b>[pref.synth_markings ? "Yes" : "No"]</b></a><br>"
+	. += span_bold("Allow Synth color:") + " <a href='?src=\ref[src];synth_color=1'><b>[pref.synth_color ? "Yes" : "No"]</b></a><br>"
 	if(pref.synth_color)
 		. += "<a href='?src=\ref[src];synth2_color=1'>Change Color</a> [color_square(pref.r_synth, pref.g_synth, pref.b_synth)]"
 	*/
-	. += "<b>Спина (крылья, панцири)</b><br>"
+	. += span_bold("Спина (крылья, панцири)") + "<br>"
 	if(istype(wings))
 		. += " Вид: <a href='?src=\ref[src];wing_style=1'>[wings.name]</a><br>"
 		if(wings.do_colouration)
@@ -922,8 +922,8 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		. += "<tr><td>[M]</td><td>[pref.body_markings.len > 1 ? "<a href='?src=\ref[src];marking_up=[M]'>&#708;</a> <a href='?src=\ref[src];marking_down=[M]'>&#709;</a> <a href='?src=\ref[src];marking_move=[M]'>mv</a> " : ""]<a href='?src=\ref[src];marking_remove=[M]'>-</a> <a href='?src=\ref[src];marking_color=[M]'>Цвет</a> [color_square(hex = pref.body_markings[M]["color"] ? pref.body_markings[M]["color"] : "#000000")] <a href='?src=\ref[src];marking_submenu=[M]'>Настроить</a></td></tr>"
 	. += "</table>"
 	. += "<br>"
-	. += "<b>Особенности тела поверх синтетических частей:</b> <a href='?src=\ref[src];synth_markings=1'><b>[pref.synth_markings ? "Да" : "Нет"]</b></a><br>"
-	. += "<b>Цвет поверх синтетических частей:</b> <a href='?src=\ref[src];synth_color=1'><b>[pref.synth_color ? "Да" : "Нет"]</b></a><br>"
+	. += span_bold("Особенности тела поверх синтетических частей:") + " <a href='?src=\ref[src];synth_markings=1'><b>[pref.synth_markings ? "Да" : "Нет"]</b></a><br>"
+	. += span_bold("Цвет поверх синтетических частей:") + " <a href='?src=\ref[src];synth_color=1'><b>[pref.synth_color ? "Да" : "Нет"]</b></a><br>"
 	if(pref.synth_color)
 		. += "<a href='?src=\ref[src];synth2_color=1'>Выбрать цвет</a> [color_square(pref.r_synth, pref.g_synth, pref.b_synth)]"
 	// End of Bastion of Endeavor Translation
@@ -2040,7 +2040,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		user << browse_rsc(icon(current_species.icobase,"preview"), "species_preview_[current_species.name].png") //ChompEDIT usr -> user
 		dat += "<img src='species_preview_[current_species.name].png' width='64px' height='64px'><br/><br/>"
 	/* Bastion of Endeavor Translation
-	dat += "<b>Language:</b> [current_species.species_language]<br/>"
+	dat += span_bold("Language:") + " [current_species.species_language]<br/>"
 	dat += "<small>"
 	if(current_species.spawn_flags & SPECIES_CAN_JOIN)
 		switch(current_species.rarity_value)
@@ -2077,7 +2077,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	if(current_species.flags & IS_PLANT)
 		dat += "</br><b>Has a plantlike physiology.</b>"
 	*/
-	dat += "<b>Язык:</b> [current_species.species_language]<br/>"
+	dat += span_bold("Язык:") + " [current_species.species_language]<br/>"
 	dat += "<small>"
 	if(current_species.spawn_flags & SPECIES_CAN_JOIN)
 		switch(current_species.rarity_value)

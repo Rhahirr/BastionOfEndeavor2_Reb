@@ -142,7 +142,7 @@ var/global/list/valid_ringtones = list(
 /datum/category_item/player_setup_item/general/equipment/content()
 	. = list()
 	/* Bastion of Endeavor Translation: Massive comment block but I want this rearranged
-	. += "<b>Equipment:</b><br>"
+	. += span_bold("Equipment:") + "<br>"
 	for(var/datum/category_group/underwear/UWC in global_underwear.categories)
 		var/item_name = pref.all_underwear[UWC.name] ? pref.all_underwear[UWC.name] : "None"
 		. += "[UWC.name]: <a href='?src=\ref[src];change_underwear=[UWC.name]'><b>[item_name]</b></a>"
@@ -157,12 +157,12 @@ var/global/list/valid_ringtones = list(
 	. += "Communicator Visibility: <a href='?src=\ref[src];toggle_comm_visibility=1'><b>[(pref.communicator_visibility) ? "Yes" : "No"]</b></a><br>"
 	. += "Ringtone (leave blank for job default): <a href='?src=\ref[src];set_ringtone=1'><b>[pref.ringtone]</b></a><br>"
 	*/
-	. += "<b>Вещи</b><br>"
+	. += span_bold("Вещи:") + "<br>"
 	. += "Вид сумки: <a href='?src=\ref[src];change_backpack=1'><b>[backbaglist[pref.backbag]]</b></a><br>"
 	. += "Модель КПК: <a href='?src=\ref[src];change_pda=1'><b>[pdachoicelist[pref.pdachoice]]</b></a><br>"
 	. += "Рингтон КПК: <a href='?src=\ref[src];set_ringtone=1'><b>[pref.ringtone]</b></a><br>"
 	. += "Отображаться в коммуникаторах: <a href='?src=\ref[src];toggle_comm_visibility=1'><b>[(pref.communicator_visibility) ? "Да" : "Нет"]</b></a><br>"
-	. += "<b>Нижнее бельё</b><br>"
+	. += span_bold("Нижнее бельё:") + "<br>"
 	for(var/datum/category_group/underwear/UWC in global_underwear.categories)
 		var/item_name = pref.all_underwear[UWC.name] ? pref.all_underwear[UWC.name] : "Нет"
 		. += "[UWC.name]: <a href='?src=\ref[src];change_underwear=[UWC.name]'><b>[item_name]</b></a>"

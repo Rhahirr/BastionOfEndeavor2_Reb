@@ -28,11 +28,11 @@
 /datum/category_item/player_setup_item/vore/vantag/content(var/mob/user)
 	/* Bastion of Endeavor Translation
 	. += "<br>"
-	. += "<b>Event Volunteer:</b> <a [pref.vantag_volunteer ? "class='linkOn'" : ""] href='?src=\ref[src];toggle_vantag_volunteer=1'><b>[pref.vantag_volunteer ? "Yes" : "No"]</b></a><br>"
-	. += "<b>Event Pref:</b> <a href='?src=\ref[src];change_vantag=1'><b>[vantag_choices_list[pref.vantag_preference]]</b></a><br>"
+	. += span_bold("Event Volunteer:") + " <a [pref.vantag_volunteer ? "class='linkOn'" : ""] href='?src=\ref[src];toggle_vantag_volunteer=1'>" + span_bold("[pref.vantag_volunteer ? "Yes" : "No"]") + "</a><br>"
+	. += span_bold("Event Pref:") + " <a href='?src=\ref[src];change_vantag=1'>" + span_bold("[vantag_choices_list[pref.vantag_preference]]") + "</a><br>"
 	*/
-	. += "<b>Волонтёрство в событиях:</b> <a [pref.vantag_volunteer ? "class='linkOn'" : ""] href='?src=\ref[src];toggle_vantag_volunteer=1'><b>[pref.vantag_volunteer ? "Да" : "Нет"]</b></a><br>"
-	. += "<b>Роль в событиях:</b> <a href='?src=\ref[src];change_vantag=1'><b>[vantag_choices_list[pref.vantag_preference]]</b></a><br>"
+	. += span_bold("Волонтёрство в событиях:") + " <a [pref.vantag_volunteer ? "class='linkOn'" : ""] href='?src=\ref[src];toggle_vantag_volunteer=1'>" + span_bold("[pref.vantag_volunteer ? "Да" : "Нет"]") + "</a><br>"
+	. += span_bold("Роль в событиях:") + " <a href='?src=\ref[src];change_vantag=1'>" + span_bold("[vantag_choices_list[pref.vantag_preference]]") + "</a><br>"
 	// End of Bastion of Endeavor Translation
 
 /datum/category_item/player_setup_item/vore/vantag/OnTopic(var/href, var/list/href_list, var/mob/user)

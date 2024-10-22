@@ -20,9 +20,9 @@
 /datum/category_item/player_setup_item/vore/persistence/content(var/mob/user)
 	. = list()
 	/* Bastion of Endeavor Translation
-	. += "<b>Round-to-Round Persistence</b><br>"
+	. += span_bold("Round-to-Round Persistence") + "<br>"
 	*/
-	. += "<b>Сохранение между сменами</b><br>"
+	. += span_bold("Сохранение между сменами") + "<br>"
 	// End of Bastion of Endeavor Translation
 	. += "<table>"
 
@@ -72,13 +72,13 @@
 /datum/category_item/player_setup_item/vore/persistence/proc/make_yesno(var/bit)
 	if(pref.persistence_settings & bit)
 		/* Bastion of Endeavor Translation
-		return "<td><span class='linkOn'><b>Yes</b></span></td> <td><a href='?src=\ref[src];toggle_off=[bit]'>No</a></td>"
+		return "<td>" + span_linkOn(span_bold("Yes")) + "</td> <td><a href='?src=\ref[src];toggle_off=[bit]'>No</a></td>"
 	else
-		return "<td><a href='?src=\ref[src];toggle_on=[bit]'>Yes</a></td> <td><span class='linkOn'><b>No</b></span></td>"
+		return "<td><a href='?src=\ref[src];toggle_on=[bit]'>Yes</a></td> <td>" + span_linkOn(span_bold("No")) + "</td>"
 		*/
-		return "<td><span class='linkOn'><b>Да</b></span></td> <td><a href='?src=\ref[src];toggle_off=[bit]'>Нет</a></td>"
+		return "<td>" + span_linkOn(span_bold("Да")) + "</td> <td><a href='?src=\ref[src];toggle_off=[bit]'>Нет</a></td>"
 	else
-		return "<td><a href='?src=\ref[src];toggle_on=[bit]'>Да</a></td> <td><span class='linkOn'><b>Нет</b></span></td>"
+		return "<td><a href='?src=\ref[src];toggle_on=[bit]'>Да</a></td> <td>" + span_linkOn(span_bold("Нет")) + "</td>"
 		// End of Bastion of Endeavor Translation
 
 /datum/category_item/player_setup_item/vore/persistence/OnTopic(var/href, var/list/href_list, var/mob/user)

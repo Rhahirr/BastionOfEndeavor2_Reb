@@ -66,7 +66,7 @@
 
 /datum/category_item/player_setup_item/vore/nif/content(var/mob/user)
 	/* Bastion of Endeavor Translation
-	. += "<b>NIF:</b> [ispath(pref.nif_path) ? "Present" : "None"]"
+	. += span_bold("NIF:") + " [ispath(pref.nif_path) ? "Present" : "None"]"
 	*/
-	. += "<b>НИФ:</b> [ispath(pref.nif_path) ? "Установлен" : "Отсутствует"]"
+	. += span_bold("НИФ:") + " [ispath(pref.nif_path) ? "Установлен" : "Отсутствует"]"
 	// End of Bastion of Endeavor Translation

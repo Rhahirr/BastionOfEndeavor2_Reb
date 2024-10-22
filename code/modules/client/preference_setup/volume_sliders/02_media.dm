@@ -42,16 +42,16 @@
 /datum/category_item/player_setup_item/player_global/media/content(var/mob/user)
 // End of Bastion of Endeavor Edit
 	/* Bastion of Endeavor Translation
-	. += "<b>Jukebox Volume:</b>"
+	. += span_bold("Jukebox Volume:")
 	. += "<a href='?src=\ref[src];change_media_volume=1'><b>[round(pref.media_volume * 100)]%</b></a><br>"
-	. += "<b>Media Player Type:</b> Depending on you operating system, one of these might work better. "
+	. += span_bold("Media Player Type:") + " Depending on you operating system, one of these might work better. "
 	. += "Use HTML5 if it works for you. If neither HTML5 nor WMP work, you'll have to fall back to using VLC, "
 	. += "but this requires you have the VLC client installed on your comptuer."
 	. += "Try the others if you want but you'll probably just get no music.<br>"
 	*/
-	. += "<b>Громкость музыкального автомата: </b>"
-	. += "<a href='?src=\ref[src];change_media_volume=1'><b>[round(pref.media_volume * 100)]%</b></a><br>"
-	. += "<b>Проигрыватель медиа:</b> результаты могут отличаться в зависимости от вашей операционной системы. "
+	. += span_bold("Громкость музыкального автомата:")
+	. += "<a href='?src=\ref[src];change_media_volume=1'>" + span_bold("[round(pref.media_volume * 100)]%") + "</a><br>"
+	. += span_bold("Медиаплеер:") + " результаты могут отличаться в зависимости от вашей операционной системы. "
 	. += "По возможности используйте HTML5, но если HTML5 и WMP не работают, вам понадобится использовать VLC, "
 	. += "и для его работы требуется наличие на компьютере клиента VLC. "
 	. += "Не изменяйте эту настройку, если нет на то необходимости.<br>"
