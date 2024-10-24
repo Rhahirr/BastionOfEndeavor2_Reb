@@ -1,0 +1,16 @@
+2024-10-24:
+  ItsSelis:
+  - qol: Updated styling for admin ooc announcements (Special Verbs > Announce).
+  Kashargul:
+  - bugfix: fixes a wrong glass type given out on a quick selection on the RSF
+  Raeschen:
+  - rscdel: Revert combat refactor magazine sizes
+  - rscadd: '''turfpacks'' system for mappers'
+  ReoDaProtovali:
+  - bugfix: Fixed Micros getting stuck in disposal bins without making every other
+      object you try to put in disposal bins explode
+  TheCaramelion:
+  - bugfix: Borg pounce changed to stun
+  cadyn:
+  - bugfix: Splash screen inconsistency
+  - maptweak: add splash screen to centcomm Z-level
