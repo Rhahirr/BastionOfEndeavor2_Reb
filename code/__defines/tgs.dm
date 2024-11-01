@@ -159,7 +159,7 @@
  * * minimum_required_security_level: The minimum required security level to run the game in which the DMAPI is integrated. Can be one of [TGS_SECURITY_ULTRASAFE], [TGS_SECURITY_SAFE], or [TGS_SECURITY_TRUSTED].
  * * http_handler - Optional user defined [/datum/tgs_http_handler].
  */
-/world/proc/TgsNew(datum/tgs_event_handler/event_handler, minimum_required_security_level = TGS_SECURITY_TRUSTED, datum/tgs_http_handler/http_handler) //CHOMPEdit we need trusted
+/world/proc/TgsNew(datum/tgs_event_handler/event_handler, minimum_required_security_level = TGS_SECURITY_ULTRASAFE, datum/tgs_http_handler/http_handler)
 	return
 
 /**
@@ -174,7 +174,6 @@
 
 /// Consumers MUST run this macro at the start of [/world/proc/Topic].
 #define TGS_TOPIC var/tgs_topic_return = TgsTopic(args[1]); if(tgs_topic_return) return tgs_topic_return
-#define VGS_TOPIC var/vgs_topic_return = VgsTopic(args[1]); if(vgs_topic_return) return vgs_topic_return // VOREStation Edit - VGS
 
 /// Consumers MUST call this as late as possible in [world/proc/Reboot] (BEFORE ..()).
 /world/proc/TgsReboot()
@@ -337,11 +336,7 @@
  * * params - The trimmed string following the command `/datum/tgs_chat_command/var/name].
  */
 /datum/tgs_chat_command/proc/Run(datum/tgs_chat_user/sender, params)
-	/* Bastion of Endeavor Translation
 	CRASH("[type] has no implementation for Run()")
-	*/
-	CRASH("[type] не имеет прока Run().")
-	// End of Bastion of Endeavor Translation
 
 /// User definable chat message. MUST NOT be overridden.
 /datum/tgs_message_content
@@ -403,11 +398,7 @@
 /datum/tgs_chat_embed/media/New(url)
 	..()
 	if(!istext(url))
-		/* Bastion of Endeavor Translation
 		CRASH("[/datum/tgs_chat_embed/media] created with no url!")
-		*/
-		CRASH("[/datum/tgs_chat_embed/media] создан без URL!")
-		// End of Bastion of Endeavor Translation
 
 	src.url = url
 
@@ -422,11 +413,7 @@
 /datum/tgs_chat_embed/footer/New(text)
 	..()
 	if(!istext(text))
-		/* Bastion of Endeavor Translation
 		CRASH("[/datum/tgs_chat_embed/footer] created with no text!")
-		*/
-		CRASH("[/datum/tgs_chat_embed/footer] создан без футера!")
-		// End of Bastion of Endeavor Translation
 
 	src.text = text
 
@@ -444,11 +431,7 @@
 /datum/tgs_chat_embed/provider/author/New(name)
 	..()
 	if(!istext(name))
-		/* Bastion of Endeavor Translation
 		CRASH("[/datum/tgs_chat_embed/provider/author] created with no name!")
-		*/
-		CRASH("[/datum/tgs_chat_embed/provider/author] создан без имени автора!")
-		// End of Bastion of Endeavor Translation
 
 	src.name = name
 
@@ -464,18 +447,10 @@
 /datum/tgs_chat_embed/field/New(name, value)
 	..()
 	if(!istext(name))
-		/* Bastion of Endeavor Translation
 		CRASH("[/datum/tgs_chat_embed/field] created with no name!")
-		*/
-		CRASH("[/datum/tgs_chat_embed/field] создан без имени!")
-		// End of Bastion of Endeavor Translation
 
 	if(!istext(value))
-		/* Bastion of Endeavor Translation
 		CRASH("[/datum/tgs_chat_embed/field] created with no value!")
-		*/
-		CRASH("[/datum/tgs_chat_embed/field] создан без значения!")
-		// End of Bastion of Endeavor Translation
 
 	src.name = name
 	src.value = value
